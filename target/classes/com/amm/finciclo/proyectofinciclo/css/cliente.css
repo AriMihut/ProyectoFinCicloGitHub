@@ -1,0 +1,49 @@
+.idCliente{
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+}
+
+.dniCliente{
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+}
+
+.nombreCliente{
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+}
+
+.apellidoCliente{
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+}
+
+.idServicioContratado{
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+}
+
+.idPdctoComprado{
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+}
+
+.pagoRealizado{
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+}
+
+.buttons{
+    -fx-background-color: #6DBD96;
+    -fx-padding: 4;
+    -fx-max-width: 156px;
+}
+
+.buttons:hover{
+    -fx-background-color: -fx-shadow-highlight-color, -fx-outer-border, -fx-inner-border;
+    -fx-color: -fx-hover-base;
+}
+
+.botonAtrás{
+    -fx-background-color: #6DBD96;
+}

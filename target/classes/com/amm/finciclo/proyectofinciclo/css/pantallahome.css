@@ -1,0 +1,69 @@
+
+.pantallaHome{
+    -fx-spacing: 60px;
+    -fx-alignment: top-center;
+    -fx-background-color: white;
+}
+
+.etiqueta-principal{
+    -fx-text-fill: white;
+}
+
+.contenedor-titulo{
+    -fx-spacing: 20px;
+    -fx-alignment: top-center;
+    -fx-background-color: #6DBD96;
+    -fx-font-weight: bold;
+    -fx-font-size: 30px;
+    -fx-alignment: center;
+    -fx-text-aling: center;
+}
+
+.pantallaHomeFlow{
+   -fx-margin: 20px;
+   -fx-spacing: 20px;
+   -fx-margin-left: 20px;
+   -fx-alignment: top-center;
+}
+
+.boton-accion{
+    -fx-text-decoration: none;
+    -fx-padding: 3px;
+    -fx-padding-left: 10px;
+    -fx-padding-right: 10px;
+    -fx-font-family: helvetica;
+    -fx-font-weight: 300;
+    -fx-font-size: 25px;
+    -fx-font-style: italic;
+    -fx-color: #666666;
+    -fx-background-color: #6DBD96;
+    -fx-border-radius: 30px;
+    -fx-border-width: 3px;
+}
+
+.boton-accion:hover{
+    -fx-color: #666666;
+    -fx-background-color: #666666;
+    -fx-text-decoration: none;
+}
+
+.botonAtrás{
+    -fx-spacing: 20px;
+    -fx-alignment: top-center;
+    -fx-background-color: #6DBD96;
+    -fx-font-weight: bold;
+    -fx-font-size: 30px;
+    -fx-alignment: center;
+    -fx-text-fill: white;
+    -fx-text-aling: center;
+}
+
+.botonAtrás:hover{
+    -fx-background-color: #6DBD96;
+    -fx-text-decoration: none;
+}
+
+.calendario{
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+}

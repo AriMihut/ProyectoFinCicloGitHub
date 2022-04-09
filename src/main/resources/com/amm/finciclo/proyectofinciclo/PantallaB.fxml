@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.layout.StackPane?>
+
+<StackPane fx:id="pantallaB" xmlns:fx="http://javafx.com/fxml/1" 
+        fx:controller="com.amm.finciclo.proyectofinciclo.ControladorPantallaB">
+    <Button onAction="#mostrarPantalla" text="Mostrar pantalla A"></Button>
+</StackPane>

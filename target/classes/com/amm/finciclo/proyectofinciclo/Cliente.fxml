@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.net.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.text.Text?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.cell.PropertyValueFactory?>
+<?import javafx.scene.control.ToolBar?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.image.Image?>
+
+<BorderPane id="borderPane" prefHeight="600.0" prefWidth="600.0" styleClass="mainFxmlClass" 
+            xmlns:fx="http://javafx.com/fxml/1" 
+            fx:controller="com.amm.finciclo.proyectofinciclo.ClienteController">
+    <stylesheets>
+        <URL value="@/com/amm/finciclo/proyectofinciclo/css/cliente.css"/>
+    </stylesheets>
+    <padding>
+        <Insets top="10" right="10" bottom="10" left="10"/>
+    </padding> 
+    <top>
+        <StackPane style="-fx-background-color: #6DBD96" minHeight="80">
+            <Text text="Sueños cumplidos - Nuestros clientes" fill="white" 
+                  style="-fx-font-weight: bold;">
+                <font>
+                    <Font name="Cambria" size="30"/>
+                </font>
+            </Text>
+        </StackPane> 
+    </top>
+    <left>
+        <StackPane style="-fx-background-color: #eee;" minWidth="150">
+            <GridPane styleClass="gridPaneDatos" hgap="20" vgap="20" style="-fx-background-color: grey">
+                <Label styleClass="idCliente" text="Id Cliente" GridPane.rowIndex="2" 
+                       GridPane.columnIndex="0" style="-fx-font-weight: bold;"/>
+                <TextField fx:id="id" GridPane.rowIndex="2" GridPane.columnIndex="1"/>
+                <Label styleClass="dniCliente" text="DNI" GridPane.rowIndex="3" 
+                       GridPane.columnIndex="0" style="-fx-font-weight: bold;"/>
+                <TextField fx:id="dni" GridPane.rowIndex="3" GridPane.columnIndex="1"/>
+                <Label styleClass="nombreCliente" text="Nombre" GridPane.rowIndex="4" 
+                       GridPane.columnIndex="0" style="-fx-font-weight: bold;"/>
+                <TextField fx:id="nombreCliente" GridPane.rowIndex="4" GridPane.columnIndex="1"/>
+                <Label styleClass="apellidoCliente" text="Apellido" GridPane.rowIndex="5" 
+                       GridPane.columnIndex="0" style="-fx-font-weight: bold;"/>
+                <TextField fx:id="apellido" GridPane.rowIndex="5" GridPane.columnIndex="1"/>
+                <Label styleClass="idServicioContratado" text="Id Servicio Contratado" GridPane.rowIndex="6" 
+                       GridPane.columnIndex="0" style="-fx-font-weight: bold;"/>
+                <TextField fx:id="idServicioContratado" GridPane.rowIndex="6" GridPane.columnIndex="1"/>
+                <Label styleClass="idPdctoComprado" text="Id Producto Comprado" GridPane.rowIndex="7" 
+                       GridPane.columnIndex="0" style="-fx-font-weight: bold;"/>
+                <TextField fx:id="idPdctoComprado" GridPane.rowIndex="7" GridPane.columnIndex="1"/>
+                <Label styleClass="pagoRealizado" text="Pago Realizado" GridPane.rowIndex="8" 
+                       GridPane.columnIndex="0" style="-fx-font-weight: bold;"/>
+                <TextField fx:id="pagoRealizado" GridPane.rowIndex="8" GridPane.columnIndex="1"/>
+                <ToolBar styleClass="buttons" HBox.hgrow= "ALWAYS" GridPane.rowIndex="1" 
+                         GridPane.columnIndex="0" 
+                         GridPane.columnSpan="2" style="-fx-background-color: #eee">
+                    <Button styleClass="boton-accion" onAction="#anadir" GridPane.rowIndex="1" 
+                            GridPane.columnIndex="0">
+                        <graphic>
+                            <ImageView>
+                                <Image url="@../../../../iconos/anadir.png"/>
+                            </ImageView>
+                        </graphic>
+                    </Button>
+                    <Button styleClass="boton-accion" onAction="#prepararModificar" GridPane.rowIndex="1" GridPane.columnIndex="1">
+                        <graphic>
+                            <ImageView>
+                                <Image url="@../../../../iconos/modificar.png"/>
+                            </ImageView>
+                        </graphic>
+                    </Button>
+                    <Button styleClass="boton-accion" onAction="#eliminar" GridPane.rowIndex="1" GridPane.columnIndex="2">
+                        <graphic>
+                            <ImageView>
+                                <Image url="@../../../../iconos/eliminar.png"/>
+                            </ImageView>
+                        </graphic>
+                    </Button>
+                </ToolBar>
+            </GridPane> 
+        </StackPane>
+    </left>
+    <center>
+        <StackPane styleClass="tabla_clientes" HBox.hgrow="ALWAYS">
+            <TableView fx:id="tablaClientes">
+                <columns>
+                    <TableColumn text="id" prefWidth="${tablaClientes.width*0.10}" >
+                        <cellValueFactory>
+                            <PropertyValueFactory property="id" />
+                        </cellValueFactory>
+                    </TableColumn>
+                    <TableColumn text="dni" prefWidth="${tablaClientes.width*0.20}">
+                        <cellValueFactory>
+                            <PropertyValueFactory property="dni"/>
+                        </cellValueFactory>
+                    </TableColumn>
+                    <TableColumn text="nombre" prefWidth="${tablaClientes.width*0.20}">
+                        <cellValueFactory>
+                            <PropertyValueFactory property="nombre" />
+                        </cellValueFactory>
+                    </TableColumn>
+                    <TableColumn text="apellido" prefWidth="${tablaClientes.width*0.20}">
+                        <cellValueFactory>
+                            <PropertyValueFactory property="apellido"/>
+                        </cellValueFactory>
+                    </TableColumn>
+                    <TableColumn text="idServicioContratado" prefWidth="${tablaClientes.width*0.10}">
+                        <cellValueFactory>
+                            <PropertyValueFactory property="idServicioContratado"/>
+                        </cellValueFactory>
+                    </TableColumn>
+                    <TableColumn text="idProductoComprado" prefWidth="${tablaClientes.width*0.10}">
+                        <cellValueFactory>
+                            <PropertyValueFactory property="idProductoComprado"/>
+                        </cellValueFactory>
+                    </TableColumn>
+                    <TableColumn text="pagoRealizado" prefWidth="${tablaClientes.width*0.10}">
+                        <cellValueFactory>
+                            <PropertyValueFactory property="pagoRealizado"/>
+                        </cellValueFactory>
+                    </TableColumn>
+                </columns>
+            </TableView>
+        </StackPane>
+    </center>
+    <bottom>
+        <StackPane style="-fx-background-color: #6DBD96" minHeight= "50" >
+            <Button styleClass="botonAtrás" onAction="#atras" focusTraversable="false" 
+                    GridPane.rowIndex="4" GridPane.columnIndex="5" GridPane.columnSpan="9">
+                <graphic>
+                    <ImageView>
+                        <Image url="@../../../../iconos/atras.png"/>
+                    </ImageView>
+                </graphic>
+            </Button> 
+        </StackPane>   
+    </bottom> 
+</BorderPane>
+

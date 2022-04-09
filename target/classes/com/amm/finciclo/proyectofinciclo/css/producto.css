@@ -1,0 +1,47 @@
+.textoTitulo{
+   -fx-text-fill: #6DBD96;
+   -fx-font-weight: bold; 
+   -fx-background-color: grey;
+}
+
+.idProducto{
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+}
+
+.nombreProducto{
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+}
+
+.precioProducto{
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+}
+
+.idCliente{
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+}
+
+.idProveedor{
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+}
+
+.buttons{
+    -fx-background-color: #6DBD96;
+    -fx-padding: 4;
+    -fx-max-width: 156px;
+}
+
+.buttons:hover{
+    -fx-background-color: -fx-shadow-highlight-color, -fx-outer-border, -fx-inner-border;
+    -fx-color: -fx-hover-base;
+}
+
+.botonAtrás{
+    -fx-background-color: #6DBD96;
+    -fx-alignment: center;
+}
+
