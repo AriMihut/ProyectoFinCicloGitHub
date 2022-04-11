@@ -1,8 +1,5 @@
 package com.amm.finciclo.proyectofinciclo;
 
-import dao.DAOCliente;
-import dao.DAOEmpleado;
-import dao.DAOProveedor;
 import dao.DAOUsuario;
 import java.io.IOException;
 import java.net.URL;
@@ -10,7 +7,6 @@ import java.sql.SQLException;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.HBox;
@@ -21,6 +17,8 @@ public class AutentificacionCPEController extends ControladorConNavegabilidad im
     @FXML private TextField contrasena;
     @FXML private Label etiquetaAviso;
     @FXML private HBox contenedorRegistro;
+    
+    private TipoUsuario tipoUsuario = null;
   
     private DAOUsuario usuarioDao;
     
@@ -41,7 +39,7 @@ public class AutentificacionCPEController extends ControladorConNavegabilidad im
 
     @FXML
     public void autentificarse() throws IOException, SQLException {
-        Usuario nuevoUsuario = new Usuario(0, usuario.getText(), contrasena.getText());
+        Usuario nuevoUsuario = new Usuario(0, usuario.getText(), contrasena.getText(), this.layout.getRolUsuario());
         if(comprobacionesUsuario()){
             if(usuarioDao.comprobarExistenciaUsuario(nuevoUsuario)){
             navegarSegunTipoUsuario();
@@ -58,16 +56,16 @@ public class AutentificacionCPEController extends ControladorConNavegabilidad im
     private void navegarSegunTipoUsuario() throws IOException{
         
         switch(this.layout.getRolUsuario()){
-            case "cliente":
+            case CLIENTE:
                 this.layout.mostrarComoPantallaActual("cliente");
                 break;
-            case "empleado":
+            case EMPLEADO:
                 this.layout.mostrarComoPantallaActual("empleado");
                 break;
-            case "proveedor":
+            case PROVEEDOR:
                 this.layout.mostrarComoPantallaActual("proveedor");
                 break;
-            case "admin":
+            case ADMIN:
                 this.layout.mostrarComoPantallaActual("pagHome");
                 break;
             default:

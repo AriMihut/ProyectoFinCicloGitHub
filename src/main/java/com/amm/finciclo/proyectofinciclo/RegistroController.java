@@ -1,16 +1,11 @@
 package com.amm.finciclo.proyectofinciclo;
     
-import dao.DAOCliente;
-import dao.DAOEmpleado;
-import dao.DAOProveedor;
 import dao.DAOUsuario;
 import java.io.IOException;
 import javafx.scene.control.TextField;
 import java.net.URL;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
@@ -107,19 +102,18 @@ int id;
     
     private void guardarUsuario(String nombre, String contrasena) throws SQLException {
         usuarioDao = new DAOUsuario();
-        Usuario usuario = new Usuario(0, nombre, contrasena);
-        usuarioDao.anadir(usuario);
+        usuarioDao.anadir( new Usuario(0, nombre, contrasena, this.layout.getRolUsuario()));
     }
-
+    
     private void navegarSegunTipoUsuario() throws IOException{
         switch(this.layout.getRolUsuario()){
-            case "cliente":
+            case CLIENTE:
                 this.layout.mostrarComoPantallaActual("cliente");
                 break;
-            case "empleado":
+            case EMPLEADO:
                 this.layout.mostrarComoPantallaActual("empleado");
                 break;
-            case "proveedor":
+            case PROVEEDOR:
                 this.layout.mostrarComoPantallaActual("proveedor");
                 break;
             default:

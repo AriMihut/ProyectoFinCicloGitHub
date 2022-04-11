@@ -5,21 +5,25 @@ public class Cliente {
     private int id;
     private String dni;
     private String nombre;
-    private String apellido;
-    private int idServicioContratado;
-    private int idProductoComprado;
-    private int pagoRealizado;
-    
-    public Cliente(){}
+    //public enum Sexo{Mujer, Hombre};
+    //public Sexo sexo;
+    private String sexo;
+    private Long telefono;
+    //private enum tipoServicio {Ceremonia, Gastronomia, Musica, Fotografia, Video, Transporte};
+    private String tipoServicio;
+    private double importeTotal;
 
-    public Cliente(int id, String dni, String nombre, String apellido, int idServicioContratado, int idProductoComprado, int pagoRealizado) {
+    public Cliente() {
+    }
+
+    public Cliente(int id, String dni, String nombre, String sexo, Long telefono, String tipoServicio, double importeTotal) {
         this.id = id;
         this.dni = dni;
         this.nombre = nombre;
-        this.apellido = apellido;
-        this.idServicioContratado = idServicioContratado;
-        this.idProductoComprado = idProductoComprado;
-        this.pagoRealizado = pagoRealizado;
+        this.sexo = sexo;
+        this.telefono = telefono;
+        this.tipoServicio = tipoServicio;
+        this.importeTotal = importeTotal;
     }
 
     public int getId() {
@@ -46,36 +50,41 @@ public class Cliente {
         this.nombre = nombre;
     }
 
-    public String getApellido() {
-        return apellido;
+    public String getSexo() {
+        return sexo;
     }
 
-    public void setApellido(String apellido) {
-        this.apellido = apellido;
+    public void setSexo(String sexo) {
+        this.sexo = sexo;
     }
 
-    public int getIdServicioContratado() {
-        return idServicioContratado;
+    public Long getTelefono() {
+        return telefono;
     }
 
-    public void setIdServicioContratado(int idServicioContratado) {
-        this.idServicioContratado = idServicioContratado;
+    public void setTelefono(Long telefono) {
+        this.telefono = telefono;
     }
 
-    public int getIdProductoComprado() {
-        return idProductoComprado;
+    public String getTipoServicio() {
+        return tipoServicio;
     }
 
-    public void setIdProductoComprado(int idProductoComprado) {
-        this.idProductoComprado = idProductoComprado;
+    public void setTipoServicio(String tipoServicio) {
+        this.tipoServicio = tipoServicio;
     }
 
-    public int getPagoRealizado() {
-        return pagoRealizado;
+    public double getImporteTotal() {
+        return importeTotal;
     }
 
-    public void setPagoRealizado(int pagoRealizado) {
-        this.pagoRealizado = pagoRealizado;
+    public void setImporteTotal(double importeTotal) {
+        this.importeTotal = importeTotal;
+    }
+
+    @Override
+    public String toString() {
+        return "Servicio{" + ", tipoServicio=" + tipoServicio + '}';
     }
     
 }

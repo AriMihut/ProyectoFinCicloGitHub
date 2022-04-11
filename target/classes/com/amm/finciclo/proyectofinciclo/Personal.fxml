@@ -17,16 +17,16 @@
 <?import javafx.scene.image.Image?>
 
 <BorderPane id="BorderPane" prefHeight="400.0" prefWidth="600.0" styleClass="mainFxmlClass" 
-            xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.amm.finciclo.proyectofinciclo.PersonalController">
+            xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.amm.finciclo.proyectofinciclo.EmpleadoController">
     <stylesheets>
-        <URL value="@/com/amm/finciclo/proyectofinciclo/css/personal.css"/>
+        <URL value="@/com/amm/finciclo/proyectofinciclo/css/empleado.css"/>
     </stylesheets>
     <padding>
         <Insets top="5" right="5" bottom="5" left="5"/>
     </padding> 
     <top>
         <StackPane style="-fx-background-color: #6DBD96" minHeight="80">
-            <Text text="Sueños cumplidos - Personal" fill="white" 
+            <Text text="Sueños cumplidos - Soy Empleado" fill="white" 
                   style="-fx-font-weight: bold;">
                 <font>
                     <Font name="Cambria" size="30"/>

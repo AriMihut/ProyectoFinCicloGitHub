@@ -13,7 +13,7 @@ public class LayoutPane extends BorderPane {
     
     private Map<String, Node> pantallasApp;
     private Map<String, ControladorConNavegabilidad> controladores;
-    private String rolUsuario;
+    private TipoUsuario rolUsuario;
     
     public LayoutPane(){
         this.pantallasApp = new HashMap<>();
@@ -39,12 +39,12 @@ public class LayoutPane extends BorderPane {
                 controlador.getKey().equals(nombrePantalla)).findFirst().get().getValue();
     }
 
-    public String getRolUsuario() {
+    public TipoUsuario getRolUsuario() {
         return rolUsuario;
     }
 
-    public void setRolUsuario(String rolUsuario) {
-        this.rolUsuario = rolUsuario;
+    public void setRolUsuario(TipoUsuario tipoUsuario) {
+        this.rolUsuario = tipoUsuario;
     }
     
 }

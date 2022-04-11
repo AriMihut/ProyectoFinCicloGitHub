@@ -17,7 +17,7 @@
                 prefWidth="${pantallaLogin.width}"/>
     </VBox>
     <VBox styleClass="contenedor-general" VBox.vgrow="ALWAYS" >
-        <Label fx:id="welcome" text="BIENVENIDA/O" styleClass="welcome" HBox.hgrow="ALWAYS"/>
+        <Label fx:id="welcome" text="Bienvenida/o" styleClass="welcome" HBox.hgrow="ALWAYS"/>
         <TextField fx:id="usuario" promptText="Introduce nombre de usuario"  styleClass="dark-textfield" 
                    focusTraversable="false" prefWidth="${pantallaLogin.width*0.5}" 
                    maxWidth="${pantallaLogin.width*0.5}"/>

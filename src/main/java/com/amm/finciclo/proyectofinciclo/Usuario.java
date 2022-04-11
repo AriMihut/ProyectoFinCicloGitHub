@@ -5,15 +5,15 @@ public class Usuario {
     private int id;
     private String nombre;
     private String contrasena;
-    public enum TipoUsuario {admin, cliente, empleado, proveedor};
-    public TipoUsuario tipoUsuario;
+    private TipoUsuario tipoUsuario;
     
     public Usuario(){}
     
-    public Usuario(int id, String nombre, String contrasena) {
+    public Usuario(int id, String nombre, String contrasena, TipoUsuario tipoUsuario) {
         this.id = id;
         this.nombre = nombre;
         this.contrasena = contrasena;
+        this.tipoUsuario = tipoUsuario;
     }
 
     public int getId() {
@@ -38,6 +38,14 @@ public class Usuario {
 
     public void setContrasena(String contrasena) {
         this.contrasena = contrasena;
+    }
+
+    public TipoUsuario getTipoUsuario() {
+        return tipoUsuario;
+    }
+
+    public void setTipoUsuario(TipoUsuario tipoUsuario) {
+        this.tipoUsuario = tipoUsuario;
     }
     
 }

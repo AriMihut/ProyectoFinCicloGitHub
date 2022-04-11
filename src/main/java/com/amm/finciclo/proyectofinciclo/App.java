@@ -19,11 +19,11 @@ public class App extends Application {
         layoutPane.cargarPantalla("empleado", EmpleadoController.class.getResource("Empleado.fxml"));
         layoutPane.cargarPantalla("proveedor", ProveedorController.class.getResource("Proveedor.fxml"));
         layoutPane.cargarPantalla("pagHome", PantallaHomeController.class.getResource("PantallaHome.fxml"));
-
+        layoutPane.cargarPantalla("contacto", PantallaHomeController.class.getResource("Contacto.fxml"));
         
         layoutPane.mostrarComoPantallaActual("comienzo");
      
-        Scene escena = new Scene(layoutPane, 600, 600);
+        Scene escena = new Scene(layoutPane, 700, 700);
         stage.setScene(escena);
         stage.show();
     

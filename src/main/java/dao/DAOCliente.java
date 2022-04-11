@@ -36,7 +36,7 @@ public class DAOCliente {
     }
    }
     
-    @FXML
+   /* @FXML
     public void anadir(Cliente cliente){
            
         try (
@@ -116,7 +116,7 @@ public class DAOCliente {
             System.out.println(ex.getMessage());
        }
         return clientes;
-    }
+    }*/
     
     
 }

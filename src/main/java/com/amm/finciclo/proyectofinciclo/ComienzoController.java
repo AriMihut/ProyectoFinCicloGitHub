@@ -44,7 +44,7 @@ public class ComienzoController extends ControladorConNavegabilidad implements I
     
     @FXML
     public void accederComoCliente(){
-        this.layout.setRolUsuario("cliente");
+        this.layout.setRolUsuario(TipoUsuario.CLIENTE);
         AutentificacionCPEController controladorAutentificacion = 
                 (AutentificacionCPEController) this.layout.getCotroller("autentificacion");
         this.layout.mostrarComoPantallaActual("autentificacion");
@@ -52,7 +52,7 @@ public class ComienzoController extends ControladorConNavegabilidad implements I
     
     @FXML
     public void accederComoProveedor(){
-        this.layout.setRolUsuario("proveedor");
+        this.layout.setRolUsuario(TipoUsuario.PROVEEDOR);
         AutentificacionCPEController controladorAutentificacion = 
                 (AutentificacionCPEController) this.layout.getCotroller("autentificacion");
         this.layout.mostrarComoPantallaActual("autentificacion");  
@@ -60,7 +60,7 @@ public class ComienzoController extends ControladorConNavegabilidad implements I
     
     @FXML
     public void accederComoEmpleado(){
-        this.layout.setRolUsuario("empleado");
+        this.layout.setRolUsuario(TipoUsuario.EMPLEADO);
         AutentificacionCPEController controladorAutentificacion = 
                 (AutentificacionCPEController) this.layout.getCotroller("autentificacion");
         this.layout.mostrarComoPantallaActual("autentificacion"); 
@@ -68,7 +68,7 @@ public class ComienzoController extends ControladorConNavegabilidad implements I
     
     @FXML
     public void accederComoAdministrador() throws IOException{
-        this.layout.setRolUsuario("admin");
+        this.layout.setRolUsuario(TipoUsuario.ADMIN);
         AutentificacionCPEController controladorAutentificacion = 
                 (AutentificacionCPEController) this.layout.getCotroller("autentificacion");
         this.layout.mostrarComoPantallaActual("autentificacion");    

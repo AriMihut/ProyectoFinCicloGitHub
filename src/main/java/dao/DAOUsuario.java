@@ -17,39 +17,18 @@ public class DAOUsuario {
     public static final String PASSWORD_BDD = "";
 
     public DAOUsuario() throws SQLException{
-        crearTablaSiNoExiste();
     }
     
-      private void crearTablaSiNoExiste() throws SQLException {
-        
-        try(
-            Connection conexion = DriverManager.getConnection(URL_CONEXION, USUARIO_BDD, PASSWORD_BDD)){
-                Statement sentencia = conexion.createStatement();
-               
-                String sql = "CREATE TABLE IF NOT EXISTS usuario" +
-                    "(id INTEGER(15) auto_increment, " +
-                    "nombre VARCHAR(50), " +
-                    "contrasena VARCHAR(50), " +
-                    "tipoUsuario ENUM ('admin', 'cliente', 'empleado', 'proveedor'), " +
-                    "PRIMARY KEY(id))";
-                                
-                sentencia.executeUpdate(sql);
-                  
-        } catch (SQLException ex) {
-                System.out.println("Error al introducir información en la base de datos " + ex.getMessage());
-        } 
-        
-     }
-      
-       @FXML
+    
     public void anadir(Usuario usuario){
            
         try (
             Connection conexionDataBase =
             DriverManager.getConnection(URL_CONEXION, USUARIO_BDD, PASSWORD_BDD)){
             Statement statement = conexionDataBase.createStatement();
-            String sql = "INSERT INTO usuario(nombre, contrasena) " +
-                   "VALUES ('" + usuario.getNombre() + "', ('" + usuario.getContrasena() + "'));";
+            String sql = "INSERT INTO usuario(nombre, contrasena, tipoUsuario) " 
+                    + "VALUES ('" + usuario.getNombre() + "', '" + usuario.getContrasena()
+                    + "', '" + usuario.getTipoUsuario().name() + "');";
             statement.executeUpdate(sql);  
             System.out.println("sql ===> " + sql);
             
@@ -114,9 +93,11 @@ public class DAOUsuario {
           
         Connection conexionDataBase = DriverManager.getConnection(URL_CONEXION, USUARIO_BDD, PASSWORD_BDD);
         Statement  statement = conexionDataBase.createStatement();
-        String sql = "SELECT * FROM usuario WHERE nombre = '" + usuario.getNombre() + 
-                "' and contrasena ='" + usuario.getContrasena() + "'";
-        ResultSet resultset = statement.executeQuery(sql);
+        String sql = "SELECT * FROM usuario WHERE "
+                + "nombre = '" + usuario.getNombre() + 
+                "' and contrasena ='" + usuario.getContrasena() 
+                + "' and tipoUsuario = '" + usuario.getTipoUsuario().name() + "';";
+         ResultSet resultset = statement.executeQuery(sql);
         return resultset.next();
       }
 

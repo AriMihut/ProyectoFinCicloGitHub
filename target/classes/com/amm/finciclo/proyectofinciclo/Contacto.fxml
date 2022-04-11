@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.net.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.text.Text?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.effect.Reflection?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.layout.VBox?>
+
+<BorderPane id="BorderPane" prefHeight="400.0" prefWidth="600.0" styleClass="mainFxmlClass" 
+ fx:id="pantallaContacto" xmlns:fx="http://javafx.com/fxml/1" HBox.hgrow="ALWAYS"
+        fx:controller="com.amm.finciclo.proyectofinciclo.ContactoController">
+    <stylesheets>
+        <URL value="@/com/amm/finciclo/proyectofinciclo/css/contacto.css"/>
+    </stylesheets> 
+    <top>
+        <HBox style="-fx-background-color: #6DBD96" minHeight="80">
+            <Text text="Sueños cumplidos - Contacto" fill="white" style="-fx-font-weight: bold;">
+                <font>
+                    <Font name="Cambria" size="30"/>
+                </font>
+            </Text>
+        </HBox> 
+    </top>
+    <left>
+        <MenuBar styleClass="menu_bar" fx:id="menuBarContacto"  maxWidth="100">
+        <Menu fx:id="menuMensajes" text="Contacto">
+                <MenuItem text="Mensajes" onAction="#abrirMensajes"/>
+                <MenuItem text="Salir" onAction="#salir"/>
+             </Menu>
+             <Menu fx:id="menuContacto" text="Contactar">
+                <MenuItem text="Contactar" onAction="#contactar"/>
+                <MenuItem text="Salir" onAction="#salir"/> 
+        </Menu>
+    </MenuBar>      
+    </left>  
+    <center>
+      
+      <VBox styleClass="gridPaneDatos" spacing="20" style="-fx-background-color: grey">
+        <Label styleClass="contactanos" text="Contacta con nosotros" style="fx-text-align: center"/>        
+        <Label styleClass="telefonoSuenos" text="(0034)655555555" />
+        <Label styleClass="emailSuenos" text="suenos_cumplidos@suenos.com" />
+        <Label styleClass="formularioEmail" text="Tu email*: "  style="required"/>
+                       <TextField fx:id="email"/>
+        <Label styleClass="mensaje" text="Tu mensaje*: " style="required"/>
+        <TextArea fx:id="reclamarOContactar" prefHeight="250"/>
+        <Button fx:id="botonEnviar" text="Enviar" onAction="#enviar" focusTraversable="false"/>
+       </VBox>
+       
+       <VBox styleClass="gridPaneDatos" spacing="20" style="-fx-background-color: grey">
+        
+       </VBox>
+           
+    </center>   
+    <bottom>
+        <HBox style="-fx-background-color: #6DBD96" minHeight= "50" >
+            <Button styleClass="botonAtrás" onAction="#atras" focusTraversable="false" >
+                <graphic>
+                    <ImageView>
+                        <Image url="@../../../../iconos/puerta.png"/>
+                    </ImageView>
+                </graphic>
+            </Button> 
+        </HBox>   
+    </bottom>        
+</BorderPane>
+
