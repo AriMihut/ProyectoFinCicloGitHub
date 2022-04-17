@@ -1,0 +1,79 @@
+.titulo{
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-font-size: 30px;
+    -fx-alignment: center;
+    -fx-text-aling: center;
+}
+
+.textoTitulo{
+    -fx-font-weight: bold;
+}
+
+.leftVBox{
+    -fx-padding: 10px;
+    -fx-alignment: center;
+}
+
+#btnContacto{
+    -fx-background-color: darkgrey;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-font-size: 15px;
+}
+
+.vBoxMensajes{
+    -fx-padding: 80px;
+    -fx-pref-width: 500px;    
+}
+        
+.tablaMensaje .column-header-background,
+.tablaMensaje .column-header-background .nested-column-header {
+    -fx-background-color: darkgrey;
+    -fx-border-color: white;
+    -fx-text-fill: white; 
+}
+
+.tablaMensaje .column-header-background .nested-column-header .table-column .label {
+   -fx-background-color: darkgrey;
+   -fx-border-color: darkgrey;
+   -fx-text-fill: white;  
+   -fx-alignment: center;
+   -fx-padding: 0px;
+   -fx-border-width: 0px;
+}
+
+.tablaMensaje .column-header-background .nested-column-header .table-column {
+   -fx-background-color: darkgrey;
+   -fx-border-color: darkgrey;
+   -fx-border-width: 1px;
+   -fx-table-cell-border-color: darkgrey;
+   -fx-alignment: center;
+   -fx-padding: 0px;
+}
+.tablaMensaje .table-row-cell {
+    -fx-padding: 0px;
+}
+
+.tablaMensaje .table-row-cell:odd { 
+    -fx-background-color:grey;
+    -fx-text-fill: white;
+}
+
+.tablaMensaje .table-row-cell:even {
+    -fx-background-color:white;
+    -fx-text-fill: grey;
+}
+
+.tablaMensaje .table-row-cell:even:selected .table-cell,
+.tablaMensaje .table-row-cell:odd:selected .table-cell {
+    -fx-text-fill: black;
+    -fx-fill: black;
+    -fx-alignment: center;
+}
+
+.tablaMensaje .table-column {
+    -fx-border-color: darkgrey;
+    -fx-alignment: center;
+    -fx-padding-right: 0px;
+}

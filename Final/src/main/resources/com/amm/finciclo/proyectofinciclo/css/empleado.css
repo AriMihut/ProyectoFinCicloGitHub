@@ -1,0 +1,56 @@
+.labelTitulo{
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+}
+
+.buttons{
+    -fx-background-color: white;
+    -fx-padding: 4;
+    -fx-max-width: 156px;
+}
+
+.buttons:hover{
+    -fx-background-color: -fx-shadow-highlight-color, -fx-outer-border, -fx-inner-border;
+    -fx-color: -fx-hover-base;
+}
+
+.id{
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+}
+
+.dni{
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+}
+
+.nombre{
+   -fx-text-fill: white;
+    -fx-font-weight: bold; 
+}
+
+.apellido{
+   -fx-text-fill: white;
+   -fx-font-weight: bold; 
+}
+
+.fechaAlta{
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+}
+
+.fechaBaja{
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+}
+
+.idServicioOfrecido{
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+}
+
+.departamentos{
+    -fx-text-fill: white;
+    -fx-font-weight: bold;   
+}
+

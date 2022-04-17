@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.net.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.text.Text?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.cell.PropertyValueFactory?>
+<?import javafx.scene.control.ToolBar?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.image.Image?>
+
+<VBox fx:id="paginaPrincipal" xmlns:fx="http://javafx.com/fxml" fx:controller="com.amm.finciclo.proyectofinciclo.ClienteController">
+    <stylesheets>
+        <URL value="@/com/amm/finciclo/proyectofinciclo/css/cliente.css"/>
+    </stylesheets>
+  <!--  <padding>
+        <Insets top="10" right="10" bottom="10" left="10"/>
+    </padding>  -->
+    <VBox HBox.hgrow="ALWAYS" prefWidth="${paginaPrincipal.width}" styleClass="contenedor-titulo">
+        <Label text="Sueños cumplidos - Soy Cliente" styleClass="titulo" HBox.hgrow="ALWAYS"  
+                prefWidth="${paginaPrincipal.width}"/>
+    </VBox>
+    <VBox HBox.hgrow="ALWAYS" VBox.vgrow="ALWAYS">
+        <VBox fx:id="infoCliente" HBox.hgrow="ALWAYS" prefHeight="${paginaPrincipal.height*0.8}">
+            <Label fx:id="nombreCliente" text="Nombre"/>
+            <!-- meter info cliente -->
+        </VBox>
+        <HBox fx:id="formularioModificacion" visible="false" prefHeight="${paginaPrincipal.height*0.8}">
+            <VBox>
+                <Label styleClass="dniCliente" text="Dni" style="-fx-font-weight: bold;"/>
+                <TextField fx:id="dni"/>
+                <Label styleClass="nombreCliente" text="Nombre" style="-fx-font-weight: bold;"/>
+                <TextField fx:id="nombre" />
+                <Label styleClass="labelSexo" text="Género"/>
+                <ComboBox styleClass="comboboxSexo" fx:id="comboboxSexo" style="-fx-text-fill: white;"/>
+            </VBox>
+            <VBox> 
+                <Label styleClass="telefono" text="Telefono" style="-fx-font-weight: bold;"/>
+                <TextField fx:id="telefono"/>
+                <Label styleClass="email" text="Email" style="-fx-font-weight: bold;"/>
+                <TextField fx:id="email"/>
+                <Label styleClass="labelServicios" text="Servicio contratado"/>
+                <ComboBox fx:id="servicios"/> 
+                <Label styleClass="importeTotal" text="Importe total" style="-fx-font-weight: bold;"/>
+                <TextField fx:id="importeTotal"/>
+                
+                <HBox>
+                    <!--Meter botones guardar y cancelar-->
+                </HBox>
+            </VBox>   
+        </HBox>
+        <VBox alignment="BOTTOM_CENTER" prefHeight="${paginaPrincipal.height*0.2}">
+            <ToolBar styleClass="buttons" HBox.hgrow="ALWAYS">   
+                <Button styleClass="boton-accion" onAction="#comprar" text="COMPRAR" style="-fx-font-weight: bold;"/>
+                <Button styleClass="boton-accion" onAction="#contactar" text="CONTACTAR" style="-fx-font-weight: bold;"/>
+                <Button styleClass="boton-accion" onAction="#editarPerfil" text="EDITAR PERFIL " style="-fx-font-weight: bold;"/>
+                <!--<Button styleClass="boton-accion" onAction="#editar" text="EDITAR" GridPane.rowIndex="5" 
+                        GridPane.columnIndex="3" minHeight="35" minWidth="90" style="-fx-font-weight: bold;"/>
+                <Button styleClass="boton-accion" onAction="#eliminar" text="ELIMINAR" GridPane.rowIndex="5" 
+                        GridPane.columnIndex="3" minHeight="35" minWidth="90" style="-fx-font-weight: bold;"/> -->
+            </ToolBar>
+        </VBox>
+    </VBox>
+    <!--<GridPane styleClass="gridPanePrincipal" alignment="CENTER" hgap="20" vgap="20" 
+              style="-fx-justify-content: center">
+                <Label styleClass="idCliente" text="Id" GridPane.rowIndex="1" 
+                       GridPane.columnIndex="1" style="-fx-font-weight: bold;"/>
+                <TextField fx:id="id" GridPane.rowIndex="1" GridPane.columnIndex="2"/>
+                <Label styleClass="dniCliente" text="Dni" GridPane.rowIndex="2" 
+                       GridPane.columnIndex="1" style="-fx-font-weight: bold;"/>
+                <TextField fx:id="dni" GridPane.rowIndex="2" GridPane.columnIndex="2"/>
+                <Label styleClass="nombreCliente" text="Nombre" GridPane.rowIndex="3" 
+                       GridPane.columnIndex="1" style="-fx-font-weight: bold;"/>
+                <TextField fx:id="nombre" GridPane.rowIndex="3" GridPane.columnIndex="2"/>
+                <Label styleClass="labelSexo" text="Género" GridPane.rowIndex="1"  GridPane.columnIndex="3"/>
+                <ComboBox styleClass="comboboxSexo" fx:id="comboboxSexo" GridPane.rowIndex="1" 
+                  GridPane.columnIndex="4" style="-fx-text-fill: white;"/>
+                <Label styleClass="telefono" text="Telefono" GridPane.rowIndex="2" 
+                       GridPane.columnIndex="3" style="-fx-font-weight: bold;"/>
+                <TextField fx:id="telefono" GridPane.rowIndex="2" GridPane.columnIndex="4"/>
+                <Label styleClass="email" text="Email" GridPane.rowIndex="3" 
+                       GridPane.columnIndex="3" style="-fx-font-weight: bold;"/>
+                <TextField fx:id="email" GridPane.rowIndex="3" GridPane.columnIndex="4"/>
+                <Label styleClass="labelServicios" text="Servicio contratado" GridPane.rowIndex="3"  
+                       GridPane.columnIndex="3"/>
+                <ComboBox fx:id="servicios" GridPane.rowIndex="3" GridPane.columnIndex="4"/> 
+                <Label styleClass="importeTotal" text="Importe total" GridPane.rowIndex="4" 
+                       GridPane.columnIndex="3" style="-fx-font-weight: bold;"/>
+                <TextField fx:id="importeTotal" GridPane.rowIndex="4" GridPane.columnIndex="4"/> 
+    </GridPane>-->
+    <!--<StackPane styleClass="tabla_clientes" HBox.hgrow="ALWAYS" style="-fx-padding: 20 0 0 0">
+            <TableView fx:id="tablaClientes">
+                <columns>
+                    <TableColumn fx:id="idColumna" text="id">
+                    </TableColumn>
+                    <TableColumn fx:id="dniColumna" text="dni"/>
+                    <TableColumn fx:id="nombreColumna" text="nombre"/>
+                    <TableColumn fx:id="sexoColumna" text="sexo"/>
+                    <TableColumn fx:id="telefonoColumna" text="telefono"/>
+                    <TableColumn fx:id="emailColumna" text="email"/>
+                </columns>
+            </TableView>
+        </StackPane>-->
+    <BorderPane>
+        <bottom>
+        <StackPane style="-fx-background-color: #6DBD96" minHeight= "50" >
+            <Button styleClass="botonAtrás" onAction="#volverAtras" focusTraversable="false">
+                <graphic>
+                    <ImageView>
+                        <Image url="@../../../../iconos/puerta.png"/>
+                    </ImageView>
+                </graphic>
+            </Button> 
+        </StackPane>   
+    </bottom> 
+</BorderPane>
+</VBox>
+

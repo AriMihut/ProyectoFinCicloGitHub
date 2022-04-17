@@ -1,0 +1,51 @@
+.gridPaneDatos{
+    -fx-alignement: center;
+}
+
+.idServicio{
+    -fx-text-fill: white;
+}
+.precio{
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+}
+
+.idCliente{
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+}
+
+.idEmpleado{
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+}
+
+.idPersonalEncargado{
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+}
+
+#comboboxTipoServicios{
+    -fx-text-fill: white;
+}
+
+.buttons{
+    -fx-background-color: #6DBD96;
+    -fx-padding: 4;
+    -fx-max-width: 156px;
+}
+
+.buttons:hover{
+    -fx-background-color: -fx-shadow-highlight-color, -fx-outer-border, -fx-inner-border;
+    -fx-color: -fx-hover-base;
+}
+
+.botonAtrás{
+    -fx-background-color: #6DBD96;
+}
+
+.tabla_servicios.id{
+    -fx-text-fill: white;
+    -fx-background-color: white;
+}
+

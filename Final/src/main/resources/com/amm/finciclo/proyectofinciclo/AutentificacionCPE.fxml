@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.net.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox fx:id="pantallaLogin" xmlns:fx="http://javafx.com/fxml/1" HBox.hgrow="ALWAYS"
+        fx:controller="com.amm.finciclo.proyectofinciclo.AutentificacionCPEController">
+    <stylesheets>
+        <URL value="@/com/amm/finciclo/proyectofinciclo/css/autentificacioncpe.css"/>
+    </stylesheets>
+    <VBox HBox.hgrow="ALWAYS" prefWidth="${pantallaLogin.width}" styleClass="contenedor-titulo" >
+        <Label text="Sueños cumplidos" styleClass="etiqueta-principal" HBox.hgrow="ALWAYS"  
+                prefWidth="${pantallaLogin.width}"/>
+    </VBox>
+    <VBox styleClass="contenedor-general" VBox.vgrow="ALWAYS" >
+        <Label fx:id="welcome" text="Bienvenida/o" styleClass="welcome" HBox.hgrow="ALWAYS"/>
+        <TextField fx:id="usuario" promptText="Introduce nombre de usuario"  styleClass="dark-textfield" 
+                   focusTraversable="false" prefWidth="${pantallaLogin.width*0.5}" 
+                   maxWidth="${pantallaLogin.width*0.5}"/>
+        <TextField fx:id="contrasena" promptText="Introduce contraseña" styleClass="light-textfield" 
+                   focusTraversable="false" prefWidth="${pantallaLogin.width*0.5}" 
+                   maxWidth="${pantallaLogin.width*0.5}"/>
+        <Label fx:id="etiquetaAviso" text="" style="-fx-text-fill:white;"/>
+        <Button text="Autentificarse" onAction="#autentificarse"  focusTraversable="false"/>
+        <Button text="Atrás" onAction="#volver"  focusTraversable="false"/>
+        <HBox fx:id="contenedorRegistro" styleClass="contedor-registro" >
+            <Label text="¿Todavía no estás registrado?"/> 
+            <Button text="Registrarse" onAction="#registrarse"  focusTraversable="false"/>
+        </HBox>
+    </VBox>  
+</VBox>
+
+

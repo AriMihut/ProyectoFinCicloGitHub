@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.net.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.text.Text?>
+
+<VBox styleClass="pantallaHome" HBox.hgrow="ALWAYS" xmlns:fx="http://javafx.com/fxml/1"
+        fx:controller="com.amm.finciclo.proyectofinciclo.PantallaHomeController" minHeight= "200" maxWidth= "100">
+    <stylesheets>
+        <URL value="@/com/amm/finciclo/proyectofinciclo/css/pantallahome.css"/>
+    </stylesheets>
+    <padding>
+        <Insets top="20" right="20" bottom="20" left="20"/>
+    </padding> 
+    <VBox HBox.hgrow="ALWAYS" styleClass="contenedor-titulo" minHeight= "20">
+        <Label text="Personal - Servicios - Productos - Clientes - Beneficios" 
+               styleClass="etiqueta-principal" HBox.hgrow="ALWAYS"/>
+    </VBox>
+    <FlowPane styleClass="pantallaHomeFlow" hgap="40" vgap="40" style="-fx-background-color: grey">
+        <Label fx:id="clientes" text="Clientes: " styleClass="clientes" HBox.hgrow="ALWAYS" style="-fx-text-fill: white;"/>
+        <Button styleClass="boton-accion" onAction="#verClientes">
+                <graphic>
+                    <ImageView>
+                        <Image url="@../../../../iconos/verClientes.png"/>
+                    </ImageView>
+                </graphic>
+        </Button>
+        <Label fx:id="personal" text="Personal: " styleClass="personal" HBox.hgrow="ALWAYS" style="-fx-text-fill: white;"/>
+        <Button styleClass="boton-accion" onAction="#verPersonal">
+               <graphic>
+                    <ImageView>
+                        <Image url="@../../../../iconos/verPersonal.png"/>
+                    </ImageView>
+               </graphic>
+            </Button>
+        <Label fx:id="proveedores" text="Proveedores: " styleClass="proveedores" HBox.hgrow="ALWAYS" style="-fx-text-fill: white;"/>
+        <Button styleClass="boton-accion" onAction="#verProveedores">
+                <graphic>
+                    <ImageView>
+                        <Image url="@../../../../iconos/verProveedores.png"/>
+                    </ImageView>
+                </graphic>
+        </Button>
+        <Label fx:id="servicios" text="Servicios: " styleClass="servicios" HBox.hgrow="ALWAYS" style="-fx-text-fill: white;"/>
+        <Button styleClass="boton-accion" onAction="#verServicios">
+                <graphic>
+                    <ImageView>
+                        <Image url="@../../../../iconos/verServicios.png"/>
+                    </ImageView>
+                </graphic>
+        </Button>
+        <Label fx:id="productos" text="Productos: " styleClass="productos" HBox.hgrow="ALWAYS" style="-fx-text-fill: white;"/>
+        <Button styleClass="boton-accion" onAction="#verProductos">
+                <graphic>
+                    <ImageView>
+                        <Image url="@../../../../iconos/verProductos.png"/>
+                    </ImageView>
+                </graphic>
+        </Button>
+        <Label fx:id="beneficios" text="Beneficios: " styleClass="beneficios" HBox.hgrow="ALWAYS" style="-fx-text-fill: white;"/>
+        <Button styleClass="boton-accion" onAction="#verBeneficios">
+                <graphic>
+                    <ImageView>
+                        <Image url="@../../../../iconos/verBeneficios.png"/>
+                    </ImageView>
+                </graphic>
+        </Button>
+        <Label fx:id="departamentos" text="Departamentos: " styleClass="departamentos" HBox.hgrow="ALWAYS" style="-fx-text-fill: white;"/>
+        <Button styleClass="boton-accion" onAction="#verDepartamentos">
+                <graphic>
+                    <ImageView>
+                        <Image url="@../../../../iconos/departamentos.png"/>
+                    </ImageView>
+                </graphic>
+        </Button>
+        <Label text="Calendario" styleClass="calendario"/> 
+        <DatePicker/>
+    </FlowPane>
+    <VBox alignment="CENTER" HBox.hgrow="ALWAYS" minHeight= "20" styleClass="botonAtrás" 
+          style="-fx-background-color: #6DBD96">
+            <Button onAction="#atras" focusTraversable="false" style="-fx-text-fill: grey;">
+                <graphic>
+                    <ImageView>
+                        <Image url="@../../../../iconos/atras.png"/>
+                    </ImageView>
+                </graphic>
+            </Button>  
+    </VBox>
+</VBox>

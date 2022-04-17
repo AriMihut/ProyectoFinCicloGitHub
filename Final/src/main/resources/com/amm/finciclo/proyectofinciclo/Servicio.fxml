@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.net.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.text.Text?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.cell.PropertyValueFactory?>
+<?import javafx.scene.control.ToolBar?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.image.Image?>
+
+<BorderPane id="borderPane" prefHeight="600.0" prefWidth="600.0" styleClass="mainFxmlClass" 
+            xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.amm.finciclo.proyectofinciclo.ServicioController">
+    <stylesheets>
+        <URL value="@/com/amm/finciclo/proyectofinciclo/css/servicio.css"/>
+    </stylesheets>
+    <padding>
+        <Insets top="5" right="5" bottom="5" left="5"/>
+    </padding> 
+    <top>
+        <StackPane style="-fx-background-color: #6DBD96" minHeight="80">
+            <Text text="Sueños cumplidos - Servicios ofrecidos" fill="white" 
+                  style="-fx-font-weight: bold;">
+                <font>
+                    <Font name="Cambria" size="30"/>
+                </font>
+            </Text>
+        </StackPane> 
+    </top>
+    <left>
+        <StackPane style="-fx-background-color: #eee;" minWidth="150">
+            <GridPane styleClass="gridPaneDatos" hgap="20" vgap="20" style="-fx-background-color: grey">
+                <Label styleClass="idServicio" text="Id Servicio" GridPane.rowIndex="7" 
+                       GridPane.columnIndex="0" style="-fx-font-weight: bold;"/>
+                <TextField fx:id="idServicio" GridPane.rowIndex="7" GridPane.columnIndex="1"/>
+                <Text text="Elije tipo servicio" fill="white" styleClass="textoComboBox" style="-fx-font-weight: bold;" 
+                      GridPane.rowIndex="8" GridPane.columnIndex="0"/>
+                <ComboBox fx:id="comboboxTipoServicios" style="-fx-font-weight: bold" 
+                          GridPane.rowIndex="8" GridPane.columnIndex="1"  GridPane.columnSpan="2"/>  
+                <Label styleClass="precio" text="Precio" GridPane.rowIndex="9" GridPane.columnIndex="0"/>
+                <TextField fx:id="precio" GridPane.rowIndex="9" GridPane.columnIndex="1"/>
+                <!-- <Label styleClass="idCliente" text="Id cliente" GridPane.rowIndex="10" 
+                       GridPane.columnIndex="0"/>
+                <TextField fx:id="idCliente" GridPane.rowIndex="10" GridPane.columnIndex="1"/>
+                <Label styleClass="idEmpleado" text="Id empleado" GridPane.rowIndex="11" 
+                       GridPane.columnIndex="0"/>
+                <TextField fx:id="idEmpleado" GridPane.rowIndex="11" GridPane.columnIndex="1"/> -->
+                <ToolBar styleClass="buttons" HBox.hgrow= "ALWAYS" GridPane.rowIndex="1" 
+                         GridPane.columnIndex="0" 
+                         GridPane.columnSpan="2" >
+                    <Button styleClass="boton-accion" onAction="#anadir" GridPane.rowIndex="1" 
+                            GridPane.columnIndex="0">
+                        <graphic>
+                            <ImageView>
+                                <Image url="@../../../../iconos/anadir.png"/>
+                            </ImageView>
+                        </graphic>
+                    </Button>
+                    <Button styleClass="boton-accion" onAction="#prepararModificar" GridPane.rowIndex="1" GridPane.columnIndex="1">
+                        <graphic>
+                            <ImageView>
+                                <Image url="@../../../../iconos/modificar.png"/>
+                            </ImageView>
+                        </graphic>
+                    </Button>
+                    <Button styleClass="boton-accion" onAction="#eliminar" GridPane.rowIndex="1" GridPane.columnIndex="2">
+                        <graphic>
+                            <ImageView>
+                                <Image url="@../../../../iconos/eliminar.png"/>
+                            </ImageView>
+                        </graphic>
+                    </Button>
+                </ToolBar>
+            </GridPane> 
+        </StackPane>
+    </left>
+    <center>
+        <StackPane styleClass="tabla_servicios" HBox.hgrow="ALWAYS">
+            <TableView fx:id="tablaServicios">
+                <columns>
+                    <TableColumn fx:id="idColumna" text="idServicio"/>
+                    <TableColumn fx:id="tipoServicioColumna" text="tipoServicio"/>
+                    <TableColumn fx:id="precioColumna" text="precio"/>
+                </columns>
+            </TableView>
+        </StackPane>
+    </center>
+    <bottom>
+        <StackPane style="-fx-background-color: #6DBD96" minHeight= "50" >
+            <Button styleClass="botonAtrás" onAction="#atras" focusTraversable="false" 
+                    GridPane.rowIndex="4" GridPane.columnIndex="5" GridPane.columnSpan="9">
+                <graphic>
+                    <ImageView>
+                        <Image url="@../../../../iconos/atras.png"/>
+                    </ImageView>
+                </graphic>
+            </Button> 
+        </StackPane>   
+    </bottom> 
+</BorderPane>

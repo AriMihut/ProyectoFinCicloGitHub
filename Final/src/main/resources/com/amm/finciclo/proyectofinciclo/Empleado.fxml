@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.net.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox fx:id="pantallaLogin" xmlns:fx="http://javafx.com/fxml/1" HBox.hgrow="ALWAYS"
+        fx:controller="com.amm.finciclo.proyectofinciclo.EmpleadoController">
+    <stylesheets>
+        <URL value="@/com/amm/finciclo/proyectofinciclo/css/empleado.css"/>
+    </stylesheets>
+    
+</VBox>
+

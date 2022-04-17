@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.net.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox fx:id="pantallaComienzo" xmlns:fx="http://javafx.com/fxml/1" HBox.hgrow="ALWAYS"
+        fx:controller="com.amm.finciclo.proyectofinciclo.ComienzoController">
+    <stylesheets>
+        <URL value="@/com/amm/finciclo/proyectofinciclo/css/comienzo.css"/>
+    </stylesheets>
+    <VBox HBox.hgrow="ALWAYS" prefWidth="${pantallaComienzo.width}" styleClass="contenedor-titulo" >
+        <Label text="Sueños cumplidos" styleClass="etiqueta-principal" HBox.hgrow="ALWAYS"  
+                prefWidth="${pantallaComienzo.width}"/>
+    </VBox>
+    <VBox styleClass="contenedor-general" VBox.vgrow="ALWAYS" >
+        <Label fx:id="eleccion" text="ACCEDER COMO: " styleClass="eleccion" HBox.hgrow="ALWAYS"/>
+        <Button text="CLIENTE" onAction="#accederComoCliente"  focusTraversable="false" styleClass="btnCliente"/>
+        <Button text="EMPLEADO" onAction="#accederComoEmpleado"  focusTraversable="false" styleClass="btnEmpleado"/>
+        <Button text="PROVEEDOR" onAction="#accederComoProveedor"  focusTraversable="false" styleClass="btnProveedor"/>
+        <Button text="ADMINISTRADOR" onAction="#accederComoAdministrador"  focusTraversable="false" styleClass="btnAdministrador"/>
+    </VBox>  
+</VBox>
+
+

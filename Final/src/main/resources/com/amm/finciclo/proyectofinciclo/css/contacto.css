@@ -1,0 +1,92 @@
+.contenedor-titulo{
+    -fx-spacing: 20px;
+    -fx-alignment: top-center;
+    -fx-background-color: #6DBD96;
+    -fx-font-weight: bold;
+    -fx-font-size: 30px;
+    -fx-alignment: center;
+    -fx-text-aling: center;
+}
+
+.titulo{
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-font-size: 30px;
+    -fx-alignment: center;
+    -fx-text-aling: center;
+}
+
+.textoTitulo{
+    -fx-font-weight: bold;
+}
+
+.vBoxContacto{
+    -fx-padding: 20px;
+    -fx-alignment: center;
+}
+
+.leftVBox{
+    -fx-padding: 10px;
+    -fx-alignment: center;
+}
+
+#btnMensajes{
+    -fx-background-color: #6DBD96;
+    -fx-text-fill: white;
+    -fx-font-size: 15px;
+}
+
+.contactanos{
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-font-size: 20px;
+    -fx-alignment: center;
+    -fx-text-aling: center;
+}
+
+#reclamarOContactar{
+    -fx-padding-bottom: 10px;
+    -fx-margin-bottom: 10px;
+    -fx-border-color: black;
+}
+
+.telefono{
+    -fx-text-fill: darkgrey;
+    -fx-font-weight: bold;
+    -fx-font-size: 15px;
+}
+
+#botonEnviar{
+    -fx-text-fill: #6DBD96;
+    -fx-font-weight: bold;
+    -fx-font-size: 15px;
+}
+
+.emailSuenos{
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-font-size: 15px;
+}
+
+.telefonoSuenos{
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-font-size: 15px;
+}
+
+.mensaje{
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-font-size: 15px;
+}
+
+.contactar{
+    -fx-text-fill: darkgrey;
+    -fx-font-weight: bold;
+    -fx-font-size: 15px;
+}
+
+
+
+
+

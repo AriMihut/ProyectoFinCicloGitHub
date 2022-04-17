@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.net.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.Text?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.cell.PropertyValueFactory?>
+<?import javafx.scene.control.ToolBar?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.image.Image?>
+
+<BorderPane id="BorderPane" prefHeight="400.0" prefWidth="600.0" styleClass="mainFxmlClass" 
+            xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.amm.finciclo.proyectofinciclo.ProductoController">
+    <stylesheets>
+        <URL value="@/com/amm/finciclo/proyectofinciclo/css/producto.css"/>
+    </stylesheets>
+<padding>
+        <Insets top="5" right="5" bottom="5" left="5"/>
+    </padding> 
+    <top>
+        <StackPane style="-fx-background-color: #6DBD96" minHeight="80">
+            <Text text="Sueños cumplidos - Productos ofrecidos" fill="white" 
+                  style="-fx-font-weight: bold;">
+                <font>
+                    <Font name="Cambria" size="30"/>
+                </font>
+            </Text>
+        </StackPane> 
+    </top>
+    <left>
+        <StackPane style="-fx-background-color: #eee;" minWidth="150">
+            <GridPane styleClass="gridPaneDatos" hgap="20" vgap="20" style="-fx-background-color: grey">
+                <Label styleClass="idProducto" text="Id Producto" GridPane.rowIndex="3" 
+                       GridPane.columnIndex="0" style="-fx-font-weight: bold;"/>
+                <TextField fx:id="idProducto" GridPane.rowIndex="3" GridPane.columnIndex="1"/>
+                <Label styleClass="nombreProducto" text="Nombre" GridPane.rowIndex="4" GridPane.columnIndex="0"/>
+                <TextField fx:id="nombreProducto" GridPane.rowIndex="4" GridPane.columnIndex="1"/>
+                <Label styleClass="precioProducto" text="Precio" GridPane.rowIndex="5" 
+                       GridPane.columnIndex="0"/>
+                <TextField fx:id="precioProducto" GridPane.rowIndex="5" GridPane.columnIndex="1"/> 
+                <Label styleClass="idCliente" text="Id Cliente" GridPane.rowIndex="6" 
+                       GridPane.columnIndex="0"/>
+                <TextField fx:id="idCliente" GridPane.rowIndex="6" GridPane.columnIndex="1"/> 
+                <Label styleClass="idProveedor" text="Id Proveedor" GridPane.rowIndex="7" 
+                       GridPane.columnIndex="0"/>
+                <TextField fx:id="idProveedor" GridPane.rowIndex="7" GridPane.columnIndex="1"/> 
+                <ToolBar styleClass="buttons" HBox.hgrow= "ALWAYS" GridPane.rowIndex="9" 
+                         GridPane.columnIndex="0" 
+                         GridPane.columnSpan="2" >
+                    <Button styleClass="boton-accion" onAction="#anadir" GridPane.rowIndex="9" 
+                            GridPane.columnIndex="0">
+                        <graphic>
+                            <ImageView>
+                                <Image url="@../../../../iconos/anadir.png"/>
+                            </ImageView>
+                        </graphic>
+                    </Button>
+                    <Button styleClass="boton-accion" onAction="#prepararModificar" GridPane.rowIndex="9" GridPane.columnIndex="1">
+                        <graphic>
+                            <ImageView>
+                                <Image url="@../../../../iconos/modificar.png"/>
+                            </ImageView>
+                        </graphic>
+                    </Button>
+                    <Button styleClass="boton-accion" onAction="#eliminar" GridPane.rowIndex="9" GridPane.columnIndex="2">
+                        <graphic>
+                            <ImageView>
+                                <Image url="@../../../../iconos/eliminar.png"/>
+                            </ImageView>
+                        </graphic>
+                    </Button>
+                </ToolBar>
+            </GridPane> 
+        </StackPane>
+    </left>
+    <center>
+        <StackPane styleClass="tabla_productos" HBox.hgrow="ALWAYS">
+            <TableView fx:id="tablaProductos">
+                <columns>
+                    <TableColumn text="idProducto" prefWidth="${tablaProductos.width*0.20}" >
+                        <cellValueFactory>
+                            <PropertyValueFactory property="idProducto"/>
+                        </cellValueFactory>
+                    </TableColumn>
+                    <TableColumn text="nombreProducto" prefWidth="${tablaProductos.width*0.20}">
+                        <cellValueFactory>
+                            <PropertyValueFactory property="nombreProducto"/>
+                        </cellValueFactory>
+                    </TableColumn>
+                    <TableColumn text="precioProducto" prefWidth="${tablaProductos.width*0.20}">
+                        <cellValueFactory>
+                            <PropertyValueFactory property="precioProducto" />
+                        </cellValueFactory>
+                    </TableColumn>
+                    <TableColumn text="idCliente" prefWidth="${tablaProductos.width*0.20}">
+                        <cellValueFactory>
+                            <PropertyValueFactory property="idCliente"/>
+                        </cellValueFactory>
+                    </TableColumn>
+                    <TableColumn text="idProveedor" prefWidth="${tablaProductos.width*0.20}">
+                        <cellValueFactory>
+                            <PropertyValueFactory property="idProveedor"/>
+                        </cellValueFactory>
+                    </TableColumn>
+                </columns>
+            </TableView>
+        </StackPane>
+    </center>
+    <bottom>
+        <StackPane style="-fx-background-color: #6DBD96" minHeight= "50" >
+            <Button styleClass="botonAtrás" onAction="#atras" focusTraversable="false" 
+                    GridPane.rowIndex="4" GridPane.columnIndex="5" GridPane.columnSpan="9">
+                <graphic>
+                    <ImageView>
+                        <Image url="@../../../../iconos/atras.png"/>
+                    </ImageView>
+                </graphic>
+            </Button> 
+        </StackPane>   
+    </bottom> 
+</BorderPane>
+

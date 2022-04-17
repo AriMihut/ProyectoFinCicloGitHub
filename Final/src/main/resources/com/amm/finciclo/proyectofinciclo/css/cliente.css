@@ -1,0 +1,168 @@
+.gridPanePrincipal{
+    -fx-background-color: grey;
+    -fx-padding: 10px;
+    -fx-margin: 15px;
+    -fx-spacing: 20px;
+}
+
+.contenedor-titulo{
+    -fx-spacing: 20px;
+    -fx-alignment: top-center;
+    -fx-background-color: #6DBD96;
+    -fx-font-weight: bold;
+    -fx-font-size: 30px;
+    -fx-alignment: center;
+    -fx-text-aling: center;
+}
+
+.titulo{
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-font-size: 30px;
+    -fx-alignment: center;
+    -fx-text-aling: center;
+}
+
+.idCliente{
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-font-size: 15px;
+}
+
+.dniCliente{
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-font-size: 15px;
+}
+
+.nombreCliente{
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-font-size: 15px;
+}
+
+.comboboxSexo{
+    -fx-font-size: 12px;
+    -fx-font-weight: bold;
+    -fx-min-height: 31px;
+    -fx-pref-width: 150px;
+}
+
+.combo-box .list-cell,
+.combo-box .list-cell:focus,
+.combo-box .list-cell:empty {
+    -fx-background-color: #6DBD96;
+    -fx-text-fill: white;
+    -fx-border-color: #6DBD96;
+}
+
+.combo-box .list-cell:hover {
+    -fx-background-color: darkgrey;
+    -fx-text-fill: white;
+    -fx-border-color: darkgrey;
+}
+
+.combo-box .arrow-button {
+    -fx-background-color: #6DBD96;
+    -fx-text-fill: white;
+    -fx-border-color: #6DBD96;
+}
+
+.labelSexo{
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-font-size: 15px;
+}
+
+.telefono{
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-font-size: 15px;
+}
+
+.email{
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-font-size: 15px;
+}
+
+.contactar{
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-font-size: 15px;
+}
+
+.buttons{
+    -fx-background-color: #6DBD96;
+    -fx-padding: 10;
+}
+
+.buttons:hover{
+    -fx-background-color: -fx-shadow-highlight-color, -fx-outer-border, -fx-inner-border;
+    -fx-color: -fx-hover-base;
+}
+
+.boton-accion{
+    -fx-background-color:  grey;
+    -fx-border-color: white;
+    -fx-border-width: 3px;
+    -fx-background-radius: 30%;
+    -fx-border-radius: 25%;
+    -fx-text-fill: white;
+}
+
+.botonAtrás{
+    -fx-background-color: #6DBD96;
+}
+
+.tablaClientes .column-header-background,
+.tablaClientes .column-header-background .nested-column-header {
+    -fx-background-color: darkgrey;
+    -fx-border-color: white;
+    -fx-text-fill: white; 
+}
+
+.tablaClientes .column-header-background .nested-column-header .table-column .label {
+   -fx-background-color: darkgrey;
+   -fx-border-color: darkgrey;
+   -fx-text-fill: white;  
+   -fx-alignment: center;
+   -fx-padding: 0px;
+   -fx-border-width: 0px;
+}
+
+.tablaClientes .column-header-background .nested-column-header .table-column {
+   -fx-background-color: darkgrey;
+   -fx-border-color: darkgrey;
+   -fx-border-width: 1px;
+   -fx-table-cell-border-color: darkgrey;
+   -fx-alignment: center;
+   -fx-padding: 0px;
+}
+.tablaClientes .table-row-cell {
+    -fx-padding: 0px;
+}
+
+.tablaClientes .table-row-cell:odd { 
+    -fx-background-color:grey;
+    -fx-text-fill: white;
+}
+
+.tablaClientes .table-row-cell:even {
+    -fx-background-color:white;
+    -fx-text-fill: grey;
+}
+
+.tablaClientes .table-row-cell:even:selected .table-cell,
+.tablaClientes .table-row-cell:odd:selected .table-cell {
+    -fx-text-fill: black;
+    -fx-fill: black;
+    -fx-alignment: center;
+}
+
+.tablaClientes .table-column {
+    -fx-border-color: darkgrey;
+    -fx-alignment: center;
+    -fx-padding-right: 0px;
+}
+
