@@ -52,6 +52,5 @@ public class ProveedorController extends ControladorConNavegabilidad implements 
     public void atras() throws IOException{
        // App.setRoot("PantallaHome");
     }
-        
     
 }

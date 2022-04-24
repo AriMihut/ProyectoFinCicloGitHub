@@ -10,9 +10,11 @@ import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.RadioButton;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import javafx.scene.control.ToggleGroup;
 import javafx.scene.control.cell.PropertyValueFactory;
 
 public class ServicioController extends ControladorConNavegabilidad implements Initializable{
@@ -23,6 +25,8 @@ public class ServicioController extends ControladorConNavegabilidad implements I
     private ObservableList<Servicio> servicios = FXCollections.observableArrayList();
     private Servicio serviciosParaModificar;
     private DAOServicio servicioDao;
+    @FXML private RadioButton ceremonia, gastronomia, musica, fotografia, video, transporte;
+    @FXML ToggleGroup group;
     
     @FXML private TableColumn<Servicio, Integer> idColumna;
     @FXML private TableColumn<Servicio, String> tipoServicioColumna;
@@ -34,6 +38,7 @@ public class ServicioController extends ControladorConNavegabilidad implements I
         try {
             servicioDao = new DAOServicio();
             mostrar();
+            configurarComboBoxTipoServicios();
             controlarTamanoColumnas();
         } catch (SQLException ex) {
             System.out.println("Error DaoServicio " + ex.getMessage());

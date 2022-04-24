@@ -19,9 +19,7 @@ public class AutentificacionCPEController extends ControladorConNavegabilidad im
     @FXML private HBox contenedorRegistro;
     
     private DAOUsuario usuarioDao;
-    
-    int id = 0;
-    
+   
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         
@@ -32,15 +30,17 @@ public class AutentificacionCPEController extends ControladorConNavegabilidad im
         } catch (SQLException ex) {
             System.out.println("Error AutentificacionCPEController: " + ex.getMessage());
         } 
-      
     }    
 
     @FXML
     public void autentificarse() throws IOException, SQLException {
         Usuario nuevoUsuario = new Usuario(0, usuario.getText(), contrasena.getText(), this.layout.getRolUsuario());
         if(comprobacionesUsuario()){
-            if(usuarioDao.comprobarExistenciaUsuario(nuevoUsuario)){
-            navegarSegunTipoUsuario();
+            Usuario usuario = usuarioDao.comprobarExistenciaUsuario(nuevoUsuario);
+            if(usuario != null) {
+                this.layout.setUsuario(usuario);
+                cargarPantallaSegunTipoUsuario(usuario.getTipoUsuario());
+                navegarSegunTipoUsuario();
             } 
             else {
                  mostrarAviso("El usuario o la contraseña están erróneos");
@@ -83,8 +83,8 @@ public class AutentificacionCPEController extends ControladorConNavegabilidad im
        this.layout.mostrarComoPantallaActual("comienzo");
     }
 
-    private void configurarSegunUsuario() {
-        contenedorRegistro.setVisible(!this.layout.getRolUsuario().equals("admin"));
+    public void configurarSegunUsuario() {
+        contenedorRegistro.setVisible(!this.layout.getRolUsuario().equals(TipoUsuario.ADMIN));
         
     }
 
@@ -106,6 +106,24 @@ public class AutentificacionCPEController extends ControladorConNavegabilidad im
     private void mostrarAviso(String text) {
        etiquetaAviso.setText(text);
        etiquetaAviso.setVisible(true);
+    }
+
+    private void cargarPantallaSegunTipoUsuario(TipoUsuario tipoUsuario) {
+      switch(tipoUsuario){
+            case CLIENTE:
+                this.layout.cargarPantalla("cliente", ClienteController.class.getResource("Cliente.fxml"));
+                ((ClienteController) this.layout.getCotroller("cliente")).setInfoUsuario();
+                break;
+            case EMPLEADO:
+                this.layout.cargarPantalla("empleado", EmpleadoController.class.getResource("Empleado.fxml"));
+                break;
+            case PROVEEDOR:
+                this.layout.cargarPantalla("proveedor", ProveedorController.class.getResource("Proveedor.fxml"));
+                break;  
+            case ADMIN:
+                this.layout.cargarPantalla("pagHome", PantallaHomeController.class.getResource("PantallaHome.fxml"));
+                break;  
+      }
     }
     
 }

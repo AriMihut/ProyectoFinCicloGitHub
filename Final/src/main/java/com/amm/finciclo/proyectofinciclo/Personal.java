@@ -2,30 +2,28 @@ package com.amm.finciclo.proyectofinciclo;
 
 import java.util.Date;
 
-public class Empleado {
+public class Personal {
     
     private int id;
     private String dni;
     private String nombre;
-    private String apellido;
     private Date fechaAlta;
     private Date fechaBaja;
-    private int idServicioOfrecido;
+    private double sueldo;
     private int idDepartamento;
-    private boolean esEncargado;
+    private String tipoServicio;
     
-    public Empleado(){}
+    public Personal(){}
 
-    public Empleado(int id, String dni, String nombre, String apellido, Date fechaAlta, Date fechaBaja, int idServicioOfrecido, int idDepartamento, boolean esEncargado) {
+    public Personal(int id, String dni, String nombre, Date fechaAlta, Date fechaBaja, double sueldo, int idDepartamento, String tipoServicio) {
         this.id = id;
         this.dni = dni;
         this.nombre = nombre;
-        this.apellido = apellido;
         this.fechaAlta = fechaAlta;
         this.fechaBaja = fechaBaja;
-        this.idServicioOfrecido = idServicioOfrecido;
+        this.sueldo = sueldo;
         this.idDepartamento = idDepartamento;
-        this.esEncargado = esEncargado;
+        this.tipoServicio = tipoServicio;
     }
 
     public int getId() {
@@ -52,14 +50,6 @@ public class Empleado {
         this.nombre = nombre;
     }
 
-    public String getApellido() {
-        return apellido;
-    }
-
-    public void setApellido(String apellido) {
-        this.apellido = apellido;
-    }
-
     public Date getFechaAlta() {
         return fechaAlta;
     }
@@ -76,14 +66,14 @@ public class Empleado {
         this.fechaBaja = fechaBaja;
     }
 
-    public int getIdServicioOfrecido() {
-        return idServicioOfrecido;
+    public double getSueldo() {
+        return sueldo;
     }
 
-    public void setIdServicioOfrecido(int idServicioOfrecido) {
-        this.idServicioOfrecido = idServicioOfrecido;
+    public void setSueldo(double sueldo) {
+        this.sueldo = sueldo;
     }
-    
+
     public int getIdDepartamento() {
         return idDepartamento;
     }
@@ -92,14 +82,17 @@ public class Empleado {
         this.idDepartamento = idDepartamento;
     }
 
-    public boolean getEsEncargado() {
-        return esEncargado;
+    public String getTipoServicio() {
+        return tipoServicio;
     }
 
-    public void setEsEncargado(boolean esEncargado) {
-        this.esEncargado = esEncargado;
+    public void setTipoServicio(String tipoServicio) {
+        this.tipoServicio = tipoServicio;
     }
-    
-    
+
+    @Override
+    public String toString() {
+        return nombre;
+    }
     
 }

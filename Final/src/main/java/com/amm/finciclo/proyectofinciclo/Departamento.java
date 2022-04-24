@@ -39,5 +39,10 @@ public class Departamento {
     public void setIdPersonal(int idPersonal) {
         this.idPersonal = idPersonal;
     }
+
+    @Override
+    public String toString() {
+        return nombreDepartamento;
+    }
     
 }

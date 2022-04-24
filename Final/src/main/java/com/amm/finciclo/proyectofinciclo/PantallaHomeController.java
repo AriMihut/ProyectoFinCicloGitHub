@@ -1,15 +1,13 @@
 package com.amm.finciclo.proyectofinciclo;
 
 import dao.DAOCliente;
-import dao.DAOEmpleado;
+import dao.DAOPersonal;
 import dao.DAOProveedor;
 import dao.DAOUsuario;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
@@ -17,18 +15,11 @@ import javafx.scene.layout.HBox;
 
 public class PantallaHomeController extends ControladorConNavegabilidad implements Initializable {
     
-    @FXML Button atras; 
-    @FXML Button verPersonal;
-    @FXML Button verProveedores;
-    @FXML Button verClientes;
-    @FXML Button verServicios;
-    @FXML Button verProductos;
-    @FXML Button verBeneficios;
-    @FXML Button verDepartamentos;
-    @FXML HBox hboxBtnAtras;
-    private  DAOCliente daoCliente;
-    private DAOEmpleado daoEmpleado;
-    private DAOProveedor daoProveedore;
+    private @FXML Button atras, verPersonal, verProveedores, verClientes, verServicios, verProductos, verBeneficios, verDepartamentos; 
+    private @FXML HBox hboxBtnAtras;
+    private DAOCliente daoCliente;
+    private DAOPersonal daoEmpleado;
+    private DAOProveedor daoProveedor;
     private DAOUsuario daoUsuario;
 
     @Override
@@ -36,19 +27,14 @@ public class PantallaHomeController extends ControladorConNavegabilidad implemen
         try {
             daoUsuario = new DAOUsuario();
             daoCliente = new DAOCliente();
-            //daoEmpleado = new DAOEmpleado();
-            /*daoProductos = new DAOProductos();
-            daoProveedores = new DAOProveedores();
-            daoServicios = new DAOServicios();*/
         } catch (SQLException ex) {
-            System.out.println("ex");
-            Logger.getLogger(PantallaHomeController.class.getName()).log(Level.SEVERE, null, ex);
+            System.out.println("Error en PantallaHomeController " + ex.getMessage());
         }
     }    
     
     @FXML
     public void verPersonal() throws IOException{
-        //App.setRoot("Personal");
+        this.layout.mostrarComoPantallaActual("personal");
     }
     
     @FXML
@@ -58,12 +44,13 @@ public class PantallaHomeController extends ControladorConNavegabilidad implemen
     
     @FXML
     public void verClientes() throws IOException{
-       // App.setRoot("Cliente");
+        //aqui debo listar los clientes que hay
+        //coger la info desde donde se registran los clientes
     }
     
     @FXML
     public void verServicios() throws IOException{
-       this.layout.mostrarComoPantallaActual("servicio");
+        this.layout.mostrarComoPantallaActual("servicio");
         
     }
     

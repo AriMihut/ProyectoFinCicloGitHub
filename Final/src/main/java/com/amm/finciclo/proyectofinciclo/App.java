@@ -1,6 +1,5 @@
 package com.amm.finciclo.proyectofinciclo;
 
-
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
@@ -15,13 +14,13 @@ public class App extends Application {
         layoutPane.cargarPantalla("comienzo", ComienzoController.class.getResource("Comienzo.fxml"));
         layoutPane.cargarPantalla("autentificacion", AutentificacionCPEController.class.getResource("AutentificacionCPE.fxml"));
         layoutPane.cargarPantalla("registro", RegistroController.class.getResource("Registro.fxml"));
-        layoutPane.cargarPantalla("cliente", ClienteController.class.getResource("Cliente.fxml"));
-        layoutPane.cargarPantalla("empleado", EmpleadoController.class.getResource("Empleado.fxml"));
+        /*layoutPane.cargarPantalla("cliente", ClienteController.class.getResource("Cliente.fxml"));
+        layoutPane.cargarPantalla("personal", PersonalController.class.getResource("Personal.fxml"));
         layoutPane.cargarPantalla("proveedor", ProveedorController.class.getResource("Proveedor.fxml"));
         layoutPane.cargarPantalla("pagHome", PantallaHomeController.class.getResource("PantallaHome.fxml"));
         layoutPane.cargarPantalla("contacto", PantallaHomeController.class.getResource("Contacto.fxml"));
-        layoutPane.cargarPantalla("mensaje", PantallaHomeController.class.getResource("Mensaje.fxml"));
-        layoutPane.cargarPantalla("servicio", PantallaHomeController.class.getResource("Servicio.fxml"));
+        layoutPane.cargarPantalla("mensaje", PantallaHomeController.class.getResource("Mensaje.fxml"));*/
+        //layoutPane.cargarPantalla("servicio", PantallaHomeController.class.getResource("Servicio.fxml"));
         
         layoutPane.mostrarComoPantallaActual("comienzo");
      

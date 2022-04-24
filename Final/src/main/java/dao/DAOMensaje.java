@@ -27,12 +27,14 @@ public class DAOMensaje {
                 Connection conexion = DriverManager.getConnection(URL_CONEXION, USUARIO_BDD, PASSWORD_BDD)){
                 Statement sentencia = conexion.createStatement();
                 String sql = "CREATE TABLE IF NOT EXISTS mensaje" +
-                          "(id INTEGER auto_increment NOT NULL PRIMARY KEY, " +
-                          "nombreAutor VARCHAR(50), " +
-                          "asunto VARCHAR(50), " +
-                          "tipoUsuario ENUM('admin', 'cliente', 'empleado', 'proveedor'), " +
-                          "esUrgente BOOLEAN, " +
-                          "FOREIGN KEY (idCliente) REFERENCES cliente (id) )";
+                        "(id INTEGER auto_increment NOT NULL PRIMARY KEY, " +
+                        "nombreAutor VARCHAR(50), " +
+                        "asunto VARCHAR(50), " +
+                        "texto VARCHAR (255), " +
+                        "tipoUsuario ENUM('admin', 'cliente', 'empleado', 'proveedor'), " +
+                        "esUrgente BOOLEAN, " +
+                        "idUsuario INTEGER(11) NULL, " +
+                         "FOREIGN KEY (idUsuario) REFERENCES usuario (id) )";
                 sentencia.executeUpdate(sql);
         }
    }
@@ -44,13 +46,15 @@ public class DAOMensaje {
             Connection conexionDataBase =
             DriverManager.getConnection(URL_CONEXION, USUARIO_BDD, PASSWORD_BDD)){
             Statement statement = conexionDataBase.createStatement();
-            String sql = "INSERT INTO mensaje(nombreAutor, asunto, tipoUsuario, esUrgente) " +
+            String sql = "INSERT INTO mensaje(nombreAutor, asunto, texto, tipoUsuario, esUrgente, idUsuario) " +
                    "VALUES ('" + mensaje.getNombreAutor()+ "', '" 
-                    + mensaje.getAsunto()+ "', '" 
+                    + mensaje.getAsunto() + "', '" 
+                    + mensaje.getTexto() + "', '"
                     + mensaje.getTipoUsuario().name() + "', " 
-                    + mensaje.getEsUrgente()+ "');";
+                    + mensaje.getEsUrgente() + ", " 
+                    + mensaje.getIdUsuario()+ ");";
+            System.out.println("SQL mensaje " + sql);
             statement.executeUpdate(sql);  
-            
           } catch (SQLException ex) {
                 System.out.println("Error al introducir información en la tabla mensaje " + ex.getMessage());
           }        
@@ -65,6 +69,7 @@ public class DAOMensaje {
             Statement statement = conexionDataBase.createStatement();
             String sql = "UPDATE mensaje set nombreAutor='" + mensaje.getNombreAutor()+ 
                     "', asunto='" + mensaje.getAsunto()+ 
+                    "', texto='" + mensaje.getTexto()+ 
                     "', tipoUsuario='" + mensaje.getTipoUsuario().name()+ 
                     "', esUrgente=" + mensaje.getEsUrgente()+
                     "' WHERE id=" + mensaje.getId();
@@ -101,8 +106,10 @@ public class DAOMensaje {
             mensaje.setId(resultset.getInt("id"));
             mensaje.setNombreAutor(resultset.getString("nombreAutor"));
             mensaje.setAsunto(resultset.getString("asunto"));
+            mensaje.setTexto(resultset.getString("texto"));
             mensaje.setTipoUsuario(TipoUsuario.valueOf(resultset.getString("tipoUsuario").toUpperCase()));
             mensaje.setEsUrgente(resultset.getBoolean("esUrgente"));
+            mensaje.setIdUsuario(resultset.getInt("idUsuario"));
             mensajes.add(mensaje);
             }
           

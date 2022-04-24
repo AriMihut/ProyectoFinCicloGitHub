@@ -7,16 +7,20 @@ public class Mensaje {
     private String asunto;
     private TipoUsuario tipoUsuario;
     private boolean esUrgente;
+    private int idUsuario;
+    private String texto;
 
     public Mensaje() {
     }
 
-    public Mensaje(int id, String nombreAutor, String asunto, TipoUsuario tipoUsuario, boolean esUrgente) {
+    public Mensaje(int id, String nombreAutor, String asunto, String texto, TipoUsuario tipoUsuario, boolean esUrgente, int idUsuario) {
         this.id = id;
         this.nombreAutor = nombreAutor;
         this.asunto = asunto;
+        this.texto = texto;
         this.tipoUsuario = tipoUsuario;
         this.esUrgente = esUrgente;
+        this.idUsuario = idUsuario;
     }
 
     public int getId() {
@@ -43,6 +47,14 @@ public class Mensaje {
         this.asunto = asunto;
     }
 
+    public String getTexto() {
+        return texto;
+    }
+
+    public void setTexto(String texto) {
+        this.texto = texto;
+    }
+
     public TipoUsuario getTipoUsuario() {
         return tipoUsuario;
     }
@@ -57,6 +69,14 @@ public class Mensaje {
 
     public void setEsUrgente(boolean esUrgente) {
         this.esUrgente = esUrgente;
+    }
+
+    public int getIdUsuario() {
+        return idUsuario;
+    }
+
+    public void setIdUsuario(int idUsuario) {
+        this.idUsuario = idUsuario;
     }
 
     @Override

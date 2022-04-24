@@ -2,7 +2,7 @@
 package com.amm.finciclo.proyectofinciclo;
 
 import dao.DAOCliente;
-import dao.DAODepartamentos;
+import dao.DAODepartamento;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
@@ -20,15 +20,15 @@ public class DepartamentoController implements Initializable{
     @FXML TextField idDepartamentos, nombreDepartamento, idPersonal;  
     @FXML TableView<Departamento> tablaDepartamentos;
     @FXML Button anadir, prepararModificar, eliminar, atras;
-    private DAODepartamentos daoDepartamentos;
+    private DAODepartamento daoDepartamentos;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         
         try {
-            daoDepartamentos = new DAODepartamentos();
+            daoDepartamentos = new DAODepartamento();
         } catch (SQLException ex) {
-            System.out.println("Error al instanciar el departamento");
+            System.out.println("Error al instanciar el departamento" + ex.getMessage());
         }
         
     }

@@ -1,10 +1,10 @@
 package com.amm.finciclo.proyectofinciclo;
 
 import dao.DAOCliente;
+import dao.DAOUsuario;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
-import java.util.List;
 import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -12,57 +12,51 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextArea;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
-import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 
 public class ClienteController extends ControladorConNavegabilidad implements Initializable {
     
-    @FXML TextField dni, nombre, sexo, telefono, email; 
+    @FXML TextField filtroDni, filtroNombre, filtroApellido, filtroTelefono, filtroEmail;
+    @FXML private ComboBox<String> comboboxSexo;
+    
+    @FXML private Label dniCliente, nombreCliente, apellidoCliente, labelSexo, telefono, email;
+    @FXML private Label dniClienteTexto, nombreClienteTexto, apellidoClienteTexto, labelSexoTexto, telefonoTexto, emailTexto;
+    
     @FXML HBox formularioModificacion;
     @FXML VBox infoCliente;
     //@FXML private ComboBox<Servicio> servicios;
-    @FXML private ComboBox<String> comboboxSexo;
-    @FXML TextArea reclamarOContactar;
-   // @FXML TableView<Cliente> tablaClientes;
-   // @FXML Button anadir;
- //   @FXML Button prepararModificar;
-  //  @FXML Button eliminar;
+    
     @FXML Button atras;
-    DAOCliente daoCliente;
+    private DAOUsuario daoUsuario;
     
     private int id;
+    Usuario usuario = null;
     
-    /*@FXML private TableColumn<Cliente, Integer> idColumna;
-    @FXML private TableColumn<Cliente, String> dniColumna;
-    @FXML private TableColumn<Cliente, String> nombreColumna;
-    @FXML private TableColumn<Cliente, String> sexoColumna;
-    @FXML private TableColumn<Cliente, Long> telefonoColumna;
-    @FXML private TableColumn<Cliente, String> emailColumna;
-    */
     private Cliente clientesAModificar;
     private ObservableList<Cliente> clientes = FXCollections.observableArrayList();
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         try {
+            setDatosUsuario();
+            infoCliente.managedProperty().bind(infoCliente.visibleProperty());
+            formularioModificacion.managedProperty().bind(formularioModificacion.visibleProperty());
            // infoCliente.visibleProperty().bind(infoCliente.managedProperty());
            // formularioModificacion.visibleProperty().bind(formularioModificacion.managedProperty());
-            controlarTamanoColumnas();
-            //configurarComboBox();
-            daoCliente = new DAOCliente();
-            mostrar();
+           
+            configurarComboBox();
+            daoUsuario = new DAOUsuario();
+            //editarPerfil();
             //configurarServicios();
             
-           /* comboboxSexo.setCellFactory(listView -> new ImagenListCell());
-            comboboxSexo.setButtonCell(new ImagenListCell());*/
+            comboboxSexo.setCellFactory(listView -> new ImagenListCell());
+            comboboxSexo.setButtonCell(new ImagenListCell());
             
         } catch (SQLException ex) {
-            System.out.println("Error initialize DaoCliente " + ex.getMessage());
+            System.out.println("Error initialize DaoUsuario " + ex.getMessage());
         }
     }    
     
@@ -71,8 +65,8 @@ public class ClienteController extends ControladorConNavegabilidad implements In
     }*/
      
     private void configurarComboBox(){
-      /*  comboboxSexo.getItems().addAll("Femenino", "Masculino");
-        comboboxSexo.getSelectionModel().selectFirst();   */   
+        comboboxSexo.getItems().addAll("Femenino", "Masculino");
+        comboboxSexo.getSelectionModel().selectFirst();     
     }
     
     @FXML
@@ -81,98 +75,98 @@ public class ClienteController extends ControladorConNavegabilidad implements In
     }
     
     @FXML
-    private void editarPerfil(){
-        
-        infoCliente.setVisible(false);
-        infoCliente.setManaged(false);
-        formularioModificacion.setVisible(true);
-        formularioModificacion.setManaged(true);
-        
-        
-        
-         /*Cliente cliente = new Cliente();
-        cliente.setDni(dni.getText());
-        cliente.setNombre(nombre.getText());
-        cliente.setSexo(comboboxSexo.getSelectionModel().getSelectedItem());
-        cliente.setTelefono(Long.parseLong(telefono.getText()));
-        cliente.setEmail(email.getText());
+    public void guardar(){
+        Usuario usuario = new Usuario();
+        usuario.setId(this.layout.getUsuario().getId());
+        usuario.setNombreUsuario(this.layout.getUsuario().getNombreUsuario());
+        usuario.setContrasena(this.layout.getUsuario().getContrasena());
+        usuario.setDni(filtroDni.getText());
+        usuario.setNombre(filtroNombre.getText());
+        usuario.setApellido(filtroApellido.getText());
+        usuario.setSexo(comboboxSexo.getSelectionModel().getSelectedItem());
+        usuario.setTelefono(Long.parseLong(filtroTelefono.getText()));
+        usuario.setEmail(filtroEmail.getText());
        
-        if(cliente.getId() == 0){
-            daoCliente.crearPerfil(cliente); 
-        } else {
-            daoCliente.modificar(cliente);
-            clientesAModificar = null;
-        }
-        mostrar();
-        clear();*/
+        daoUsuario.modificar(usuario); 
+        clearFiltros();
+        this.layout.setUsuario(usuario);
+        setInfoUsuario();
+        volverAInfoCliente();
     }
     
+     private void clearFiltros() {
+        filtroDni.clear();
+        filtroNombre.clear();
+        filtroApellido.clear();
+        filtroTelefono.clear();
+        filtroEmail.clear();
+        comboboxSexo.getSelectionModel().selectFirst();
+    }
+     
+    private void clearLabels() {
+        dniClienteTexto.setText("");
+        nombreClienteTexto.setText("");
+        apellidoClienteTexto.setText("");
+        labelSexoTexto.setText("");
+        telefonoTexto.setText("");
+        emailTexto.setText("");
+    }
+    
+    @FXML
+    public void editarPerfil(){
+        prepararEdicionPerfil();
+        infoCliente.setVisible(false);
+        formularioModificacion.setVisible(true);
+        System.out.println("dni usuario =" + filtroDni.getText());
+    }
+  
     @FXML
     public void contactar(){
+        this.layout.cargarPantalla("contacto", PantallaHomeController.class.getResource("Contacto.fxml"));
         this.layout.mostrarComoPantallaActual("contacto");
-    }
-    
-    
-    @FXML
-    public void editar(){
-       /* Cliente cliente = tablaClientes.getSelectionModel().getSelectedItem();
-        dni.setText(cliente.getDni());
-        nombre.setText(cliente.getNombre());
-        comboboxSexo.setValue(cliente.getSexo());
-        telefono.setText(String.valueOf(cliente.getTelefono()));
-        email.setText(cliente.getEmail());
-        clientesAModificar = cliente;
-        id = cliente.getId();*/
-    
-    }
-    
-    @FXML
-    public void eliminar(){
-       /* Cliente cliente = tablaClientes.getSelectionModel().getSelectedItem();
-        daoCliente.eliminar(cliente);
-        mostrar();*/
     }
     
     @FXML
     public void volverAtras() throws IOException{
-       this.layout.mostrarComoPantallaActual("autentificacion");
+        this.layout.mostrarComoPantallaActual("autentificacion");
     }
     
-    private void mostrar() {
+    public void setInfoUsuario() {
+        usuario = this.layout.getUsuario();
+        setDatosUsuario();
+    }
+    
+    public void setDatosUsuario() {
         
-        /*tablaClientes.getItems().clear();
+        if(usuario != null) {
+
+            dniClienteTexto.setText(usuario.getDni() != null ? usuario.getDni() : dniCliente.getText() );
         
-        idColumna.setCellValueFactory(new PropertyValueFactory<Cliente, Integer>("id"));
-        dniColumna.setCellValueFactory(new PropertyValueFactory<Cliente, String>("dni"));
-        nombreColumna.setCellValueFactory(new PropertyValueFactory<Cliente, String>("nombre"));
-        sexoColumna.setCellValueFactory(new PropertyValueFactory<Cliente, String>("sexo"));
-        telefonoColumna.setCellValueFactory(new PropertyValueFactory<Cliente, Long>("telefono"));
-        emailColumna.setCellValueFactory(new PropertyValueFactory<Cliente, String>("email"));
-     
-        List<Cliente> clientesAMostrar = daoCliente.buscarTodos();
-        clientes.addAll(clientesAMostrar);
-        tablaClientes.setItems(clientes);*/
-       
+            nombreClienteTexto.setText(usuario.getNombre() != null? usuario.getNombre() : nombreCliente.getText());
+            
+            apellidoClienteTexto.setText(usuario.getApellido()!= null? usuario.getApellido() : apellidoCliente.getText());
+
+            labelSexoTexto.setText(usuario.getSexo()!= null? usuario.getSexo(): labelSexo.getText());
+
+            telefonoTexto.setText(usuario.getTelefono()!= null? String.valueOf(usuario.getTelefono()): telefono.getText());
+
+            emailTexto.setText(usuario.getEmail()!= null? usuario.getEmail(): email.getText());
+        }
     }
 
-    private void clear() {
-       /* dni.clear();
-        nombre.clear();
-        comboboxSexo.getSelectionModel().selectFirst();
-        telefono.clear();
-        email.clear();*/
+    private void prepararEdicionPerfil() {
+       filtroDni.setText(usuario.getDni());
+       filtroNombre.setText(usuario.getNombre());
+       filtroApellido.setText(usuario.getApellido());
+       filtroTelefono.setText(String.valueOf(usuario.getTelefono()));
+       filtroEmail.setText(usuario.getEmail());
+       comboboxSexo.getSelectionModel().select(usuario.getSexo());
     }
-    
-    private void controlarTamanoColumnas(){
-       /* tablaClientes.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
-        ObservableList<TableColumn<Cliente, ?>> columnas = tablaClientes.getColumns();
-        
-        columnas.get(0).setMaxWidth(1f * Integer.MAX_VALUE * 10); 
-        columnas.get(1).setMaxWidth(1f * Integer.MAX_VALUE * 15); 
-        columnas.get(2).setMaxWidth(1f * Integer.MAX_VALUE * 20); 
-        columnas.get(3).setMaxWidth(1f * Integer.MAX_VALUE * 15); 
-        columnas.get(4).setMaxWidth(1f * Integer.MAX_VALUE * 20); 
-        columnas.get(5).setMaxWidth(1f * Integer.MAX_VALUE * 20); */
+
+    @FXML
+    private void volverAInfoCliente() {
+       infoCliente.setVisible(true);
+       formularioModificacion.setVisible(false);
        
     }
     

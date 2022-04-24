@@ -1,5 +1,5 @@
 package dao;
-import com.amm.finciclo.proyectofinciclo.Empleado;
+import com.amm.finciclo.proyectofinciclo.Personal;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
@@ -10,13 +10,13 @@ import java.util.ArrayList;
 import java.util.List;
 import javafx.fxml.FXML;
 
-public class DAOEmpleado {
+public class DAOPersonal {
     
     public static final String URL_CONEXION = "jdbc:mysql://localhost:3306/proyectofinciclo";
     public static final String USUARIO_BDD = "root";
     public static final String PASSWORD_BDD = "";
     
-    public DAOEmpleado() throws SQLException{
+    public DAOPersonal() throws SQLException{
         crearTablaSiNoExiste();
     }
 
@@ -25,22 +25,23 @@ public class DAOEmpleado {
         try(
                 Connection conexion = DriverManager.getConnection(URL_CONEXION, USUARIO_BDD, PASSWORD_BDD)){
                     Statement sentencia = conexion.createStatement();
-                    String sql = "CREATE TABLE IF NOT EXISTS empleado" +
-                          "(id INTEGER(15) auto_increment, " +
-                          "dni VARCHAR(50), " +
-                          "nombre VARCHAR(50), " +
-                          "apellido VARCHAR(50), " +
-                          "fechaAlta TIMESTAMP, " +
-                          "fechaBaja TIMESTAMP, " +
-                          "sueldo DOUBLE, " +
-                          "horasExtra INTEGER, " +
-                          "idDepatamento INTEGER(15) REFERENCES depatamento (idDepartamento)";
+                    String sql = "CREATE TABLE IF NOT EXISTS personal" +
+                          "(id INTEGER auto_increment PRIMARY KEY NOT NULL, " +
+                          "dni VARCHAR(50) NULL, " +
+                          "nombre VARCHAR(50) NULL, " +
+                          "fechaAlta TIMESTAMP NULL, " +
+                          "fechaBaja TIMESTAMP NULL, " +
+                          "sueldo DOUBLE NULL, " +
+                          "idDepartamento INTEGER, " +
+                          "tipoServicio VARCHAR, " +  
+                          "FOREIGN KEY (idDepartamento) REFERENCES departamento (idDepartamento), " +
+                          "FOREIGN KEY (tipoServicio) REFERENCES servicio (tipoServicio)"  ;
                     sentencia.executeUpdate(sql);
+        }
     }
-   }
     
     @FXML
-    public void anadir(Empleado empleado){
+    public void anadir(Personal personal){
            
        /* try (
             Connection conexionDataBase =
@@ -64,30 +65,30 @@ public class DAOEmpleado {
         }
     
     @FXML
-    public void modificar(Empleado personal) {
+    public void modificar(Personal personal) {
         
          try(
             Connection conexionDataBase =
             DriverManager.getConnection(URL_CONEXION, USUARIO_BDD, PASSWORD_BDD)){
             Statement statement = conexionDataBase.createStatement();
-            String sql = "UPDATE personal set id='" + personal.getId() + 
-                    "', dni='" + personal.getDni() + 
+            String sql = "UPDATE personal set id=" + personal.getId() + 
+                    ", dni='" + personal.getDni() + 
                     "', nombre='" + personal.getNombre() + 
-                    "', apellido='" + personal.getApellido()+ 
                     "', fechaAlta='" + new Timestamp(personal.getFechaAlta().getTime()) +
                     "', fechaBaja='" + new Timestamp(personal.getFechaBaja().getTime()) +
-                    "', idServicioOfrecido'" + personal.getIdServicioOfrecido()+
-                    "', esEncargado='" + personal.getEsEncargado()+
+                    "', sueldo=" + personal.getSueldo() +
+                    ", idDepartamento=" + personal.getIdDepartamento() +
+                    ", tipoServicio'" + personal.getTipoServicio()+
                     "' WHERE id=" + personal.getId();
             statement.executeUpdate(sql);
           } catch (SQLException ex) {
-                System.out.println("Error al introducir información en la base de datos.");
+                System.out.println("Error al modificar la tabla personal " + ex.getMessage());
             }      
             
         }
-    
+   
     @FXML
-    public void eliminar(Empleado personal) {
+    public void eliminar(Personal personal) {
         try{
             Connection conexionDB = DriverManager.getConnection(URL_CONEXION, USUARIO_BDD, PASSWORD_BDD);
             Statement statement = conexionDB.createStatement();
@@ -98,9 +99,9 @@ public class DAOEmpleado {
         }
      }
     
-    public List<Empleado> buscarTodos(){
+    public List<Personal> buscarTodos(){
         
-        List<Empleado> empleados = new ArrayList<>();
+        List<Personal> empleados = new ArrayList<>();
         try{
             Connection conexionDataBase = DriverManager.getConnection(URL_CONEXION, USUARIO_BDD, PASSWORD_BDD);
             Statement  statement = conexionDataBase.createStatement();
@@ -108,20 +109,20 @@ public class DAOEmpleado {
             ResultSet resultset = statement.executeQuery(sql);
             
         while(resultset.next()){
-             Empleado personal = new Empleado();
+             Personal personal = new Personal();
              personal.setId(resultset.getInt("id"));
              personal.setDni(resultset.getString("dni"));
              personal.setNombre(resultset.getString("nombre"));
-             personal.setApellido(resultset.getString("apellido"));
              personal.setFechaAlta(resultset.getDate("fechaAlta"));
              personal.setFechaBaja(resultset.getDate("fechaBaja"));
-             personal.setIdServicioOfrecido(resultset.getInt("idServicioOfrecido"));
-             personal.setEsEncargado(resultset.getBoolean("esEncargado"));
+             personal.setSueldo(resultset.getDouble("sueldo"));
+             personal.setIdDepartamento(resultset.getInt("idDepartamento"));
+             personal.setTipoServicio(resultset.getString("tipoServicio"));
              empleados.add(personal);
             }
           
         }catch (SQLException ex) {
-          System.out.println("No posible mostrar los datos de la tabla");
+          System.out.println("No posible mostrar los datos de la tabla personal " + ex.getMessage());
             System.out.println(ex.getMessage());
        }
         return empleados;

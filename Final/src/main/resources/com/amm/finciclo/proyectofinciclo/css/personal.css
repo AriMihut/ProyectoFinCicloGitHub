@@ -1,0 +1,66 @@
+.titulo{
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-alignment: center;
+    -fx-text-aling: center;
+}
+
+.gridPaneDatos{
+    -fx-padding: 20px;
+    
+}
+
+.servicios{
+    -fx-font-size: 12px;
+    -fx-background-color: transparent;
+    -fx-fill: white;
+    -fx-font-weight: bold;
+}
+
+.radio-button .radio {
+    -fx-border-width: 1px;
+    -fx-text-fill: white;
+    -fx-border-color: -fx-darkest-grey-color;
+    -fx-background-color: white;
+    -fx-background-image: null;
+    -fx-border-radius: 15px;
+    -fx-padding: 3px;
+}
+
+.radio-button .radio:selected {
+    -fx-background-color: white;
+    -fx-background-image: null;
+}
+.radio-button -radio:armed {
+    -fx-background-color: white;
+    -fx-background-image: null;
+}
+.radio-button -radio:determinate {
+    -fx-background-color: white;
+    -fx-background-image: null;
+}
+.radio-button -radio:indeterminate {
+    -fx-background-color: white;
+    -fx-background-image: null;
+}
+.radio-button .dot {
+    -fx-background-radius: 15px;
+    -fx-padding: 8px;
+}
+
+.buttons{
+    -fx-background-color: white;
+    -fx-padding: 4;
+    -fx-max-width: 156px;
+}
+
+.buttons:hover{
+    -fx-background-color: -fx-shadow-highlight-color, -fx-outer-border, -fx-inner-border;
+    -fx-color: -fx-hover-base;
+}
+
+.simpleLabel{
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+}
+

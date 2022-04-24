@@ -10,13 +10,13 @@ import java.util.ArrayList;
 import java.util.List;
 import javafx.fxml.FXML;
 
-public class DAODepartamentos {
+public class DAODepartamento {
     
     public static final String URL_CONEXION = "jdbc:mysql://localhost:3306/proyectofinciclo";
     public static final String USUARIO_BDD = "root";
     public static final String PASSWORD_BDD = "";
     
-    public DAODepartamentos() throws SQLException{
+    public DAODepartamento() throws SQLException{
         crearTablaSiNoExiste();
     }
 
@@ -26,7 +26,7 @@ public class DAODepartamentos {
                 Connection conexion = DriverManager.getConnection(URL_CONEXION, USUARIO_BDD, PASSWORD_BDD)){
                 Statement sentencia = conexion.createStatement();
                 String sql = "CREATE TABLE IF NOT EXISTS departamento" +
-                          "(idDepartamento INTEGER(15) auto_increment, " +
+                          "(idDepartamento INTEGER auto_increment, " +
                           "nombreDepartamento VARCHAR(50), " +
                           "FOREIGN KEY (idPersonal) REFERENCES personal (id) )";
                 sentencia.executeUpdate(sql);
@@ -101,8 +101,7 @@ public class DAODepartamentos {
             }
           
         }catch (SQLException ex) {
-          System.out.println("No posible mostrar los datos de la tabla departamento");
-            System.out.println(ex.getMessage());
+          System.out.println("No posible mostrar los datos de la tabla departamento " + ex.getMessage());
        }
         return departamentos;
     }

@@ -12,18 +12,18 @@
 <?import javafx.scene.text.Text?>
 
 <VBox styleClass="pantallaHome" HBox.hgrow="ALWAYS" xmlns:fx="http://javafx.com/fxml/1"
-        fx:controller="com.amm.finciclo.proyectofinciclo.PantallaHomeController" minHeight= "200" maxWidth= "100">
+        fx:controller="com.amm.finciclo.proyectofinciclo.PantallaHomeController" prefHeight= "700" prefWidth= "700">
     <stylesheets>
         <URL value="@/com/amm/finciclo/proyectofinciclo/css/pantallahome.css"/>
     </stylesheets>
     <padding>
         <Insets top="20" right="20" bottom="20" left="20"/>
     </padding> 
-    <VBox HBox.hgrow="ALWAYS" styleClass="contenedor-titulo" minHeight= "20">
-        <Label text="Personal - Servicios - Productos - Clientes - Beneficios" 
-               styleClass="etiqueta-principal" HBox.hgrow="ALWAYS"/>
+    <VBox HBox.hgrow="ALWAYS" styleClass="contenedor-titulo" prefHeight= "20">
+        <Label text="ADMINISTRADOR" styleClass="etiqueta-principal" HBox.hgrow="ALWAYS"/>
     </VBox>
-    <FlowPane styleClass="pantallaHomeFlow" hgap="40" vgap="40" style="-fx-background-color: grey">
+    <VBox styleClass="pantallaPrincipal" style="-fx-background-color: grey" prefHeight= "600">
+        <HBox>
         <Label fx:id="clientes" text="Clientes: " styleClass="clientes" HBox.hgrow="ALWAYS" style="-fx-text-fill: white;"/>
         <Button styleClass="boton-accion" onAction="#verClientes">
                 <graphic>
@@ -40,6 +40,8 @@
                     </ImageView>
                </graphic>
             </Button>
+        </HBox> 
+        <HBox>   
         <Label fx:id="proveedores" text="Proveedores: " styleClass="proveedores" HBox.hgrow="ALWAYS" style="-fx-text-fill: white;"/>
         <Button styleClass="boton-accion" onAction="#verProveedores">
                 <graphic>
@@ -56,6 +58,8 @@
                     </ImageView>
                 </graphic>
         </Button>
+        </HBox>
+        <HBox>
         <Label fx:id="productos" text="Productos: " styleClass="productos" HBox.hgrow="ALWAYS" style="-fx-text-fill: white;"/>
         <Button styleClass="boton-accion" onAction="#verProductos">
                 <graphic>
@@ -72,6 +76,8 @@
                     </ImageView>
                 </graphic>
         </Button>
+        </HBox>
+        <HBox>
         <Label fx:id="departamentos" text="Departamentos: " styleClass="departamentos" HBox.hgrow="ALWAYS" style="-fx-text-fill: white;"/>
         <Button styleClass="boton-accion" onAction="#verDepartamentos">
                 <graphic>
@@ -82,8 +88,9 @@
         </Button>
         <Label text="Calendario" styleClass="calendario"/> 
         <DatePicker/>
-    </FlowPane>
-    <VBox alignment="CENTER" HBox.hgrow="ALWAYS" minHeight= "20" styleClass="botonAtrás" 
+        </HBox>
+    </VBox>
+    <VBox alignment="CENTER" HBox.hgrow="ALWAYS" prefHeight= "20" styleClass="botonAtrás" 
           style="-fx-background-color: #6DBD96">
             <Button onAction="#atras" focusTraversable="false" style="-fx-text-fill: grey;">
                 <graphic>

@@ -27,7 +27,7 @@
     <top>
         <StackPane style="-fx-background-color: #6DBD96" minHeight="80">
             <Text text="Sueños cumplidos - Servicios ofrecidos" fill="white" 
-                  style="-fx-font-weight: bold;">
+                    style="-fx-font-weight: bold;">
                 <font>
                     <Font name="Cambria" size="30"/>
                 </font>
@@ -42,8 +42,22 @@
                 <TextField fx:id="idServicio" GridPane.rowIndex="7" GridPane.columnIndex="1"/>
                 <Text text="Elije tipo servicio" fill="white" styleClass="textoComboBox" style="-fx-font-weight: bold;" 
                       GridPane.rowIndex="8" GridPane.columnIndex="0"/>
-                <ComboBox fx:id="comboboxTipoServicios" style="-fx-font-weight: bold" 
-                          GridPane.rowIndex="8" GridPane.columnIndex="1"  GridPane.columnSpan="2"/>  
+                <Label styleClass="servicios" text="Tipo servicio" GridPane.rowIndex="8" GridPane.columnIndex="1"/>
+                <HBox prefHeight="100.0" prefWidth="100.0" spacing="10.0" 
+                    GridPane.columnIndex="1" GridPane.rowIndex="6"
+                    GridPane.columnSpan="12">
+                    <fx:define>
+                        <ToggleGroup fx:id="group" />
+                    </fx:define>
+                    <children>
+                        <RadioButton fx:id="ceremonia" mnemonicParsing="false" text="Ceremonia" />
+                        <RadioButton fx:id="gastronomia" mnemonicParsing="false" text="Gastronomia" />
+                        <RadioButton fx:id="musica" mnemonicParsing="false" text="Música" />
+                        <RadioButton fx:id="fotografia" mnemonicParsing="false" text="Fotografia" />
+                        <RadioButton fx:id="video" mnemonicParsing="false" text="Video" />
+                        <RadioButton fx:id="transporte" mnemonicParsing="false" text="Transporte" />
+                    </children>
+                </HBox> 
                 <Label styleClass="precio" text="Precio" GridPane.rowIndex="9" GridPane.columnIndex="0"/>
                 <TextField fx:id="precio" GridPane.rowIndex="9" GridPane.columnIndex="1"/>
                 <!-- <Label styleClass="idCliente" text="Id cliente" GridPane.rowIndex="10" 

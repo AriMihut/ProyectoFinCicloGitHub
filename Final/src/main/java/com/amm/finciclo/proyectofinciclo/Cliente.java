@@ -5,13 +5,10 @@ public class Cliente {
     private int id;
     private String dni;
     private String nombre;
-    //public enum Sexo{Mujer, Hombre};
-    //public Sexo sexo;
     private String sexo;
     private Long telefono;
     private String email;
     private String tipoServicio;
-    //private enum tipoServicio {Ceremonia, Gastronomia, Musica, Fotografia, Video, Transporte};
 
     public Cliente() {
     }

@@ -1,5 +1,6 @@
 package dao;
 
+import com.amm.finciclo.proyectofinciclo.TipoUsuario;
 import com.amm.finciclo.proyectofinciclo.Usuario;
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -17,18 +18,47 @@ public class DAOUsuario {
     public static final String PASSWORD_BDD = "";
 
     public DAOUsuario() throws SQLException{
+        
+        crearTablaSiNoExiste();
     }
     
+     private void crearTablaSiNoExiste() throws SQLException {
+        
+        try(
+                Connection conexion = DriverManager.getConnection(URL_CONEXION, USUARIO_BDD, PASSWORD_BDD)){
+                Statement sentencia = conexion.createStatement();
+                String sql = "CREATE TABLE IF NOT EXISTS usuario" +
+                          "(id INTEGER auto_increment NOT NULL PRIMARY KEY, " +
+                            "nombre VARCHAR(50) NULL, " +
+                            "contrasena VARCHAR(50) NULL, " +
+                            "tipoUsuario VARCHAR(50) NULL, " +
+                            "dni VARCHAR(50) NULL, " +
+                            "nombreUsuario VARCHAR(50) NULL, " +
+                            "apellido VARCHAR(50) NULL, " +
+                            "sexo VARCHAR(15) NULL, " +
+                            "telefono LONG, NULL" +
+                            "email VARCHAR(50) NULL)";
+                sentencia.executeUpdate(sql);
+        }
+   }
     
     public void anadir(Usuario usuario){
-           
+        
         try (
             Connection conexionDataBase =
             DriverManager.getConnection(URL_CONEXION, USUARIO_BDD, PASSWORD_BDD)){
             Statement statement = conexionDataBase.createStatement();
-            String sql = "INSERT INTO usuario(nombre, contrasena, tipoUsuario) " 
-                    + "VALUES ('" + usuario.getNombre() + "', '" + usuario.getContrasena()
-                    + "', '" + usuario.getTipoUsuario().name() + "');";
+            String sql = "INSERT INTO usuario(nombreUsuario, contrasena, tipoUsuario, "
+                    + "dni, nombre, apellido, sexo, telefono, email) " 
+                    + "VALUES ('" + usuario.getNombreUsuario() + 
+                    "', '" + usuario.getContrasena() +
+                    "', '" + usuario.getTipoUsuario().name() + 
+                    "', '" + usuario.getDni()+
+                    "', '" + usuario.getNombre() +
+                    "', '" + usuario.getApellido() +
+                    "', '" + usuario.getSexo() +
+                    "', " + usuario.getTelefono() + 
+                    "', '" + usuario.getEmail() + "');";
             statement.executeUpdate(sql);  
             System.out.println("sql ===> " + sql);
             
@@ -44,11 +74,18 @@ public class DAOUsuario {
             Connection conexionDataBase =
             DriverManager.getConnection(URL_CONEXION, USUARIO_BDD, PASSWORD_BDD)){
             Statement statement = conexionDataBase.createStatement();
-            String sql = "UPDATE usuario set nombre='" + usuario.getNombre() + "', "
-                    + "contrasena='" + usuario.getContrasena() + "' WHERE id=" + usuario.getId();
+            String sql = "UPDATE usuario set dni='" + usuario.getDni()+
+                    "', nombre='" + usuario.getNombre() +
+                    "', apellido='" + usuario.getApellido() +
+                    "', sexo='" + usuario.getSexo() +
+                    "', telefono=" + usuario.getTelefono() + 
+                    ", email='" + usuario.getEmail() + 
+                    "' WHERE id=" + usuario.getId();
+             System.out.println("Mergi? " + sql);
             statement.executeUpdate(sql);
+            
           } catch (SQLException ex) {
-                System.out.println("Error al modificar la información en la tabla usuario");
+                System.out.println("Error al modificar la información en la tabla usuario" + ex.getMessage());
             }      
             
         }
@@ -64,14 +101,20 @@ public class DAOUsuario {
             
         while(resultset.next()){
              Usuario usuario = new Usuario();
-             usuario.setNombre(resultset.getString("nombre"));
+             usuario.setNombreUsuario(resultset.getString("nombreUsuario"));
              usuario.setContrasena(resultset.getString("contrasena"));
+             //usuario.setTipoUsuario(Usuario.TipoUsuario.valueOf(resultset.getString("tipoUsuario")));
+             usuario.setDni(resultset.getString("dni"));
+             usuario.setNombre(resultset.getString("nombre"));
+             usuario.setApellido(resultset.getString("apellido"));
+             usuario.setSexo(resultset.getString("sexo"));
+             usuario.setTelefono(resultset.getLong("telefono"));
+             usuario.setEmail(resultset.getString("email"));
              usuarios.add(usuario);
             }
           
         }catch (SQLException ex) {
-          System.out.println("No posible mostrar los datos de la tabla usuario");
-            System.out.println(ex.getMessage());
+            System.out.println("No posible mostrar los datos de la tabla usuario" + ex.getMessage());
        }
         return usuarios;
     }
@@ -89,16 +132,33 @@ public class DAOUsuario {
      }
 
       
-      public static boolean comprobarExistenciaUsuario(Usuario usuario) throws SQLException {
+    public static Usuario comprobarExistenciaUsuario(Usuario usuario) throws SQLException {
           
+        ArrayList<Usuario> usuarios = new ArrayList<>();
+        
         Connection conexionDataBase = DriverManager.getConnection(URL_CONEXION, USUARIO_BDD, PASSWORD_BDD);
         Statement  statement = conexionDataBase.createStatement();
         String sql = "SELECT * FROM usuario WHERE "
-                + "nombre = '" + usuario.getNombre() + 
+                + "nombreUsuario = '" + usuario.getNombreUsuario()+ 
                 "' and contrasena ='" + usuario.getContrasena() 
-                + "' and tipoUsuario = '" + usuario.getTipoUsuario().name() + "';";
-         ResultSet resultset = statement.executeQuery(sql);
-        return resultset.next();
+                + "' and tipoUsuario = '" + usuario.getTipoUsuario().getValue() + "';";
+         ResultSet resultSet = statement.executeQuery(sql);
+         Usuario usuarioExistente = null;
+         while(resultSet.next()) {
+            usuarioExistente = new Usuario();
+            usuarioExistente.setId(resultSet.getInt("id")); 
+            usuarioExistente.setNombreUsuario(resultSet.getString("nombreUsuario"));
+            usuarioExistente.setContrasena(resultSet.getString("contrasena"));
+            usuarioExistente.setTipoUsuario(TipoUsuario.valueOf(resultSet.getString("tipoUsuario").toUpperCase()));
+            usuarioExistente.setDni(resultSet.getString("dni"));
+            usuarioExistente.setNombre(resultSet.getString("nombre"));
+            usuarioExistente.setApellido(resultSet.getString("apellido"));
+            usuarioExistente.setSexo(resultSet.getString("sexo"));
+            usuarioExistente.setTelefono(resultSet.getLong("telefono"));
+            usuarioExistente.setEmail(resultSet.getString("email"));
+            usuarios.add(usuarioExistente);
+         }
+        return usuarios.get(0);
       }
 
 }

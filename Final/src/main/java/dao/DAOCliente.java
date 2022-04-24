@@ -3,12 +3,8 @@ package dao;
 import com.amm.finciclo.proyectofinciclo.Cliente;
 import java.sql.Connection;
 import java.sql.DriverManager;
-import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.util.ArrayList;
-import java.util.List;
-import javafx.fxml.FXML;
 
 public class DAOCliente {
     
@@ -38,8 +34,8 @@ public class DAOCliente {
         }
    }
     
-    @FXML
-    public void crearPerfil(Cliente cliente){
+    /*@FXML
+    public void anadir(Cliente cliente){
            
         try (
             Connection conexionDataBase =
@@ -57,7 +53,7 @@ public class DAOCliente {
                 System.out.println("Error al introducir información en la tabla cliente " + ex.getMessage());
           }        
         
-        }
+        }*/
     
     public void modificar(Cliente cliente) {
         
@@ -78,6 +74,7 @@ public class DAOCliente {
             
         }
     
+/*
     @FXML
     public void eliminar(Cliente cliente) {
         try{
@@ -114,6 +111,6 @@ public class DAOCliente {
           System.out.println("No posible mostrar los datos de la tabla cliente " + ex.getMessage());
        }
         return clientes;
-    }
+    }*/
     
 }

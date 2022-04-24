@@ -15,48 +15,75 @@
 <?import javafx.scene.control.ToolBar?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.image.Image?>
+<?import javafx.scene.control.Label?>
 
-<VBox fx:id="paginaPrincipal" xmlns:fx="http://javafx.com/fxml" fx:controller="com.amm.finciclo.proyectofinciclo.ClienteController">
+<VBox fx:id="paginaPrincipal" xmlns:fx="http://javafx.com/fxml" 
+      fx:controller="com.amm.finciclo.proyectofinciclo.ClienteController">
     <stylesheets>
         <URL value="@/com/amm/finciclo/proyectofinciclo/css/cliente.css"/>
     </stylesheets>
-  <!--  <padding>
+    <padding>
         <Insets top="10" right="10" bottom="10" left="10"/>
-    </padding>  -->
+    </padding>
     <VBox HBox.hgrow="ALWAYS" prefWidth="${paginaPrincipal.width}" styleClass="contenedor-titulo">
         <Label text="Sueños cumplidos - Soy Cliente" styleClass="titulo" HBox.hgrow="ALWAYS"  
                 prefWidth="${paginaPrincipal.width}"/>
     </VBox>
     <VBox HBox.hgrow="ALWAYS" VBox.vgrow="ALWAYS">
         <VBox fx:id="infoCliente" HBox.hgrow="ALWAYS" prefHeight="${paginaPrincipal.height*0.8}">
-            <Label fx:id="nombreCliente" text="Nombre"/>
-            <!-- meter info cliente -->
+            <HBox>
+                <Label fx:id="dniCliente" text="Dni:"/>
+                <Label fx:id="dniClienteTexto" text=""/>
+            </HBox>
+            <HBox>
+                <Label fx:id="nombreCliente" text="Nombre:"/>
+                <Label fx:id="nombreClienteTexto" text=""/>
+            </HBox>
+            <HBox>
+                <Label fx:id="apellidoCliente" text="Apellido:"/>
+                <Label fx:id="apellidoClienteTexto" text=""/>
+            </HBox>
+            <HBox>
+                <Label fx:id="labelSexo" text="Género: "/>
+                <Label fx:id="labelSexoTexto" text=""/>
+            </HBox>
+            <HBox>
+                <Label fx:id="telefono" text="Teléfono: "/>
+                <Label fx:id="telefonoTexto" text=""/>
+            </HBox>
+            <HBox>
+                <Label fx:id="email" text="Email: "/>
+                <Label fx:id="emailTexto" text=""/>
+            </HBox>
         </VBox>
         <HBox fx:id="formularioModificacion" visible="false" prefHeight="${paginaPrincipal.height*0.8}">
             <VBox>
-                <Label styleClass="dniCliente" text="Dni" style="-fx-font-weight: bold;"/>
-                <TextField fx:id="dni"/>
-                <Label styleClass="nombreCliente" text="Nombre" style="-fx-font-weight: bold;"/>
-                <TextField fx:id="nombre" />
-                <Label styleClass="labelSexo" text="Género"/>
+                <Label styleClass="simpleLabel" text="Dni" style="-fx-font-weight: bold;"/>
+                <TextField fx:id="filtroDni"/>
+                <Label styleClass="simpleLabel" text="Nombre" style="-fx-font-weight: bold;"/>
+                <TextField fx:id="filtroNombre" />
+                <Label styleClass="simpleLabel" text="Apellido" style="-fx-font-weight: bold;"/>
+                <TextField fx:id="filtroApellido" />
+                <Label styleClass="simpleLabel" text="Género"/>
                 <ComboBox styleClass="comboboxSexo" fx:id="comboboxSexo" style="-fx-text-fill: white;"/>
             </VBox>
             <VBox> 
-                <Label styleClass="telefono" text="Telefono" style="-fx-font-weight: bold;"/>
-                <TextField fx:id="telefono"/>
-                <Label styleClass="email" text="Email" style="-fx-font-weight: bold;"/>
-                <TextField fx:id="email"/>
-                <Label styleClass="labelServicios" text="Servicio contratado"/>
-                <ComboBox fx:id="servicios"/> 
-                <Label styleClass="importeTotal" text="Importe total" style="-fx-font-weight: bold;"/>
-                <TextField fx:id="importeTotal"/>
-                
+                <Label styleClass="simpleLabel" text="Telefono" style="-fx-font-weight: bold;"/>
+                <TextField fx:id="filtroTelefono"/>
+                <Label styleClass="simpleLabel" text="Email" style="-fx-font-weight: bold;"/>
+                <TextField fx:id="filtroEmail"/>
+            </VBox>  
+            <VBox>
                 <HBox>
-                    <!--Meter botones guardar y cancelar-->
+                    <Button styleClass="boton-accion" onAction="#guardar" text="GUARDAR" style="-fx-font-weight: bold;"/>
+                    <Button styleClass="boton-accion" onAction="#volverAInfoCliente" text="CANCELAR" style="-fx-font-weight: bold;"/>
                 </HBox>
-            </VBox>   
+            </VBox> 
         </HBox>
-        <VBox alignment="BOTTOM_CENTER" prefHeight="${paginaPrincipal.height*0.2}">
+        <VBox>
+            <!-- Comprar-->
+        </VBox>
+        <VBox styleClass="vBoxBottom" alignment="BOTTOM_CENTER" spacing="50" prefHeight="${paginaPrincipal.height*0.1}">
             <ToolBar styleClass="buttons" HBox.hgrow="ALWAYS">   
                 <Button styleClass="boton-accion" onAction="#comprar" text="COMPRAR" style="-fx-font-weight: bold;"/>
                 <Button styleClass="boton-accion" onAction="#contactar" text="CONTACTAR" style="-fx-font-weight: bold;"/>
@@ -68,46 +95,6 @@
             </ToolBar>
         </VBox>
     </VBox>
-    <!--<GridPane styleClass="gridPanePrincipal" alignment="CENTER" hgap="20" vgap="20" 
-              style="-fx-justify-content: center">
-                <Label styleClass="idCliente" text="Id" GridPane.rowIndex="1" 
-                       GridPane.columnIndex="1" style="-fx-font-weight: bold;"/>
-                <TextField fx:id="id" GridPane.rowIndex="1" GridPane.columnIndex="2"/>
-                <Label styleClass="dniCliente" text="Dni" GridPane.rowIndex="2" 
-                       GridPane.columnIndex="1" style="-fx-font-weight: bold;"/>
-                <TextField fx:id="dni" GridPane.rowIndex="2" GridPane.columnIndex="2"/>
-                <Label styleClass="nombreCliente" text="Nombre" GridPane.rowIndex="3" 
-                       GridPane.columnIndex="1" style="-fx-font-weight: bold;"/>
-                <TextField fx:id="nombre" GridPane.rowIndex="3" GridPane.columnIndex="2"/>
-                <Label styleClass="labelSexo" text="Género" GridPane.rowIndex="1"  GridPane.columnIndex="3"/>
-                <ComboBox styleClass="comboboxSexo" fx:id="comboboxSexo" GridPane.rowIndex="1" 
-                  GridPane.columnIndex="4" style="-fx-text-fill: white;"/>
-                <Label styleClass="telefono" text="Telefono" GridPane.rowIndex="2" 
-                       GridPane.columnIndex="3" style="-fx-font-weight: bold;"/>
-                <TextField fx:id="telefono" GridPane.rowIndex="2" GridPane.columnIndex="4"/>
-                <Label styleClass="email" text="Email" GridPane.rowIndex="3" 
-                       GridPane.columnIndex="3" style="-fx-font-weight: bold;"/>
-                <TextField fx:id="email" GridPane.rowIndex="3" GridPane.columnIndex="4"/>
-                <Label styleClass="labelServicios" text="Servicio contratado" GridPane.rowIndex="3"  
-                       GridPane.columnIndex="3"/>
-                <ComboBox fx:id="servicios" GridPane.rowIndex="3" GridPane.columnIndex="4"/> 
-                <Label styleClass="importeTotal" text="Importe total" GridPane.rowIndex="4" 
-                       GridPane.columnIndex="3" style="-fx-font-weight: bold;"/>
-                <TextField fx:id="importeTotal" GridPane.rowIndex="4" GridPane.columnIndex="4"/> 
-    </GridPane>-->
-    <!--<StackPane styleClass="tabla_clientes" HBox.hgrow="ALWAYS" style="-fx-padding: 20 0 0 0">
-            <TableView fx:id="tablaClientes">
-                <columns>
-                    <TableColumn fx:id="idColumna" text="id">
-                    </TableColumn>
-                    <TableColumn fx:id="dniColumna" text="dni"/>
-                    <TableColumn fx:id="nombreColumna" text="nombre"/>
-                    <TableColumn fx:id="sexoColumna" text="sexo"/>
-                    <TableColumn fx:id="telefonoColumna" text="telefono"/>
-                    <TableColumn fx:id="emailColumna" text="email"/>
-                </columns>
-            </TableView>
-        </StackPane>-->
     <BorderPane>
         <bottom>
         <StackPane style="-fx-background-color: #6DBD96" minHeight= "50" >

@@ -18,10 +18,10 @@
     </VBox>
     <VBox styleClass="contenedor-general" VBox.vgrow="ALWAYS" >
         <Label fx:id="eleccion" text="ACCEDER COMO: " styleClass="eleccion" HBox.hgrow="ALWAYS"/>
-        <Button text="CLIENTE" onAction="#accederComoCliente"  focusTraversable="false" styleClass="btnCliente"/>
-        <Button text="EMPLEADO" onAction="#accederComoEmpleado"  focusTraversable="false" styleClass="btnEmpleado"/>
-        <Button text="PROVEEDOR" onAction="#accederComoProveedor"  focusTraversable="false" styleClass="btnProveedor"/>
-        <Button text="ADMINISTRADOR" onAction="#accederComoAdministrador"  focusTraversable="false" styleClass="btnAdministrador"/>
+        <Button fx:id="botonCliente" text="CLIENTE" focusTraversable="false" styleClass="btnCliente"/>
+        <Button fx:id="botonEmpleado" text="EMPLEADO" focusTraversable="false" styleClass="btnEmpleado"/>
+        <Button fx:id="botonProveedor" text="PROVEEDOR" focusTraversable="false" styleClass="btnProveedor"/>
+        <Button fx:id="botonAdministrador" text="ADMINISTRADOR" focusTraversable="false" styleClass="btnAdministrador"/>
     </VBox>  
 </VBox>
 

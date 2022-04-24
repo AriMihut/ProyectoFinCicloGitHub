@@ -41,9 +41,15 @@
             <Label styleClass="contactanos" text="Contacta con nosotros" style="fx-text-align: center"/>        
             <Label styleClass="telefonoSuenos" text="(0034)655555555" />
             <Label styleClass="emailSuenos" text="suenos_cumplidos@suenos.com" />
+            <Label styleClass="simpleLabel" text="Asunto" style="-fx-font-weight: bold;"/>
+            <TextField fx:id="asunto" promptText="Asunto"/>
+            <HBox >
+                <Label styleClass="urgente" text="Es urgente"/>
+                <CheckBox styleClass="ckeckUrgente" fx:id="checkUrgente"/>
+            </HBox>
             <Label styleClass="mensaje" text="Tu mensaje*: "/>
-            <TextArea fx:id="reclamarOContactar" prefHeight="250"/>
-            <Button fx:id="botonEnviar" text="Enviar" onAction="#enviar" focusTraversable="false"/>
+            <TextArea fx:id="mensaje" prefHeight="250"/>
+            <Button fx:id="botonEnviar" text="Enviar" onAction="#enviarMensaje" focusTraversable="false"/>
         </VBox>
     </center>   
     <bottom>

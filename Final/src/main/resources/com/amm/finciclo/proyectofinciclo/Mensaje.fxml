@@ -24,7 +24,7 @@
     </stylesheets> 
     <top>
         <HBox styleClass="titulo" style="-fx-background-color: #6DBD96" minHeight="60">
-            <Text styleClass="textoTitulo" text="Sueños cumplidos - Contacto" fill="white" style="-fx-font-weight: bold;">
+            <Text styleClass="textoTitulo" text="Sueños cumplidos - Mensajes" fill="white" style="-fx-font-weight: bold;">
                 <font>
                     <Font name="Cambria" size="30"/>
                 </font>
@@ -34,70 +34,22 @@
     <left>
         <VBox fx:id="left" styleClass="leftVBox" spacing="20" style="-fx-background-color: #6DBD96" prefWidth="130">
         <Button fx:id="btnContacto" text="Contactar" onAction="#contactar"  focusTraversable="false"/>     
-        
-        <HBox>
-            <ToolBar fx:id="toolBar" styleClass="buttons" HBox.hgrow= "ALWAYS" 
-                 GridPane.rowIndex="5" GridPane.columnIndex="4" 
-                 GridPane.columnSpan="9">
-             <Button styleClass="boton-accion" onAction="#anadirModificar" GridPane.rowIndex="1" 
-                     GridPane.columnIndex="0">
-               <graphic>
-                    <ImageView>
-                        <Image url="@../../../../iconos/anadir.png"/>
-                    </ImageView>
-                </graphic>
-            </Button>
-            <Button styleClass="boton-accion" onAction="#prepararModificar" GridPane.rowIndex="1" GridPane.columnIndex="1">
-                <graphic>
-                    <ImageView>
-                        <Image url="@../../../../iconos/modificar.png"/>
-                    </ImageView>
-                </graphic>
-            </Button>
-            <Button styleClass="boton-accion" onAction="#eliminar" GridPane.rowIndex="1" GridPane.columnIndex="2">
-                <graphic>
-                    <ImageView>
-                        <Image url="@../../../../iconos/eliminar.png"/>
-                    </ImageView>
-                </graphic>
-            </Button>
-        </ToolBar>
-        </HBox>
         </VBox>
     </left>  
     <center>
         <VBox fx:id="mensajes" styleClass="vBoxMensajes" spacing="20" style="-fx-background-color: grey">
-        <StackPane styleClass="tabla_mensajes" HBox.hgrow="ALWAYS">
             <TableView fx:id="tablaMensajes" styleClass="tablaMensaje">
                 <columns>
-                    <TableColumn text="idMensaje" prefWidth="${tablaMensajes.width*0.20}" >
-                        <cellValueFactory>
-                            <PropertyValueFactory property="idMensaje" />
-                        </cellValueFactory>
-                    </TableColumn>
-                    <TableColumn text="nombreAutor" prefWidth="${tablaMensajes.width*0.20}" >
-                        <cellValueFactory>
-                            <PropertyValueFactory property="nombreAutor"/>
-                        </cellValueFactory>
-                    </TableColumn>
-                    <TableColumn text="asunto" prefWidth="${tablaMensajes.width*0.20}" >
-                        <cellValueFactory>
-                            <PropertyValueFactory property="asunto"/>
-                        </cellValueFactory>
-                    </TableColumn>
-                    <TableColumn text="tipoUsuario" prefWidth="${tablaMensajes.width*0.2}" >
-                        <cellValueFactory>
-                            <PropertyValueFactory property="tipoUsuario"/>
-                        </cellValueFactory>
-                    </TableColumn>
-                    <TableColumn text="esUrgente" prefWidth="${tablaMensajes.width*0.20}" >
-                        <cellValueFactory>
-                            <PropertyValueFactory property="esUrgente"/>
-                        </cellValueFactory>
-                    </TableColumn>
+                    <TableColumn fx:id="idMensajeColumn" text="Id" prefWidth="${tablaMensajes.width*0.10}" />
+                    <TableColumn fx:id="nombreAutorColumn" text="Nombre autor" prefWidth="${tablaMensajes.width*0.20}" />
+                    <TableColumn fx:id="asuntoColumn"  text="Asunto" prefWidth="${tablaMensajes.width*0.15}" />
+                    <TableColumn  fx:id="textoMensajeColumn" text="Texto mensaje" prefWidth="${tablaMensajes.width*0.20}" />
+                    <TableColumn  fx:id="tipoUsuarioColumn" text="Tipo usuario" prefWidth="${tablaMensajes.width*0.20}" />
+                    <TableColumn  fx:id="esUrgenteColumn" text="Es urgente" prefWidth="${tablaMensajes.width*0.15}" />
+                    <TableColumn  fx:id="idUsuarioColumn" text="Id usuario" prefWidth="${tablaMensajes.width*0.10}" />
+                    <TableColumn  fx:id="verMensajeColumn" text="" prefWidth="${tablaMensajes.width*0.10}" />
                 </columns>
             </TableView>
-        </StackPane>
        </VBox>
     </center>   
     <bottom>

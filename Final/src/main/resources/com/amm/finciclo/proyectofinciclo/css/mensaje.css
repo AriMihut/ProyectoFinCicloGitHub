@@ -23,8 +23,9 @@
 }
 
 .vBoxMensajes{
-    -fx-padding: 80px;
-    -fx-pref-width: 500px;    
+    -fx-padding: 30px;
+    -fx-padding-top: 50px;
+    -fx-pref-width: 600px;    
 }
         
 .tablaMensaje .column-header-background,

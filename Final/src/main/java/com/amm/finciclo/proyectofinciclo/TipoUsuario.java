@@ -11,4 +11,8 @@ public enum TipoUsuario {
     TipoUsuario(String tipoUsuario){
     this.rolUsuario = tipoUsuario;
     }
+    
+    public String getValue() {
+       return this.rolUsuario;
+    }
 };
