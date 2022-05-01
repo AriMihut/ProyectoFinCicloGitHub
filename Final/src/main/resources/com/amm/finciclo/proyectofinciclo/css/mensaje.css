@@ -10,6 +10,10 @@
     -fx-font-weight: bold;
 }
 
+.btnContacto{
+    -fx-alignment: center;
+}
+
 .leftVBox{
     -fx-padding: 10px;
     -fx-alignment: center;

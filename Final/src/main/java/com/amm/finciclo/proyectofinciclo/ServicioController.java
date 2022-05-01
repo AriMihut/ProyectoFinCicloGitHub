@@ -19,17 +19,17 @@ import javafx.scene.control.cell.PropertyValueFactory;
 
 public class ServicioController extends ControladorConNavegabilidad implements Initializable{
     
-    @FXML private TextField id, tipoServicio, precio;
-    private @FXML ComboBox<String> comboboxTipoServicios;
+    @FXML private TextField id, tipoServicio, nombreServicio, precio;
     @FXML private TableView<Servicio> tablaServicios;
     private ObservableList<Servicio> servicios = FXCollections.observableArrayList();
     private Servicio serviciosParaModificar;
     private DAOServicio servicioDao;
-    @FXML private RadioButton ceremonia, gastronomia, musica, fotografia, video, transporte;
+    @FXML private RadioButton CEREMONIA, GASTRONOMIA, MUSICA, FOTOGRAFIA, VIDEO, TRANSPORTE;
     @FXML ToggleGroup group;
     
     @FXML private TableColumn<Servicio, Integer> idColumna;
-    @FXML private TableColumn<Servicio, String> tipoServicioColumna;
+    @FXML private TableColumn<Servicio, Enum> tipoServicioColumna;
+    @FXML private TableColumn<Servicio, String> nombreServicioColumna;
     @FXML private TableColumn<Servicio, Double> precioColumna;
 
     @Override
@@ -37,25 +37,42 @@ public class ServicioController extends ControladorConNavegabilidad implements I
         
         try {
             servicioDao = new DAOServicio();
+            configurarRadioBoxServicios();
             mostrar();
-            configurarComboBoxTipoServicios();
             controlarTamanoColumnas();
         } catch (SQLException ex) {
-            System.out.println("Error DaoServicio " + ex.getMessage());
+            System.out.println("Error DaoServicio initialize " + ex.getMessage());
         }
-        configurarComboBoxTipoServicios();
+        configurarRadioBoxServicios();
     }
     
-    private void configurarComboBoxTipoServicios(){
-        comboboxTipoServicios.getItems().addAll("Ceremonia", "Gastronomia", "Musica", "Fotografia", "Video", "Transporte");
-        comboboxTipoServicios.getSelectionModel().selectFirst();      
+    private void configurarRadioBoxServicios(){
+        CEREMONIA.setSelected(true);     
     }
     
      @FXML
     public void anadir(){
       Servicio servicio = new Servicio();
             servicio.setId(serviciosParaModificar == null ? 0 : serviciosParaModificar.getId());
-            servicio.setTipoServicio(comboboxTipoServicios.getSelectionModel().getSelectedItem());
+            if (CEREMONIA.isSelected()) {
+                       servicio.setTipoServicio(Servicio.TipoServicio.CEREMONIA);
+                    }
+            if (GASTRONOMIA.isSelected()) {
+                       servicio.setTipoServicio(Servicio.TipoServicio.GASTRONOMIA);
+                    }
+            if (MUSICA.isSelected()) {
+                       servicio.setTipoServicio(Servicio.TipoServicio.MUSICA);
+                    }
+            if (FOTOGRAFIA.isSelected()) {
+                       servicio.setTipoServicio(Servicio.TipoServicio.FOTOGRAFIA);
+                    }
+            if (VIDEO.isSelected()) {
+                       servicio.setTipoServicio(Servicio.TipoServicio.VIDEO);
+                    }
+            if (TRANSPORTE.isSelected()) {
+                       servicio.setTipoServicio(Servicio.TipoServicio.TRANSPORTE);
+                    }
+            servicio.setNombreServicio(nombreServicio.getText());
             servicio.setPrecio(Double.parseDouble(precio.getText()));
          
             if(servicio.getId() == 0){
@@ -71,7 +88,28 @@ public class ServicioController extends ControladorConNavegabilidad implements I
     @FXML
     public void prepararModificar(){
         Servicio servicio = tablaServicios.getSelectionModel().getSelectedItem();
-        comboboxTipoServicios.getSelectionModel().select(servicio.getTipoServicio());
+        Servicio.TipoServicio tipoServicio = servicio.getTipoServicio();
+        switch(servicio.getTipoServicio().toString()) {
+            case "CEREMONIA" :
+                CEREMONIA.setSelected(true);
+                break;
+            case "GASTRONOMIA" :
+                GASTRONOMIA.setSelected(true);
+                break;
+            case "MÚSICA" :
+                MUSICA.setSelected(true);
+                break;
+            case "FOTOGRAFIA" :
+                FOTOGRAFIA.setSelected(true);
+                break;
+            case "VIDEO" :
+                VIDEO.setSelected(true);
+                break;
+            case "TRANSPORTE" :
+              TRANSPORTE.setSelected(true);
+              break;
+      }
+        nombreServicio.setText(servicio.getNombreServicio());
         precio.setText(String.valueOf(servicio.getPrecio()));
         serviciosParaModificar = servicio;
       
@@ -86,7 +124,8 @@ public class ServicioController extends ControladorConNavegabilidad implements I
     
     @FXML
     public void atras(){
-      this.layout.mostrarComoPantallaActual("pagHome");
+        this.layout.cargarPantalla("pagHome", PantallaHomeController.class.getResource("PantallaHome.fxml"));
+        this.layout.mostrarComoPantallaActual("pagHome");
     }
 
     private void mostrar() {
@@ -94,7 +133,8 @@ public class ServicioController extends ControladorConNavegabilidad implements I
         tablaServicios.getItems().clear();
         
         idColumna.setCellValueFactory(new PropertyValueFactory<Servicio, Integer>("id"));
-        tipoServicioColumna.setCellValueFactory(new PropertyValueFactory<Servicio, String>("tipoServicio"));
+        tipoServicioColumna.setCellValueFactory(new PropertyValueFactory<Servicio, Enum>("tipoServicio"));
+        nombreServicioColumna.setCellValueFactory(new PropertyValueFactory<Servicio, String>("nombreServicio"));
         precioColumna.setCellValueFactory(new PropertyValueFactory<Servicio, Double>("precio"));
      
         List<Servicio> serviciosAMostrar = servicioDao.buscarTodos();
@@ -104,7 +144,13 @@ public class ServicioController extends ControladorConNavegabilidad implements I
     }
 
     private void clear() {
-        comboboxTipoServicios.getSelectionModel().selectFirst();
+        CEREMONIA.setSelected(true);
+        GASTRONOMIA.setSelected(false);
+        MUSICA.setSelected(false);
+        FOTOGRAFIA.setSelected(false);
+        VIDEO.setSelected(false);
+        TRANSPORTE.setSelected(false);
+        nombreServicio.clear();
         precio.clear();
     }
 
@@ -113,8 +159,9 @@ public class ServicioController extends ControladorConNavegabilidad implements I
         ObservableList<TableColumn<Servicio, ?>> columnas = tablaServicios.getColumns();
         
         columnas.get(0).setMaxWidth(1f * Integer.MAX_VALUE * 15); 
-        columnas.get(1).setMaxWidth(1f * Integer.MAX_VALUE * 50); 
-        columnas.get(2).setMaxWidth(1f * Integer.MAX_VALUE * 35); 
+        columnas.get(1).setMaxWidth(1f * Integer.MAX_VALUE * 30); 
+        columnas.get(2).setMaxWidth(1f * Integer.MAX_VALUE * 30); 
+        columnas.get(3).setMaxWidth(1f * Integer.MAX_VALUE * 25); 
         
     }
     

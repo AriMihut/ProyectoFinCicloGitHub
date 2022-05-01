@@ -29,15 +29,16 @@ public class DAOUsuario {
                 Statement sentencia = conexion.createStatement();
                 String sql = "CREATE TABLE IF NOT EXISTS usuario" +
                           "(id INTEGER auto_increment NOT NULL PRIMARY KEY, " +
-                            "nombre VARCHAR(50) NULL, " +
+                            "nombreUsuario VARCHAR(50) NULL, " +
                             "contrasena VARCHAR(50) NULL, " +
                             "tipoUsuario VARCHAR(50) NULL, " +
                             "dni VARCHAR(50) NULL, " +
-                            "nombreUsuario VARCHAR(50) NULL, " +
+                            "nombre VARCHAR(50) NULL, " +
                             "apellido VARCHAR(50) NULL, " +
                             "sexo VARCHAR(15) NULL, " +
                             "telefono LONG, NULL" +
                             "email VARCHAR(50) NULL)";
+                System.out.println("Sql usuario " + sql);
                 sentencia.executeUpdate(sql);
         }
    }
@@ -58,10 +59,9 @@ public class DAOUsuario {
                     "', '" + usuario.getApellido() +
                     "', '" + usuario.getSexo() +
                     "', " + usuario.getTelefono() + 
-                    "', '" + usuario.getEmail() + "');";
-            statement.executeUpdate(sql);  
+                    ", '" + usuario.getEmail() + "');";
             System.out.println("sql ===> " + sql);
-            
+            statement.executeUpdate(sql);         
           } catch (SQLException ex) {
                 System.out.println("Error al introducir información en la tabla usuario " + ex.getMessage());
           }        

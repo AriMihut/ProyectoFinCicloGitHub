@@ -28,8 +28,8 @@ public class DAOCliente {
                           "sexo VARCHAR(15), " +
                           "telefono LONG, " +
                           "email VARCHAR(50), " +
-                          "tipoServicio VARCHAR(50), " +
-                          "FOREIGN KEY (tipoServicio) REFERENCES servicio (tipoServicio) )";
+                          "idServicio INTEGER, " +
+                          "FOREIGN KEY (idServicio) REFERENCES servicio (id) )";
                 sentencia.executeUpdate(sql);
         }
    }

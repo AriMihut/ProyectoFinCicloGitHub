@@ -27,10 +27,14 @@ public class DAOServicio {
                 Statement sentencia = conexion.createStatement();
                 String sql = "CREATE TABLE IF NOT EXISTS servicio" +
                         "(id INTEGER auto_increment NOT NULL PRIMARY KEY, " +
-                        "tipoServicio VARCHAR(50) NOT NULL UNIQUE, " +
-                        "precio DOUBLE )";
-                       /* "FOREIGN KEY (idCliente) REFERENCES cliente(id), " +
-                        "FOREIGN KEY (idEmpleado) REFERENCES empleado(id)*/ 
+                        "tipoServicio ENUM('CEREMONIA', 'GASTRONOMIA', 'MUSICA', 'FOTOGRAFIA', 'VIDEO', 'TRANSPORTE'), " +
+                        "nombreServicio VARCHAR(50), " +
+                        "precio DOUBLE, " +
+                        "idCliente INTEGER, " +
+                        "idEmpleado INTEGER)"; 
+                        //"FOREIGN KEY (idCliente) REFERENCES cliente(id), " +
+                        //"FOREIGN KEY (idEmpleado) REFERENCES personal(id))";
+                System.out.println("SQL === " + sql);
                 sentencia.executeUpdate(sql);
     }
    }
@@ -42,13 +46,14 @@ public class DAOServicio {
             Connection conexionDataBase =
             DriverManager.getConnection(URL_CONEXION, USUARIO_BDD, PASSWORD_BDD)){
             Statement statement = conexionDataBase.createStatement();
-            String sql = "INSERT INTO servicio(tipoServicio, precio) " 
+            String sql = "INSERT INTO servicio(tipoServicio, nombreServicio, precio) " 
                     + "VALUES ('" + servicio.getTipoServicio()+ "', '" 
+                    + servicio.getNombreServicio()+"', '"
                     + servicio.getPrecio()+  "')";
             statement.executeUpdate(sql);  
             
           } catch (SQLException ex) {
-                System.out.println("Error al añadir en servicio" + ex.getMessage());
+                System.out.println("Error al añadir en servicio " + ex.getMessage());
           }      
         
         }
@@ -60,11 +65,10 @@ public class DAOServicio {
             Connection conexionDataBase =
             DriverManager.getConnection(URL_CONEXION, USUARIO_BDD, PASSWORD_BDD)){
             Statement statement = conexionDataBase.createStatement();
-            String sql = "UPDATE servicio set id='" + 
-                    servicio.getId()+ 
-                    "', tipoServicio='" + servicio.getTipoServicio()+ 
-                    "', precio='" + servicio.getPrecio()+
-                    "' WHERE id=" + servicio.getId();
+            String sql = "UPDATE servicio set tipoServicio='" + servicio.getTipoServicio()+ 
+                    "', nombreServicio=" + servicio.getNombreServicio()+
+                    "', precio=" + servicio.getPrecio()+
+                    " WHERE id=" + servicio.getId();
             statement.executeUpdate(sql);
           } catch (SQLException ex) {
                 System.out.println("Error al modificar la tabla servicio " + ex.getMessage());
@@ -94,11 +98,12 @@ public class DAOServicio {
             ResultSet resultset = statement.executeQuery(sql);
             
         while(resultset.next()){
-             Servicio servicio = new Servicio();
-             servicio.setId(resultset.getInt("id"));
-             servicio.setTipoServicio(resultset.getString("tipoServicio"));
-             servicio.setPrecio(resultset.getDouble("precio"));
-             servicios.add(servicio);
+            Servicio servicio = new Servicio();
+            servicio.setId(resultset.getInt("id"));
+            servicio.setTipoServicio(Servicio.TipoServicio.valueOf(resultset.getString("tipoServicio")));
+            servicio.setNombreServicio(resultset.getString("nombreServicio"));
+            servicio.setPrecio(resultset.getDouble("precio"));
+            servicios.add(servicio);
             }
           
         }catch (SQLException ex) {

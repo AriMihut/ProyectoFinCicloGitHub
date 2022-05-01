@@ -35,12 +35,12 @@
         </StackPane> 
     </top>
     <left>
-        <StackPane style="-fx-background-color: #eee;" minWidth="150">
+        <StackPane style="-fx-background-color: #eee;" minWidth="120">
             <GridPane styleClass="gridPaneDatos" hgap="20" vgap="20" style="-fx-background-color: grey">
                 <Label styleClass="idServicio" text="Id Servicio" GridPane.rowIndex="7" 
                        GridPane.columnIndex="0" style="-fx-font-weight: bold;"/>
                 <TextField fx:id="idServicio" GridPane.rowIndex="7" GridPane.columnIndex="1"/>
-                <Text text="Elije tipo servicio" fill="white" styleClass="textoComboBox" style="-fx-font-weight: bold;" 
+                <Text text="Elije tipo servicio" fill="white" styleClass="textoRadioButton" style="-fx-font-weight: bold;" 
                       GridPane.rowIndex="8" GridPane.columnIndex="0"/>
                 <Label styleClass="servicios" text="Tipo servicio" GridPane.rowIndex="8" GridPane.columnIndex="1"/>
                 <HBox prefHeight="100.0" prefWidth="100.0" spacing="10.0" 
@@ -50,14 +50,16 @@
                         <ToggleGroup fx:id="group" />
                     </fx:define>
                     <children>
-                        <RadioButton fx:id="ceremonia" mnemonicParsing="false" text="Ceremonia" />
-                        <RadioButton fx:id="gastronomia" mnemonicParsing="false" text="Gastronomia" />
-                        <RadioButton fx:id="musica" mnemonicParsing="false" text="Música" />
-                        <RadioButton fx:id="fotografia" mnemonicParsing="false" text="Fotografia" />
-                        <RadioButton fx:id="video" mnemonicParsing="false" text="Video" />
-                        <RadioButton fx:id="transporte" mnemonicParsing="false" text="Transporte" />
+                        <RadioButton fx:id="CEREMONIA" mnemonicParsing="false" text="Ceremonia" />
+                        <RadioButton fx:id="GASTRONOMIA" mnemonicParsing="false" text="Gastronomia" />
+                        <RadioButton fx:id="MUSICA" mnemonicParsing="false" text="Música" />
+                        <RadioButton fx:id="FOTOGRAFIA" mnemonicParsing="false" text="Fotografia" />
+                        <RadioButton fx:id="VIDEO" mnemonicParsing="false" text="Video" />
+                        <RadioButton fx:id="TRANSPORTE" mnemonicParsing="false" text="Transporte" />
                     </children>
                 </HBox> 
+                <Label styleClass="nomServicio" text="Nombre servicio" />
+                <TextField fx:id="nombreServicio" />
                 <Label styleClass="precio" text="Precio" GridPane.rowIndex="9" GridPane.columnIndex="0"/>
                 <TextField fx:id="precio" GridPane.rowIndex="9" GridPane.columnIndex="1"/>
                 <!-- <Label styleClass="idCliente" text="Id cliente" GridPane.rowIndex="10" 
@@ -101,6 +103,7 @@
                 <columns>
                     <TableColumn fx:id="idColumna" text="idServicio"/>
                     <TableColumn fx:id="tipoServicioColumna" text="tipoServicio"/>
+                    <TableColumn fx:id="nombreServicioColumna" text="nombreServicio"/>
                     <TableColumn fx:id="precioColumna" text="precio"/>
                 </columns>
             </TableView>

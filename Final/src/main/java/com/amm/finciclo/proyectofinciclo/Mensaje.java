@@ -3,26 +3,30 @@ package com.amm.finciclo.proyectofinciclo;
 public class Mensaje {
     
     private int id;
-    private String nombreAutor;
+    private int idAutor;
     private String asunto;
     private TipoUsuario tipoUsuario;
     private boolean esUrgente;
-    private int idUsuario;
+    private int idDestinatario;
     private String texto;
 
     public Mensaje() {
     }
-
-    public Mensaje(int id, String nombreAutor, String asunto, String texto, TipoUsuario tipoUsuario, boolean esUrgente, int idUsuario) {
-        this.id = id;
-        this.nombreAutor = nombreAutor;
-        this.asunto = asunto;
+    
+    public Mensaje(String texto){
         this.texto = texto;
-        this.tipoUsuario = tipoUsuario;
-        this.esUrgente = esUrgente;
-        this.idUsuario = idUsuario;
     }
 
+    public Mensaje(int id, int idAutor, String asunto, TipoUsuario tipoUsuario, boolean esUrgente, int idDestinatario, String texto) {
+        this.id = id;
+        this.idAutor = idAutor;
+        this.asunto = asunto;
+        this.tipoUsuario = tipoUsuario;
+        this.esUrgente = esUrgente;
+        this.idDestinatario = idDestinatario;
+        this.texto = texto;
+    }
+    
     public int getId() {
         return id;
     }
@@ -31,12 +35,12 @@ public class Mensaje {
         this.id = id;
     }
 
-    public String getNombreAutor() {
-        return nombreAutor;
+    public int getIdAutor() {
+        return idAutor;
     }
 
-    public void setNombreAutor(String nombreAutor) {
-        this.nombreAutor = nombreAutor;
+    public void setIdAutor(int idAutor) {
+        this.idAutor = idAutor;
     }
 
     public String getAsunto() {
@@ -47,14 +51,6 @@ public class Mensaje {
         this.asunto = asunto;
     }
 
-    public String getTexto() {
-        return texto;
-    }
-
-    public void setTexto(String texto) {
-        this.texto = texto;
-    }
-
     public TipoUsuario getTipoUsuario() {
         return tipoUsuario;
     }
@@ -63,7 +59,7 @@ public class Mensaje {
         this.tipoUsuario = tipoUsuario;
     }
 
-    public boolean getEsUrgente() {
+    public boolean isEsUrgente() {
         return esUrgente;
     }
 
@@ -71,17 +67,25 @@ public class Mensaje {
         this.esUrgente = esUrgente;
     }
 
-    public int getIdUsuario() {
-        return idUsuario;
+    public int getIdDestinatario() {
+        return idDestinatario;
     }
 
-    public void setIdUsuario(int idUsuario) {
-        this.idUsuario = idUsuario;
+    public void setIdDestinatario(int idDestinatario) {
+        this.idDestinatario = idDestinatario;
+    }
+
+    public String getTexto() {
+        return texto;
+    }
+
+    public void setTexto(String texto) {
+        this.texto = texto;
     }
 
     @Override
     public String toString() {
-        return "Mensaje{" + "id=" + id + ", nombreAutor=" + nombreAutor + ", asunto=" + asunto + ", tipoUsuario=" + tipoUsuario + ", esUrgente=" + esUrgente + '}';
+        return "Mensaje{" + "id=" + id + ", idAutor=" + idAutor + ", asunto=" + asunto + ", tipoUsuario=" + tipoUsuario + ", esUrgente=" + esUrgente + ", idDestinatario=" + idDestinatario + ", texto=" + texto + '}';
     }
     
 }

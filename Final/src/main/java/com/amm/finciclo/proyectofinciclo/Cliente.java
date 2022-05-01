@@ -8,19 +8,19 @@ public class Cliente {
     private String sexo;
     private Long telefono;
     private String email;
-    private String tipoServicio;
+    private int idServicio;
 
     public Cliente() {
     }
 
-    public Cliente(int id, String dni, String nombre, String sexo, Long telefono, String email, String tipoServicio) {
+    public Cliente(int id, String dni, String nombre, String sexo, Long telefono, String email, int idServicio) {
         this.id = id;
         this.dni = dni;
         this.nombre = nombre;
         this.sexo = sexo;
         this.telefono = telefono;
         this.email = email;
-        this.tipoServicio = tipoServicio;
+        this.idServicio = idServicio;
     }
 
     public int getId() {
@@ -71,12 +71,12 @@ public class Cliente {
         this.email = email;
     }
 
-    public String getTipoServicio() {
-        return tipoServicio;
+    public int getIdServicio() {
+        return idServicio;
     }
 
-    public void setTipoServicio(String tipoServicio) {
-        this.tipoServicio = tipoServicio;
+    public void setIdServicio(int idServicio) {
+        this.idServicio = idServicio;
     }
 
     @Override

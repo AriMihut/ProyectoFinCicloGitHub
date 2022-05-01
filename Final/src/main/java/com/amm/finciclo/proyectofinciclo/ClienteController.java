@@ -1,6 +1,5 @@
 package com.amm.finciclo.proyectofinciclo;
 
-import dao.DAOCliente;
 import dao.DAOUsuario;
 import java.io.IOException;
 import java.net.URL;
@@ -71,7 +70,8 @@ public class ClienteController extends ControladorConNavegabilidad implements In
     
     @FXML
     public void comprar(){
-      
+        this.layout.cargarPantalla("compra", CompraController.class.getResource("Compra.fxml"));
+        this.layout.mostrarComoPantallaActual("compra");
     }
     
     @FXML
@@ -122,12 +122,13 @@ public class ClienteController extends ControladorConNavegabilidad implements In
   
     @FXML
     public void contactar(){
-        this.layout.cargarPantalla("contacto", PantallaHomeController.class.getResource("Contacto.fxml"));
+        this.layout.cargarPantalla("contacto", ContactoController.class.getResource("Contacto.fxml"));
         this.layout.mostrarComoPantallaActual("contacto");
     }
     
     @FXML
     public void volverAtras() throws IOException{
+        this.layout.cargarPantalla("autentificacion", AutentificacionCPEController.class.getResource("AutentificacionCPE.fxml"));
         this.layout.mostrarComoPantallaActual("autentificacion");
     }
     

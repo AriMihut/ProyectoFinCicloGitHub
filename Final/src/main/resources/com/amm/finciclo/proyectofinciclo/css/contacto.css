@@ -62,28 +62,14 @@
     -fx-font-size: 15px;
 }
 
-.emailSuenos{
+.simpleLabel{
     -fx-text-fill: white;
     -fx-font-weight: bold;
     -fx-font-size: 15px;
 }
 
-.telefonoSuenos{
-    -fx-text-fill: white;
-    -fx-font-weight: bold;
-    -fx-font-size: 15px;
-}
-
-.mensaje{
-    -fx-text-fill: white;
-    -fx-font-weight: bold;
-    -fx-font-size: 15px;
-}
-
-.contactar{
-    -fx-text-fill: darkgrey;
-    -fx-font-weight: bold;
-    -fx-font-size: 15px;
+.urgente{
+    -fx-padding-right: 10px;
 }
 
 

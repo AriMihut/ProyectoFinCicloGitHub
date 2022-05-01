@@ -17,6 +17,7 @@ public class LayoutPane extends BorderPane {
     private Map<String, ControladorConNavegabilidad> controladores;
     private TipoUsuario rolUsuario;
     private Usuario usuario = null;
+    private Mensaje mensaje = null;
     
     public LayoutPane(){
         this.pantallasApp = new HashMap<>();
@@ -25,13 +26,16 @@ public class LayoutPane extends BorderPane {
     
     public void cargarPantalla(String nombrePantalla, URL urlArchivoFxml){
         try {
-            FXMLLoader cargadorPantallas = new FXMLLoader(urlArchivoFxml);
-            Parent pantalla = cargadorPantallas.load();
             
-            ControladorConNavegabilidad controladorConNavegabilidad = cargadorPantallas.getController();
-            controladorConNavegabilidad.setLayout(this);
-            controladores.put(nombrePantalla, controladorConNavegabilidad);
-            pantallasApp.put(nombrePantalla, pantalla);
+            if(!pantallasApp.keySet().stream().anyMatch(pantalla -> pantalla.equals(nombrePantalla))){
+                FXMLLoader cargadorPantallas = new FXMLLoader(urlArchivoFxml);
+                Parent pantalla = cargadorPantallas.load();
+            
+                ControladorConNavegabilidad controladorConNavegabilidad = cargadorPantallas.getController();
+                controladorConNavegabilidad.setLayout(this);
+                controladores.put(nombrePantalla, controladorConNavegabilidad);
+                pantallasApp.put(nombrePantalla, pantalla);
+            } 
         } catch (IOException ex) {
             Logger.getLogger(LayoutPane.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -44,6 +48,11 @@ public class LayoutPane extends BorderPane {
     public ControladorConNavegabilidad getCotroller(String nombrePantalla){
        return controladores.entrySet().stream().filter(controlador -> 
                 controlador.getKey().equals(nombrePantalla)).findFirst().get().getValue();
+    }
+    
+    public Node getPantalla(String nombrePantalla) {
+        return pantallasApp.entrySet().stream().filter(pantalla -> 
+                pantalla.getKey().equals(nombrePantalla)).findFirst().get().getValue();
     }
 
     public TipoUsuario getRolUsuario() {
@@ -60,5 +69,14 @@ public class LayoutPane extends BorderPane {
     public void setRolUsuario(TipoUsuario tipoUsuario) {
         this.rolUsuario = tipoUsuario;
     }
+
+    public Mensaje getMensaje() {
+        return mensaje;
+    }
+
+    public void setMensaje(Mensaje mensaje) {
+        this.mensaje = mensaje;
+    }
+    
     
 }

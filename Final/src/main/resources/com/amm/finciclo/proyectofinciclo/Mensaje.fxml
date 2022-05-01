@@ -16,9 +16,9 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.layout.VBox?>
 
-<BorderPane id="BorderPane" prefHeight="400.0" prefWidth="600.0" styleClass="mainFxmlClass" 
- fx:id="pantallaContacto" xmlns:fx="http://javafx.com/fxml/1" HBox.hgrow="ALWAYS"
-        fx:controller="com.amm.finciclo.proyectofinciclo.MensajeController">
+<BorderPane id="pantallaMensaje" prefHeight="400.0" prefWidth="600.0" styleClass="mainFxmlClass" 
+            fx:id="pantallaContacto" xmlns:fx="http://javafx.com/fxml/1" HBox.hgrow="ALWAYS"
+            fx:controller="com.amm.finciclo.proyectofinciclo.MensajeController">
     <stylesheets>
         <URL value="@/com/amm/finciclo/proyectofinciclo/css/mensaje.css"/>
     </stylesheets> 
@@ -31,37 +31,41 @@
             </Text>
         </HBox> 
     </top>
-    <left>
-        <VBox fx:id="left" styleClass="leftVBox" spacing="20" style="-fx-background-color: #6DBD96" prefWidth="130">
-        <Button fx:id="btnContacto" text="Contactar" onAction="#contactar"  focusTraversable="false"/>     
-        </VBox>
-    </left>  
     <center>
-        <VBox fx:id="mensajes" styleClass="vBoxMensajes" spacing="20" style="-fx-background-color: grey">
+        <VBox fx:id="mensajes" styleClass="vBoxMensajes" spacing="10" style="-fx-background-color: grey">
             <TableView fx:id="tablaMensajes" styleClass="tablaMensaje">
                 <columns>
-                    <TableColumn fx:id="idMensajeColumn" text="Id" prefWidth="${tablaMensajes.width*0.10}" />
-                    <TableColumn fx:id="nombreAutorColumn" text="Nombre autor" prefWidth="${tablaMensajes.width*0.20}" />
-                    <TableColumn fx:id="asuntoColumn"  text="Asunto" prefWidth="${tablaMensajes.width*0.15}" />
-                    <TableColumn  fx:id="textoMensajeColumn" text="Texto mensaje" prefWidth="${tablaMensajes.width*0.20}" />
-                    <TableColumn  fx:id="tipoUsuarioColumn" text="Tipo usuario" prefWidth="${tablaMensajes.width*0.20}" />
-                    <TableColumn  fx:id="esUrgenteColumn" text="Es urgente" prefWidth="${tablaMensajes.width*0.15}" />
-                    <TableColumn  fx:id="idUsuarioColumn" text="Id usuario" prefWidth="${tablaMensajes.width*0.10}" />
-                    <TableColumn  fx:id="verMensajeColumn" text="" prefWidth="${tablaMensajes.width*0.10}" />
+                    <TableColumn fx:id="idMensajeColumn" text="Id"/>
+                    <TableColumn fx:id="idAutorColumn" text="Id autor"/>
+                    <TableColumn fx:id="asuntoColumn"  text="Asunto"/>
+                    <TableColumn  fx:id="tipoUsuarioColumn" text="Tipo usuario"/>
+                    <TableColumn  fx:id="esUrgenteColumn" text="Es urgente"/>
+                    <TableColumn  fx:id="idDestinatarioColumn" text="Id destinatario"/>
+                    <TableColumn  fx:id="verMensajeColumn" text=""/>
                 </columns>
             </TableView>
-       </VBox>
+            <HBox fx:id="contenedorMensaje" styleClass="contedor-mensaje">
+                <Label styleClass="simpleLabel" text="Tu mensaje*: "/>
+                <Label fx:id="textoMensaje" prefHeight="250"/>
+            </HBox>
+            <HBox>
+                <Button fx:id="btnContacto" text="Contactar" onAction="#contactar" focusTraversable="false" style="-fx-alignment: center;"/>  
+                <Button fx:id="btnResponder" text="Responder" onAction="#responder" focusTraversable="false" style="-fx-alignment: center;" visible="false"/> 
+            </HBox> 
+        </VBox>
     </center>   
     <bottom>
-        <HBox style="-fx-background-color: #6DBD96" minHeight= "50" >
-            <Button styleClass="botonAtrás" onAction="#atras" focusTraversable="false" >
+        <VBox style="-fx-background-color: #6DBD96" minHeight= "50" > 
+            <HBox>     
+                <Button styleClass="botonAtrás" onAction="#atras" focusTraversable="false" >
                 <graphic>
                     <ImageView>
                         <Image url="@../../../../iconos/puerta.png"/>
                     </ImageView>
                 </graphic>
-            </Button> 
-        </HBox>   
+            </Button>   
+            </HBox>
+        </VBox>   
     </bottom>        
 </BorderPane>
 

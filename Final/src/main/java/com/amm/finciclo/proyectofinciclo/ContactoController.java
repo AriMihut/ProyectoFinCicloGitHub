@@ -4,6 +4,7 @@ import dao.DAOMensaje;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
+import java.util.Optional;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -16,7 +17,7 @@ import javafx.scene.control.TextField;
 
 public class ContactoController extends ControladorConNavegabilidad implements Initializable{
     @FXML TextField asunto;
-    @FXML TextArea mensaje;
+    @FXML TextArea textoMensaje;
     @FXML CheckBox checkUrgente;
     @FXML Button botonEnviar;
     
@@ -40,15 +41,16 @@ public class ContactoController extends ControladorConNavegabilidad implements I
     
     @FXML
     public void enviarMensaje() throws IOException{
-        Usuario usuario = this.layout.getUsuario();
-        mensajeDao.anadir(new Mensaje(0, usuario.getNombre(),
-               asunto.getText(), mensaje.getText(), usuario.getTipoUsuario(), checkUrgente.isSelected(), usuario.getId()));
+        Usuario usuario = this.layout.getUsuario(); 
+        mensajeDao.anadir(new Mensaje(0, usuario.getId(),
+               asunto.getText(), usuario.getTipoUsuario(), checkUrgente.isSelected(), usuario.getId(), textoMensaje.getText()));
         this.layout.getCotroller("contacto");
     }
     
      @FXML
     public void verMensajes() throws IOException{
         this.layout.cargarPantalla("mensaje", MensajeController.class.getResource("Mensaje.fxml"));
+        ((MensajeController) this.layout.getCotroller("mensaje")).mostrar();
         this.layout.mostrarComoPantallaActual("mensaje");
     }
     

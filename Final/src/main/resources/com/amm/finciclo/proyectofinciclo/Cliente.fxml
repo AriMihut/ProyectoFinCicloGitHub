@@ -88,10 +88,6 @@
                 <Button styleClass="boton-accion" onAction="#comprar" text="COMPRAR" style="-fx-font-weight: bold;"/>
                 <Button styleClass="boton-accion" onAction="#contactar" text="CONTACTAR" style="-fx-font-weight: bold;"/>
                 <Button styleClass="boton-accion" onAction="#editarPerfil" text="EDITAR PERFIL " style="-fx-font-weight: bold;"/>
-                <!--<Button styleClass="boton-accion" onAction="#editar" text="EDITAR" GridPane.rowIndex="5" 
-                        GridPane.columnIndex="3" minHeight="35" minWidth="90" style="-fx-font-weight: bold;"/>
-                <Button styleClass="boton-accion" onAction="#eliminar" text="ELIMINAR" GridPane.rowIndex="5" 
-                        GridPane.columnIndex="3" minHeight="35" minWidth="90" style="-fx-font-weight: bold;"/> -->
             </ToolBar>
         </VBox>
     </VBox>
@@ -106,7 +102,7 @@
                 </graphic>
             </Button> 
         </StackPane>   
-    </bottom> 
-</BorderPane>
+        </bottom> 
+    </BorderPane>
 </VBox>
 
