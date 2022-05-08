@@ -1,0 +1,51 @@
+.titulo{
+    -fx-spacing: 20px;
+    -fx-alignment: top-center;
+    -fx-background-color: #6DBD96;
+    -fx-font-weight: bold;
+    -fx-text-fill: white;
+    -fx-font-size: 30px;
+    -fx-alignment: center;
+    -fx-text-aling: center;
+}
+#paginaPrincipal{
+    -fx-spacing: 20px;
+    -fx-background-color: #6DBD96;
+    -fx-alignment: center;   
+}
+.contenedor-general{
+    -fx-alignment: center;
+    -fx-font-weight: bold;
+    -fx-spacing: 20px;
+}
+
+.contenedor-general .button {
+    -fx-background-color:  grey;
+    -fx-border-color: white;
+    -fx-border-width: 3px;
+    -fx-background-radius: 40%;
+    -fx-border-radius: 30%;
+}
+
+.contenedor-general .textField {
+    -fx-border-width: 3px;
+    -fx-font-weight: bold;
+}
+
+.contenedor-general .dark-textfield {
+    -fx-background-color:  darkgray;
+    -fx-alignment: center;
+    -fx-text-aling: center;
+    -fx-border-color: white;
+    -fx-text-fill: white;
+    -fx-prompt-text-fill: white;
+}
+
+.contenedor-general .light-textfield {
+    -fx-background-color:  grey;
+    -fx-text-align: center;
+    -fx-alignment: center;
+    -fx-text-fill: white;
+    -fx-border-color: white;
+    -fx-prompt-text-fill: white;
+}

@@ -19,7 +19,7 @@
 }
 
 .btnAtras{
-    -fx-background-color:  grey;
+    -fx-background-color: grey;
     -fx-border-color: white;
     -fx-border-width: 3px;
     -fx-background-radius: 30%;
@@ -33,7 +33,7 @@
 }
 
 .contenedor-general .button {
-    -fx-background-color:  grey;
+    -fx-background-color: grey;
     -fx-border-color: white;
     -fx-border-width: 3px;
     -fx-background-radius: 40%;
@@ -46,7 +46,7 @@
 }
 
 .contenedor-general .dark-textfield {
-    -fx-background-color:  darkgray;
+    -fx-background-color: darkgray;
     -fx-alignment: center;
     -fx-text-aling: center;
     -fx-font-weight: bold;
@@ -57,7 +57,7 @@
 }
 
 .contenedor-general .light-textfield {
-    -fx-background-color:  grey;
+    -fx-background-color: grey;
     -fx-text-align: center;
     -fx-alignment: center;
     -fx-font-weight: bold;

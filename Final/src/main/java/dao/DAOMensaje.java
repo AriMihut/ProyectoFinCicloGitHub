@@ -30,12 +30,14 @@ public class DAOMensaje {
                 String sql = "CREATE TABLE IF NOT EXISTS mensaje" +
                         "(id INTEGER auto_increment NOT NULL PRIMARY KEY, " +
                         "idAutor INTEGER(15), " +
+                        "nombreAutor VARCHAR(50), " +
                         "asunto VARCHAR(50), " +
                         "tipoUsuario ENUM('ADMIN', 'CLIENTE', 'EMPLEADO', 'PROVEEDOR'), " +
                         "esUrgente BOOLEAN, " +
-                        "idDestinatario INTEGER(15) NULL, " +
+                        "esLeido BOOLEAN, " +
+                        "idDestinatario INTEGER(15), " +
                         "texto VARCHAR (255), " +
-                        "FOREIGN KEY (idAutor) REFERENCES usuario(id), " + 
+                        "FOREIGN KEY (idAutor) REFERENCES usuario(id)," +
                         "FOREIGN KEY (idDestinatario) REFERENCES usuario(id))";
                 sentencia.executeUpdate(sql);
         }
@@ -48,14 +50,15 @@ public class DAOMensaje {
             Connection conexionDataBase =
             DriverManager.getConnection(URL_CONEXION, USUARIO_BDD, PASSWORD_BDD)){
             Statement statement = conexionDataBase.createStatement();
-            String sql = "INSERT INTO mensaje(idAutor, asunto, tipoUsuario, esUrgente, idDestinatario, texto) " +
+            String sql = "INSERT INTO mensaje(idAutor, nombreAutor, asunto, tipoUsuario, esUrgente, esLeido, idDestinatario, texto) " +
                    "VALUES (" + mensaje.getIdAutor() + ", '" 
+                    + mensaje.getNombreAutor() + "', '"
                     + mensaje.getAsunto() + "', '"       
                     + mensaje.getTipoUsuario().name() + "', " 
                     + mensaje.isEsUrgente() + ", " 
-                    + mensaje.getIdDestinatario() + ", '" 
+                    + mensaje.getEsLeido()+ ", " 
+                    + mensaje.getIdDestinatario() + ", '"
                     + mensaje.getTexto() + "');";
-            System.out.println("SQL mensaje " + sql);
             statement.executeUpdate(sql);  
           } catch (SQLException ex) {
                 System.out.println("Error al introducir información en la tabla mensaje " + ex.getMessage());
@@ -76,52 +79,46 @@ public class DAOMensaje {
     }
     
     public List<Mensaje> buscarTodos(Optional<Integer> idDestinatario){
-        /*String sql = "INSERT INTO mensaje(idAutor, asunto, tipoUsuario, esUrgente, idDestinatario, texto) " +*/
+       
         List<Mensaje> mensajes = new ArrayList<>();
         try{
             
             Connection conexionDataBase = DriverManager.getConnection(URL_CONEXION, USUARIO_BDD, PASSWORD_BDD);
             Statement  statement = conexionDataBase.createStatement();
             String sql;
-            
             if(idDestinatario.isPresent()) {
-                
-                //consulta con id cliente
-                sql = "SELECT m.id, m.idAutor, ua.nombre, m.asunto, m.tipoUsuario, m.esUrgente, " 
-                    + "m.idDestinatario, ud.nombre, m.texto "
+                sql = "SELECT m.id, m.idAutor, m.nombreAutor, m.asunto, m.tipoUsuario, m.esUrgente, m.esLeido, m.idDestinatario, " 
+                    + "m.texto "
                     + "FROM mensaje m" + " "
-                    + "inner join usuario ua" + " "
-                    + "on m.idAutor = ua.id" + " "
-                    + "inner join usuario ud" + " "
-                    + "on m.idDestinatario = ud.id" + " "
+                    + "inner join usuario ua "
+                    + "on m.idAutor = ua.id "
+                    + "inner join usuario ud "
+                    + "on m.idDestinatario = ud.id " 
                     + "WHERE m.idDestinatario = " + idDestinatario.get() + " "
-                    + "AND m.idDestinatario != m.idAutor"
+                    + "AND m.idDestinatario != m.idAutor " 
                     + "ORDER BY id";
             } else {
-                //consulta para el empleado, sin id
-                sql = "SELECT m.id, m.idAutor, ua.nombre, m.asunto, m.tipoUsuario, m.esUrgente, " 
-                    + "m.idDestinatario, ud.nombre, m.texto "
+                sql = "SELECT m.id, m.idAutor, m.nombreAutor, m.asunto, m.tipoUsuario, m.esUrgente, m.esLeido, m.idDestinatario, " 
+                    + "m.texto "
                     + "FROM mensaje m" + " "
-                    + "inner join usuario ua" + " "
-                    + "on m.idAutor = ua.id" + " "
-                    + "inner join usuario ud" + " "
-                    + "on m.idDestinatario = ud.id" + " "
+                    + "inner join usuario ua "
+                    + "on m.idAutor = ua.id "
+                    + "inner join usuario ud "
+                    + "on m.idDestinatario = ud.id "
                     + "WHERE m.idDestinatario = m.idAutor "
                     + "ORDER BY id";
-                
-            }
- 
-            System.out.println("SWL ==> " + sql);
-            
+             
+            }            
             ResultSet resultset = statement.executeQuery(sql);
-            
             while(resultset.next()){
                 Mensaje mensaje = new Mensaje();
                 mensaje.setId(resultset.getInt("id"));
                 mensaje.setIdAutor(resultset.getInt("idAutor"));
+                mensaje.setNombreAutor(resultset.getString("nombreAutor"));
                 mensaje.setAsunto(resultset.getString("asunto"));
                 mensaje.setTipoUsuario(TipoUsuario.valueOf(resultset.getString("tipoUsuario").toUpperCase()));
                 mensaje.setEsUrgente(resultset.getBoolean("esUrgente"));
+                mensaje.setEsLeido(resultset.getBoolean("esLeido"));
                 mensaje.setIdDestinatario(resultset.getInt("idDestinatario"));
                 mensaje.setTexto(resultset.getString("texto"));
                 mensajes.add(mensaje);
@@ -131,6 +128,21 @@ public class DAOMensaje {
           System.out.println("No posible mostrar los datos de la tabla mensaje " + ex.getMessage());
        }
         return mensajes;
+    }
+
+    public void marcarComoLeido(int idMensaje) {
+        try{
+            
+            Connection conexionDataBase = DriverManager.getConnection(URL_CONEXION, USUARIO_BDD, PASSWORD_BDD);
+            Statement  statement = conexionDataBase.createStatement();
+            String sql = "update mensaje "
+                    + "set esLeido = true "
+                    + "where id = " + idMensaje+ ";";
+            statement.executeUpdate(sql);
+        }catch (SQLException ex) {
+          System.out.println("No posible mostrar los datos de la tabla mensaje " + ex.getMessage());
+       }
+        
     }
 
     

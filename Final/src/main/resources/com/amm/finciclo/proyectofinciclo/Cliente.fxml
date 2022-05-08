@@ -25,84 +25,84 @@
     <padding>
         <Insets top="10" right="10" bottom="10" left="10"/>
     </padding>
-    <VBox HBox.hgrow="ALWAYS" prefWidth="${paginaPrincipal.width}" styleClass="contenedor-titulo">
+   <VBox HBox.hgrow="ALWAYS" prefWidth="${paginaPrincipal.width}" styleClass="contenedor-titulo">
         <Label text="Sueños cumplidos - Soy Cliente" styleClass="titulo" HBox.hgrow="ALWAYS"  
-                prefWidth="${paginaPrincipal.width}"/>
+               prefWidth="${paginaPrincipal.width}"/>
     </VBox>
-    <VBox HBox.hgrow="ALWAYS" VBox.vgrow="ALWAYS">
-        <VBox fx:id="infoCliente" HBox.hgrow="ALWAYS" prefHeight="${paginaPrincipal.height*0.8}">
-            <HBox>
-                <Label fx:id="dniCliente" text="Dni:"/>
-                <Label fx:id="dniClienteTexto" text=""/>
-            </HBox>
-            <HBox>
-                <Label fx:id="nombreCliente" text="Nombre:"/>
-                <Label fx:id="nombreClienteTexto" text=""/>
-            </HBox>
-            <HBox>
-                <Label fx:id="apellidoCliente" text="Apellido:"/>
-                <Label fx:id="apellidoClienteTexto" text=""/>
-            </HBox>
-            <HBox>
-                <Label fx:id="labelSexo" text="Género: "/>
-                <Label fx:id="labelSexoTexto" text=""/>
-            </HBox>
-            <HBox>
-                <Label fx:id="telefono" text="Teléfono: "/>
-                <Label fx:id="telefonoTexto" text=""/>
-            </HBox>
-            <HBox>
-                <Label fx:id="email" text="Email: "/>
-                <Label fx:id="emailTexto" text=""/>
-            </HBox>
+    <ToolBar fx:id="buttons" styleClass="buttons" HBox.hgrow="ALWAYS">   
+        <VBox maxWidth="${buttons.width*0.3}" prefWidth="${buttons.width*0.3}" alignment="CENTER">
+            <Button styleClass="boton-accion" onAction="#comprar" text="COMPRAR" />
         </VBox>
-        <HBox fx:id="formularioModificacion" visible="false" prefHeight="${paginaPrincipal.height*0.8}">
-            <VBox>
-                <Label styleClass="simpleLabel" text="Dni" style="-fx-font-weight: bold;"/>
-                <TextField fx:id="filtroDni"/>
-                <Label styleClass="simpleLabel" text="Nombre" style="-fx-font-weight: bold;"/>
-                <TextField fx:id="filtroNombre" />
-                <Label styleClass="simpleLabel" text="Apellido" style="-fx-font-weight: bold;"/>
-                <TextField fx:id="filtroApellido" />
-                <Label styleClass="simpleLabel" text="Género"/>
-                <ComboBox styleClass="comboboxSexo" fx:id="comboboxSexo" style="-fx-text-fill: white;"/>
+        <VBox maxWidth="${buttons.width*0.3}" prefWidth="${buttons.width*0.3}" alignment="CENTER">
+            <Button styleClass="boton-accion" onAction="#contactar" text="CONTACTAR"/>
+        </VBox>
+        <VBox maxWidth="${buttons.width*0.3}" prefWidth="${buttons.width*0.3}" alignment="CENTER">
+            <Button styleClass="boton-accion" onAction="#editarPerfil" text="EDITAR PERFIL"/>
+        </VBox>
+    </ToolBar>
+    <VBox styleClass= "pantallaInfoCliente">
+        <VBox HBox.hgrow="ALWAYS" VBox.vgrow="ALWAYS">
+            <VBox fx:id="infoCliente" HBox.hgrow="ALWAYS" prefHeight="${paginaPrincipal.height*0.8}"
+                  alignment="CENTER" VBox.vgrow="ALWAYS">
+                <HBox spacing="5" alignment="CENTER" maxHeight="${infoCliente.height*0.15}" prefHeight="${infoCliente.height*0.15}">
+                    <Label fx:id="dniCliente" styleClass="simpleLabel" text="Dni:" />
+                    <Label fx:id="dniClienteTexto" styleClass="simpleLabel" text=""/>
+                </HBox>
+                <HBox spacing="5" alignment="CENTER"  maxHeight="${infoCliente.height*0.15}" prefHeight="${infoCliente.height*0.15}">
+                    <Label fx:id="nombreCliente" styleClass="simpleLabel" text="Nombre:"/>
+                    <Label fx:id="nombreClienteTexto" styleClass="simpleLabel" text=""/>
+                </HBox>
+                <HBox spacing="5" alignment="CENTER" maxHeight="${infoCliente.height*0.15}" prefHeight="${infoCliente.height*0.15}">
+                    <Label fx:id="apellidoCliente" styleClass="simpleLabel" text="Apellido:"/>
+                    <Label fx:id="apellidoClienteTexto" styleClass="simpleLabel" text=""/>
+                </HBox>
+                <HBox spacing="5" alignment="CENTER" maxHeight="${infoCliente.height*0.15}" prefHeight="${infoCliente.height*0.15}">
+                    <Label fx:id="labelSexo" styleClass="simpleLabel" text="Género: "/>
+                    <Label fx:id="labelSexoTexto" styleClass="simpleLabel" text=""/>
+                </HBox>
+                <HBox spacing="5" alignment="CENTER" maxHeight="${infoCliente.height*0.15}" prefHeight="${infoCliente.height*0.15}">
+                    <Label fx:id="telefono" styleClass="simpleLabel" text="Teléfono: "/>
+                    <Label fx:id="telefonoTexto" styleClass="simpleLabel" text=""/>
+                </HBox>
+                <HBox spacing="5" alignment="CENTER" maxHeight="${infoCliente.height*0.15}" prefHeight="${infoCliente.height*0.15}">
+                    <Label fx:id="email" styleClass="simpleLabel" text="Email: "/>
+                    <Label fx:id="emailTexto" styleClass="simpleLabel" text=""/>
+                </HBox>
             </VBox>
-            <VBox> 
-                <Label styleClass="simpleLabel" text="Telefono" style="-fx-font-weight: bold;"/>
-                <TextField fx:id="filtroTelefono"/>
-                <Label styleClass="simpleLabel" text="Email" style="-fx-font-weight: bold;"/>
-                <TextField fx:id="filtroEmail"/>
-            </VBox>  
-            <VBox>
-                <HBox>
+            <VBox fx:id="formularioModificacion" visible="false" prefHeight="${paginaPrincipal.height*0.8}">
+                <HBox spacing="5" alignment="CENTER" maxHeight="${formularioModificacion.height*0.15}" prefHeight="${formularioModificacion.height*0.15}">
+                    <Label styleClass="simpleLabel" text="Dni" style="-fx-font-weight: bold;"/>
+                    <TextField fx:id="filtroDni"/>
+                </HBox>    
+                <HBox spacing="5" alignment="CENTER" maxHeight="${formularioModificacion.height*0.15}" prefHeight="${formularioModificacion.height*0.15}">
+                    <Label styleClass="simpleLabel" text="Nombre" style="-fx-font-weight: bold;"/>
+                    <TextField fx:id="filtroNombre" />
+                </HBox> 
+                <HBox spacing="5" alignment="CENTER" maxHeight="${formularioModificacion.height*0.15}" prefHeight="${formularioModificacion.height*0.15}">   
+                    <Label styleClass="simpleLabel" text="Apellido" style="-fx-font-weight: bold;"/>
+                    <TextField fx:id="filtroApellido" />
+                </HBox>    
+                <HBox spacing="5" alignment="CENTER" maxHeight="${formularioModificacion.height*0.15}" prefHeight="${formularioModificacion.height*0.15}">    
+                    <Label styleClass="simpleLabel" text="Género"/>
+                    <ComboBox styleClass="comboboxSexo" fx:id="comboboxSexo" style="-fx-text-fill: white;"/>
+                </HBox>   
+                <HBox spacing="5" alignment="CENTER" maxHeight="${formularioModificacion.height*0.15}" prefHeight="${formularioModificacion.height*0.15}"> 
+                    <Label styleClass="simpleLabel" text="Telefono" style="-fx-font-weight: bold;"/>
+                    <TextField fx:id="filtroTelefono"/>
+                </HBox>   
+                <HBox spacing="5" alignment="CENTER" maxHeight="${formularioModificacion.height*0.15}" prefHeight="${formularioModificacion.height*0.15}"> 
+                    <Label styleClass="simpleLabel" text="Email" style="-fx-font-weight: bold;"/>
+                    <TextField fx:id="filtroEmail"/>
+                </HBox> 
+                <HBox spacing="5" alignment="CENTER" maxHeight="${formularioModificacion.height*0.15}" prefHeight="${formularioModificacion.height*0.15}">
                     <Button styleClass="boton-accion" onAction="#guardar" text="GUARDAR" style="-fx-font-weight: bold;"/>
                     <Button styleClass="boton-accion" onAction="#volverAInfoCliente" text="CANCELAR" style="-fx-font-weight: bold;"/>
-                </HBox>
-            </VBox> 
-        </HBox>
-        <VBox>
-            <!-- Comprar-->
-        </VBox>
-        <VBox styleClass="vBoxBottom" alignment="BOTTOM_CENTER" spacing="50" prefHeight="${paginaPrincipal.height*0.1}">
-            <ToolBar styleClass="buttons" HBox.hgrow="ALWAYS">   
-                <Button styleClass="boton-accion" onAction="#comprar" text="COMPRAR" style="-fx-font-weight: bold;"/>
-                <Button styleClass="boton-accion" onAction="#contactar" text="CONTACTAR" style="-fx-font-weight: bold;"/>
-                <Button styleClass="boton-accion" onAction="#editarPerfil" text="EDITAR PERFIL " style="-fx-font-weight: bold;"/>
-            </ToolBar>
-        </VBox>
-    </VBox>
-    <BorderPane>
-        <bottom>
-        <StackPane style="-fx-background-color: #6DBD96" minHeight= "50" >
-            <Button styleClass="botonAtrás" onAction="#volverAtras" focusTraversable="false">
-                <graphic>
-                    <ImageView>
-                        <Image url="@../../../../iconos/puerta.png"/>
-                    </ImageView>
-                </graphic>
-            </Button> 
-        </StackPane>   
-        </bottom> 
-    </BorderPane>
+                </HBox>   
+            </VBox>   
+        </VBox>       
+    </VBox> 
 </VBox>
+   
+    
+
 

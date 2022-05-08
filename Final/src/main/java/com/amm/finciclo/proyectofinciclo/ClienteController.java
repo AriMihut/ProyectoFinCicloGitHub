@@ -24,7 +24,7 @@ public class ClienteController extends ControladorConNavegabilidad implements In
     @FXML private Label dniCliente, nombreCliente, apellidoCliente, labelSexo, telefono, email;
     @FXML private Label dniClienteTexto, nombreClienteTexto, apellidoClienteTexto, labelSexoTexto, telefonoTexto, emailTexto;
     
-    @FXML HBox formularioModificacion;
+    @FXML VBox formularioModificacion;
     @FXML VBox infoCliente;
     //@FXML private ComboBox<Servicio> servicios;
     
@@ -117,7 +117,6 @@ public class ClienteController extends ControladorConNavegabilidad implements In
         prepararEdicionPerfil();
         infoCliente.setVisible(false);
         formularioModificacion.setVisible(true);
-        System.out.println("dni usuario =" + filtroDni.getText());
     }
   
     @FXML
@@ -125,6 +124,7 @@ public class ClienteController extends ControladorConNavegabilidad implements In
         this.layout.cargarPantalla("contacto", ContactoController.class.getResource("Contacto.fxml"));
         this.layout.mostrarComoPantallaActual("contacto");
     }
+
     
     @FXML
     public void volverAtras() throws IOException{
@@ -141,17 +141,17 @@ public class ClienteController extends ControladorConNavegabilidad implements In
         
         if(usuario != null) {
 
-            dniClienteTexto.setText(usuario.getDni() != null ? usuario.getDni() : dniCliente.getText() );
-        
-            nombreClienteTexto.setText(usuario.getNombre() != null? usuario.getNombre() : nombreCliente.getText());
-            
-            apellidoClienteTexto.setText(usuario.getApellido()!= null? usuario.getApellido() : apellidoCliente.getText());
-
-            labelSexoTexto.setText(usuario.getSexo()!= null? usuario.getSexo(): labelSexo.getText());
-
-            telefonoTexto.setText(usuario.getTelefono()!= null? String.valueOf(usuario.getTelefono()): telefono.getText());
-
-            emailTexto.setText(usuario.getEmail()!= null? usuario.getEmail(): email.getText());
+            dniClienteTexto.setText(usuario.getDni() != null ? usuario.getDni() : dniCliente.getText());        
+            nombreClienteTexto.setText(usuario.getNombre() != null?
+                    usuario.getNombre() : nombreCliente.getText());            
+            apellidoClienteTexto.setText(usuario.getApellido()!= null? 
+                    usuario.getApellido() : apellidoCliente.getText());
+            labelSexoTexto.setText(usuario.getSexo()!= null? 
+                    usuario.getSexo(): labelSexo.getText());
+            telefonoTexto.setText(usuario.getTelefono()!= null?
+                    String.valueOf(usuario.getTelefono()): telefono.getText());
+            emailTexto.setText(usuario.getEmail()!= null? 
+                    usuario.getEmail(): email.getText());
         }
     }
 

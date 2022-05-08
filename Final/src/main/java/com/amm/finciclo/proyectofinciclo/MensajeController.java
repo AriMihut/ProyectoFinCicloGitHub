@@ -1,6 +1,9 @@
 package com.amm.finciclo.proyectofinciclo;
 
+import static com.sun.java.accessibility.util.AWTEventMonitor.addMouseListener;
 import dao.DAOMensaje;
+import java.awt.event.MouseAdapter;
+import javafx.scene.input.MouseEvent;
 import java.net.URL;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -33,10 +36,11 @@ public class MensajeController extends ControladorConNavegabilidad implements In
       
     @FXML private TableColumn<Mensaje, Integer> idMensajeColumn;
     @FXML private TableColumn<Mensaje, Integer> idAutorColumn;
+    @FXML private TableColumn<Mensaje, String> nombreAutorColumn;
     @FXML private TableColumn<Mensaje, String> asuntoColumn;
     @FXML private TableColumn<Mensaje, TipoUsuario> tipoUsuarioColumn;
     @FXML private TableColumn<Mensaje, Boolean> esUrgenteColumn;
-    @FXML private TableColumn<Mensaje, Integer> idDestinatarioColumn;
+    @FXML private TableColumn<Mensaje, Boolean> esLeidoColumn; 
     @FXML private TableColumn<Mensaje, String> verMensajeColumn;
     
     @FXML private Button btnResponder;
@@ -50,9 +54,12 @@ public class MensajeController extends ControladorConNavegabilidad implements In
     public void initialize(URL url, ResourceBundle rb) {
         try {
             mensajeDao = new DAOMensaje();
-         //   pantallaMensaje.addEventHandler(new  MouseAdapter() {
-         //   }, eh);
-            //verMensaje();
+            /*pantallaMensaje.addEventHandler(MouseEvent.MOUSE_CLICKED, (MouseEvent me) -> {
+               if(me.equals(MouseButton.PRIMARY)){
+               contenedorMensaje.setVisible(false);
+               }
+            });*/
+          
             controlarTamanoColumnas();
         } catch (SQLException ex) {
             System.out.println("Error en el initialize de MensajeController " + ex.getMessage());
@@ -67,37 +74,37 @@ public class MensajeController extends ControladorConNavegabilidad implements In
     
     public void configurarLabelMensaje(String texto) {
         textoMensaje.setText(texto);
-       /* botonVerMensaje.addActionListener( new ActionListener() {
-            public void actionPerformed( ActionEvent evt ) {
-                contenedorMensaje.setVisible(true);
-            }
-        } );*/
-        
+        EventosDeRaton eventos = new EventosDeRaton();
+        addMouseListener(eventos);
     }
     
     @FXML
     public void atras(){
-        this.layout.cargarPantalla("cliente", ClienteController.class.getResource("Cliente.fxml"));
-        this.layout.mostrarComoPantallaActual("cliente");
+        if(this.layout.getUsuario().getTipoUsuario().equals(TipoUsuario.CLIENTE)){
+            this.layout.cargarPantalla("cliente", ClienteController.class.getResource("Cliente.fxml"));
+            this.layout.mostrarComoPantallaActual("cliente");
+        } else if(this.layout.getUsuario().getTipoUsuario().equals(TipoUsuario.EMPLEADO)) {
+            this.layout.cargarPantalla("empleado", EmpleadoController.class.getResource("Empleado.fxml"));
+            this.layout.mostrarComoPantallaActual("empleado");
+        }
+                
     }
     
     public void mostrar(){
         configurarBotonesAcciones();
-        tablaMensajes.getItems().clear();
         configurarCeldas();
+        cargarMensajes();
+    }
+    
+    private void cargarMensajes() {
+        tablaMensajes.getItems().clear();
         ObservableList<Mensaje> mensajes = FXCollections.observableArrayList();
         List<Mensaje> mensajesParaMostrar = new ArrayList<>();
         if(this.layout.getUsuario().getTipoUsuario().equals(TipoUsuario.CLIENTE)){
-            //caso de usuario cliente
            mensajesParaMostrar = mensajeDao.buscarTodos(Optional.of(this.layout.getUsuario().getId()));
         } else {
-            //caso de usuario empleado
            mensajesParaMostrar = mensajeDao.buscarTodos(Optional.empty());
         }
-        
-        /*Igual pero en ternario
-        mensajesParaMostrar = mensajeDao.buscarTodos(idCliente.isPresent()? idCliente : Optional.empty()); */
-        
         mensajes.addAll(mensajesParaMostrar);
         tablaMensajes.setItems(mensajes);
     }
@@ -105,6 +112,7 @@ public class MensajeController extends ControladorConNavegabilidad implements In
     private void configurarCeldas() {
         idMensajeColumn.setCellValueFactory(new PropertyValueFactory<Mensaje, Integer>("id"));
         idAutorColumn.setCellValueFactory(new PropertyValueFactory<Mensaje, Integer>("idAutor"));
+        nombreAutorColumn.setCellValueFactory(new PropertyValueFactory<Mensaje, String>("nombreAutor"));
         asuntoColumn.setCellValueFactory(new PropertyValueFactory<Mensaje, String>("asunto"));
         tipoUsuarioColumn.setCellValueFactory(new PropertyValueFactory<Mensaje, TipoUsuario>("tipoUsuario"));
         esUrgenteColumn.setCellValueFactory(new PropertyValueFactory<Mensaje, Boolean>("esUrgente"));
@@ -114,11 +122,30 @@ public class MensajeController extends ControladorConNavegabilidad implements In
             super.updateItem(item, empty);
             if(!empty && item != null) {
                 setText(item ? "Sí": "No");
+                setGraphic(null);
+            } else {
+                 setText("");
+                 setGraphic(null);
+            }
+              
+           }
+        });  
+        esLeidoColumn.setCellValueFactory(new PropertyValueFactory<Mensaje, Boolean>("esLeido"));
+        esLeidoColumn.setCellFactory(tc -> new TableCell<Mensaje, Boolean>() {
+           
+          @Override
+            protected void updateItem(Boolean item, boolean empty) {
+            super.updateItem(item, empty);
+            if(!empty && item != null) {
+                setText(item ? "Sí": "No");
+                setGraphic(null);
+            } else {
+                 setText("");
+                 setGraphic(null);
             }
               
            }
         });    
-        idDestinatarioColumn.setCellValueFactory(new PropertyValueFactory<Mensaje, Integer>("idDestinatario"));
         verMensajeColumn.setCellValueFactory(new PropertyValueFactory<Mensaje, String>("texto"));
         verMensajeColumn.setCellFactory(tc -> new TableCell<Mensaje, String>() {
           @Override
@@ -126,20 +153,18 @@ public class MensajeController extends ControladorConNavegabilidad implements In
             super.updateItem(item, empty);
                 if(!empty && item != null) {
                     Button botonVerMensaje = new Button("Ver mensaje");
+                    
                     botonVerMensaje.setOnAction((ActionEvent event) -> {
-                        verMensaje(item);
+                        verMensaje(this.getTableRow().getItem());
+                        this.getTableView().getSelectionModel().select(this.getTableRow().getItem());
                     });
-                    /*if (!botonVerMensaje.setOnMouseClicked) {
-                        contenedorMensaje.setVisible(false);
                     
-                    //un listener se aplica sobre un nodo
-                    //para establecer un listener, hay que establecerlo sobre un nodo, que puede ser un boton
-                    //setOnClick - captura los clicks que se hacen sobre ese boton
-                    
-                    }*/
                     setGraphic(botonVerMensaje);
                     setText("");
-                }  
+                } else {
+                    setText("");
+                    setGraphic(null);
+                }
            }
         });
     }
@@ -150,30 +175,58 @@ public class MensajeController extends ControladorConNavegabilidad implements In
         
         columnas.get(0).setMaxWidth(1f * Integer.MAX_VALUE * 10); 
         columnas.get(1).setMaxWidth(1f * Integer.MAX_VALUE * 10); 
-        columnas.get(2).setMaxWidth(1f * Integer.MAX_VALUE * 25); 
+        columnas.get(2).setMaxWidth(1f * Integer.MAX_VALUE * 15); 
         columnas.get(3).setMaxWidth(1f * Integer.MAX_VALUE * 15); 
         columnas.get(4).setMaxWidth(1f * Integer.MAX_VALUE * 15);
         columnas.get(5).setMaxWidth(1f * Integer.MAX_VALUE * 10);
-        columnas.get(6).setMaxWidth(1f * Integer.MAX_VALUE * 15);
-        
+        columnas.get(6).setMaxWidth(1f * Integer.MAX_VALUE * 10);
+        columnas.get(7).setMaxWidth(1f * Integer.MAX_VALUE * 15);
     }
     
     @FXML
-    private void verMensaje(String texto) {
-        configurarLabelMensaje(texto);            
+    private void verMensaje(Mensaje mensaje) {
+        if(mensaje.getTexto() != null) {
+            configurarLabelMensaje(mensaje.getTexto());   
+            mensajeDao.marcarComoLeido(mensaje.getId());
+            cargarMensajes();
+        }
     }
     
-      @FXML
+    @FXML
     public void responder(){
+        Mensaje mensajeSeleccionado = tablaMensajes.getSelectionModel().getSelectedItem();
+        this.layout.cargarPantalla("contacto", ContactoController.class.getResource("Contacto.fxml"));
+        ((ContactoController) this.layout.getCotroller("contacto")).configurarParaUsuario(
+            mensajeSeleccionado.getIdAutor(),
+            mensajeSeleccionado.getNombreAutor());
+        this.layout.mostrarComoPantallaActual("contacto");
     }
-
+    
     private void configurarBotonesAcciones() {
-       btnContacto.managedProperty().bind(btnContacto.visibleProperty());
+        
+        // managed es la gestion del espacio en pantalla -> si el elemento ocupa espacio
+        //vincula la propiedad de que el elemento ocupe espacio con la visibilidad del elemento
+        // --> si boton contacto es visible, que ocupe espacio, si es invisible, que no lo ocupe.
+       btnContacto.managedProperty().bind(btnContacto.visibleProperty()); 
        btnResponder.managedProperty().bind(btnResponder.visibleProperty());
+       
+       btnResponder.disableProperty().bind(tablaMensajes.getSelectionModel().selectedItemProperty().isNull());
 
        btnResponder.setVisible(this.layout.getUsuario().getTipoUsuario().equals(TipoUsuario.EMPLEADO));
        btnContacto.setVisible(this.layout.getUsuario().getTipoUsuario().equals(TipoUsuario.CLIENTE)); 
     }
-    
+}
+
+class EventosDeRaton extends MouseAdapter{
+
+    public void mouseClicked(MouseEvent e) {
+        
+        /*if(e.getEventType() == MouseEvent.MOUSE_CLICKED){
+             contenedorMensaje.setVisible(true);
+        }*/
+
+    }
     
 }
+
+

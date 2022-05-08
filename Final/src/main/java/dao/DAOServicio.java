@@ -88,9 +88,9 @@ public class DAOServicio {
         }
      }
     
-    public List<Servicio> buscarTodos(){
+    public ArrayList<Servicio> buscarTodos(){
         
-        List<Servicio> servicios = new ArrayList<>();
+        ArrayList<Servicio> servicios = new ArrayList<>();
         try{
             Connection conexionDataBase = DriverManager.getConnection(URL_CONEXION, USUARIO_BDD, PASSWORD_BDD);
             Statement  statement = conexionDataBase.createStatement();

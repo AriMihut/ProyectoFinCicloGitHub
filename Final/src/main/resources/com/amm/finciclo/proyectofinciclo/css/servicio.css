@@ -2,25 +2,7 @@
     -fx-alignement: center;
 }
 
-.idServicio{
-    -fx-text-fill: white;
-}
-.precio{
-    -fx-text-fill: white;
-    -fx-font-weight: bold;
-}
-
-.idCliente{
-    -fx-text-fill: white;
-    -fx-font-weight: bold;
-}
-
-.idEmpleado{
-    -fx-text-fill: white;
-    -fx-font-weight: bold;
-}
-
-.idPersonalEncargado{
+.simpleLabel{
     -fx-text-fill: white;
     -fx-font-weight: bold;
 }
@@ -48,4 +30,10 @@
     -fx-text-fill: white;
     -fx-background-color: white;
 }
+
+.gridPaneDatos{
+    -fx-margin-top: 20px;
+   
+}
+
 

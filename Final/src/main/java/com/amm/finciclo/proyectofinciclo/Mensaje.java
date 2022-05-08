@@ -4,9 +4,11 @@ public class Mensaje {
     
     private int id;
     private int idAutor;
+    private String nombreAutor;
     private String asunto;
     private TipoUsuario tipoUsuario;
     private boolean esUrgente;
+    private boolean esLeido;
     private int idDestinatario;
     private String texto;
 
@@ -17,12 +19,15 @@ public class Mensaje {
         this.texto = texto;
     }
 
-    public Mensaje(int id, int idAutor, String asunto, TipoUsuario tipoUsuario, boolean esUrgente, int idDestinatario, String texto) {
+    public Mensaje(int id, int idAutor, String nombreAutor, String asunto, TipoUsuario tipoUsuario, 
+        boolean esUrgente, boolean esLeido, int idDestinatario, String texto) {
         this.id = id;
         this.idAutor = idAutor;
+        this.nombreAutor = nombreAutor;
         this.asunto = asunto;
         this.tipoUsuario = tipoUsuario;
         this.esUrgente = esUrgente;
+        this.esLeido = esLeido;
         this.idDestinatario = idDestinatario;
         this.texto = texto;
     }
@@ -43,6 +48,14 @@ public class Mensaje {
         this.idAutor = idAutor;
     }
 
+    public String getNombreAutor() {
+        return nombreAutor;
+    }
+
+    public void setNombreAutor(String nombreAutor) {
+        this.nombreAutor = nombreAutor;
+    }
+
     public String getAsunto() {
         return asunto;
     }
@@ -57,6 +70,14 @@ public class Mensaje {
 
     public void setTipoUsuario(TipoUsuario tipoUsuario) {
         this.tipoUsuario = tipoUsuario;
+    }
+
+    public boolean getEsLeido() {
+        return esLeido;
+    }
+
+    public void setEsLeido(boolean esLeido) {
+        this.esLeido = esLeido;
     }
 
     public boolean isEsUrgente() {
@@ -85,7 +106,7 @@ public class Mensaje {
 
     @Override
     public String toString() {
-        return "Mensaje{" + "id=" + id + ", idAutor=" + idAutor + ", asunto=" + asunto + ", tipoUsuario=" + tipoUsuario + ", esUrgente=" + esUrgente + ", idDestinatario=" + idDestinatario + ", texto=" + texto + '}';
+        return "Mensaje{" + "id=" + id + ", idAutor=" + idAutor + ", nombreAutor=" + nombreAutor + ", asunto=" + asunto + ", tipoUsuario=" + tipoUsuario + ", esUrgente=" + esUrgente + ", esLeido=" + esLeido + ", idDestinatario=" + idDestinatario + ", texto=" + texto + '}';
     }
     
 }

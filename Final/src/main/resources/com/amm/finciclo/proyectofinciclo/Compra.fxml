@@ -7,35 +7,33 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<VBox fx:id="pantallaLogin" xmlns:fx="http://javafx.com/fxml/1" HBox.hgrow="ALWAYS"
+<VBox fx:id="pantallaCompra" xmlns:fx="http://javafx.com/fxml/1" HBox.hgrow="ALWAYS"
         fx:controller="com.amm.finciclo.proyectofinciclo.CompraController">
     <stylesheets>
         <URL value="@/com/amm/finciclo/proyectofinciclo/css/compra.css"/>
     </stylesheets>
-    <VBox HBox.hgrow="ALWAYS" prefWidth="${paginaPrincipal.width}" styleClass="contenedor-titulo">
+    <VBox HBox.hgrow="ALWAYS" prefWidth="${pantallaCompra.width}" styleClass="contenedor-titulo">
          <Label text="Sueños cumplidos - Mi cesta" styleClass="titulo" HBox.hgrow="ALWAYS"  
-        prefWidth="${paginaPrincipal.width}"/>
+        prefWidth="${pantallaCompra.width}"/>
     </VBox>    
     <VBox>
         <HBox>
-            <Button styleClass="boton-accion" onAction="#anadirACesta" text="Añadir a la cesta" style="-fx-font-weight: bold;"/>
-            <Button styleClass="boton-accion" onAction="#descartar" text="Descartar" style="-fx-font-weight: bold;"/>
+            <Label styleClass="labelServicios" text="Servicios"/>
+            <ComboBox fx:id="comboServicios" promptText="Seleccione uno"/> 
         </HBox>
+        <VBox>
+            <ListView fx:id="servicioListView"/>
+            <Label styleClass="simpleLabel" text="Total a pagar" style="-fx-font-weight: bold;"/>
+            <Label fx:id="labelCantidad" text="0.00" />
         </VBox>
         <HBox>
-            <Label styleClass="simpleLabel" text="Total a pagar" style="-fx-font-weight: bold;"/>
-            <TextField fx:id="filtroTotalServicios" />
-                <!--<graphic>
-                    <ImageView>
-                        <Image url="@../../../../iconos/cestaCompra.png"/>
-                    </ImageView>
-                </graphic>-->
-            </HBox> 
-            <HBox>
-                <Button fx:id="btnContacto" text="Contactar" onAction="#contactar" focusTraversable="false" style="-fx-alignment: center;"/>
-            </HBox> 
-            <HBox>
-                <Button styleClass="botonAtrás" onAction="#atras" text="Volver atrás" focusTraversable="false"/>  
-            </HBox> 
+            <Button fx:id="btnAnadir" styleClass="boton-accion" onAction="#anadirACesta" text="Añadir a la cesta" style="-fx-font-weight: bold;"/>
+            <Button fx:id="btnDescartar" styleClass="boton-accion" onAction="#descartar" text="Descartar" style="-fx-font-weight: bold;"/>
+        </HBox>
+    </VBox>
+    <HBox>
+        <Button fx:id="btnContacto" text="Contactar" onAction="#contactar" focusTraversable="false" style="-fx-alignment: center;"/>
+        <Button styleClass="botonAtrás" onAction="#atras" text="Volver atrás" focusTraversable="false"/>  
+    </HBox>    
 </VBox>
 

@@ -38,16 +38,22 @@
     </left>  
     <center>
         <VBox fx:id="contacto" styleClass="vBoxContacto" spacing="20" style="-fx-background-color: darkgrey">
-            <Label styleClass="simpleLabel" text="Contacta con nosotros" style="fx-text-align: center"/>        
-            <Label styleClass="simpleLabel" text="(0034)655555555" />
-            <Label styleClass="simpleLabel" text="suenos_cumplidos@suenos.com" />
-            <Label styleClass="simpleLabel" text="Asunto" style="-fx-font-weight: bold;"/>
-            <TextField fx:id="asunto" promptText="Asunto"/>
-            <HBox >
-                <Label styleClass="simpleLabel" text="Es urgente"/>
-                <CheckBox styleClass="ckeckUrgente" fx:id="checkUrgente"/>
-            </HBox>
-            <Label styleClass="simpleLabel" text="Tu mensaje*: "/>
+            <VBox fx:id="infoParaCliente"  alignment="CENTER">
+                <Label styleClass="simpleLabel" text="Contacta con nosotros" />        
+                <Label styleClass="simpleLabel" text="(0034)655555555" />
+                <Label styleClass="simpleLabel" text="suenos_cumplidos@suenos.com" />
+                <Label styleClass="simpleLabel" text="Asunto" style="-fx-font-weight: bold;"/>
+                <TextField fx:id="asunto" promptText="Asunto"/>
+                <HBox >
+                    <Label styleClass="simpleLabel" text="Es urgente"/>
+                    <CheckBox styleClass="ckeckUrgente" fx:id="checkUrgente"/>
+                </HBox>
+                <Label styleClass="simpleLabel" text="Tu mensaje*: "/> 
+            </VBox>
+            <HBox fx:id="infoParaEmpleado">
+                <Label styleClass="simpleLabel" text="Responder a: "/> 
+                <Label fx:id="nombreCliente" styleClass="simpleLabel" text=""/>
+            </HBox>       
             <TextArea fx:id="textoMensaje" prefHeight="250"/>
             <Button fx:id="botonEnviar" text="Enviar" onAction="#enviarMensaje" focusTraversable="false"/>
         </VBox>

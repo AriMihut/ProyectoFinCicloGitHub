@@ -16,7 +16,7 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.image.Image?>
 
-<BorderPane id="borderPane" prefHeight="600.0" prefWidth="600.0" styleClass="mainFxmlClass" 
+<BorderPane id="borderPane" prefHeight="600.0" prefWidth="700.0" styleClass="mainFxmlClass" 
             xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.amm.finciclo.proyectofinciclo.ServicioController">
     <stylesheets>
         <URL value="@/com/amm/finciclo/proyectofinciclo/css/servicio.css"/>
@@ -25,7 +25,7 @@
         <Insets top="5" right="5" bottom="5" left="5"/>
     </padding> 
     <top>
-        <StackPane style="-fx-background-color: #6DBD96" minHeight="80">
+        <StackPane style="-fx-background-color: #6DBD96" minHeight="60">
             <Text text="Sueños cumplidos - Servicios ofrecidos" fill="white" 
                     style="-fx-font-weight: bold;">
                 <font>
@@ -34,17 +34,28 @@
             </Text>
         </StackPane> 
     </top>
-    <left>
+    <center>
+        <StackPane styleClass="tabla_servicios" HBox.hgrow="ALWAYS">
+            <TableView fx:id="tablaServicios">
+                <columns>
+                    <TableColumn fx:id="idColumna" text="idServicio"/>
+                    <TableColumn fx:id="tipoServicioColumna" text="tipoServicio"/>
+                    <TableColumn fx:id="nombreServicioColumna" text="nombreServicio"/>
+                    <TableColumn fx:id="precioColumna" text="precio"/>
+                </columns>
+            </TableView>
+        </StackPane>
+    </center>
+    <bottom>
         <StackPane style="-fx-background-color: #eee;" minWidth="120">
             <GridPane styleClass="gridPaneDatos" hgap="20" vgap="20" style="-fx-background-color: grey">
-                <Label styleClass="idServicio" text="Id Servicio" GridPane.rowIndex="7" 
-                       GridPane.columnIndex="0" style="-fx-font-weight: bold;"/>
-                <TextField fx:id="idServicio" GridPane.rowIndex="7" GridPane.columnIndex="1"/>
-                <Text text="Elije tipo servicio" fill="white" styleClass="textoRadioButton" style="-fx-font-weight: bold;" 
-                      GridPane.rowIndex="8" GridPane.columnIndex="0"/>
-                <Label styleClass="servicios" text="Tipo servicio" GridPane.rowIndex="8" GridPane.columnIndex="1"/>
-                <HBox prefHeight="100.0" prefWidth="100.0" spacing="10.0" 
-                    GridPane.columnIndex="1" GridPane.rowIndex="6"
+                <Label styleClass="simpleLabel" text="Id Servicio" GridPane.rowIndex="1" 
+                       GridPane.columnIndex="1" style="-fx-font-weight: bold;"/>
+                <TextField fx:id="idServicio" GridPane.rowIndex="1" GridPane.columnIndex="2"/>
+                <Text text="Elije tipo servicio: " fill="white" styleClass="textoRadioButton" style="-fx-font-weight: bold;" 
+                      GridPane.rowIndex="4" GridPane.columnIndex="1"/>
+                <HBox prefHeight="40.0" prefWidth="100.0" spacing="10.0" 
+                    GridPane.columnIndex="1" GridPane.rowIndex="5"
                     GridPane.columnSpan="12">
                     <fx:define>
                         <ToggleGroup fx:id="group" />
@@ -58,17 +69,17 @@
                         <RadioButton fx:id="TRANSPORTE" mnemonicParsing="false" text="Transporte" />
                     </children>
                 </HBox> 
-                <Label styleClass="nomServicio" text="Nombre servicio" />
-                <TextField fx:id="nombreServicio" />
-                <Label styleClass="precio" text="Precio" GridPane.rowIndex="9" GridPane.columnIndex="0"/>
-                <TextField fx:id="precio" GridPane.rowIndex="9" GridPane.columnIndex="1"/>
-                <!-- <Label styleClass="idCliente" text="Id cliente" GridPane.rowIndex="10" 
-                       GridPane.columnIndex="0"/>
-                <TextField fx:id="idCliente" GridPane.rowIndex="10" GridPane.columnIndex="1"/>
-                <Label styleClass="idEmpleado" text="Id empleado" GridPane.rowIndex="11" 
-                       GridPane.columnIndex="0"/>
-                <TextField fx:id="idEmpleado" GridPane.rowIndex="11" GridPane.columnIndex="1"/> -->
-                <ToolBar styleClass="buttons" HBox.hgrow= "ALWAYS" GridPane.rowIndex="1" 
+                <Label styleClass="simpleLabel" text="Nombre servicio" GridPane.rowIndex="2" GridPane.columnIndex="1"/>
+                <TextField fx:id="nombreServicio" GridPane.rowIndex="2" GridPane.columnIndex="2"/>
+                <Label styleClass="simpleLabel" text="Precio" GridPane.rowIndex="3" GridPane.columnIndex="1"/>
+                <TextField fx:id="precio" GridPane.rowIndex="3" GridPane.columnIndex="2"/>
+                <Label styleClass="simpleLabel" text="Id cliente" GridPane.rowIndex="1" 
+                       GridPane.columnIndex="3"/>
+                <TextField fx:id="idCliente" GridPane.rowIndex="1" GridPane.columnIndex="4"/>
+                <Label styleClass="simpleLabel" text="Id empleado" GridPane.rowIndex="2" 
+                       GridPane.columnIndex="3"/>
+                <TextField fx:id="idEmpleado" GridPane.rowIndex="2" GridPane.columnIndex="4"/> 
+                <!--<ToolBar styleClass="buttons" HBox.hgrow= "ALWAYS" GridPane.rowIndex="1" 
                          GridPane.columnIndex="0" 
                          GridPane.columnSpan="2" >
                     <Button styleClass="boton-accion" onAction="#anadir" GridPane.rowIndex="1" 
@@ -93,32 +104,16 @@
                             </ImageView>
                         </graphic>
                     </Button>
-                </ToolBar>
-            </GridPane> 
-        </StackPane>
-    </left>
-    <center>
-        <StackPane styleClass="tabla_servicios" HBox.hgrow="ALWAYS">
-            <TableView fx:id="tablaServicios">
-                <columns>
-                    <TableColumn fx:id="idColumna" text="idServicio"/>
-                    <TableColumn fx:id="tipoServicioColumna" text="tipoServicio"/>
-                    <TableColumn fx:id="nombreServicioColumna" text="nombreServicio"/>
-                    <TableColumn fx:id="precioColumna" text="precio"/>
-                </columns>
-            </TableView>
-        </StackPane>
-    </center>
-    <bottom>
-        <StackPane style="-fx-background-color: #6DBD96" minHeight= "50" >
-            <Button styleClass="botonAtrás" onAction="#atras" focusTraversable="false" 
+                    <Button styleClass="botonAtrás" onAction="#atras" focusTraversable="false" 
                     GridPane.rowIndex="4" GridPane.columnIndex="5" GridPane.columnSpan="9">
-                <graphic>
-                    <ImageView>
-                        <Image url="@../../../../iconos/atras.png"/>
-                    </ImageView>
-                </graphic>
-            </Button> 
-        </StackPane>   
+                        <graphic>
+                            <ImageView>
+                                <Image url="@../../../../iconos/atras.png"/>
+                            </ImageView>
+                        </graphic>
+                    </Button> 
+                </ToolBar>-->
+            </GridPane> 
+        </StackPane> 
     </bottom> 
 </BorderPane>

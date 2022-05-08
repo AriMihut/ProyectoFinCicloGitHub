@@ -16,8 +16,8 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.layout.VBox?>
 
-<BorderPane id="pantallaMensaje" prefHeight="400.0" prefWidth="600.0" styleClass="mainFxmlClass" 
-            fx:id="pantallaContacto" xmlns:fx="http://javafx.com/fxml/1" HBox.hgrow="ALWAYS"
+<BorderPane fx:id="pantallaMensaje" prefHeight="400.0" prefWidth="600.0" styleClass="mainFxmlClass" 
+            xmlns:fx="http://javafx.com/fxml/1" HBox.hgrow="ALWAYS"
             fx:controller="com.amm.finciclo.proyectofinciclo.MensajeController">
     <stylesheets>
         <URL value="@/com/amm/finciclo/proyectofinciclo/css/mensaje.css"/>
@@ -37,11 +37,12 @@
                 <columns>
                     <TableColumn fx:id="idMensajeColumn" text="Id"/>
                     <TableColumn fx:id="idAutorColumn" text="Id autor"/>
+                    <TableColumn fx:id="nombreAutorColumn" text="Nombre autor"/>
                     <TableColumn fx:id="asuntoColumn"  text="Asunto"/>
-                    <TableColumn  fx:id="tipoUsuarioColumn" text="Tipo usuario"/>
-                    <TableColumn  fx:id="esUrgenteColumn" text="Es urgente"/>
-                    <TableColumn  fx:id="idDestinatarioColumn" text="Id destinatario"/>
-                    <TableColumn  fx:id="verMensajeColumn" text=""/>
+                    <TableColumn fx:id="tipoUsuarioColumn" text="Tipo usuario"/>
+                    <TableColumn fx:id="esUrgenteColumn" text="Urgente"/>
+                    <TableColumn fx:id="esLeidoColumn" text="Leido"/>
+                    <TableColumn fx:id="verMensajeColumn" text=""/>
                 </columns>
             </TableView>
             <HBox fx:id="contenedorMensaje" styleClass="contedor-mensaje">

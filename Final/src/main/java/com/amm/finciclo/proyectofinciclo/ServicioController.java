@@ -128,7 +128,7 @@ public class ServicioController extends ControladorConNavegabilidad implements I
         this.layout.mostrarComoPantallaActual("pagHome");
     }
 
-    private void mostrar() {
+    public void mostrar() {
         
         tablaServicios.getItems().clear();
         
