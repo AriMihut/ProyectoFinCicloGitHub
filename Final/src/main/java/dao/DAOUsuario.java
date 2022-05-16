@@ -38,7 +38,6 @@ public class DAOUsuario {
                             "sexo VARCHAR(15) NULL, " +
                             "telefono LONG, NULL" +
                             "email VARCHAR(50) NULL)";
-                System.out.println("Sql usuario " + sql);
                 sentencia.executeUpdate(sql);
         }
    }
@@ -60,7 +59,6 @@ public class DAOUsuario {
                     "', '" + usuario.getSexo() +
                     "', " + usuario.getTelefono() + 
                     ", '" + usuario.getEmail() + "');";
-            System.out.println("sql ===> " + sql);
             statement.executeUpdate(sql);         
           } catch (SQLException ex) {
                 System.out.println("Error al introducir información en la tabla usuario " + ex.getMessage());
@@ -81,13 +79,10 @@ public class DAOUsuario {
                     "', telefono=" + usuario.getTelefono() + 
                     ", email='" + usuario.getEmail() + 
                     "' WHERE id=" + usuario.getId();
-             System.out.println("Mergi? " + sql);
-            statement.executeUpdate(sql);
-            
+            statement.executeUpdate(sql); 
           } catch (SQLException ex) {
                 System.out.println("Error al modificar la información en la tabla usuario" + ex.getMessage());
-            }      
-            
+            }          
         }
     
     public List<Usuario> buscarTodas(){
@@ -127,12 +122,12 @@ public class DAOUsuario {
             String sql = "DELETE FROM usuario WHERE id=" + usuario.getId();
             statement.executeUpdate(sql);
         }catch(Exception e){
-            throw new RuntimeException("Ocurrió un error al eliminar la información " + e.getMessage());
+            throw new RuntimeException("Ocurrió un error al eliminar la información de la tabla usuario " + e.getMessage());
         }
      }
 
       
-    public static Usuario comprobarExistenciaUsuario(Usuario usuario) throws SQLException {
+    public static ArrayList<Usuario> comprobarExistenciaUsuario(Usuario usuario) throws SQLException {
           
         ArrayList<Usuario> usuarios = new ArrayList<>();
         
@@ -158,7 +153,7 @@ public class DAOUsuario {
             usuarioExistente.setEmail(resultSet.getString("email"));
             usuarios.add(usuarioExistente);
          }
-        return usuarios.get(0);
+        return usuarios;
       }
 
 }

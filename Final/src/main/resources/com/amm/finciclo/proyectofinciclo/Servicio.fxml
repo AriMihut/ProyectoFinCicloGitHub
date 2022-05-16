@@ -38,10 +38,12 @@
         <StackPane styleClass="tabla_servicios" HBox.hgrow="ALWAYS">
             <TableView fx:id="tablaServicios">
                 <columns>
-                    <TableColumn fx:id="idColumna" text="idServicio"/>
-                    <TableColumn fx:id="tipoServicioColumna" text="tipoServicio"/>
-                    <TableColumn fx:id="nombreServicioColumna" text="nombreServicio"/>
-                    <TableColumn fx:id="precioColumna" text="precio"/>
+                    <TableColumn fx:id="idColumn" text="idServicio"/>
+                    <TableColumn fx:id="tipoServicioColumn" text="tipoServicio"/>
+                    <TableColumn fx:id="nombreServicioColumn" text="nombreServicio"/>
+                    <TableColumn fx:id="precioColumn" text="precio"/>
+                    <TableColumn fx:id="idClienteColumn" text="idCliente"/>
+                    <TableColumn fx:id="idEmpleadoColumn" text="idEmpleado"/>
                 </columns>
             </TableView>
         </StackPane>
@@ -49,14 +51,11 @@
     <bottom>
         <StackPane style="-fx-background-color: #eee;" minWidth="120">
             <GridPane styleClass="gridPaneDatos" hgap="20" vgap="20" style="-fx-background-color: grey">
-                <Label styleClass="simpleLabel" text="Id Servicio" GridPane.rowIndex="1" 
-                       GridPane.columnIndex="1" style="-fx-font-weight: bold;"/>
-                <TextField fx:id="idServicio" GridPane.rowIndex="1" GridPane.columnIndex="2"/>
                 <Text text="Elije tipo servicio: " fill="white" styleClass="textoRadioButton" style="-fx-font-weight: bold;" 
-                      GridPane.rowIndex="4" GridPane.columnIndex="1"/>
+                      GridPane.rowIndex="3" GridPane.columnIndex="1"/>
                 <HBox prefHeight="40.0" prefWidth="100.0" spacing="10.0" 
-                    GridPane.columnIndex="1" GridPane.rowIndex="5"
-                    GridPane.columnSpan="12">
+                    GridPane.columnIndex="1" GridPane.rowIndex="4"
+                    GridPane.columnSpan="9">
                     <fx:define>
                         <ToggleGroup fx:id="group" />
                     </fx:define>
@@ -69,19 +68,19 @@
                         <RadioButton fx:id="TRANSPORTE" mnemonicParsing="false" text="Transporte" />
                     </children>
                 </HBox> 
-                <Label styleClass="simpleLabel" text="Nombre servicio" GridPane.rowIndex="2" GridPane.columnIndex="1"/>
-                <TextField fx:id="nombreServicio" GridPane.rowIndex="2" GridPane.columnIndex="2"/>
-                <Label styleClass="simpleLabel" text="Precio" GridPane.rowIndex="3" GridPane.columnIndex="1"/>
-                <TextField fx:id="precio" GridPane.rowIndex="3" GridPane.columnIndex="2"/>
+                <Label styleClass="simpleLabel" text="Nombre servicio" GridPane.rowIndex="1" GridPane.columnIndex="1"/>
+                <TextField fx:id="nombreServicio" GridPane.rowIndex="1" GridPane.columnIndex="2"/>
+                <Label styleClass="simpleLabel" text="Precio" GridPane.rowIndex="2" GridPane.columnIndex="1"/>
+                <TextField fx:id="precio" GridPane.rowIndex="2" GridPane.columnIndex="2"/>
                 <Label styleClass="simpleLabel" text="Id cliente" GridPane.rowIndex="1" 
-                       GridPane.columnIndex="3"/>
-                <TextField fx:id="idCliente" GridPane.rowIndex="1" GridPane.columnIndex="4"/>
+                       GridPane.columnIndex="4"/>
+                <TextField fx:id="idCliente" GridPane.rowIndex="1" GridPane.columnIndex="5"/>
                 <Label styleClass="simpleLabel" text="Id empleado" GridPane.rowIndex="2" 
-                       GridPane.columnIndex="3"/>
-                <TextField fx:id="idEmpleado" GridPane.rowIndex="2" GridPane.columnIndex="4"/> 
-                <!--<ToolBar styleClass="buttons" HBox.hgrow= "ALWAYS" GridPane.rowIndex="1" 
-                         GridPane.columnIndex="0" 
-                         GridPane.columnSpan="2" >
+                       GridPane.columnIndex="4"/>
+                <TextField fx:id="idEmpleado" GridPane.rowIndex="2" GridPane.columnIndex="5"/> 
+                <ToolBar styleClass="buttons" HBox.hgrow= "ALWAYS" GridPane.rowIndex="5" 
+                         GridPane.columnIndex="3" 
+                         GridPane.columnSpan="9" >
                     <Button styleClass="boton-accion" onAction="#anadir" GridPane.rowIndex="1" 
                             GridPane.columnIndex="0">
                         <graphic>
@@ -104,15 +103,15 @@
                             </ImageView>
                         </graphic>
                     </Button>
-                    <Button styleClass="botonAtrás" onAction="#atras" focusTraversable="false" 
-                    GridPane.rowIndex="4" GridPane.columnIndex="5" GridPane.columnSpan="9">
-                        <graphic>
-                            <ImageView>
-                                <Image url="@../../../../iconos/atras.png"/>
-                            </ImageView>
-                        </graphic>
-                    </Button> 
-                </ToolBar>-->
+                </ToolBar>
+                <Button styleClass="botonAtrás" onAction="#atras" focusTraversable="false" 
+                    GridPane.rowIndex="5" GridPane.columnIndex="0">
+                    <graphic>
+                        <ImageView>
+                            <Image url="@../../../../iconos/atras.png"/>
+                        </ImageView>
+                    </graphic>
+                </Button> 
             </GridPane> 
         </StackPane> 
     </bottom> 

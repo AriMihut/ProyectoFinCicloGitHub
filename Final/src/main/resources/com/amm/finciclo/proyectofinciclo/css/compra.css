@@ -1,0 +1,88 @@
+#formularioFinalizarCompra{
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-font-size: 15px;
+    -fx-margin-top: 20px;
+}
+
+.simpleLabel{
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-font-size: 15px;
+}
+
+#pantallaElegirServicios{
+    -fx-spacing: 20px;
+}
+
+#comboServicios{
+    -fx-font-size: 15px;
+    -fx-fill: white;
+    -fx-font-weight: bold;
+}
+
+.combo-box .list-cell,
+.combo-box .list-cell:focus,
+.combo-box .list-cell:empty {
+    -fx-background-color: darkgrey;
+    -fx-text-fill: white;
+    -fx-border-color: black;
+}
+
+.combo-box .list-cell:hover {
+    -fx-background-color: darkgrey;
+    -fx-text-fill: white;
+    -fx-border-color: darkgrey;
+}
+
+.combo-box .arrow-button {
+    -fx-background-color: darkgrey;
+    -fx-text-fill: white;
+    -fx-border-color: black;
+}
+
+#servicioListView{
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-font-size: 12px;
+}
+
+.contenedor-titulo{
+    -fx-spacing: 20px;
+    -fx-alignment: top-center;
+    -fx-background-color: #6DBD96;
+    -fx-font-weight: bold;
+    -fx-font-size: 30px;
+    -fx-alignment: center;
+    -fx-text-aling: center;
+}
+
+.titulo{
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-font-size: 30px;
+    -fx-alignment: center;
+    -fx-text-aling: center;
+}
+
+#comboServicios{
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-font-size: 12px;
+}
+
+.boton-accion{
+    -fx-background-color: black;
+    -fx-border-color: white;
+    -fx-border-width: 3px;
+    -fx-background-radius: 30%;
+    -fx-border-radius: 25%;
+    -fx-text-fill: white;
+    -fx-margin-right: 50px;
+    -fx-font-weight: bold;
+}
+
+.buttons:hover{
+    -fx-background-color: -fx-shadow-highlight-color, -fx-outer-border, -fx-inner-border;
+    -fx-color: -fx-hover-base;
+}

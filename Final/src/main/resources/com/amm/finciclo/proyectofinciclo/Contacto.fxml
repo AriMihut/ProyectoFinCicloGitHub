@@ -38,23 +38,22 @@
     </left>  
     <center>
         <VBox fx:id="contacto" styleClass="vBoxContacto" spacing="20" style="-fx-background-color: darkgrey">
-            <VBox fx:id="infoParaCliente"  alignment="CENTER">
+            <VBox fx:id="infoParaCliente" alignment="CENTER" spacing="15">
                 <Label styleClass="simpleLabel" text="Contacta con nosotros" />        
                 <Label styleClass="simpleLabel" text="(0034)655555555" />
                 <Label styleClass="simpleLabel" text="suenos_cumplidos@suenos.com" />
                 <Label styleClass="simpleLabel" text="Asunto" style="-fx-font-weight: bold;"/>
                 <TextField fx:id="asunto" promptText="Asunto"/>
-                <HBox >
+                <HBox alignment="CENTER">
                     <Label styleClass="simpleLabel" text="Es urgente"/>
                     <CheckBox styleClass="ckeckUrgente" fx:id="checkUrgente"/>
                 </HBox>
                 <Label styleClass="simpleLabel" text="Tu mensaje*: "/> 
             </VBox>
             <HBox fx:id="infoParaEmpleado">
-                <Label styleClass="simpleLabel" text="Responder a: "/> 
                 <Label fx:id="nombreCliente" styleClass="simpleLabel" text=""/>
             </HBox>       
-            <TextArea fx:id="textoMensaje" prefHeight="250"/>
+            <TextArea fx:id="textoMensaje" prefHeight="350" maxHeight="350"/>
             <Button fx:id="botonEnviar" text="Enviar" onAction="#enviarMensaje" focusTraversable="false"/>
         </VBox>
     </center>   

@@ -1,12 +1,14 @@
 package com.amm.finciclo.proyectofinciclo;
 
-import dao.DAODepartamento;
 import dao.DAOPersonal;
 import java.io.IOException;
 import java.net.URL;
+import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.Date;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -22,7 +24,6 @@ public class PersonalController extends ControladorConNavegabilidad implements I
 
     @FXML DatePicker filtroFechaAlta, filtroFechaBaja;
     
-    @FXML ComboBox<Departamento> departamentos;
     @FXML ComboBox<Servicio> servicios;
     
     @FXML TableView<Personal> tablaPersonal;
@@ -31,24 +32,24 @@ public class PersonalController extends ControladorConNavegabilidad implements I
     private ObservableList<Personal> empleados = FXCollections.observableArrayList();
     
     private DAOPersonal daoPersonal;
-    DAODepartamento daoDepartamento;
-    
-    private int id;
-    private int idDepartamento;
-    private Date date;
-    private LocalDate localDate;
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-     /*   configurarDepartamentos();
-        configurarServicios();
+        
         try {
+            daoPersonal = new DAOPersonal();
+            /*   configurarDepartamentos();
+            configurarServicios();
+            try {
             daoPersonal = new DAOPersonal();
             daoDepartamento = new DAODepartamento();
             cargarEmpleadosDeLaBase();
-        } catch (SQLException ex) {
+            } catch (SQLException ex) {
             System.out.println("Error en PersonalController " + ex.getMessage());
-        }*/
+            }*/
+        } catch (SQLException ex) {
+            System.out.println("Error initialize en PersonalController " + ex.getMessage());
+        }
         
     }  
     

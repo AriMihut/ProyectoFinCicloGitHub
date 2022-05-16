@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.net.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.Text?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.cell.PropertyValueFactory?>
+<?import javafx.scene.control.ToolBar?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.image.Image?>
+
+<VBox fx:id="pantallaVentas" xmlns:fx="http://javafx.com/fxml/1" HBox.hgrow="ALWAYS"
+        fx:controller="com.amm.finciclo.proyectofinciclo.VentaController">
+    <stylesheets>
+        <URL value="@/com/amm/finciclo/proyectofinciclo/css/venta.css"/>
+    </stylesheets>
+    <padding>
+        <Insets top="5" right="5" bottom="5" left="5"/>
+    </padding> 
+    <VBox HBox.hgrow="ALWAYS" prefWidth="${pantallaVentas.width}" styleClass="titulo" >
+        <Label text="Sueños cumplidos - Venta" styleClass="titulo" HBox.hgrow="ALWAYS"  
+            style="-fx-background-color: #6DBD96" prefWidth="${pantallaVentas.width}" minHeight="60"/>
+    </VBox>
+    <VBox styleClass= "pantallaInfoAdmin">
+        <StackPane styleClass="tabla_venta" HBox.hgrow="ALWAYS">
+            <TableView fx:id="tablaVentas">
+                <columns>
+                    <TableColumn fx:id="idVentaColumn" text="id" prefWidth="${tablaVentas.width*0.10}"/>
+                    <TableColumn fx:id="fechaVentaColumn" text="fechaVenta" prefWidth="${tablaVentas.width*0.10}"/>
+                    <TableColumn fx:id="valorTotalVentaColumn" text="valorTotalVenta" prefWidth="${tablaVentas.width*0.10}"/>
+                    <TableColumn fx:id="idClienteColumn" text="idCliente" prefWidth="${tablaVentas.width*0.10}"/>
+                    <TableColumn fx:id="idServicioColumn" text="idServicio" prefWidth="${tablaVentas.width*0.10}"/>
+                </columns>
+            </TableView>
+        </StackPane>
+        <VBox style="-fx-background-color: #eee;" minWidth="150">
+            <GridPane styleClass="gridPaneDatos" hgap="20" vgap="20" style="-fx-background-color: darkgrey">
+                <Label styleClass="simpleLabel" text="Id Venta" GridPane.rowIndex="2" 
+                       GridPane.columnIndex="0" style="-fx-font-weight: bold;"/>
+                <TextField fx:id="filtroIdVenta" GridPane.rowIndex="2" GridPane.columnIndex="1"/>
+                <Label text="Fecha Venta" styleClass="simpleLabel" GridPane.rowIndex="3" GridPane.columnIndex="0"/> 
+                <DatePicker fx:id="filtroFechaVenta" GridPane.rowIndex="3" GridPane.columnIndex="1"/>
+                <Label styleClass="simpleLabel" text="Valor Total Venta" GridPane.rowIndex="4" 
+                       GridPane.columnIndex="0" style="-fx-font-weight: bold;"/>
+                <TextField fx:id="filtroValorTotalVenta" GridPane.rowIndex="4" GridPane.columnIndex="1"/>
+                <Label text="Id Cliente" styleClass="simpleLabel" GridPane.rowIndex="2" GridPane.columnIndex="2"/> 
+                <TextField fx:id="filtroIdCliente" GridPane.rowIndex="2" GridPane.columnIndex="3"/>
+                <Label styleClass="simpleLabel" text="Id Servicio" GridPane.rowIndex="3" 
+                       GridPane.columnIndex="2"/>
+                <TextField fx:id="filtroIdServicio" GridPane.rowIndex="3" GridPane.columnIndex="3"/> 
+                <ToolBar styleClass="buttons" HBox.hgrow= "ALWAYS" GridPane.rowIndex="0" 
+                         GridPane.columnIndex="0" 
+                         GridPane.columnSpan="2" >
+                    <Button styleClass="boton-accion" onAction="#anadir" GridPane.rowIndex="1" 
+                            GridPane.columnIndex="0">
+                        <graphic>
+                            <ImageView>
+                                <Image url="@../../../../iconos/anadir.png"/>
+                            </ImageView>
+                        </graphic>
+                    </Button>
+                    <Button styleClass="boton-accion" onAction="#prepararModificar" GridPane.rowIndex="1" GridPane.columnIndex="1">
+                        <graphic>
+                            <ImageView>
+                                <Image url="@../../../../iconos/modificar.png"/>
+                            </ImageView>
+                        </graphic>
+                    </Button>
+                    <Button styleClass="boton-accion" onAction="#eliminar" GridPane.rowIndex="1" GridPane.columnIndex="2">
+                        <graphic>
+                            <ImageView>
+                                <Image url="@../../../../iconos/eliminar.png"/>
+                            </ImageView>
+                        </graphic>
+                    </Button>
+                </ToolBar>
+            </GridPane> 
+        </VBox>
+            <Button styleClass="botonAtrás" onAction="#atras" focusTraversable="false" 
+                    GridPane.rowIndex="6" GridPane.columnIndex="5" GridPane.columnSpan="9">
+                <graphic>
+                    <ImageView>
+                        <Image url="@../../../../iconos/puerta.png"/>
+                    </ImageView>
+                </graphic>
+            </Button> 
+    </VBox> 
+</VBox>

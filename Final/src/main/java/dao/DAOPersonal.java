@@ -32,10 +32,8 @@ public class DAOPersonal {
                           "fechaAlta TIMESTAMP NULL, " +
                           "fechaBaja TIMESTAMP NULL, " +
                           "sueldo DOUBLE NULL, " +
-                          "idDepartamento INTEGER, " +
-                          "tipoServicio VARCHAR, " +  
-                          "FOREIGN KEY (idDepartamento) REFERENCES departamento (idDepartamento), " +
-                          "FOREIGN KEY (tipoServicio) REFERENCES servicio (tipoServicio)"  ;
+                          "idServicio INTEGER, " +  
+                          "FOREIGN KEY (idServicio) REFERENCES servicio (id) )" ;
                     sentencia.executeUpdate(sql);
         }
     }
@@ -77,8 +75,7 @@ public class DAOPersonal {
                     "', fechaAlta='" + new Timestamp(personal.getFechaAlta().getTime()) +
                     "', fechaBaja='" + new Timestamp(personal.getFechaBaja().getTime()) +
                     "', sueldo=" + personal.getSueldo() +
-                    ", idDepartamento=" + personal.getIdDepartamento() +
-                    ", tipoServicio'" + personal.getTipoServicio()+
+                    ", idServicio'" + personal.getIdServicio() +
                     "' WHERE id=" + personal.getId();
             statement.executeUpdate(sql);
           } catch (SQLException ex) {
@@ -95,7 +92,7 @@ public class DAOPersonal {
             String sql = "DELETE FROM personal WHERE id=" + personal.getId();
             statement.executeUpdate(sql);
         }catch(Exception e){
-            throw new RuntimeException("Ocurrió un error al eliminar la información " + e.getMessage());
+            throw new RuntimeException("Ocurrió un error al eliminar la información de la tabla personal " + e.getMessage());
         }
      }
     
@@ -116,8 +113,7 @@ public class DAOPersonal {
              personal.setFechaAlta(resultset.getDate("fechaAlta"));
              personal.setFechaBaja(resultset.getDate("fechaBaja"));
              personal.setSueldo(resultset.getDouble("sueldo"));
-             personal.setIdDepartamento(resultset.getInt("idDepartamento"));
-             personal.setTipoServicio(resultset.getString("tipoServicio"));
+             personal.setIdServicio(resultset.getInt("idServicio"));
              empleados.add(personal);
             }
           

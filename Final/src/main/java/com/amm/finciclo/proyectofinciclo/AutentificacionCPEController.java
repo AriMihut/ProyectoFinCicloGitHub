@@ -4,6 +4,7 @@ import dao.DAOUsuario;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -36,10 +37,10 @@ public class AutentificacionCPEController extends ControladorConNavegabilidad im
     public void autentificarse() throws IOException, SQLException {
         Usuario nuevoUsuario = new Usuario(0, usuario.getText(), contrasena.getText(), this.layout.getRolUsuario());
         if(comprobacionesUsuario()){
-            Usuario usuario = usuarioDao.comprobarExistenciaUsuario(nuevoUsuario);
-            if(usuario != null) {
-                this.layout.setUsuario(usuario);
-                cargarPantallaSegunTipoUsuario(usuario.getTipoUsuario());
+            ArrayList<Usuario> usuarios = usuarioDao.comprobarExistenciaUsuario(nuevoUsuario);
+            if(!usuarios.isEmpty() && usuarios.get(0) != null) {
+                this.layout.setUsuario(usuarios.get(0));
+                cargarPantallaSegunTipoUsuario(usuarios.get(0).getTipoUsuario());
                 navegarSegunTipoUsuario();
             } 
             else {
@@ -116,9 +117,6 @@ public class AutentificacionCPEController extends ControladorConNavegabilidad im
                 break;
             case EMPLEADO:
                 this.layout.cargarPantalla("empleado", EmpleadoController.class.getResource("Empleado.fxml"));
-                break;
-            case PROVEEDOR:
-                this.layout.cargarPantalla("proveedor", ProveedorController.class.getResource("Proveedor.fxml"));
                 break;  
             case ADMIN:
                 this.layout.cargarPantalla("pagHome", PantallaHomeController.class.getResource("PantallaHome.fxml"));

@@ -2,13 +2,11 @@
 package com.amm.finciclo.proyectofinciclo;
 import dao.DAOCliente;
 import dao.DAOPersonal;
-import dao.DAOProveedor;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javafx.event.EventType;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
@@ -22,7 +20,6 @@ public class ComienzoController extends ControladorConNavegabilidad implements I
     @FXML private Button botonAdministrador;
     DAOCliente cliente;
     DAOPersonal empleado;
-    DAOProveedor proveedor;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -30,9 +27,6 @@ public class ComienzoController extends ControladorConNavegabilidad implements I
      
         botonCliente.setOnAction((e) -> 
             configurarAccionesGenerales(TipoUsuario.CLIENTE)
-        );
-        botonProveedor.setOnAction((e) -> 
-            configurarAccionesGenerales(TipoUsuario.PROVEEDOR)
         );
         botonEmpleado.setOnAction((e) -> 
             configurarAccionesGenerales(TipoUsuario.EMPLEADO)
@@ -42,7 +36,6 @@ public class ComienzoController extends ControladorConNavegabilidad implements I
           
         );
     }    
-    
     
     private void setRolUsuario(TipoUsuario tipoUsuario) {
         this.layout.setRolUsuario(tipoUsuario);

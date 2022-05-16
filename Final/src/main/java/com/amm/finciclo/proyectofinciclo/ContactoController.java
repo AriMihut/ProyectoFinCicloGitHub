@@ -55,10 +55,12 @@ public class ContactoController extends ControladorConNavegabilidad implements I
             mensajeDao.anadir(new Mensaje(0, usuario.getId(), usuario.getNombreUsuario(),
                 asunto.getText(), usuario.getTipoUsuario(), checkUrgente.isSelected(), false, usuario.getId(),
                     textoMensaje.getText()));
+            clear();
         } else {
             mensajeDao.anadir(new Mensaje(0, usuario.getId(), usuario.getNombreUsuario(),
                "Respuesta", usuario.getTipoUsuario(), false, false, Integer.parseInt(this.idDestinatarioParaEmpleado),
                     textoMensaje.getText()));
+            clear();
         }
         this.idMensajeAresponder = "";
         this.layout.getCotroller("contacto");
@@ -70,6 +72,12 @@ public class ContactoController extends ControladorConNavegabilidad implements I
         ((MensajeController) this.layout.getCotroller("mensaje")).mostrar();
         this.layout.mostrarComoPantallaActual("mensaje");
         
+    }
+    
+    private void clear() {
+        asunto.clear();
+        textoMensaje.clear();
+        checkUrgente.setSelected(false);
     }
     
      @FXML

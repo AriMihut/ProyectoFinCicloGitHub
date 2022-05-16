@@ -20,7 +20,6 @@
         <Label fx:id="eleccion" text="ACCEDER COMO: " styleClass="eleccion" HBox.hgrow="ALWAYS"/>
         <Button fx:id="botonCliente" text="CLIENTE" focusTraversable="false" styleClass="btnCliente"/>
         <Button fx:id="botonEmpleado" text="EMPLEADO" focusTraversable="false" styleClass="btnEmpleado"/>
-        <Button fx:id="botonProveedor" text="PROVEEDOR" focusTraversable="false" styleClass="btnProveedor"/>
         <Button fx:id="botonAdministrador" text="ADMINISTRADOR" focusTraversable="false" styleClass="btnAdministrador"/>
     </VBox>  
 </VBox>

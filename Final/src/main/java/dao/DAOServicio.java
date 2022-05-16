@@ -7,7 +7,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
-import java.util.List;
 import javafx.fxml.FXML;
 
 public class DAOServicio {
@@ -31,10 +30,9 @@ public class DAOServicio {
                         "nombreServicio VARCHAR(50), " +
                         "precio DOUBLE, " +
                         "idCliente INTEGER, " +
-                        "idEmpleado INTEGER)"; 
-                        //"FOREIGN KEY (idCliente) REFERENCES cliente(id), " +
-                        //"FOREIGN KEY (idEmpleado) REFERENCES personal(id))";
-                System.out.println("SQL === " + sql);
+                        "idEmpleado INTEGER, " + 
+                        "FOREIGN KEY (idCliente) REFERENCES cliente(id), " +
+                        "FOREIGN KEY (idEmpleado) REFERENCES personal(id))";
                 sentencia.executeUpdate(sql);
     }
    }
@@ -46,10 +44,12 @@ public class DAOServicio {
             Connection conexionDataBase =
             DriverManager.getConnection(URL_CONEXION, USUARIO_BDD, PASSWORD_BDD)){
             Statement statement = conexionDataBase.createStatement();
-            String sql = "INSERT INTO servicio(tipoServicio, nombreServicio, precio) " 
+            String sql = "INSERT INTO servicio(tipoServicio, nombreServicio, precio, idCliente, idEmpleado) " 
                     + "VALUES ('" + servicio.getTipoServicio()+ "', '" 
-                    + servicio.getNombreServicio()+"', '"
-                    + servicio.getPrecio()+  "')";
+                    + servicio.getNombreServicio()+"', "
+                    + servicio.getPrecio()+", "
+                    + servicio.getIdCliente()+","
+                    + servicio.getIdEmpleado()+ ")";
             statement.executeUpdate(sql);  
             
           } catch (SQLException ex) {
@@ -66,8 +66,10 @@ public class DAOServicio {
             DriverManager.getConnection(URL_CONEXION, USUARIO_BDD, PASSWORD_BDD)){
             Statement statement = conexionDataBase.createStatement();
             String sql = "UPDATE servicio set tipoServicio='" + servicio.getTipoServicio()+ 
-                    "', nombreServicio=" + servicio.getNombreServicio()+
+                    "', nombreServicio='" + servicio.getNombreServicio()+
                     "', precio=" + servicio.getPrecio()+
+                    ", idCliente=" + servicio.getIdCliente()+
+                    ", idEmpleado=" + servicio.getIdEmpleado()+
                     " WHERE id=" + servicio.getId();
             statement.executeUpdate(sql);
           } catch (SQLException ex) {
@@ -84,7 +86,7 @@ public class DAOServicio {
             String sql = "DELETE FROM servicio WHERE id=" + servicio.getId();
             statement.executeUpdate(sql);
         }catch(Exception e){
-            throw new RuntimeException("Ocurrió un error al eliminar registro de servicio " + e.getMessage());
+            throw new RuntimeException("Ocurrió un error al eliminar el registro de servicio " + e.getMessage());
         }
      }
     
@@ -103,6 +105,8 @@ public class DAOServicio {
             servicio.setTipoServicio(Servicio.TipoServicio.valueOf(resultset.getString("tipoServicio")));
             servicio.setNombreServicio(resultset.getString("nombreServicio"));
             servicio.setPrecio(resultset.getDouble("precio"));
+            servicio.setIdCliente(resultset.getInt("idCliente"));
+            servicio.setIdEmpleado(resultset.getInt("idEmpleado"));
             servicios.add(servicio);
             }
           

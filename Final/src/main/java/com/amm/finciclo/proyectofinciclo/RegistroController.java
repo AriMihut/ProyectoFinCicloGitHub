@@ -108,9 +108,11 @@ int id;
     private void navegarSegunTipoUsuario() throws IOException{
         switch(this.layout.getRolUsuario()){
             case CLIENTE:
+                this.layout.cargarPantalla("cliente", ClienteController.class.getResource("Cliente.fxml"));
                 this.layout.mostrarComoPantallaActual("cliente");
                 break;
             case EMPLEADO:
+                this.layout.cargarPantalla("empleado", EmpleadoController.class.getResource("Empleado.fxml"));
                 this.layout.mostrarComoPantallaActual("empleado");
                 break;
             case PROVEEDOR:
@@ -120,9 +122,7 @@ int id;
                 System.out.println("Opción no válida!");
                 break;
         }
-        
-        //hola
-        
+      
     }
 
 }

@@ -6,34 +6,90 @@
 <?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 
 <VBox fx:id="pantallaCompra" xmlns:fx="http://javafx.com/fxml/1" HBox.hgrow="ALWAYS"
         fx:controller="com.amm.finciclo.proyectofinciclo.CompraController">
     <stylesheets>
         <URL value="@/com/amm/finciclo/proyectofinciclo/css/compra.css"/>
     </stylesheets>
-    <VBox HBox.hgrow="ALWAYS" prefWidth="${pantallaCompra.width}" styleClass="contenedor-titulo">
-         <Label text="Sueños cumplidos - Mi cesta" styleClass="titulo" HBox.hgrow="ALWAYS"  
-        prefWidth="${pantallaCompra.width}"/>
+    <VBox HBox.hgrow="ALWAYS" prefWidth="${pantallaCompra.width}" styleClass="contenedor-titulo" minHeight="60">
+         <Label text="Sueños cumplidos - Mi cesta" styleClass="titulo" style="-fx-background-color: darkgrey" 
+                HBox.hgrow="ALWAYS" prefWidth="${pantallaCompra.width}"/>
     </VBox>    
-    <VBox>
+    <VBox fx:id="pantallaElegirServicios" style="-fx-background-color: #6DBD96" prefHeight="${pantallaCompra.height*1.2}">
         <HBox>
-            <Label styleClass="labelServicios" text="Servicios"/>
-            <ComboBox fx:id="comboServicios" promptText="Seleccione uno"/> 
+            <Label fx:id="serviciosLabel" styleClass="simpleLabel" text="Servicios"/>
+            <ComboBox fx:id="comboServicios" promptText="Seleccione un servicio"/> 
         </HBox>
         <VBox>
             <ListView fx:id="servicioListView"/>
             <Label styleClass="simpleLabel" text="Total a pagar" style="-fx-font-weight: bold;"/>
-            <Label fx:id="labelCantidad" text="0.00" />
+            <Label fx:id="labelCantidad" styleClass="simpleLabel" text="0.00" />
         </VBox>
-        <HBox>
-            <Button fx:id="btnAnadir" styleClass="boton-accion" onAction="#anadirACesta" text="Añadir a la cesta" style="-fx-font-weight: bold;"/>
-            <Button fx:id="btnDescartar" styleClass="boton-accion" onAction="#descartar" text="Descartar" style="-fx-font-weight: bold;"/>
-        </HBox>
+        <ToolBar fx:id="buttons" styleClass="buttons" HBox.hgrow="ALWAYS">   
+            <VBox maxWidth="${buttons.width*0.3}" prefWidth="${buttons.width*0.3}" alignment="CENTER">
+                <Button fx:id="btnAnadir" styleClass="boton-accion" onAction="#anadirACesta" text="AÑADIR A CESTA" />
+            </VBox>
+            <VBox maxWidth="${buttons.width*0.3}" prefWidth="${buttons.width*0.3}" alignment="CENTER">
+                <Button fx:id="btnDescartar" styleClass="boton-accion" onAction="#descartar" text="DESCARTAR"/>
+            </VBox>
+            <VBox maxWidth="${buttons.width*0.3}" prefWidth="${buttons.width*0.3}" alignment="CENTER">
+                <Button fx:id="btnFinalizarCompra" styleClass="boton-accion" onAction="#finalizarCompra" text="FINALIZAR COMPRA"/>
+            </VBox>
+        </ToolBar>
     </VBox>
-    <HBox>
-        <Button fx:id="btnContacto" text="Contactar" onAction="#contactar" focusTraversable="false" style="-fx-alignment: center;"/>
-        <Button styleClass="botonAtrás" onAction="#atras" text="Volver atrás" focusTraversable="false"/>  
-    </HBox>    
+    <VBox fx:id="formularioFinalizarCompra" visible="false" style="-fx-background-color: #6DBD96" prefHeight="${pantallaCompra.height*1.2}">
+                <HBox spacing="20" alignment="CENTER" maxHeight="${formularioFinalizarCompra.height*0.12}" prefHeight="${formularioFinalizarCompra.height*0.12}">
+                    <Label styleClass="simpleLabel" text="Nombre" style="-fx-font-weight: bold;"/>
+                    <TextField fx:id="filtroNombre" promptText="Introduce tu nombre"/>
+                </HBox>    
+                <HBox spacing="20" alignment="CENTER" maxHeight="${formularioFinalizarCompra.height*0.12}" prefHeight="${formularioFinalizarCompra.height*0.12}">
+                    <Label styleClass="simpleLabel" text="Apellidos" style="-fx-font-weight: bold;"/>
+                    <TextField fx:id="filtroApellidos" promptText="Introduce tu apellido"/>
+                </HBox> 
+                <HBox spacing="20" alignment="CENTER" maxHeight="${formularioFinalizarCompra.height*0.12}" prefHeight="${formularioFinalizarCompra.height*0.12}"> 
+                    <Label styleClass="simpleLabel" text="Telefono" style="-fx-font-weight: bold;"/>
+                    <TextField fx:id="filtroTelefono" promptText="Introduce tu teléfono"/>
+                </HBox>   
+                <HBox spacing="40" alignment="CENTER" maxHeight="${formularioFinalizarCompra.height*0.12}" prefHeight="${formularioFinalizarCompra.height*0.12}"> 
+                    <Label styleClass="simpleLabel" text="Email" style="-fx-font-weight: bold;"/>
+                    <TextField fx:id="filtroEmail" promptText="Introduce tu email"/>
+                </HBox> 
+                <HBox spacing="10" alignment="CENTER" maxHeight="${formularioFinalizarCompra.height*0.12}" prefHeight="${formularioFinalizarCompra.height*0.12}">   
+                    <Label styleClass="simpleLabel" text="Nº tarjeta" style="-fx-font-weight: bold;"/>
+                    <TextField fx:id="filtroNumeroTarjeta" promptText="Introduce los 16 dígitos del nº de tu tarjeta"/>
+                </HBox>  
+                <HBox spacing="50" alignment="CENTER" maxHeight="${formularioFinalizarCompra.height*0.12}" prefHeight="${formularioFinalizarCompra.height*0.12}">    
+                    <Label styleClass="simpleLabel" text="CVV" style="-fx-font-weight: bold;"/>
+                    <TextField fx:id="filtroCVVTarjeta" promptText="CVV tarjeta"/>
+                </HBox>   
+                <HBox spacing="30" alignment="CENTER" maxHeight="${formularioFinalizarCompra.height*0.12}" prefHeight="${formularioFinalizarCompra.height*0.12}">    
+                    <Label styleClass="simpleLabel" text="Validez" style="-fx-font-weight: bold;"/>
+                    <TextField fx:id="filtroValidezTarjeta" promptText="Fecha de validez tarjeta"/>
+                </HBox>   
+                <HBox spacing="10" alignment="CENTER" maxHeight="${formularioFinalizarCompra.height*0.12}" prefHeight="${formularioFinalizarCompra.height*0.12}">
+                    <Button styleClass="boton-accion" onAction="#pagar" text="PAGAR" style="-fx-font-weight: bold;"/>
+                    <Button styleClass="boton-accion" onAction="#volverAPantallaElegirServicios" text="VOLVER A LA CESTA" style="-fx-font-weight: bold;"/>
+                </HBox> 
+                <Label fx:id="etiquetaAviso" text="" style="-fx-text-fill:red;"/>
+    </VBox>
+     
+    <VBox fx:id="ventaInfoCliente" styleClass= "pantallaInfoCliente" visible="false">
+        <Label fx:id="textoVentaRealizada" text="" prefHeight="250"/>
+    </VBox> 
+    <VBox style="-fx-background-color: #6DBD96" minHeight= "50" > 
+            <HBox>     
+                <Button styleClass="botonAtrás" onAction="#atras" focusTraversable="false" >
+                <graphic>
+                    <ImageView>
+                        <Image url="@../../../../iconos/puerta.png"/>
+                    </ImageView>
+                </graphic>
+            </Button>   
+            </HBox>
+    </VBox>     
 </VBox>
 

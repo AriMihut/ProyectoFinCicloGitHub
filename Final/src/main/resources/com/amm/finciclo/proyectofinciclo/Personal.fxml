@@ -25,49 +25,41 @@
         <Insets top="5" right="5" bottom="5" left="5"/>
     </padding> 
     <VBox HBox.hgrow="ALWAYS" prefWidth="${paginaPrincipal.width}" styleClass="titulo" >
-         <Label text="Sueños cumplidos - Personal" styleClass="titulo" HBox.hgrow="ALWAYS"  
+         <Label text="Sueños cumplidos - Soy Personal" styleClass="titulo" HBox.hgrow="ALWAYS"  
                 prefWidth="${paginaPrincipal.width}"/>
     </VBox>
     <VBox>
         <StackPane styleClass="tabla_empleados" HBox.hgrow="ALWAYS">
             <TableView fx:id="tablaEmpleados">
                 <columns>
-                    <TableColumn text="id" prefWidth="${tablaEmpleados.width*0.10}"/>
-                    <TableColumn text="dni" prefWidth="${tablaEmpleados.width*0.10}"/>
-                    <TableColumn text="nombre" prefWidth="${tablaEmpleados.width*0.10}"/>
-                    <TableColumn text="apellido" prefWidth="${tablaEmpleados.width*0.10}"/>
-                    <TableColumn text="fechaAlta" prefWidth="${tablaEmpleados.width*0.10}"/>
-                    <TableColumn text="fechaBaja" prefWidth="${tablaEmpleados.width*0.10}"/>
-                    <TableColumn text="servicioOfrecido" prefWidth="${tablaEmpleados.width*0.20}"/>
-                    <TableColumn text="departamento" prefWidth="${tablaEmpleados.width*0.10}"/>
-                    <TableColumn text="esEncargado" prefWidth="${tablaEmpleados.width*0.10}"/>
+                    <TableColumn fx:id="idColumn" text="id"/>
+                    <TableColumn fx:id="dniColumn" text="dni"/>
+                    <TableColumn fx:id="nombreColumn" text="nombre"/>
+                    <TableColumn fx:id="fechaAltaColumn" text="fechaAlta"/>
+                    <TableColumn fx:id="fechaBajaColumn" text="fechaBaja"/>
+                    <TableColumn fx:id="sueldoColumn" text="sueldo"/>
+                    <TableColumn fx:id="idServicioColumn" text="idServicio"/>
                 </columns>
             </TableView>
         </StackPane>
         <VBox style="-fx-background-color: #eee;" minWidth="150">
             <GridPane styleClass="gridPaneDatos" hgap="20" vgap="20" style="-fx-background-color: grey">
-                <Label styleClass="simpleLabel" text="Id Empleado" GridPane.rowIndex="2" 
+                <Label styleClass="simpleLabel" text="DNI" GridPane.rowIndex="1" 
                        GridPane.columnIndex="0" style="-fx-font-weight: bold;"/>
-                <TextField fx:id="filtroIdPersonal" GridPane.rowIndex="2" GridPane.columnIndex="1"/>
-                <Label styleClass="simpleLabel" text="DNI" GridPane.rowIndex="3" 
+                <TextField fx:id="filtroDniPersonal" GridPane.rowIndex="1" GridPane.columnIndex="1"/>
+                <Label styleClass="simpleLabel" text="Nombre" GridPane.rowIndex="2" 
                        GridPane.columnIndex="0" style="-fx-font-weight: bold;"/>
-                <TextField fx:id="filtroDniPersonal" GridPane.rowIndex="3" GridPane.columnIndex="1"/>
-                <Label styleClass="simpleLabel" text="Nombre" GridPane.rowIndex="4" 
-                       GridPane.columnIndex="0" style="-fx-font-weight: bold;"/>
-                <TextField fx:id="filtroNombrePersonal" GridPane.rowIndex="4" GridPane.columnIndex="1"/>
-                <Label text="Fecha Alta" styleClass="simpleLabel" GridPane.rowIndex="5" GridPane.columnIndex="0"/> 
-                <DatePicker fx:id="filtroFechaAlta" GridPane.rowIndex="5" GridPane.columnIndex="1"/>
-                <Label text="Fecha Baja" styleClass="simpleLabel" GridPane.rowIndex="2" GridPane.columnIndex="3"/> 
-                <DatePicker fx:id="filtroFechaBaja" GridPane.rowIndex="2" GridPane.columnIndex="4"/>
-                <Label styleClass="simpleLabel" text="Sueldo" GridPane.rowIndex="3" 
+                <TextField fx:id="filtroNombrePersonal" GridPane.rowIndex="2" GridPane.columnIndex="1"/>
+                <Label text="Fecha Alta" styleClass="simpleLabel" GridPane.rowIndex="3" GridPane.columnIndex="0"/> 
+                <DatePicker fx:id="filtroFechaAlta" GridPane.rowIndex="3" GridPane.columnIndex="1"/>
+                <Label text="Fecha Baja" styleClass="simpleLabel" GridPane.rowIndex="1" GridPane.columnIndex="3"/> 
+                <DatePicker fx:id="filtroFechaBaja" GridPane.rowIndex="1" GridPane.columnIndex="4"/>
+                <Label styleClass="simpleLabel" text="Sueldo" GridPane.rowIndex="2" 
                        GridPane.columnIndex="3" style="-fx-font-weight: bold;"/>
-                <TextField fx:id="filtroSueldo" GridPane.rowIndex="3" GridPane.columnIndex="4"/>
-                <Label text="Departamento" styleClass="simpleLabel" GridPane.rowIndex="4" GridPane.columnIndex="3"/> 
-                <ComboBox fx:id="departamentos" style="-fx-fill-text: white" 
-                          GridPane.rowIndex="4" GridPane.columnIndex="4"/> 
-                <Label styleClass="simpleLabel" text="Servicio Ofrecido" GridPane.rowIndex="5" 
-                       GridPane.columnIndex="0" GridPane.columnSpan="2"/>
-                <ComboBox fx:id="servicios" GridPane.rowIndex="5" GridPane.columnIndex="1"/> 
+                <TextField fx:id="filtroSueldo" GridPane.rowIndex="2" GridPane.columnIndex="4"/>
+                <Label styleClass="simpleLabel" text="IdServicio" GridPane.rowIndex="3" 
+                       GridPane.columnIndex="3" GridPane.columnSpan="2"/>
+                <TextField fx:id="idServicio" GridPane.rowIndex="3" GridPane.columnIndex="4"/>
                 <ToolBar styleClass="buttons" HBox.hgrow= "ALWAYS" GridPane.rowIndex="0" 
                          GridPane.columnIndex="0" 
                          GridPane.columnSpan="2" >

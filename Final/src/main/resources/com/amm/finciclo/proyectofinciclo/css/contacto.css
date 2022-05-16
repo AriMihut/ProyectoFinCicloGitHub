@@ -20,6 +20,10 @@
     -fx-font-weight: bold;
 }
 
+#textoMensaje{
+    -fx-pref-height: 350px;
+    -fx-max-height: 350px;
+}
 .vBoxContacto{
     -fx-padding: 20px;
     -fx-alignment: center;

@@ -20,11 +20,11 @@
         <Insets top="20" right="20" bottom="20" left="20"/>
     </padding> 
     <VBox HBox.hgrow="ALWAYS" styleClass="contenedor-titulo" prefHeight= "20">
-        <Label text="ADMINISTRADOR" styleClass="etiqueta-principal" HBox.hgrow="ALWAYS"/>
+        <Label text="Sueños cumplidos - Soy Administrador" styleClass="etiqueta-principal" HBox.hgrow="ALWAYS"/>
     </VBox>
-    <VBox styleClass="pantallaPrincipal" style="-fx-background-color: grey" prefHeight= "600">
+    <HBox styleClass="pantallaPrincipal" style="-fx-background-color: grey" prefHeight= "600">
         <HBox>
-        <Label fx:id="clientes" text="Clientes: " styleClass="clientes" HBox.hgrow="ALWAYS" style="-fx-text-fill: white;"/>
+        <Label fx:id="clientes" text="Clientes: " styleClass="simpleLabel" HBox.hgrow="ALWAYS" style="-fx-text-fill: white;"/>
         <Button styleClass="boton-accion" onAction="#verClientes">
                 <graphic>
                     <ImageView>
@@ -32,7 +32,8 @@
                     </ImageView>
                 </graphic>
         </Button>
-        <Label fx:id="personal" text="Personal: " styleClass="personal" HBox.hgrow="ALWAYS" style="-fx-text-fill: white;"/>
+     
+        <Label fx:id="personal" text="Personal: " styleClass="simpleLabel" HBox.hgrow="ALWAYS" style="-fx-text-fill: white;"/>
         <Button styleClass="boton-accion" onAction="#verPersonal">
                <graphic>
                     <ImageView>
@@ -40,17 +41,9 @@
                     </ImageView>
                </graphic>
             </Button>
-        </HBox> 
-        <HBox>   
-        <Label fx:id="proveedores" text="Proveedores: " styleClass="proveedores" HBox.hgrow="ALWAYS" style="-fx-text-fill: white;"/>
-        <Button styleClass="boton-accion" onAction="#verProveedores">
-                <graphic>
-                    <ImageView>
-                        <Image url="@../../../../iconos/verProveedores.png"/>
-                    </ImageView>
-                </graphic>
-        </Button>
-        <Label fx:id="servicios" text="Servicios: " styleClass="servicios" HBox.hgrow="ALWAYS" style="-fx-text-fill: white;"/>
+        </HBox>
+        <HBox>
+        <Label fx:id="servicios" text="Servicios: " styleClass="simpleLabel" HBox.hgrow="ALWAYS" style="-fx-text-fill: white;"/>
         <Button styleClass="boton-accion" onAction="#verServicios">
                 <graphic>
                     <ImageView>
@@ -58,44 +51,27 @@
                     </ImageView>
                 </graphic>
         </Button>
-        </HBox>
-        <HBox>
-        <Label fx:id="productos" text="Productos: " styleClass="productos" HBox.hgrow="ALWAYS" style="-fx-text-fill: white;"/>
-        <Button styleClass="boton-accion" onAction="#verProductos">
+        
+        <Label fx:id="ventas" text="Ventas: " styleClass="simpleLabel" HBox.hgrow="ALWAYS" style="-fx-text-fill: white;"/>
+        <Button styleClass="boton-accion" onAction="#verVentas">
                 <graphic>
                     <ImageView>
-                        <Image url="@../../../../iconos/verProductos.png"/>
-                    </ImageView>
-                </graphic>
-        </Button>
-        <Label fx:id="beneficios" text="Beneficios: " styleClass="beneficios" HBox.hgrow="ALWAYS" style="-fx-text-fill: white;"/>
-        <Button styleClass="boton-accion" onAction="#verBeneficios">
-                <graphic>
-                    <ImageView>
-                        <Image url="@../../../../iconos/verBeneficios.png"/>
+                        <Image url="@../../../../iconos/verVentas.png"/>
                     </ImageView>
                 </graphic>
         </Button>
         </HBox>
-        <HBox>
-        <Label fx:id="departamentos" text="Departamentos: " styleClass="departamentos" HBox.hgrow="ALWAYS" style="-fx-text-fill: white;"/>
-        <Button styleClass="boton-accion" onAction="#verDepartamentos">
-                <graphic>
-                    <ImageView>
-                        <Image url="@../../../../iconos/departamentos.png"/>
-                    </ImageView>
-                </graphic>
-        </Button>
+        <!--<HBox>
         <Label text="Calendario" styleClass="calendario"/> 
         <DatePicker/>
-        </HBox>
-    </VBox>
+        </HBox>-->
+    </HBox>
     <VBox alignment="CENTER" HBox.hgrow="ALWAYS" prefHeight= "20" styleClass="botonAtrás" 
           style="-fx-background-color: #6DBD96">
             <Button onAction="#atras" focusTraversable="false" style="-fx-text-fill: grey;">
                 <graphic>
                     <ImageView>
-                        <Image url="@../../../../iconos/atras.png"/>
+                        <Image url="@../../../../iconos/puerta.png"/>
                     </ImageView>
                 </graphic>
             </Button>  

@@ -16,18 +16,21 @@
     <stylesheets>
         <URL value="@/com/amm/finciclo/proyectofinciclo/css/empleado.css"/>
     </stylesheets>
-    <HBox styleClass="titulo" style="-fx-background-color: darkgrey" minHeight="60">
+    <VBox fx:id="panelEmpleado" visible="true">
+         <HBox styleClass="titulo" style="-fx-background-color: darkgrey" minHeight="60">
             <Text styleClass="textoTitulo" text="Sueños cumplidos - Soy Empleado">
                 <font>
                     <Font name="Cambria" size="30"/>
                 </font>
             </Text>
-    </HBox> 
-     <VBox styleClass="contenedor-general" VBox.vgrow="ALWAYS" >
-        <Button fx:id="btnMensajes" text="Mensajes" onAction="#mostrarMensajes" focusTraversable="false" style="-fx-alignment: center;"/> 
-        <Button fx:id="btnServicios" text="Servicios" onAction="#mostrarServicios" focusTraversable="false" style="-fx-alignment: center;"/>
-        <Button styleClass="botonAtrás" onAction="#atras" text="Volver atrás" focusTraversable="false"/>  
-    </VBox>  
-    <HBox fx:id="panelPrincipal"/>
+        </HBox> 
+        <VBox styleClass="contenedor-general" VBox.vgrow="ALWAYS" >
+            <Button fx:id="btnMensajes" text="Mensajes" onAction="#mostrarMensajes" focusTraversable="false" style="-fx-alignment: center;"/> 
+            <Button fx:id="btnServicios" text="Servicios" onAction="#mostrarServicios" focusTraversable="false" style="-fx-alignment: center;"/>
+            <Button styleClass="botonAtrás" onAction="#atras" text="Volver atrás" focusTraversable="false"/>  
+        </VBox>  
+    </VBox>
+   
+    <HBox fx:id="panelPrincipal" visible="false"/>
 </VBox>
 

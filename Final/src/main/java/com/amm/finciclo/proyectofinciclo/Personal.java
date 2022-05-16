@@ -10,20 +10,18 @@ public class Personal {
     private Date fechaAlta;
     private Date fechaBaja;
     private double sueldo;
-    private int idDepartamento;
-    private String tipoServicio;
+    private int idServicio;
     
     public Personal(){}
 
-    public Personal(int id, String dni, String nombre, Date fechaAlta, Date fechaBaja, double sueldo, int idDepartamento, String tipoServicio) {
+    public Personal(int id, String dni, String nombre, Date fechaAlta, Date fechaBaja, double sueldo, int idServicio) {
         this.id = id;
         this.dni = dni;
         this.nombre = nombre;
         this.fechaAlta = fechaAlta;
         this.fechaBaja = fechaBaja;
         this.sueldo = sueldo;
-        this.idDepartamento = idDepartamento;
-        this.tipoServicio = tipoServicio;
+        this.idServicio = idServicio;
     }
 
     public int getId() {
@@ -74,20 +72,12 @@ public class Personal {
         this.sueldo = sueldo;
     }
 
-    public int getIdDepartamento() {
-        return idDepartamento;
+    public int getIdServicio() {
+        return idServicio;
     }
 
-    public void setIdDepartamento(int idDepartamento) {
-        this.idDepartamento = idDepartamento;
-    }
-
-    public String getTipoServicio() {
-        return tipoServicio;
-    }
-
-    public void setTipoServicio(String tipoServicio) {
-        this.tipoServicio = tipoServicio;
+    public void setIdServicio(int idServicio) {
+        this.idServicio = idServicio;
     }
 
     @Override

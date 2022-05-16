@@ -2,7 +2,6 @@ package com.amm.finciclo.proyectofinciclo;
 
 import dao.DAOCliente;
 import dao.DAOPersonal;
-import dao.DAOProveedor;
 import dao.DAOUsuario;
 import java.io.IOException;
 import java.net.URL;
@@ -15,11 +14,10 @@ import javafx.scene.layout.HBox;
 
 public class PantallaHomeController extends ControladorConNavegabilidad implements Initializable {
     
-    private @FXML Button atras, verPersonal, verProveedores, verClientes, verServicios, verProductos, verBeneficios, verDepartamentos; 
+    private @FXML Button atras, verPersonal, verClientes, verServicios, verVentas; 
     private @FXML HBox hboxBtnAtras;
     private DAOCliente daoCliente;
     private DAOPersonal daoEmpleado;
-    private DAOProveedor daoProveedor;
     private DAOUsuario daoUsuario;
 
     @Override
@@ -28,18 +26,14 @@ public class PantallaHomeController extends ControladorConNavegabilidad implemen
             daoUsuario = new DAOUsuario();
             daoCliente = new DAOCliente();
         } catch (SQLException ex) {
-            System.out.println("Error en PantallaHomeController " + ex.getMessage());
+            System.out.println("Error en el initialize de PantallaHomeController " + ex.getMessage());
         }
     }    
     
     @FXML
     public void verPersonal() throws IOException{
+        this.layout.cargarPantalla("personal", PersonalController.class.getResource("Personal.fxml"));
         this.layout.mostrarComoPantallaActual("personal");
-    }
-    
-    @FXML
-    public void verProveedores() throws IOException{
-      //  App.setRoot("Proveedor");
     }
     
     @FXML
@@ -50,29 +44,21 @@ public class PantallaHomeController extends ControladorConNavegabilidad implemen
     
     @FXML
     public void verServicios() throws IOException{
-        this.layout.cargarPantalla("servicio", ContactoController.class.getResource("Servicio.fxml"));
+        this.layout.cargarPantalla("servicio", ServicioController.class.getResource("Servicio.fxml"));
         this.layout.mostrarComoPantallaActual("servicio");
         
     }
-    
+   
     @FXML
-    public void verProductos() throws IOException{
-      //  App.setRoot("Producto");
-    }
-    
-    @FXML
-    public void verBeneficios() throws IOException{
-       // App.setRoot("Beneficios");
-    }
-    
-    @FXML
-    public void verDepartamentos() throws IOException{
-      //  App.setRoot("Departamento");
+    public void verVentas() throws IOException{
+        this.layout.cargarPantalla("venta", VentaController.class.getResource("Venta.fxml"));
+        this.layout.mostrarComoPantallaActual("venta");
     }
     
     @FXML
     public void atras() throws IOException{
-        // App.setRoot("AutentificacionCPE");
+        this.layout.cargarPantalla("autentificacion", AutentificacionCPEController.class.getResource("AutentificacionCPE.fxml"));
+        this.layout.mostrarComoPantallaActual("autentificacion");
     }
     
 }
