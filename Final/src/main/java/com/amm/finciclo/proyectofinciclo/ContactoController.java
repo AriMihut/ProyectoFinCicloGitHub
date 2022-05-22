@@ -21,7 +21,6 @@ public class ContactoController extends ControladorConNavegabilidad implements I
     @FXML private TextField asunto;
     @FXML private TextArea textoMensaje;
     @FXML private CheckBox checkUrgente;
-    @FXML private Button botonEnviar;
     @FXML private VBox infoParaCliente;
     @FXML private HBox infoParaEmpleado;
     @FXML private Label nombreCliente;
@@ -44,8 +43,13 @@ public class ContactoController extends ControladorConNavegabilidad implements I
     
     @FXML
     public void atras() throws IOException{
-        this.layout.cargarPantalla("cliente", ClienteController.class.getResource("Cliente.fxml"));
-        this.layout.mostrarComoPantallaActual("cliente");
+        if(this.layout.getUsuario().getTipoUsuario().equals(TipoUsuario.CLIENTE)){
+            this.layout.cargarPantalla("cliente", ClienteController.class.getResource("Cliente.fxml"));
+            this.layout.mostrarComoPantallaActual("cliente");
+        } else if(this.layout.getUsuario().getTipoUsuario().equals(TipoUsuario.EMPLEADO)) {
+            this.layout.cargarPantalla("empleado", EmpleadoController.class.getResource("Empleado.fxml"));
+            this.layout.mostrarComoPantallaActual("empleado");
+        }
     }
     
     @FXML

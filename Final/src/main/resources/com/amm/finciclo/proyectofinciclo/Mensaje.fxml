@@ -18,6 +18,7 @@
 
 <BorderPane fx:id="pantallaMensaje" prefHeight="400.0" prefWidth="600.0" styleClass="mainFxmlClass" 
             xmlns:fx="http://javafx.com/fxml/1" HBox.hgrow="ALWAYS"
+            style="-fx-background-image: ../../../../iconos/suenosCumplidos.png"
             fx:controller="com.amm.finciclo.proyectofinciclo.MensajeController">
     <stylesheets>
         <URL value="@/com/amm/finciclo/proyectofinciclo/css/mensaje.css"/>
@@ -46,8 +47,8 @@
                 </columns>
             </TableView>
             <HBox fx:id="contenedorMensaje" styleClass="contedor-mensaje">
-                <Label styleClass="simpleLabel" text="Tu mensaje*: "/>
-                <Label fx:id="textoMensaje" prefHeight="250"/>
+                <Label styleClass="simpleLabel" text="Tu mensaje: "/>
+                <Label fx:id="textoMensaje" styleClass="simpleLabel" prefHeight="250"/>
             </HBox>
             <HBox>
                 <Button fx:id="btnContacto" text="Contactar" onAction="#contactar" focusTraversable="false" style="-fx-alignment: center;"/>  

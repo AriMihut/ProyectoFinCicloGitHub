@@ -46,7 +46,6 @@ public class PantallaHomeController extends ControladorConNavegabilidad implemen
     public void verServicios() throws IOException{
         this.layout.cargarPantalla("servicio", ServicioController.class.getResource("Servicio.fxml"));
         this.layout.mostrarComoPantallaActual("servicio");
-        
     }
    
     @FXML

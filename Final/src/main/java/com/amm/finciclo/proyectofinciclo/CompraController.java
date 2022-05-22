@@ -1,14 +1,17 @@
 package com.amm.finciclo.proyectofinciclo;
 
 import dao.DAOServicio;
-import dao.DAOTarjeta;
-import dao.DAOUsuario;
 import dao.DAOVenta;
 import java.net.URL;
 import java.sql.SQLException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
@@ -28,13 +31,16 @@ public class CompraController extends ControladorConNavegabilidad implements Ini
     private @FXML Button btnAnadir, btnDescartar;
     private @FXML ComboBox<Servicio> comboServicios;
     private @FXML ToolBar buttons;
-    private @FXML Label labelCantidad;
+    private @FXML Label labelCantidad, nombreError, apellidoError, validezTelefonoError, validezEmail, validezNTarjetaError, 
+            cvvTarjetaError, validezTarjetaError;
     private @FXML Label etiquetaAviso;
     private @FXML ListView servicioListView;
     private @FXML VBox formularioFinalizarCompra, pantallaElegirServicios;
     
     private DAOServicio servicioDao;
     private DAOVenta ventaDao;
+    
+    
   
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -52,7 +58,7 @@ public class CompraController extends ControladorConNavegabilidad implements Ini
             formularioFinalizarCompra.managedProperty().bind(formularioFinalizarCompra.visibleProperty());
             pantallaElegirServicios.managedProperty().bind(pantallaElegirServicios.visibleProperty());
             buttons.managedProperty().bind(buttons.visibleProperty());
-            
+        
         }catch (SQLException ex) {
             System.out.println("Error en el initialize de CompraController " + ex.getMessage());
         }
@@ -118,18 +124,59 @@ public class CompraController extends ControladorConNavegabilidad implements Ini
     
     @FXML
     public void pagar(){
-        if(todosCamposCubiertos()){
+        
+        if(todosCamposCubiertos() && sonEtiquetasErrorInvisibles()){            
+                   
             mostrarAviso("Compra realizada con éxito. Muchas gracias!");
-            ventaDao.anadir(new Venta( this.layout.getUsuario().getId(), 
-                    comboServicios.getSelectionModel().getSelectedItem().getId(),
-                    comboServicios.getSelectionModel().getSelectedItem().getPrecio()));
+            servicioListView.getItems().forEach(servicio -> {
+                ventaDao.anadir(new Venta(this.layout.getUsuario().getId(), 
+                    getCodigoConjunto(),
+                    ((Servicio) servicio).getId(),
+                    ((Servicio) servicio).getPrecio()));
+            });
             clear();
-            System.out.println("Compra realizada con éxito. Muchas gracias!");
-        }else{
+            
+           
+        } else {
+           
+            mostrarAviso("Todos los campos deben estar correctamente cubiertos");
+            System.out.println("El pago no se ha podido finalizar. Por favor, inténtelo de nuevo. "
+                    + "Si vuelve a tener el mismo error, contacte con su banco. Muchas gracias!");
+            nombreError.setVisible(!esNombreCorrecto());
+            apellidoError.setVisible(!esApellidoCorrecto());
+            validezTelefonoError.setVisible(!esTelefonoCorrecto());
+            validezEmail.setVisible(!esEmailCorrecto());
+            validezNTarjetaError.setVisible(!esLimiteDigitosCorrecto());
+            cvvTarjetaError.setVisible(!esCVVCorrecto());
+          // validezTarjetaError.setVisible(!esApellidoCorrecto());
+        }
+        
+        /*else if(!validarNombre("")){
+         mostrarAviso("El nombre debe incluir solamante letras!");
+        }
+        else if(!validarApellido("")){
+         mostrarAviso("El apellido debe incluir solamante letras! El primer apellido debe estar separado del segundo por un espacio");
+        }
+        else if(!validarTelefono("")){
+         mostrarAviso("El teléfono debe incluir solamante 9 números!");
+        }
+        else if(!validarEmail("")){
+         mostrarAviso("El email debe incluir un @ y un .!");
+        }
+        else if(!limitarDigitosTargeta("")){
+         mostrarAviso("El número de tarjeta debe incluir solamante 16 dígitos!");
+        }
+        else if(!validarCVV("")){
+         mostrarAviso("El CVV debe incluir solamante 3 dígitos!");
+        }
+        else if(!validarFecha("")){
+         mostrarAviso("La fecha debe tener el formato: yyyy-MM-dd!");
+        }
+        else{
             mostrarAviso("Todos los campos deben estar cubiertos");
             System.out.println("El pago no se ha podido finalizar. Por favor, inténtelo de nuevo. "
                     + "Si vuelve a tener el mismo error, contacte con su banco. Muchas gracias!");
-        }
+        }*/
     }
    
     @FXML
@@ -191,7 +238,7 @@ public class CompraController extends ControladorConNavegabilidad implements Ini
         filtroNumeroTarjeta.clear();
         filtroCVVTarjeta.clear();
         filtroValidezTarjeta.clear();
-        comboServicios.getSelectionModel().selectFirst();
+        comboServicios.setValue(null);
         servicioListView.getItems().clear();
         labelCantidad.setText(null);
     }
@@ -208,6 +255,63 @@ public class CompraController extends ControladorConNavegabilidad implements Ini
        filtroEmail.setText(!usuario.getEmail().isEmpty() ? usuario.getEmail() : "");
        filtroTelefono.setText(!String.valueOf(usuario.getTelefono()).isEmpty()? 
                String.valueOf(usuario.getTelefono()): "");
+    }
+
+    private String getCodigoConjunto() {
+        LocalDateTime fecha = LocalDateTime.now();
+       return fecha.toString().replaceAll("[^0-9]", "").substring(0, 14);
+    }
+    
+    private boolean esLimiteDigitosCorrecto(){
+        return this.filtroNumeroTarjeta.getText().matches("^\\d{16}$");
+    }
+    
+    private boolean esNombreCorrecto() {
+        return this.filtroNombre.getText().matches("[A-Z][a-zA-Z]*");
+    }
+
+    private boolean esApellidoCorrecto() {
+        return this.filtroApellidos.getText().matches( "[a-zA-z]+([ '-][a-zA-Z]+)*" );
+    } 
+    
+    private boolean esTelefonoCorrecto() {
+        return this.filtroTelefono.getText().matches("(\\+34|0034|34)?[ -]*(6|7)[ -]*([0-9][ -]*){8}");
+    }
+    
+    private boolean esEmailCorrecto() {
+        Pattern pattern = Pattern.compile(PATTERN_EMAIL);
+        Matcher matcher = pattern.matcher(this.filtroEmail.getText());
+        return matcher.matches();
+    }
+
+    static final private String PATTERN_EMAIL = "^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@"
+        + "[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$";
+
+    private boolean esCVVCorrecto() {
+        return this.filtroCVVTarjeta.getText().matches("\\d{3}");
+    }
+    
+    public static boolean validarFecha(String fecha) {
+    SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+     try {
+          format.parse(fecha);
+          return true;
+    }
+     catch(ParseException e){
+          return false;
+    }
+    }
+
+    private boolean sonEtiquetasErrorInvisibles() {
+        nombreError.setVisible(!esNombreCorrecto());
+        apellidoError.setVisible(!esApellidoCorrecto());
+        validezTelefonoError.setVisible(!esTelefonoCorrecto());
+        validezEmail.setVisible(!esEmailCorrecto());
+        validezNTarjetaError.setVisible(!esLimiteDigitosCorrecto());
+        cvvTarjetaError.setVisible(!esCVVCorrecto());
+        
+        return !nombreError.isVisible() && !apellidoError.isVisible() && !validezTelefonoError.isVisible() 
+                && !validezEmail.isVisible() && !validezNTarjetaError.isVisible() && !cvvTarjetaError.isVisible();
     }
     
 }

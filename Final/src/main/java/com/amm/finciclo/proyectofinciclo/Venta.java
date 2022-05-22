@@ -1,48 +1,53 @@
 package com.amm.finciclo.proyectofinciclo;
 
+import java.util.ArrayList;
 import java.util.Date;
 
 public class Venta {
     
-    private int id;
-    private int idConjunto;
+    private String codigoConjunto;
     private int idUsuario;
-    private int idServicio;
+    private String nombreUsuario;
+    private ArrayList<String> nombreServicios;
     private Date fechaVenta;
     private double valorTotalVenta;
+    private int idServicio;
 
     public Venta() {
     }
 
-    public Venta(int id,int idConjunto, int idUsuario, int idServicio, Date fechaVenta, double valorTotalVenta) {
-        this.id = id;
-        this.idConjunto = idConjunto;
+    public Venta(String codigoConjunto, Date fechaVenta, double valorTotalVenta, int idUsuario, String nombreUsuario) {
+        this.codigoConjunto = codigoConjunto;
         this.idUsuario = idUsuario;
-        this.idServicio = idServicio;
+         this.nombreUsuario = nombreUsuario;
+        this.nombreServicios = new ArrayList<>();
         this.fechaVenta = fechaVenta;
         this.valorTotalVenta = valorTotalVenta;
+       
     }
     
-    public Venta(int idUsuario, int idServicio, double valorTotalVenta) {
+    public Venta(int idUsuario, String codigoConjunto, int idServicio, double valorTotalVenta) {
         this.idUsuario = idUsuario;
+        this.codigoConjunto = codigoConjunto;
         this.idServicio = idServicio;
         this.valorTotalVenta = valorTotalVenta;
-    }
-    
-    public int getId() {
-        return id;
+       
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public int getIdServicio() {
+        return idServicio;
     }
 
-    public int getIdConjunto() {
-        return idConjunto;
+    public void setIdServicio(int idServicio) {
+        this.idServicio = idServicio;
     }
 
-    public void setIdConjunto(int idConjunto) {
-        this.idConjunto = idConjunto;
+    public String getCodigoConjunto() {
+        return codigoConjunto;
+    }
+
+    public void setCodigoConjunto(String codigoConjunto) {
+        this.codigoConjunto = codigoConjunto;
     }
 
     public int getIdUsuario() {
@@ -53,12 +58,20 @@ public class Venta {
         this.idUsuario = idUsuario;
     }
 
-    public int getIdServicio() {
-        return idServicio;
+    public String getNombreUsuario() {
+        return nombreUsuario;
     }
 
-    public void setIdServicio(int idServicio) {
-        this.idServicio = idServicio;
+    public void setNombreUsuario(String nombreUsuario) {
+        this.nombreUsuario = nombreUsuario;
+    }
+
+    public ArrayList<String> getNombreServicios() {
+        return nombreServicios;
+    }
+
+    public void setNombreServicios(ArrayList<String> nombreServicio) {
+        this.nombreServicios = nombreServicio;
     }
 
     public Date getFechaVenta() {
@@ -79,7 +92,7 @@ public class Venta {
 
     @Override
     public String toString() {
-        return "Venta{" + "id=" + id + ", idUsuario=" + idUsuario + ", idServicio=" + idServicio + ", fechaVenta=" + fechaVenta + ", valorTotalVenta=" + valorTotalVenta + '}';
+        return "Venta{" + "codigoConjunto=" + codigoConjunto + ", idUsuario=" + idUsuario + ", nombreUsuario=" + nombreUsuario + ", nombreServicios=" + nombreServicios + ", fechaVenta=" + fechaVenta + ", valorTotalVenta=" + valorTotalVenta + '}';
     }
     
 }

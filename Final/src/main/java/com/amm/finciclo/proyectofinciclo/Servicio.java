@@ -10,8 +10,7 @@ public class Servicio {
     private String nombreServicio;
     private double precio;
     private int cantidad;
-    private int idCliente;
-    private int idEmpleado;
+    private int idVenta;
 
     public Servicio() {
     }
@@ -22,13 +21,12 @@ public class Servicio {
         this.cantidad = cantidad;
     }
 
-    public Servicio(int id, TipoServicio tipoServicio, String nombreServicio, double precio, int idCliente, int idEmpleado) {
+    public Servicio(int id, TipoServicio tipoServicio, String nombreServicio, double precio, int idVenta) {
         this.id = id;
         this.tipoServicio = tipoServicio;
         this.nombreServicio = nombreServicio;
         this.precio = precio;
-        this.idCliente = idCliente;
-        this.idEmpleado = idEmpleado;
+        this.idVenta = idVenta;
     }
 
     public int getId() {
@@ -71,20 +69,12 @@ public class Servicio {
         this.cantidad = cantidad;
     }
 
-    public int getIdCliente() {
-        return idCliente;
+    public int getIdVenta() {
+        return idVenta;
     }
 
-    public void setIdCliente(int idCliente) {
-        this.idCliente = idCliente;
-    }
-
-    public int getIdEmpleado() {
-        return idEmpleado;
-    }
-
-    public void setIdEmpleado(int idEmpleado) {
-        this.idEmpleado = idEmpleado;
+    public void setIdVenta(int idVenta) {
+        this.idVenta = idVenta;
     }
 
     @Override

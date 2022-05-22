@@ -13,6 +13,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 
 public class ClienteController extends ControladorConNavegabilidad implements Initializable {
@@ -24,7 +25,7 @@ public class ClienteController extends ControladorConNavegabilidad implements In
     @FXML private Label dniClienteTexto, nombreClienteTexto, apellidoClienteTexto, labelSexoTexto, telefonoTexto, emailTexto;
     
     @FXML VBox formularioModificacion;
-    @FXML VBox infoCliente;
+    @FXML HBox infoCliente;
     //@FXML private ComboBox<Servicio> servicios;
     
     @FXML Button atras;

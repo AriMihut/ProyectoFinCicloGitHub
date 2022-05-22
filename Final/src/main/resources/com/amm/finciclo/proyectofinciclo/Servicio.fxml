@@ -16,8 +16,9 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.image.Image?>
 
-<BorderPane id="borderPane" prefHeight="600.0" prefWidth="700.0" styleClass="mainFxmlClass" 
-            xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.amm.finciclo.proyectofinciclo.ServicioController">
+<BorderPane id="borderPane" prefHeight="700.0" prefWidth="700.0" styleClass="mainFxmlClass" 
+            xmlns:fx="http://javafx.com/fxml/1" HBox.hgrow="ALWAYS" 
+            fx:controller="com.amm.finciclo.proyectofinciclo.ServicioController">
     <stylesheets>
         <URL value="@/com/amm/finciclo/proyectofinciclo/css/servicio.css"/>
     </stylesheets>
@@ -25,14 +26,14 @@
         <Insets top="5" right="5" bottom="5" left="5"/>
     </padding> 
     <top>
-        <StackPane style="-fx-background-color: #6DBD96" minHeight="60">
-            <Text text="Sueños cumplidos - Servicios ofrecidos" fill="white" 
-                    style="-fx-font-weight: bold;">
+        <HBox styleClass="titulo" style="-fx-background-color: #6DBD96" minHeight="60">
+            <Text styleClass="textoTitulo" text="Sueños cumplidos - Servicios ofrecidos" 
+                  fill="white" style="-fx-font-weight: bold;">
                 <font>
                     <Font name="Cambria" size="30"/>
                 </font>
             </Text>
-        </StackPane> 
+        </HBox> 
     </top>
     <center>
         <StackPane styleClass="tabla_servicios" HBox.hgrow="ALWAYS">
@@ -42,8 +43,7 @@
                     <TableColumn fx:id="tipoServicioColumn" text="tipoServicio"/>
                     <TableColumn fx:id="nombreServicioColumn" text="nombreServicio"/>
                     <TableColumn fx:id="precioColumn" text="precio"/>
-                    <TableColumn fx:id="idClienteColumn" text="idCliente"/>
-                    <TableColumn fx:id="idEmpleadoColumn" text="idEmpleado"/>
+                    <TableColumn fx:id="idVentaColumn" text="idVenta"/>
                 </columns>
             </TableView>
         </StackPane>
@@ -51,33 +51,55 @@
     <bottom>
         <StackPane style="-fx-background-color: #eee;" minWidth="120">
             <GridPane styleClass="gridPaneDatos" hgap="20" vgap="20" style="-fx-background-color: grey">
-                <Text text="Elije tipo servicio: " fill="white" styleClass="textoRadioButton" style="-fx-font-weight: bold;" 
-                      GridPane.rowIndex="3" GridPane.columnIndex="1"/>
-                <HBox prefHeight="40.0" prefWidth="100.0" spacing="10.0" 
-                    GridPane.columnIndex="1" GridPane.rowIndex="4"
+                <Text text="Elije tipo servicio: " fill="white" styleClass="simpleLabel" 
+                      style="-fx-font-weight: bold;" 
+                      GridPane.rowIndex="2" GridPane.columnIndex="1"/>
+                <HBox prefHeight="40.0" prefWidth="100.0" spacing="15" 
+                    GridPane.columnIndex="1" GridPane.rowIndex="3"
                     GridPane.columnSpan="9">
                     <fx:define>
                         <ToggleGroup fx:id="group" />
                     </fx:define>
                     <children>
-                        <RadioButton fx:id="CEREMONIA" mnemonicParsing="false" text="Ceremonia" />
-                        <RadioButton fx:id="GASTRONOMIA" mnemonicParsing="false" text="Gastronomia" />
-                        <RadioButton fx:id="MUSICA" mnemonicParsing="false" text="Música" />
-                        <RadioButton fx:id="FOTOGRAFIA" mnemonicParsing="false" text="Fotografia" />
-                        <RadioButton fx:id="VIDEO" mnemonicParsing="false" text="Video" />
-                        <RadioButton fx:id="TRANSPORTE" mnemonicParsing="false" text="Transporte" />
+                        <RadioButton fx:id="CEREMONIA" mnemonicParsing="false" text="Ceremonia" >
+                            <toggleGroup>
+                                <fx:reference source="group"/>
+                            </toggleGroup>   
+                        </RadioButton>
+                        <RadioButton fx:id="GASTRONOMIA" mnemonicParsing="false" text="Gastronomia">
+                            <toggleGroup>
+                                <fx:reference source="group"/>
+                            </toggleGroup>   
+                        </RadioButton>
+                        
+                        <RadioButton fx:id="MUSICA" mnemonicParsing="false" text="Música">
+                            <toggleGroup>
+                                <fx:reference source="group"/>
+                            </toggleGroup>   
+                        </RadioButton>
+                        <RadioButton fx:id="FOTOGRAFIA" mnemonicParsing="false" text="Fotografia">
+                            <toggleGroup>
+                                <fx:reference source="group"/>
+                            </toggleGroup>   
+                        </RadioButton>
+                        <RadioButton fx:id="VIDEO" mnemonicParsing="false" text="Video">
+                            <toggleGroup>
+                                <fx:reference source="group"/>
+                            </toggleGroup>   
+                        </RadioButton>
+                        <RadioButton fx:id="TRANSPORTE" mnemonicParsing="false" text="Transporte">
+                            <toggleGroup>
+                                <fx:reference source="group"/>
+                            </toggleGroup>   
+                        </RadioButton>
                     </children>
                 </HBox> 
                 <Label styleClass="simpleLabel" text="Nombre servicio" GridPane.rowIndex="1" GridPane.columnIndex="1"/>
                 <TextField fx:id="nombreServicio" GridPane.rowIndex="1" GridPane.columnIndex="2"/>
-                <Label styleClass="simpleLabel" text="Precio" GridPane.rowIndex="2" GridPane.columnIndex="1"/>
-                <TextField fx:id="precio" GridPane.rowIndex="2" GridPane.columnIndex="2"/>
-                <Label styleClass="simpleLabel" text="Id cliente" GridPane.rowIndex="1" 
-                       GridPane.columnIndex="4"/>
-                <TextField fx:id="idCliente" GridPane.rowIndex="1" GridPane.columnIndex="5"/>
-                <Label styleClass="simpleLabel" text="Id empleado" GridPane.rowIndex="2" 
-                       GridPane.columnIndex="4"/>
-                <TextField fx:id="idEmpleado" GridPane.rowIndex="2" GridPane.columnIndex="5"/> 
+                <Label styleClass="simpleLabel" text="Precio" GridPane.rowIndex="1" GridPane.columnIndex="3"/>
+                <TextField fx:id="precio" GridPane.rowIndex="1" GridPane.columnIndex="4"/>
+                <Label styleClass="simpleLabel" text="IdVenta" GridPane.rowIndex="2" GridPane.columnIndex="3"/>
+                <TextField fx:id="idVenta" GridPane.rowIndex="2" GridPane.columnIndex="4"/>
                 <ToolBar styleClass="buttons" HBox.hgrow= "ALWAYS" GridPane.rowIndex="5" 
                          GridPane.columnIndex="3" 
                          GridPane.columnSpan="9" >
@@ -108,7 +130,7 @@
                     GridPane.rowIndex="5" GridPane.columnIndex="0">
                     <graphic>
                         <ImageView>
-                            <Image url="@../../../../iconos/atras.png"/>
+                            <Image url="@../../../../iconos/puerta.png"/>
                         </ImageView>
                     </graphic>
                 </Button> 

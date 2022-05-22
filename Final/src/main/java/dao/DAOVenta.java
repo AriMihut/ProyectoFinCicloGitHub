@@ -28,16 +28,15 @@ public class DAOVenta {
                 Statement sentencia = conexion.createStatement();
                 String sql = "CREATE TABLE IF NOT EXISTS venta" +
                         "(id INTEGER auto_increment NOT NULL PRIMARY KEY, " +
-                        "idConjunto INTEGER, " +
+                        "codigoConjunto VARCHAR (50), " +
                         "fechaVenta TIMESTAMP, " +
                         "valorTotalVenta DOUBLE, " +
                         "idUsuario INTEGER, " +
                         "idServicio INTEGER, " +
                         "FOREIGN KEY (idUsuario) REFERENCES usuario(id), " +
                         "FOREIGN KEY (idServicio) REFERENCES servicio(id))";
-                System.out.println("SQL === " + sql);
                 sentencia.executeUpdate(sql);
-    }
+        }
    }
     
     @FXML
@@ -52,75 +51,84 @@ public class DAOVenta {
             Connection conexionDataBase =
             DriverManager.getConnection(URL_CONEXION, USUARIO_BDD, PASSWORD_BDD)){
             Statement statement = conexionDataBase.createStatement();
-            String sql = "INSERT INTO venta(idConjunto, fechaVenta, valorTotalVenta, idUsuario, idServicio) " 
-                    + "VALUES (" + venta.getIdConjunto()+ ", '" 
+            String sql = "INSERT INTO venta(codigoConjunto, fechaVenta, valorTotalVenta, idUsuario, idServicio) " 
+                    + "VALUES ('" + venta.getCodigoConjunto()+ "', '" 
                     + new Timestamp(System.currentTimeMillis()) + "', "
                     + venta.getValorTotalVenta()+", "
                     + venta.getIdUsuario()+", "
                     + venta.getIdServicio() + ")";
-            System.out.println("SQL venta = " + sql);
             statement.executeUpdate(sql);  
-            
-            
-          } catch (SQLException ex) {
+            } catch (SQLException ex) {
                 System.out.println("Error al añadir en venta " + ex.getMessage());
-          }      
-        
-        }
-    
-    @FXML
-    public void modificar(Venta venta) {
-         try(
-            Connection conexionDataBase =
-            DriverManager.getConnection(URL_CONEXION, USUARIO_BDD, PASSWORD_BDD)){
-            Statement statement = conexionDataBase.createStatement();
-            String sql = "UPDATE venta set fechaVenta='" + new Timestamp(venta.getFechaVenta().getTime())+ 
-                    "', valorTotalVenta=" + venta.getValorTotalVenta()+
-                    ", idUsuario=" + venta.getIdUsuario()+
-                    ", idServicio=" + venta.getIdServicio()+
-                    " WHERE id=" + venta.getId();
-            statement.executeUpdate(sql);
-          } catch (SQLException ex) {
-                System.out.println("Error al modificar la tabla venta " + ex.getMessage());
             }      
-        }
-    
-    @FXML
-    public void eliminar(Venta venta) {
-        try{
-            Connection conexionDB = DriverManager.getConnection(URL_CONEXION, USUARIO_BDD, PASSWORD_BDD);
-            Statement statement = conexionDB.createStatement();
-            String sql = "DELETE FROM venta WHERE id=" + venta.getId();
-            statement.executeUpdate(sql);
-        }catch(Exception e){
-            throw new RuntimeException("Ocurrió un error al eliminar registro de venta " + e.getMessage());
-        }
-     }
+    }
     
     public ArrayList<Venta> buscarTodas(){
         
         ArrayList<Venta> ventas = new ArrayList<>();
+       
         try{
+            String codigoConjunto = "";
+            java.sql.Date fechaVenta = null ;
+            int idUsuario = 0;
+            String nombreUsuario = "";
+            String nombreServicio = "";
+            double valorTotalVenta = 0;
+            
+            
             Connection conexionDataBase = DriverManager.getConnection(URL_CONEXION, USUARIO_BDD, PASSWORD_BDD);
             Statement  statement = conexionDataBase.createStatement();
-            String sql = "SELECT * FROM venta ORDER BY id";
+            String sql = "select v.codigoConjunto, v.fechaVenta, v.valorTotalVenta,"
+                    + " v.idUsuario, u.nombreUsuario, s.nombreServicio "
+                    + "from venta v "
+                    + "inner join servicio s "
+                    + "on v.idServicio = s.id "
+                    + "inner join usuario u " 
+                    + "on v.idUsuario = u.id"; 
             ResultSet resultset = statement.executeQuery(sql);
-            
-        while(resultset.next()){
-            Venta venta = new Venta();
-            venta.setId(resultset.getInt("id"));
-            venta.setIdConjunto(resultset.getInt("idConjunto"));
-            venta.setFechaVenta(resultset.getDate("fechaVenta"));
-            venta.setValorTotalVenta(resultset.getDouble("valorTotalVenta"));
-            venta.setIdUsuario(resultset.getInt("idUsuario"));
-            venta.setIdServicio(resultset.getInt("idServicio"));
-            ventas.add(venta);
+        
+            while(resultset.next()){
+                codigoConjunto = resultset.getString("codigoConjunto");
+                fechaVenta = resultset.getDate("fechaVenta");
+                valorTotalVenta = resultset.getDouble("valorTotalVenta");
+                idUsuario = resultset.getInt("idUsuario");
+                nombreUsuario = resultset.getString("nombreUsuario");
+                nombreServicio = resultset.getString("nombreServicio");
+                
+                if(ventas.isEmpty()) {
+                    Venta nuevaVenta = new Venta(codigoConjunto, 
+                            fechaVenta, valorTotalVenta,
+                            idUsuario, nombreUsuario);
+                   nuevaVenta.getNombreServicios().add(nombreServicio);
+                    System.out.println("venta nueva =" + nuevaVenta);
+                   ventas.add(nuevaVenta);
+                   
+                } else { 
+                    for(Venta venta : ventas) {
+                        if(ventas.size() >= 1 && venta.getCodigoConjunto().equals(codigoConjunto)) {
+                            System.out.println("venta existente =" + venta);
+                            venta.getNombreServicios().add(nombreServicio);
+                            venta.setValorTotalVenta(venta.getValorTotalVenta() +  valorTotalVenta);
+                        
+                        } else {
+                            System.out.println("venta nueva =" + venta);
+                            Venta nuevaVenta = new Venta(codigoConjunto, 
+                                 fechaVenta, valorTotalVenta,
+                                 idUsuario, nombreUsuario);
+                             nuevaVenta.getNombreServicios().add(nombreServicio); 
+                             ventas.add(nuevaVenta);
+                        }
+                    }
+                } 
             }
-          
-        }catch (SQLException ex) {
+        }catch (Exception ex) {
           System.out.println("No posible mostrar los datos de la tabla venta " + ex.getMessage());
-       }
+        }
+        
+        ventas.forEach(v -> System.out.println(v));
+        
         return ventas;
+        
     }
     
 }

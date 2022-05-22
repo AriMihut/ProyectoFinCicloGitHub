@@ -23,14 +23,15 @@
                     <Font name="Cambria" size="30"/>
                 </font>
             </Text>
-        </HBox> 
+        </HBox>
         <VBox styleClass="contenedor-general" VBox.vgrow="ALWAYS" >
             <Button fx:id="btnMensajes" text="Mensajes" onAction="#mostrarMensajes" focusTraversable="false" style="-fx-alignment: center;"/> 
             <Button fx:id="btnServicios" text="Servicios" onAction="#mostrarServicios" focusTraversable="false" style="-fx-alignment: center;"/>
             <Button styleClass="botonAtrás" onAction="#atras" text="Volver atrás" focusTraversable="false"/>  
         </VBox>  
-    </VBox>
-   
+    </VBox>  
     <HBox fx:id="panelPrincipal" visible="false"/>
 </VBox>
+
+
 

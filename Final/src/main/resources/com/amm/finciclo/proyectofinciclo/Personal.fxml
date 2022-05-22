@@ -20,17 +20,13 @@
             xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.amm.finciclo.proyectofinciclo.PersonalController">
     <stylesheets>
         <URL value="@/com/amm/finciclo/proyectofinciclo/css/personal.css"/>
-    </stylesheets>
-    <padding>
-        <Insets top="5" right="5" bottom="5" left="5"/>
-    </padding> 
-    <VBox HBox.hgrow="ALWAYS" prefWidth="${paginaPrincipal.width}" styleClass="titulo" >
-         <Label text="Sueños cumplidos - Soy Personal" styleClass="titulo" HBox.hgrow="ALWAYS"  
-                prefWidth="${paginaPrincipal.width}"/>
+    </stylesheets> 
+    <VBox HBox.hgrow="ALWAYS" styleClass="contenedor-titulo" prefHeight= "60">
+        <Label text="Sueños cumplidos - Soy Personal" styleClass="titulo" HBox.hgrow="ALWAYS"/>
     </VBox>
     <VBox>
-        <StackPane styleClass="tabla_empleados" HBox.hgrow="ALWAYS">
-            <TableView fx:id="tablaEmpleados">
+        <StackPane styleClass="tabla_personal" HBox.hgrow="ALWAYS">
+            <TableView fx:id="tablaPersonal">
                 <columns>
                     <TableColumn fx:id="idColumn" text="id"/>
                     <TableColumn fx:id="dniColumn" text="dni"/>
@@ -38,7 +34,7 @@
                     <TableColumn fx:id="fechaAltaColumn" text="fechaAlta"/>
                     <TableColumn fx:id="fechaBajaColumn" text="fechaBaja"/>
                     <TableColumn fx:id="sueldoColumn" text="sueldo"/>
-                    <TableColumn fx:id="idServicioColumn" text="idServicio"/>
+                    <TableColumn fx:id="idServicioColumn" text="servicio"/>
                 </columns>
             </TableView>
         </StackPane>
@@ -57,9 +53,9 @@
                 <Label styleClass="simpleLabel" text="Sueldo" GridPane.rowIndex="2" 
                        GridPane.columnIndex="3" style="-fx-font-weight: bold;"/>
                 <TextField fx:id="filtroSueldo" GridPane.rowIndex="2" GridPane.columnIndex="4"/>
-                <Label styleClass="simpleLabel" text="IdServicio" GridPane.rowIndex="3" 
+                <Label styleClass="simpleLabel" text="Servicios" GridPane.rowIndex="3" 
                        GridPane.columnIndex="3" GridPane.columnSpan="2"/>
-                <TextField fx:id="idServicio" GridPane.rowIndex="3" GridPane.columnIndex="4"/>
+                <ComboBox fx:id="servicios" GridPane.rowIndex="3" GridPane.columnIndex="4" GridPane.columnSpan="2"/> 
                 <ToolBar styleClass="buttons" HBox.hgrow= "ALWAYS" GridPane.rowIndex="0" 
                          GridPane.columnIndex="0" 
                          GridPane.columnSpan="2" >
@@ -92,7 +88,7 @@
                     GridPane.rowIndex="4" GridPane.columnIndex="5" GridPane.columnSpan="9">
                 <graphic>
                     <ImageView>
-                        <Image url="@../../../../iconos/atras.png"/>
+                        <Image url="@../../../../iconos/puerta.png"/>
                     </ImageView>
                 </graphic>
             </Button> 

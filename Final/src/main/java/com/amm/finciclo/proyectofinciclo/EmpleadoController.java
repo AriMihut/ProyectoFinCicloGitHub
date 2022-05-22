@@ -42,6 +42,8 @@ public class EmpleadoController extends ControladorConNavegabilidad implements I
     
     @FXML
     public void atras(){
+        this.layout.cargarPantalla("empleado", EmpleadoController.class.getResource("Empleado.fxml"));
+        this.layout.mostrarComoPantallaActual("empleado");
         panelPrincipal.setVisible(false);
         panelEmpleado.setVisible(true);
     }

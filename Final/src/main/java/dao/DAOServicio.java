@@ -28,11 +28,9 @@ public class DAOServicio {
                         "(id INTEGER auto_increment NOT NULL PRIMARY KEY, " +
                         "tipoServicio ENUM('CEREMONIA', 'GASTRONOMIA', 'MUSICA', 'FOTOGRAFIA', 'VIDEO', 'TRANSPORTE'), " +
                         "nombreServicio VARCHAR(50), " +
-                        "precio DOUBLE, " +
-                        "idCliente INTEGER, " +
-                        "idEmpleado INTEGER, " + 
-                        "FOREIGN KEY (idCliente) REFERENCES cliente(id), " +
-                        "FOREIGN KEY (idEmpleado) REFERENCES personal(id))";
+                        "precio DOUBLE," + 
+                        "idVenta INTEGER, " +
+                        "FOREIGN KEY (idVenta) REFERENCES venta(id) )";   
                 sentencia.executeUpdate(sql);
     }
    }
@@ -44,12 +42,11 @@ public class DAOServicio {
             Connection conexionDataBase =
             DriverManager.getConnection(URL_CONEXION, USUARIO_BDD, PASSWORD_BDD)){
             Statement statement = conexionDataBase.createStatement();
-            String sql = "INSERT INTO servicio(tipoServicio, nombreServicio, precio, idCliente, idEmpleado) " 
+            String sql = "INSERT INTO servicio(tipoServicio, nombreServicio, precio, idVenta) " 
                     + "VALUES ('" + servicio.getTipoServicio()+ "', '" 
                     + servicio.getNombreServicio()+"', "
-                    + servicio.getPrecio()+", "
-                    + servicio.getIdCliente()+","
-                    + servicio.getIdEmpleado()+ ")";
+                    + servicio.getPrecio()+ ", " 
+                    + servicio.getIdVenta()+ ")"; 
             statement.executeUpdate(sql);  
             
           } catch (SQLException ex) {
@@ -68,8 +65,7 @@ public class DAOServicio {
             String sql = "UPDATE servicio set tipoServicio='" + servicio.getTipoServicio()+ 
                     "', nombreServicio='" + servicio.getNombreServicio()+
                     "', precio=" + servicio.getPrecio()+
-                    ", idCliente=" + servicio.getIdCliente()+
-                    ", idEmpleado=" + servicio.getIdEmpleado()+
+                    ", idVenta=" + servicio.getIdVenta()+
                     " WHERE id=" + servicio.getId();
             statement.executeUpdate(sql);
           } catch (SQLException ex) {
@@ -105,8 +101,7 @@ public class DAOServicio {
             servicio.setTipoServicio(Servicio.TipoServicio.valueOf(resultset.getString("tipoServicio")));
             servicio.setNombreServicio(resultset.getString("nombreServicio"));
             servicio.setPrecio(resultset.getDouble("precio"));
-            servicio.setIdCliente(resultset.getInt("idCliente"));
-            servicio.setIdEmpleado(resultset.getInt("idEmpleado"));
+            servicio.setIdVenta(resultset.getInt("idVenta"));
             servicios.add(servicio);
             }
           

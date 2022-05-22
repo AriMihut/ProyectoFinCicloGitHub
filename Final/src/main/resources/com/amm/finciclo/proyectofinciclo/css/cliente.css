@@ -6,7 +6,7 @@
 }
 
 .pantallaInfoCliente{
-     -fx-background-color: darkgrey;
+    -fx-background-color: darkgrey;
 }
 
 .vBoxContacto{
@@ -74,6 +74,12 @@
     -fx-text-fill: white;
     -fx-font-weight: bold;
     -fx-font-size: 15px;
+}
+
+.simpleLabelTitulo{
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-font-size: 25px;
 }
 
 .vBoxBottom{

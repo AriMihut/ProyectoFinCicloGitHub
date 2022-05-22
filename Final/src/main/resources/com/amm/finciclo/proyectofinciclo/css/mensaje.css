@@ -6,6 +6,12 @@
     -fx-text-aling: center;
 }
 
+.simpleLabel{
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-font-size: 15px;
+}
+
 .textoTitulo{
     -fx-font-weight: bold;
 }

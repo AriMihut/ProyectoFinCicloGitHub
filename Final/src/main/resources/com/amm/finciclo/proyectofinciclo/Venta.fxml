@@ -34,59 +34,16 @@
         <StackPane styleClass="tabla_venta" HBox.hgrow="ALWAYS">
             <TableView fx:id="tablaVentas">
                 <columns>
-                    <TableColumn fx:id="idVentaColumn" text="id" prefWidth="${tablaVentas.width*0.10}"/>
-                    <TableColumn fx:id="fechaVentaColumn" text="fechaVenta" prefWidth="${tablaVentas.width*0.10}"/>
-                    <TableColumn fx:id="valorTotalVentaColumn" text="valorTotalVenta" prefWidth="${tablaVentas.width*0.10}"/>
-                    <TableColumn fx:id="idClienteColumn" text="idCliente" prefWidth="${tablaVentas.width*0.10}"/>
-                    <TableColumn fx:id="idServicioColumn" text="idServicio" prefWidth="${tablaVentas.width*0.10}"/>
+                    <TableColumn fx:id="codigoConjuntoColumn" text="codigoConjunto"/>
+                    <TableColumn fx:id="fechaVentaColumn" text="fechaVenta"/>
+                    <TableColumn fx:id="valorTotalVentaColumn" text="valorTotalVenta"/>
+                    <TableColumn fx:id="nombreUsuarioColumn" text="nombreUsuario"/>
+                    <TableColumn fx:id="nombreServiciosColumn" text="nombreServicios"/>
                 </columns>
             </TableView>
         </StackPane>
-        <VBox style="-fx-background-color: #eee;" minWidth="150">
-            <GridPane styleClass="gridPaneDatos" hgap="20" vgap="20" style="-fx-background-color: darkgrey">
-                <Label styleClass="simpleLabel" text="Id Venta" GridPane.rowIndex="2" 
-                       GridPane.columnIndex="0" style="-fx-font-weight: bold;"/>
-                <TextField fx:id="filtroIdVenta" GridPane.rowIndex="2" GridPane.columnIndex="1"/>
-                <Label text="Fecha Venta" styleClass="simpleLabel" GridPane.rowIndex="3" GridPane.columnIndex="0"/> 
-                <DatePicker fx:id="filtroFechaVenta" GridPane.rowIndex="3" GridPane.columnIndex="1"/>
-                <Label styleClass="simpleLabel" text="Valor Total Venta" GridPane.rowIndex="4" 
-                       GridPane.columnIndex="0" style="-fx-font-weight: bold;"/>
-                <TextField fx:id="filtroValorTotalVenta" GridPane.rowIndex="4" GridPane.columnIndex="1"/>
-                <Label text="Id Cliente" styleClass="simpleLabel" GridPane.rowIndex="2" GridPane.columnIndex="2"/> 
-                <TextField fx:id="filtroIdCliente" GridPane.rowIndex="2" GridPane.columnIndex="3"/>
-                <Label styleClass="simpleLabel" text="Id Servicio" GridPane.rowIndex="3" 
-                       GridPane.columnIndex="2"/>
-                <TextField fx:id="filtroIdServicio" GridPane.rowIndex="3" GridPane.columnIndex="3"/> 
-                <ToolBar styleClass="buttons" HBox.hgrow= "ALWAYS" GridPane.rowIndex="0" 
-                         GridPane.columnIndex="0" 
-                         GridPane.columnSpan="2" >
-                    <Button styleClass="boton-accion" onAction="#anadir" GridPane.rowIndex="1" 
-                            GridPane.columnIndex="0">
-                        <graphic>
-                            <ImageView>
-                                <Image url="@../../../../iconos/anadir.png"/>
-                            </ImageView>
-                        </graphic>
-                    </Button>
-                    <Button styleClass="boton-accion" onAction="#prepararModificar" GridPane.rowIndex="1" GridPane.columnIndex="1">
-                        <graphic>
-                            <ImageView>
-                                <Image url="@../../../../iconos/modificar.png"/>
-                            </ImageView>
-                        </graphic>
-                    </Button>
-                    <Button styleClass="boton-accion" onAction="#eliminar" GridPane.rowIndex="1" GridPane.columnIndex="2">
-                        <graphic>
-                            <ImageView>
-                                <Image url="@../../../../iconos/eliminar.png"/>
-                            </ImageView>
-                        </graphic>
-                    </Button>
-                </ToolBar>
-            </GridPane> 
-        </VBox>
             <Button styleClass="botonAtrás" onAction="#atras" focusTraversable="false" 
-                    GridPane.rowIndex="6" GridPane.columnIndex="5" GridPane.columnSpan="9">
+                    GridPane.rowIndex="7" GridPane.columnIndex="5" GridPane.columnSpan="9">
                 <graphic>
                     <ImageView>
                         <Image url="@../../../../iconos/puerta.png"/>

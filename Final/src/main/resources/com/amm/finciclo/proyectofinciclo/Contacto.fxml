@@ -51,13 +51,14 @@
                 <Label styleClass="simpleLabel" text="Tu mensaje*: "/> 
             </VBox>
             <HBox fx:id="infoParaEmpleado">
+                <Label fx:id="responderA" styleClass="simpleLabel" text="Responder a: "/>
                 <Label fx:id="nombreCliente" styleClass="simpleLabel" text=""/>
             </HBox>       
             <TextArea fx:id="textoMensaje" prefHeight="350" maxHeight="350"/>
             <Button fx:id="botonEnviar" text="Enviar" onAction="#enviarMensaje" focusTraversable="false"/>
         </VBox>
     </center>   
-    <bottom>
+    <!--<bottom>
         <HBox style="-fx-background-color: #6DBD96" minHeight= "50" >
             <Button styleClass="botonAtrás" onAction="#atras" focusTraversable="false" >
                 <graphic>
@@ -67,6 +68,6 @@
                 </graphic>
             </Button> 
         </HBox>   
-    </bottom>        
+    </bottom>-->        
 </BorderPane>
 

@@ -1,2 +1,42 @@
+.simpleLabel{
+    -fx-text-fill: black;
+    -fx-fill: black;
+    -fx-alignment: center;
+}
+
+#filtroFechaVenta{
+    -fx-text-fill: black;
+    -fx-fill: black;
+    -fx-alignment: center;
+}
+
+.tabla_venta{
+    -fx-margin-top: 20px;
+    -fx-padding-top: 20px;
+}
+
+.titulo{
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-font-size: 30px;
+    -fx-alignment: center;
+    -fx-text-aling: center;
+}
+
+.buttons:hover{
+    -fx-background-color: -fx-shadow-highlight-color, -fx-outer-border, -fx-inner-border;
+    -fx-color: -fx-hover-base;
+}
+
+.boton-accion{
+    -fx-background-color: grey;
+    -fx-border-color: white;
+    -fx-border-width: 3px;
+    -fx-background-radius: 30%;
+    -fx-border-radius: 25%;
+    -fx-text-fill: white;
+    -fx-margin-right: 50px;
+    -fx-font-weight: bold;
+}
 
 

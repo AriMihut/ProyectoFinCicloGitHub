@@ -18,7 +18,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 
 public class ServicioController extends ControladorConNavegabilidad implements Initializable{
     
-    @FXML private TextField nombreServicio, precio, idCliente, idEmpleado;
+    @FXML private TextField nombreServicio, precio;
     @FXML private TableView<Servicio> tablaServicios;
     private ObservableList<Servicio> servicios = FXCollections.observableArrayList();
     private Servicio serviciosParaModificar;
@@ -30,8 +30,7 @@ public class ServicioController extends ControladorConNavegabilidad implements I
     @FXML private TableColumn<Servicio, Enum> tipoServicioColumn;
     @FXML private TableColumn<Servicio, String> nombreServicioColumn;
     @FXML private TableColumn<Servicio, Double> precioColumn;
-    @FXML private TableColumn<Servicio, Integer> idClienteColumn;
-    @FXML private TableColumn<Servicio, Integer> idEmpleadoColumn;
+    @FXML private TableColumn<Servicio, Integer> idVentaColumn;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -41,6 +40,7 @@ public class ServicioController extends ControladorConNavegabilidad implements I
             configurarRadioBoxServicios();
             mostrar();
             controlarTamanoColumnas();
+            
         } catch (SQLException ex) {
             System.out.println("Error DaoServicio initialize " + ex.getMessage());
         }
@@ -69,15 +69,13 @@ public class ServicioController extends ControladorConNavegabilidad implements I
                     }
             if (VIDEO.isSelected()) {
                        servicio.setTipoServicio(Servicio.TipoServicio.VIDEO);
-                    }
+            }
             if (TRANSPORTE.isSelected()) {
                        servicio.setTipoServicio(Servicio.TipoServicio.TRANSPORTE);
-                    }    
+            }    
       
             servicio.setNombreServicio(nombreServicio.getText());
             servicio.setPrecio(Double.parseDouble(precio.getText()));
-            servicio.setIdCliente(Integer.parseInt(idCliente.getText()));
-            servicio.setIdEmpleado(Integer.parseInt(idEmpleado.getText()));
          
             if(servicio.getId() == 0){
                 servicioDao.anadir(servicio); 
@@ -128,8 +126,13 @@ public class ServicioController extends ControladorConNavegabilidad implements I
     
     @FXML
     public void atras(){
-        this.layout.cargarPantalla("pagHome", PantallaHomeController.class.getResource("PantallaHome.fxml"));
-        this.layout.mostrarComoPantallaActual("pagHome");
+        if(this.layout.getUsuario().getTipoUsuario().equals(TipoUsuario.ADMIN)){
+            this.layout.cargarPantalla("pagHome", PantallaHomeController.class.getResource("PantallaHome.fxml"));
+            this.layout.mostrarComoPantallaActual("pagHome");
+        } else if(this.layout.getUsuario().getTipoUsuario().equals(TipoUsuario.EMPLEADO)) {
+            this.layout.cargarPantalla("empleado", EmpleadoController.class.getResource("Empleado.fxml"));
+            this.layout.mostrarComoPantallaActual("empleado");
+        }
     }
 
     public void mostrar() {
@@ -140,8 +143,7 @@ public class ServicioController extends ControladorConNavegabilidad implements I
         tipoServicioColumn.setCellValueFactory(new PropertyValueFactory<Servicio, Enum>("tipoServicio"));
         nombreServicioColumn.setCellValueFactory(new PropertyValueFactory<Servicio, String>("nombreServicio"));
         precioColumn.setCellValueFactory(new PropertyValueFactory<Servicio, Double>("precio"));
-        idClienteColumn.setCellValueFactory(new PropertyValueFactory<Servicio, Integer>("idCliente"));
-        idEmpleadoColumn.setCellValueFactory(new PropertyValueFactory<Servicio, Integer>("idEmpleado"));
+        idVentaColumn.setCellValueFactory(new PropertyValueFactory<Servicio, Integer>("idVenta"));
      
         List<Servicio> serviciosAMostrar = servicioDao.buscarTodos();
         servicios.addAll(serviciosAMostrar);
@@ -166,11 +168,9 @@ public class ServicioController extends ControladorConNavegabilidad implements I
         
         columnas.get(0).setMaxWidth(1f * Integer.MAX_VALUE * 10); 
         columnas.get(1).setMaxWidth(1f * Integer.MAX_VALUE * 25); 
-        columnas.get(2).setMaxWidth(1f * Integer.MAX_VALUE * 25); 
-        columnas.get(3).setMaxWidth(1f * Integer.MAX_VALUE * 20);
+        columnas.get(2).setMaxWidth(1f * Integer.MAX_VALUE * 30); 
+        columnas.get(3).setMaxWidth(1f * Integer.MAX_VALUE * 25);
         columnas.get(4).setMaxWidth(1f * Integer.MAX_VALUE * 10);
-        columnas.get(5).setMaxWidth(1f * Integer.MAX_VALUE * 10);
-        
     }
     
 }

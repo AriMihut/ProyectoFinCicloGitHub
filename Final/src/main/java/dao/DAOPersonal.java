@@ -28,39 +28,38 @@ public class DAOPersonal {
                     String sql = "CREATE TABLE IF NOT EXISTS personal" +
                           "(id INTEGER auto_increment PRIMARY KEY NOT NULL, " +
                           "dni VARCHAR(50) NULL, " +
-                          "nombre VARCHAR(50) NULL, " +
-                          "fechaAlta TIMESTAMP NULL, " +
-                          "fechaBaja TIMESTAMP NULL, " +
+                          "nombre VARCHAR(255) NULL, " +
+                          "fechaAlta TIMESTAMP DEFAULT CURRENT_TIMESTAMP, " +
+                          "fechaBaja TIMESTAMP DEFAULT CURRENT_TIMESTAMP, " +
                           "sueldo DOUBLE NULL, " +
                           "idServicio INTEGER, " +  
                           "FOREIGN KEY (idServicio) REFERENCES servicio (id) )" ;
                     sentencia.executeUpdate(sql);
         }
     }
-    
+ 
     @FXML
     public void anadir(Personal personal){
            
-       /* try (
+        try (
             Connection conexionDataBase =
             DriverManager.getConnection(URL_CONEXION, USUARIO_BDD, PASSWORD_BDD)){
             Statement statement = conexionDataBase.createStatement();
-            String sql = "INSERT INTO empleado(id, dni, nombre, apellido, fechaAlta, "
-                    + "fechaBaja, idServicioOfrecido, esEncargado) " +
-                   "VALUES ('" + empleado.getId()+ "', '" + empleado.getDni()+ "', " + 
-                    empleado.getNombre()+ ", '" + 
-                    empleado.getApellido()+ ", '" +
-                    new Timestamp(empleado.getFechaAlta().getTime())+ ", '" +
-                    new Timestamp(empleado.getFechaBaja().getTime())+ ", '" +
-                    empleado.getIdServicioOfrecido()+ ", '"+
-                    empleado.getEsEncargado() + "')";
+            String sql = "INSERT INTO personal(dni, nombre, fechaAlta, fechaBaja, sueldo, idServicio) " +
+                   "VALUES ('" + personal.getDni()+ 
+                    "', '" + personal.getNombre()+ 
+                    "', '" + new Timestamp(personal.getFechaAlta().getTime())+ 
+                    "', '" + new Timestamp(personal.getFechaBaja().getTime())+ 
+                    "', " + personal.getSueldo() +
+                    ", " + personal.getIdServicio()+ ")";
+
             statement.executeUpdate(sql);  
             
-          } catch (SQLException ex) {
-                System.out.println("Error al introducir información en la base de datos.");
-          }  */    
+        } catch (SQLException ex) {
+            System.out.println("Error al introducir información en la tabla personal " + ex.getMessage());
+        }     
         
-        }
+    }
     
     @FXML
     public void modificar(Personal personal) {
@@ -69,19 +68,17 @@ public class DAOPersonal {
             Connection conexionDataBase =
             DriverManager.getConnection(URL_CONEXION, USUARIO_BDD, PASSWORD_BDD)){
             Statement statement = conexionDataBase.createStatement();
-            String sql = "UPDATE personal set id=" + personal.getId() + 
-                    ", dni='" + personal.getDni() + 
+            String sql = "UPDATE personal set dni='" + personal.getDni() + 
                     "', nombre='" + personal.getNombre() + 
                     "', fechaAlta='" + new Timestamp(personal.getFechaAlta().getTime()) +
                     "', fechaBaja='" + new Timestamp(personal.getFechaBaja().getTime()) +
                     "', sueldo=" + personal.getSueldo() +
-                    ", idServicio'" + personal.getIdServicio() +
-                    "' WHERE id=" + personal.getId();
+                    ", idServicio" + personal.getIdServicio() +
+                    " WHERE id=" + personal.getId();
             statement.executeUpdate(sql);
           } catch (SQLException ex) {
                 System.out.println("Error al modificar la tabla personal " + ex.getMessage());
-            }      
-            
+            }    
         }
    
     @FXML
@@ -107,7 +104,6 @@ public class DAOPersonal {
             
         while(resultset.next()){
              Personal personal = new Personal();
-             personal.setId(resultset.getInt("id"));
              personal.setDni(resultset.getString("dni"));
              personal.setNombre(resultset.getString("nombre"));
              personal.setFechaAlta(resultset.getDate("fechaAlta"));
@@ -115,13 +111,12 @@ public class DAOPersonal {
              personal.setSueldo(resultset.getDouble("sueldo"));
              personal.setIdServicio(resultset.getInt("idServicio"));
              empleados.add(personal);
+             
             }
           
         }catch (SQLException ex) {
-          System.out.println("No posible mostrar los datos de la tabla personal " + ex.getMessage());
-            System.out.println(ex.getMessage());
+          System.out.println("Error buscarTodos DAOPersonal " + ex.getMessage());
        }
         return empleados;
     }
-    
 }
