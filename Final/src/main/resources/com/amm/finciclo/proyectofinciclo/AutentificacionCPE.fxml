@@ -24,7 +24,7 @@
         <TextField fx:id="contrasena" promptText="Introduce contraseña" styleClass="light-textfield" 
                    focusTraversable="false" prefWidth="${pantallaLogin.width*0.5}" 
                    maxWidth="${pantallaLogin.width*0.5}"/>
-        <Label fx:id="etiquetaAviso" text="" style="-fx-text-fill:white;"/>
+        <Label fx:id="etiquetaAviso" styleClass="etiqueta-aviso" text=""/>
         <Button text="Autentificarse" onAction="#autentificarse"  focusTraversable="false"/>
         <Button text="Atrás" onAction="#volver"  focusTraversable="false"/>
         <HBox fx:id="contenedorRegistro" styleClass="contedor-registro" >

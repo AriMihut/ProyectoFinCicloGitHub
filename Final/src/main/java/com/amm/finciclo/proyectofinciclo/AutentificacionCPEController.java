@@ -88,10 +88,27 @@ public class AutentificacionCPEController extends ControladorConNavegabilidad im
         contenedorRegistro.setVisible(!this.layout.getRolUsuario().equals(TipoUsuario.ADMIN));
         
     }
+    
+    private void cambiarEstilosError(TextField campo) {
+        campo.getStyleClass().add("textField-error");
+        System.out.println(campo.getStyleClass());
+    }
+    
+    private void comprobarTextFieldsVaciosError(){
+        if(usuario.getText().isEmpty()){
+            cambiarEstilosError(usuario);
+        }
+        
+        if(contrasena.getText().isEmpty()){
+            cambiarEstilosError(contrasena);
+        }
+        
+    }
 
     private boolean comprobacionesUsuario() {
        
         if(!todosCamposCubiertos()) {
+            comprobarTextFieldsVaciosError();
             mostrarAviso("Todos los campos son obligatorios");
             return false;
         } else{

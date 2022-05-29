@@ -1,0 +1,7 @@
+.comboBox{
+    -fx-font-size: 12px;
+    -fx-font-weight: bold;
+    -fx-min-height: 31px;
+    -fx-text-fill: white;
+   /* -fx-pref-width: 150px;*/
+}

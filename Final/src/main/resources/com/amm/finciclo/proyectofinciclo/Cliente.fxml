@@ -19,18 +19,16 @@
 <?import javafx.geometry.Insets?>
 
 <VBox fx:id="paginaPrincipal" xmlns:fx="http://javafx.com/fxml" 
-      fx:controller="com.amm.finciclo.proyectofinciclo.ClienteController">
+      fx:controller="com.amm.finciclo.proyectofinciclo.ClienteController"
+      VBox.vgrow="ALWAYS">
     <stylesheets>
         <URL value="@/com/amm/finciclo/proyectofinciclo/css/cliente.css"/>
     </stylesheets>
-    <padding>
-        <Insets top="10" right="10" bottom="10" left="10"/>
-    </padding>
-   <VBox HBox.hgrow="ALWAYS" prefWidth="${paginaPrincipal.width}" styleClass="contenedor-titulo">
+    <VBox HBox.hgrow="ALWAYS" prefWidth="${paginaPrincipal.width}" styleClass="contenedor-titulo"  prefHeight="${paginaPrincipal.height*0.05}">
         <Label text="Sueños cumplidos - Soy Cliente" styleClass="titulo" HBox.hgrow="ALWAYS"  
                prefWidth="${paginaPrincipal.width}"/>
     </VBox>
-    <ToolBar fx:id="buttons" styleClass="buttons" HBox.hgrow="ALWAYS">   
+    <ToolBar fx:id="buttons" styleClass="buttons" HBox.hgrow="ALWAYS"  prefHeight="${paginaPrincipal.height*0.05}" maxHeight="${paginaPrincipal.height*0.1}">   
         <VBox maxWidth="${buttons.width*0.3}" prefWidth="${buttons.width*0.3}" alignment="CENTER">
             <Button styleClass="boton-accion" onAction="#comprar" text="COMPRAR" />
         </VBox>
@@ -38,60 +36,52 @@
             <Button styleClass="boton-accion" onAction="#contactar" text="CONTACTAR"/>
         </VBox>
         <VBox maxWidth="${buttons.width*0.3}" prefWidth="${buttons.width*0.3}" alignment="CENTER">
-            <Button styleClass="boton-accion" onAction="#editarPerfil" text="EDITAR PERFIL"/>
+            <Button fx:id="btnEditar" styleClass="boton-accionEditar" onAction="#editarPerfil" text="EDITAR PERFIL"/>
         </VBox>
     </ToolBar>
-    <VBox styleClass= "pantallaInfoCliente">
-        <VBox HBox.hgrow="ALWAYS" VBox.vgrow="ALWAYS">
-            <HBox fx:id="infoCliente">
-                <ImageView fitHeight="600.0" fitWidth="310.0" pickOnBounds="true" preserveRatio="true">
-                        <image>
-                           <Image url="@../../../../iconos/suenosCumplidos.png"/>
-                        </image>  
-                </ImageView>
-            <VBox fx:id="infoSobreCliente" HBox.hgrow="ALWAYS" prefHeight="${paginaPrincipal.height*0.8}"
-                 prefWidth="${paginaPrincipal.width*0.6}" alignment="CENTER" VBox.vgrow="ALWAYS">
-                    <Label styleClass="simpleLabelTitulo" alignment="CENTER" prefHeight="36.0" prefWidth="700.0" text="Mi perfil">
-                        <padding> 
-                            <Insets top="20" bottom="30"/>
-                        </padding>
-                    </Label>
-                <HBox>
-                    <VBox alignment="CENTER_LEFT" prefWidth="${infoSobreCliente.width*0.25}" >
-                        <Label fx:id="dniCliente" styleClass="simpleLabel" text="Dni:" />
-                        <Label fx:id="nombreCliente" styleClass="simpleLabel" text="Nombre:"/>
-                        <Label fx:id="apellidoCliente" styleClass="simpleLabel" text="Apellido:"/>
+    <HBox fx:id="hBoxFormulario" style="-fx-background-color: red">
+        <ImageView prefHeight="${hBoxFormulario.height}" fitWidth="310.0" pickOnBounds="true" preserveRatio="true">
+            <image>
+                <Image url="@../../../../iconos/suenosCumplidos.png"/>
+            </image>  
+        </ImageView>
+        <VBox fx:id="pantallaInfoCliente" styleClass="pantallaInfoCliente" VBox.vgrow="ALWAYS" HBox.hgrow="ALWAYS" 
+              alignment="CENTER" prefHeight="${paginaPrincipal.height*0.9}">
+            <Label styleClass="simpleLabelTitulo" alignment="CENTER" text="Mi perfil"/>
+            <HBox fx:id="infoCliente" VBox.vgrow="ALWAYS" prefWidth="${paginaPrincipal.width*0.6}" alignment="CENTER">                
+                <VBox fx:id="a" alignment="CENTER_RIGHT" prefWidth="${pantallaInfoCliente.width*0.5}" 
+                      HBox.hgrow="ALWAYS">
+                    <VBox alignment="CENTER_LEFT" prefWidth="${a.width*05}">
+                        <Label fx:id="dniCliente" styleClass="simpleLabel" text="Dni:"/>
+                        <Label fx:id="nombreCliente" styleClass="simpleLabel" text="Nombre:" />
+                        <Label fx:id="apellidoCliente" styleClass="simpleLabel" text="Apellido:" />
                         <Label fx:id="labelSexo" styleClass="simpleLabel" text="Género: "/>
-                        <Label fx:id="telefono" styleClass="simpleLabel" text="Teléfono: "/>
-                        <Label fx:id="email" styleClass="simpleLabel" text="Email: "/>
-                            <padding> 
-                                <Insets left="5"/>
-                            </padding>  
+                        <Label fx:id="telefono" styleClass="simpleLabel" text="Teléfono:" />
+                        <Label fx:id="email" styleClass="simpleLabel" text="Email: "/> 
                     </VBox>
-                    <VBox alignment="CENTER" prefWidth="${infoSobreCliente.width*0.75}" >
+                    <padding>
+                        <Insets left="70" top="-100"/>
+                    </padding>
+                </VBox>
+                <VBox fx:id="b" alignment="CENTER_RIGHT" prefWidth="${pantallaInfoCliente.width*0.5}" HBox.hgrow="ALWAYS">
+                    <VBox alignment="CENTER_LEFT" prefWidth="${b.width*07}">
                         <Label fx:id="dniClienteTexto" styleClass="simpleLabel" text=""/>
-                        <Label fx:id="nombreClienteTexto" styleClass="simpleLabel" text=""/>
-                        <Label fx:id="apellidoClienteTexto" styleClass="simpleLabel" text=""/>
+                        <Label fx:id="nombreClienteTexto" styleClass="simpleLabel" text="" />
+                        <Label fx:id="apellidoClienteTexto" styleClass="simpleLabel" text="" />
                         <Label fx:id="labelSexoTexto" styleClass="simpleLabel" text=""/>
                         <Label fx:id="telefonoTexto" styleClass="simpleLabel" text=""/>
                         <Label fx:id="emailTexto" styleClass="simpleLabel" text=""/>
-                            <padding> 
-                                <Insets right="20"/>
-                            </padding>  
                     </VBox>
-                </HBox>
-            </VBox>
+                        <padding>
+                            <Insets top="-100"/>
+                        </padding>
+                </VBox>
             </HBox>
             <HBox fx:id="edicionPerfil">
-                <ImageView fitHeight="600.0" fitWidth="310.0" pickOnBounds="true" preserveRatio="true">
-                        <image>
-                           <Image url="@../../../../iconos/suenosCumplidos.png"/>
-                        </image>  
-                </ImageView>
-                <VBox fx:id="formularioModificacion" visible="false" prefHeight="${paginaPrincipal.height*0.8}">
-                    <Label styleClass="simpleLabelTitulo" alignment="CENTER" prefHeight="36.0" prefWidth="700.0" text="Edita tu perfil">
+                 <VBox fx:id="formularioModificacion" visible="false" prefHeight="${paginaPrincipal.height*0.8}">
+                    <Label styleClass="simpleLabelTitulo" alignment="CENTER" prefHeight="36.0" prefWidth="700.0" text=" ">
                         <padding> 
-                            <Insets top="20" bottom="30"/>
+                            <Insets top="10" bottom="10"/>
                         </padding>
                     </Label>
                     <HBox>
@@ -103,7 +93,7 @@
                             <Label styleClass="simpleLabel" text="Telefono" prefHeight="${formularioModificacion.height*0.10}"/>
                             <Label styleClass="simpleLabel" text="Email" prefHeight="${formularioModificacion.height*0.10}"/>  
                             <padding> 
-                                <Insets left="20"/>
+                                <Insets left="20" top="10"/>
                             </padding>          
                         </VBox>
                         <VBox alignment="CENTER" prefWidth="${formularioModificacion.width*0.7}" spacing="31">
@@ -119,9 +109,6 @@
                                 <Insets right="20"/>
                             </padding> 
                         </VBox>
-                        <padding> 
-                            <Insets top="10" />
-                        </padding>
                     </HBox>
                     <HBox spacing="5" alignment="CENTER" maxHeight="${formularioModificacion.height*0.15}" prefHeight="${formularioModificacion.height*0.15}">
                         <Button styleClass="boton-accion" onAction="#guardar" text="GUARDAR" style="-fx-font-weight: bold;"/>
@@ -130,15 +117,22 @@
                             <Insets top="20" bottom="10"/>
                         </padding>
                     </HBox>   
-                </VBox>  
+                </VBox> 
             </HBox> 
-        </VBox> 
-    </VBox>          
+            <VBox fx:id="footer" styleClass="footer" alignment="CENTER" HBox.hgrow="ALWAYS" prefHeight="${paginaPrincipal.height*0.05}" 
+                  maxHeight="${paginaPrincipal.height*0.1}" style="-fx-background-color: darkgrey">
+                <Button onAction="#volver" focusTraversable="false">
+                    <graphic>
+                        <ImageView>
+                            <Image url="@../../../../iconos/puerta.png"/>
+                        </ImageView>
+                    </graphic>
+                </Button>  
+            </VBox>
+                <padding>
+                    <Insets top="50" bottom="0"/>
+                </padding>
+        </VBox>
+    </HBox>         
 </VBox>
-
-
-
-   
-    
-
 

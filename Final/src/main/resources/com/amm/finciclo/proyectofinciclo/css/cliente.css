@@ -1,22 +1,5 @@
-.gridPanePrincipal{
-    -fx-background-color: grey;
-    -fx-padding: 10px;
-    -fx-margin: 15px;
-    -fx-spacing: 20px;
-}
-
-.pantallaInfoCliente{
+.pantallaInfoCliente {
     -fx-background-color: darkgrey;
-}
-
-.vBoxContacto{
-    -fx-spacing: 10px;
-    -fx-alignment: top-center;
-    -fx-background-color: #6DBD96;
-    -fx-font-weight: bold;
-    -fx-font-size: 15px;
-    -fx-alignment: center;
-    -fx-text-aling: center;
 }
 
 .contenedor-titulo{
@@ -37,10 +20,8 @@
     -fx-text-aling: center;
 }
 
-.idCliente{
-    -fx-text-fill: white;
-    -fx-font-weight: bold;
-    -fx-font-size: 15px;
+.simpleLabelTitulo{
+    -fx-padding-top: 20px;
 }
 
 .comboboxSexo{
@@ -82,10 +63,6 @@
     -fx-font-size: 25px;
 }
 
-.vBoxBottom{
-    -fx-padding: 20; 
-}
-
 .buttons:hover{
     -fx-background-color: -fx-shadow-highlight-color, -fx-outer-border, -fx-inner-border;
     -fx-color: -fx-hover-base;
@@ -102,11 +79,21 @@
     -fx-font-weight: bold;
 }
 
-.botonAtrás{
-    -fx-background-color: #6DBD96;
+.boton-accionEditar{
+    -fx-background-color: grey;
+    -fx-border-color: white;
+    -fx-border-width: 3px;
+    -fx-background-radius: 30%;
+    -fx-border-radius: 25%;
+    -fx-text-fill: white;
+    -fx-margin-right: 50px;
+    -fx-font-weight: bold;
 }
 
-#formularioModificacion{
-    -fx-background-color: darkgrey;
-    -fx-margin-top: 20px;
+.footer {
+    -fx-background-color: white;
+}
+
+.infoCliente {
+    -fx-padding: 0px 0px 0px 30px;
 }

@@ -1,7 +1,6 @@
 package com.amm.finciclo.proyectofinciclo;
 
 import dao.DAOUsuario;
-import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
@@ -20,6 +19,7 @@ public class ClienteController extends ControladorConNavegabilidad implements In
     
     @FXML TextField filtroDni, filtroNombre, filtroApellido, filtroTelefono, filtroEmail;
     @FXML private ComboBox<String> comboboxSexo;
+    @FXML private Button btnEditar;
     
     @FXML private Label dniCliente, nombreCliente, apellidoCliente, labelSexo, telefono, email;
     @FXML private Label dniClienteTexto, nombreClienteTexto, apellidoClienteTexto, labelSexoTexto, telefonoTexto, emailTexto;
@@ -28,7 +28,6 @@ public class ClienteController extends ControladorConNavegabilidad implements In
     @FXML HBox infoCliente;
     //@FXML private ComboBox<Servicio> servicios;
     
-    @FXML Button atras;
     private DAOUsuario daoUsuario;
     
     private int id;
@@ -43,13 +42,9 @@ public class ClienteController extends ControladorConNavegabilidad implements In
             setDatosUsuario();
             infoCliente.managedProperty().bind(infoCliente.visibleProperty());
             formularioModificacion.managedProperty().bind(formularioModificacion.visibleProperty());
-           // infoCliente.visibleProperty().bind(infoCliente.managedProperty());
-           // formularioModificacion.visibleProperty().bind(formularioModificacion.managedProperty());
-           
+     
             configurarComboBox();
             daoUsuario = new DAOUsuario();
-            //editarPerfil();
-            //configurarServicios();
             
             comboboxSexo.setCellFactory(listView -> new ImagenListCell());
             comboboxSexo.setButtonCell(new ImagenListCell());
@@ -58,11 +53,7 @@ public class ClienteController extends ControladorConNavegabilidad implements In
             System.out.println("Error initialize DaoUsuario " + ex.getMessage());
         }
     }    
-    
-    /*private void configurarServicios(){
-        servicios.getSelectionModel().selectFirst();      
-    }*/
-     
+  
     private void configurarComboBox(){
         comboboxSexo.getItems().addAll("Femenino", "Masculino");
         comboboxSexo.getSelectionModel().selectFirst();     
@@ -117,19 +108,13 @@ public class ClienteController extends ControladorConNavegabilidad implements In
         prepararEdicionPerfil();
         infoCliente.setVisible(false);
         formularioModificacion.setVisible(true);
+        btnEditar.setDisable(true);
     }
   
     @FXML
     public void contactar(){
         this.layout.cargarPantalla("contacto", ContactoController.class.getResource("Contacto.fxml"));
         this.layout.mostrarComoPantallaActual("contacto");
-    }
-
-    
-    @FXML
-    public void volverAtras() throws IOException{
-        this.layout.cargarPantalla("autentificacion", AutentificacionCPEController.class.getResource("AutentificacionCPE.fxml"));
-        this.layout.mostrarComoPantallaActual("autentificacion");
     }
     
     public void setInfoUsuario() {
@@ -166,9 +151,18 @@ public class ClienteController extends ControladorConNavegabilidad implements In
 
     @FXML
     private void volverAInfoCliente() {
+        //aquí no vuelve a infoCliente, sino a autentificación
        infoCliente.setVisible(true);
        formularioModificacion.setVisible(false);
+       btnEditar.setDisable(false);
+    }
+    
+    @FXML
+    private void volver() {
+        this.layout.cargarPantalla("autentificacion", AutentificacionCPEController.class.getResource("AutentificacionCPE.fxml"));
+        this.layout.mostrarComoPantallaActual("autentificacion");
        
     }
     
+
 }

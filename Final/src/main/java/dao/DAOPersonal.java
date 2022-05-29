@@ -104,6 +104,7 @@ public class DAOPersonal {
             
         while(resultset.next()){
              Personal personal = new Personal();
+             personal.setId(resultset.getInt("id"));
              personal.setDni(resultset.getString("dni"));
              personal.setNombre(resultset.getString("nombre"));
              personal.setFechaAlta(resultset.getDate("fechaAlta"));
