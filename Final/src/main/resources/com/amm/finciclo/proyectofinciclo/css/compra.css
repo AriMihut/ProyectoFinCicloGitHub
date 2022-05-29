@@ -11,6 +11,14 @@
     -fx-font-size: 15px;
 }
 
+.simpleLabelTitulo{
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-font-size: 20px;
+    -fx-alignment: center;
+    -fx-text-aling: center;
+}
+
 #pantallaElegirServicios{
     -fx-spacing: 20px;
 }
@@ -85,4 +93,30 @@
 .buttons:hover{
     -fx-background-color: -fx-shadow-highlight-color, -fx-outer-border, -fx-inner-border;
     -fx-color: -fx-hover-base;
+}
+
+.contenedor-general TextField.textField-error {
+    -fx-background-color: white;
+    -fx-border-color: red;
+    -fx-text-fill: red;
+}
+
+.etiqueta-aviso {
+    -fx-text-fill: red;
+    -fx-margin-top: 20px;
+}
+
+.simpleLabelTitulo{
+    -fx-padding-top: 20px;
+    -fx-padding-bottom: 30px;
+}
+
+#formularioFinalizarCompra{
+    -fx-padding-top: 20px;
+    -fx-padding-bottom: 30px;
+}
+
+.pantallaInfoCompra{
+    -fx-padding-top: 20px;
+    -fx-padding-bottom: 30px;
 }

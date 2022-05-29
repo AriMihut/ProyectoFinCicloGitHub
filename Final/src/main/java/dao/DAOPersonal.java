@@ -75,6 +75,7 @@ public class DAOPersonal {
                     "', sueldo=" + personal.getSueldo() +
                     ", idServicio" + personal.getIdServicio() +
                     " WHERE id=" + personal.getId();
+            System.out.println("SQL modificar " + sql);
             statement.executeUpdate(sql);
           } catch (SQLException ex) {
                 System.out.println("Error al modificar la tabla personal " + ex.getMessage());
@@ -112,7 +113,6 @@ public class DAOPersonal {
              personal.setSueldo(resultset.getDouble("sueldo"));
              personal.setIdServicio(resultset.getInt("idServicio"));
              empleados.add(personal);
-             
             }
           
         }catch (SQLException ex) {

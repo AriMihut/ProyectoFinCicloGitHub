@@ -1,9 +1,6 @@
 package com.amm.finciclo.proyectofinciclo;
 
-import static com.sun.java.accessibility.util.AWTEventMonitor.addMouseListener;
 import dao.DAOMensaje;
-import java.awt.event.MouseAdapter;
-import javafx.scene.input.MouseEvent;
 import java.net.URL;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -74,8 +71,6 @@ public class MensajeController extends ControladorConNavegabilidad implements In
     
     public void configurarLabelMensaje(String texto) {
         textoMensaje.setText(texto);
-        EventosDeRaton eventos = new EventosDeRaton();
-        addMouseListener(eventos);
     }
     
     @FXML
@@ -205,10 +200,6 @@ public class MensajeController extends ControladorConNavegabilidad implements In
     }
     
     private void configurarBotonesAcciones() {
-        
-        // managed es la gestion del espacio en pantalla -> si el elemento ocupa espacio
-        //vincula la propiedad de que el elemento ocupe espacio con la visibilidad del elemento
-        // --> si boton contacto es visible, que ocupe espacio, si es invisible, que no lo ocupe.
        btnContacto.managedProperty().bind(btnContacto.visibleProperty()); 
        btnResponder.managedProperty().bind(btnResponder.visibleProperty());
        
@@ -218,17 +209,4 @@ public class MensajeController extends ControladorConNavegabilidad implements In
        btnContacto.setVisible(this.layout.getUsuario().getTipoUsuario().equals(TipoUsuario.CLIENTE)); 
     }
 }
-
-class EventosDeRaton extends MouseAdapter{
-
-    public void mouseClicked(MouseEvent e) {
-        
-        /*if(e.getEventType() == MouseEvent.MOUSE_CLICKED){
-             contenedorMensaje.setVisible(true);
-        }*/
-
-    }
-    
-}
-
 

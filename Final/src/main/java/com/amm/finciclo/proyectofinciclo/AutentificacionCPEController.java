@@ -106,7 +106,6 @@ public class AutentificacionCPEController extends ControladorConNavegabilidad im
     }
 
     private boolean comprobacionesUsuario() {
-       
         if(!todosCamposCubiertos()) {
             comprobarTextFieldsVaciosError();
             mostrarAviso("Todos los campos son obligatorios");
@@ -114,7 +113,6 @@ public class AutentificacionCPEController extends ControladorConNavegabilidad im
         } else{
             return true;
         }
-       
     }
 
     private boolean todosCamposCubiertos() {

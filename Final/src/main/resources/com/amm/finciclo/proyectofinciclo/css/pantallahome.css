@@ -8,6 +8,12 @@
     -fx-text-fill: white;
 }
 
+#pantallaBotones{
+    -fx-spacing: 50px;
+    -fx-alignment: center;
+    -fx-padding-left: 20px;
+}
+
 .simpleLabel{
     -fx-padding: 20px;
     -fx-padding-top: 20px;

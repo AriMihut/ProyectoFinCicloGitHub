@@ -30,7 +30,6 @@ public class ServicioController extends ControladorConNavegabilidad implements I
     @FXML private TableColumn<Servicio, Enum> tipoServicioColumn;
     @FXML private TableColumn<Servicio, String> nombreServicioColumn;
     @FXML private TableColumn<Servicio, Double> precioColumn;
-    @FXML private TableColumn<Servicio, Integer> idVentaColumn;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -143,7 +142,6 @@ public class ServicioController extends ControladorConNavegabilidad implements I
         tipoServicioColumn.setCellValueFactory(new PropertyValueFactory<Servicio, Enum>("tipoServicio"));
         nombreServicioColumn.setCellValueFactory(new PropertyValueFactory<Servicio, String>("nombreServicio"));
         precioColumn.setCellValueFactory(new PropertyValueFactory<Servicio, Double>("precio"));
-        idVentaColumn.setCellValueFactory(new PropertyValueFactory<Servicio, Integer>("idVenta"));
      
         List<Servicio> serviciosAMostrar = servicioDao.buscarTodos();
         servicios.addAll(serviciosAMostrar);
@@ -167,10 +165,9 @@ public class ServicioController extends ControladorConNavegabilidad implements I
         ObservableList<TableColumn<Servicio, ?>> columnas = tablaServicios.getColumns();
         
         columnas.get(0).setMaxWidth(1f * Integer.MAX_VALUE * 10); 
-        columnas.get(1).setMaxWidth(1f * Integer.MAX_VALUE * 25); 
-        columnas.get(2).setMaxWidth(1f * Integer.MAX_VALUE * 30); 
+        columnas.get(1).setMaxWidth(1f * Integer.MAX_VALUE * 30); 
+        columnas.get(2).setMaxWidth(1f * Integer.MAX_VALUE * 35); 
         columnas.get(3).setMaxWidth(1f * Integer.MAX_VALUE * 25);
-        columnas.get(4).setMaxWidth(1f * Integer.MAX_VALUE * 10);
     }
     
 }

@@ -4,6 +4,7 @@
     -fx-font-size: 30px;
     -fx-alignment: center;
     -fx-text-aling: center;
+    -fx-margin-button: 30px;
 }
 
 .simpleLabel{

@@ -12,61 +12,69 @@
 <?import javafx.scene.text.Text?>
 
 <VBox styleClass="pantallaHome" HBox.hgrow="ALWAYS" xmlns:fx="http://javafx.com/fxml/1"
-        fx:controller="com.amm.finciclo.proyectofinciclo.PantallaHomeController" prefHeight= "700" prefWidth= "700">
+        fx:controller="com.amm.finciclo.proyectofinciclo.PantallaHomeController" 
+      prefHeight= "700" prefWidth= "700" style="-fx-background-color: grey">
     <stylesheets>
         <URL value="@/com/amm/finciclo/proyectofinciclo/css/pantallahome.css"/>
     </stylesheets>
     <padding>
-        <Insets top="20" right="20" bottom="20" left="20"/>
+        <Insets top="10" right="10" bottom="10" left="20"/>
     </padding> 
-    <VBox HBox.hgrow="ALWAYS" styleClass="contenedor-titulo" prefHeight= "20">
+    <VBox HBox.hgrow="ALWAYS" styleClass="contenedor-titulo" prefHeight= "40">
         <Label text="Sueños cumplidos - Soy Administrador" styleClass="etiqueta-principal" HBox.hgrow="ALWAYS"/>
     </VBox>
-    <HBox styleClass="pantallaPrincipal" style="-fx-background-color: grey" prefHeight= "600">
-        <HBox>
-        <Label fx:id="clientes" text="Clientes: " styleClass="simpleLabel" HBox.hgrow="ALWAYS" style="-fx-text-fill: white;"/>
-        <Button styleClass="boton-accion" onAction="#verClientes">
-                <graphic>
-                    <ImageView>
-                        <Image url="@../../../../iconos/verClientes.png"/>
-                    </ImageView>
-                </graphic>
-        </Button>
-     
-        <Label fx:id="personal" text="Personal: " styleClass="simpleLabel" HBox.hgrow="ALWAYS" style="-fx-text-fill: white;"/>
-        <Button styleClass="boton-accion" onAction="#verPersonal">
-               <graphic>
-                    <ImageView>
-                        <Image url="@../../../../iconos/verPersonal.png"/>
-                    </ImageView>
-               </graphic>
-            </Button>
+    <VBox fx:id="pantallaPrincipal" styleClass="pantallaPrincipal" style="-fx-background-color: red; " 
+          prefHeight= "300">
+        <HBox HBox.hgrow="ALWAYS" prefHeight= "300" style="-fx-background-color: green">
+        <ImageView prefHeight="${pantallaPrincipal.height}" fitWidth="670.0" pickOnBounds="true" preserveRatio="true">
+            <image>
+                <Image url="@../../../../iconos/sueños3.png"/>
+            </image>  
+        </ImageView>
         </HBox>
-        <HBox>
-        <Label fx:id="servicios" text="Servicios: " styleClass="simpleLabel" HBox.hgrow="ALWAYS" style="-fx-text-fill: white;"/>
-        <Button styleClass="boton-accion" onAction="#verServicios">
-                <graphic>
-                    <ImageView>
-                        <Image url="@../../../../iconos/verServicios.png"/>
-                    </ImageView>
-                </graphic>
-        </Button>
-        
-        <Label fx:id="ventas" text="Ventas: " styleClass="simpleLabel" HBox.hgrow="ALWAYS" style="-fx-text-fill: white;"/>
-        <Button styleClass="boton-accion" onAction="#verVentas">
-                <graphic>
-                    <ImageView>
-                        <Image url="@../../../../iconos/verVentas.png"/>
-                    </ImageView>
-                </graphic>
-        </Button>
-        </HBox>
-        <!--<HBox>
-        <Label text="Calendario" styleClass="calendario"/> 
-        <DatePicker/>
-        </HBox>-->
-    </HBox>
-    <VBox alignment="CENTER" HBox.hgrow="ALWAYS" prefHeight= "20" styleClass="botonAtrás" 
+            <Label styleClass="simpleLabelTitulo" alignment="CENTER" text=" "/>
+            <HBox fx:id="infoBotones" VBox.vgrow="ALWAYS" alignment="CENTER" style="-fx-background-color: green">                
+                    <VBox alignment="CENTER_LEFT" prefWidth="${infoBotones.width*0.5}" style="-fx-background-color: black">
+                        <Label fx:id="clientes" text="Clientes: " styleClass="simpleLabel" HBox.hgrow="ALWAYS" style="-fx-text-fill: white;"/>
+                        <Button styleClass="boton-accion" onAction="#verClientes">
+                                <graphic>
+                                    <ImageView>
+                                        <Image url="@../../../../iconos/verClientes.png"/>
+                                    </ImageView>
+                                </graphic>
+                        </Button>
+
+                        <Label fx:id="personal" text="Personal: " styleClass="simpleLabel" HBox.hgrow="ALWAYS" style="-fx-text-fill: white;"/>
+                        <Button styleClass="boton-accion" onAction="#verPersonal">
+                               <graphic>
+                                    <ImageView>
+                                        <Image url="@../../../../iconos/verPersonal.png"/>
+                                    </ImageView>
+                               </graphic>
+                            </Button>
+                    </VBox>
+                    <VBox alignment="CENTER_RIGHT" prefWidth="${infoBotones.width*0.5}">
+                       <Label fx:id="servicios" text="Servicios: " styleClass="simpleLabel" HBox.hgrow="ALWAYS" style="-fx-text-fill: white;"/>
+                        <Button styleClass="boton-accion" onAction="#verServicios">
+                                <graphic>
+                                    <ImageView>
+                                        <Image url="@../../../../iconos/verServicios.png"/>
+                                    </ImageView>
+                                </graphic>
+                        </Button>
+
+                        <Label fx:id="ventas" text="Ventas: " styleClass="simpleLabel" HBox.hgrow="ALWAYS" style="-fx-text-fill: white;"/>
+                        <Button styleClass="boton-accion" onAction="#verVentas">
+                                <graphic>
+                                    <ImageView>
+                                        <Image url="@../../../../iconos/verVentas.png"/>
+                                    </ImageView>
+                                </graphic>
+                        </Button>
+                    </VBox>  
+            </HBox>   
+    </VBox>                 
+    <VBox alignment="CENTER" HBox.hgrow="ALWAYS" prefHeight= "40" styleClass="botonAtrás" 
           style="-fx-background-color: #6DBD96">
             <Button onAction="#atras" focusTraversable="false" style="-fx-text-fill: grey;">
                 <graphic>
@@ -77,3 +85,8 @@
             </Button>  
     </VBox>
 </VBox>
+
+
+
+                       
+     

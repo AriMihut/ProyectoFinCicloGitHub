@@ -23,16 +23,8 @@ int id;
 
 @Override
     public void initialize(URL url, ResourceBundle rb) {
-
-    /*try {
-       aceptar();
-    } catch (IOException ex) {
-        System.out.println("Error en el initialize de RegistroController " + ex.getMessage());
-        } catch (SQLException ex) {
-        Logger.getLogger(RegistroController.class.getName()).log(Level.SEVERE, null, ex);
-        }*/
+        
     }
-    
     
     private boolean comprobarContraseñasCoincidentes(){
         return repetirContrasena.getText().equals(contrasena.getText());

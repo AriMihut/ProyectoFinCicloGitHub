@@ -8,6 +8,7 @@
     -fx-alignment: center;
     -fx-text-aling: center;
 }
+
 #paginaPrincipal{
     -fx-spacing: 20px;
     -fx-background-color: #6DBD96;
@@ -17,6 +18,7 @@
     -fx-alignment: center;
     -fx-font-weight: bold;
     -fx-spacing: 20px;
+    -fx-padding-top: 50px;
 }
 
 .contenedor-general .button {
@@ -49,3 +51,13 @@
     -fx-border-color: white;
     -fx-prompt-text-fill: white;
 }
+
+.etiqueta-principal{
+    -fx-font-weight: bold;
+    -fx-font-size: 30px;
+    -fx-text-fill: white;
+    -fx-alignment: center;
+    -fx-text-aling: center;
+}
+
+

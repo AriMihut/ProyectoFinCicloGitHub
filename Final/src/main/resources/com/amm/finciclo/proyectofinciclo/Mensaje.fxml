@@ -24,7 +24,7 @@
         <URL value="@/com/amm/finciclo/proyectofinciclo/css/mensaje.css"/>
     </stylesheets> 
     <top>
-        <HBox styleClass="titulo" style="-fx-background-color: #6DBD96" minHeight="60">
+        <HBox styleClass="titulo" style="-fx-background-color: darkgrey" minHeight="60">
             <Text styleClass="textoTitulo" text="Sueños cumplidos - Mensajes" fill="white" style="-fx-font-weight: bold;">
                 <font>
                     <Font name="Cambria" size="30"/>
@@ -33,7 +33,9 @@
         </HBox> 
     </top>
     <center>
-        <VBox fx:id="mensajes" styleClass="vBoxMensajes" spacing="10" style="-fx-background-color: grey">
+        <VBox fx:id="mensajes" styleClass="vBoxMensajes" spacing="10" 
+              VBox.vgrow="ALWAYS" HBox.hgrow="ALWAYS" style="-fx-background-color: #6DBD96">
+            <VBox VBox.vgrow="ALWAYS">
             <TableView fx:id="tablaMensajes" styleClass="tablaMensaje">
                 <columns>
                     <TableColumn fx:id="idMensajeColumn" text="Id"/>
@@ -54,6 +56,7 @@
                 <Button fx:id="btnContacto" text="Contactar" onAction="#contactar" focusTraversable="false" style="-fx-alignment: center;"/>  
                 <Button fx:id="btnResponder" text="Responder" onAction="#responder" focusTraversable="false" style="-fx-alignment: center;" visible="false"/> 
             </HBox> 
+            </VBox>
         </VBox>
     </center>   
     <bottom>

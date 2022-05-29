@@ -10,28 +10,34 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.image.Image?>
 
 <VBox fx:id="paginaPrincipal" xmlns:fx="http://javafx.com/fxml/1" HBox.hgrow="ALWAYS"
         fx:controller="com.amm.finciclo.proyectofinciclo.EmpleadoController">
     <stylesheets>
         <URL value="@/com/amm/finciclo/proyectofinciclo/css/empleado.css"/>
     </stylesheets>
-    <VBox fx:id="panelEmpleado" visible="true">
-         <HBox styleClass="titulo" style="-fx-background-color: darkgrey" minHeight="60">
-            <Text styleClass="textoTitulo" text="Sueños cumplidos - Soy Empleado">
-                <font>
-                    <Font name="Cambria" size="30"/>
-                </font>
-            </Text>
-        </HBox>
-        <VBox styleClass="contenedor-general" VBox.vgrow="ALWAYS" >
+    <VBox fx:id="panelTitulo" HBox.hgrow="ALWAYS" prefWidth="${paginaPrincipal.width}" style="-fx-background-color: darkgrey" minHeight="60" styleClass="contenedor-titulo" >
+        <Label text="Sueños cumplidos - Soy Empleado" styleClass="etiqueta-principal" HBox.hgrow="ALWAYS"  
+                prefWidth="${paginaPrincipal.width}"/>
+    </VBox>
+    <VBox fx:id="panelEmpleado" visible="true" VBox.vgrow="ALWAYS">
+        <VBox styleClass="contenedor-general" VBox.vgrow="ALWAYS">
             <Button fx:id="btnMensajes" text="Mensajes" onAction="#mostrarMensajes" focusTraversable="false" style="-fx-alignment: center;"/> 
             <Button fx:id="btnServicios" text="Servicios" onAction="#mostrarServicios" focusTraversable="false" style="-fx-alignment: center;"/>
-            <Button styleClass="botonAtrás" onAction="#atras" text="Volver atrás" focusTraversable="false"/>  
+            <Button fx:id="volverAtrasEnEmpleado" styleClass="botonAtrás" onAction="#volverAtrasEnEmpleado" text="Volver atrás" focusTraversable="false"/>  
         </VBox>  
     </VBox>  
     <HBox fx:id="panelPrincipal" visible="false"/>
+    <VBox fx:id="footer" styleClass="footer" alignment="CENTER" HBox.hgrow="ALWAYS" prefHeight="${paginaPrincipal.height*0.05}" 
+        maxHeight="${paginaPrincipal.height*0.1}" visible="false" style="-fx-background-color: darkgrey">
+      <Button onAction="#atras" focusTraversable="false">
+          <graphic>
+              <ImageView>
+                  <Image url="@../../../../iconos/puerta.png"/>
+              </ImageView>
+          </graphic>
+      </Button>  
+  </VBox>
 </VBox>
-
-
-

@@ -16,18 +16,21 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.ToolBar;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.util.Callback;
 
 public class CompraController extends ControladorConNavegabilidad implements Initializable{
     
     private @FXML TextField filtroNombre, filtroApellidos, filtroTelefono, filtroEmail, 
-            filtroNumeroTarjeta, filtroCVVTarjeta, filtroValidezTarjeta;
+            filtroNumeroTarjeta, filtroCVVTarjeta;
+    private @FXML DatePicker filtroValidezTarjeta;
     private @FXML Button btnAnadir, btnDescartar;
     private @FXML ComboBox<Servicio> comboServicios;
     private @FXML ToolBar buttons;
@@ -35,12 +38,11 @@ public class CompraController extends ControladorConNavegabilidad implements Ini
             cvvTarjetaError, validezTarjetaError;
     private @FXML Label etiquetaAviso;
     private @FXML ListView servicioListView;
-    private @FXML VBox formularioFinalizarCompra, pantallaElegirServicios;
+    private @FXML VBox pantallaElegirServicios;
+    private @FXML HBox formularioFinalizarCompra;
     
     private DAOServicio servicioDao;
     private DAOVenta ventaDao;
-    
-    
   
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -138,6 +140,12 @@ public class CompraController extends ControladorConNavegabilidad implements Ini
             
            
         } else {
+           cambiarEstilosError(filtroNombre);
+           cambiarEstilosError(filtroApellidos);
+           cambiarEstilosError(filtroTelefono);
+           cambiarEstilosError(filtroEmail);
+           cambiarEstilosError(filtroNumeroTarjeta);
+           cambiarEstilosError(filtroCVVTarjeta);
            
             mostrarAviso("Todos los campos deben estar correctamente cubiertos");
             System.out.println("El pago no se ha podido finalizar. Por favor, inténtelo de nuevo. "
@@ -148,35 +156,12 @@ public class CompraController extends ControladorConNavegabilidad implements Ini
             validezEmail.setVisible(!esEmailCorrecto());
             validezNTarjetaError.setVisible(!esLimiteDigitosCorrecto());
             cvvTarjetaError.setVisible(!esCVVCorrecto());
-          // validezTarjetaError.setVisible(!esApellidoCorrecto());
         }
-        
-        /*else if(!validarNombre("")){
-         mostrarAviso("El nombre debe incluir solamante letras!");
-        }
-        else if(!validarApellido("")){
-         mostrarAviso("El apellido debe incluir solamante letras! El primer apellido debe estar separado del segundo por un espacio");
-        }
-        else if(!validarTelefono("")){
-         mostrarAviso("El teléfono debe incluir solamante 9 números!");
-        }
-        else if(!validarEmail("")){
-         mostrarAviso("El email debe incluir un @ y un .!");
-        }
-        else if(!limitarDigitosTargeta("")){
-         mostrarAviso("El número de tarjeta debe incluir solamante 16 dígitos!");
-        }
-        else if(!validarCVV("")){
-         mostrarAviso("El CVV debe incluir solamante 3 dígitos!");
-        }
-        else if(!validarFecha("")){
-         mostrarAviso("La fecha debe tener el formato: yyyy-MM-dd!");
-        }
-        else{
-            mostrarAviso("Todos los campos deben estar cubiertos");
-            System.out.println("El pago no se ha podido finalizar. Por favor, inténtelo de nuevo. "
-                    + "Si vuelve a tener el mismo error, contacte con su banco. Muchas gracias!");
-        }*/
+    }
+    
+    private void cambiarEstilosError(TextField campo) {
+        campo.getStyleClass().add("textField-error");
+        System.out.println(campo.getStyleClass());
     }
    
     @FXML
@@ -193,8 +178,8 @@ public class CompraController extends ControladorConNavegabilidad implements Ini
     
     @FXML
     public void volverAPantallaElegirServicios(){
-        formularioFinalizarCompra.setVisible(false);
         pantallaElegirServicios.setVisible(true);
+        formularioFinalizarCompra.setVisible(false);
     }
 
     private void configurarBotones() {
@@ -231,13 +216,13 @@ public class CompraController extends ControladorConNavegabilidad implements Ini
     private boolean todosCamposCubiertos() {
         return !filtroNombre.getText().isEmpty() && !filtroApellidos.getText().isEmpty() && !filtroTelefono.getText().isEmpty() 
                 && !filtroEmail.getText().isEmpty() && !filtroNumeroTarjeta.getText().isEmpty() && !filtroCVVTarjeta.getText().isEmpty()
-                && !filtroValidezTarjeta.getText().isEmpty();
+                && !filtroValidezTarjeta.getAccessibleText().isEmpty();
     }
     
     public void clear(){
         filtroNumeroTarjeta.clear();
         filtroCVVTarjeta.clear();
-        filtroValidezTarjeta.clear();
+        filtroValidezTarjeta.setValue(null);
         comboServicios.setValue(null);
         servicioListView.getItems().clear();
         labelCantidad.setText(null);
@@ -259,7 +244,7 @@ public class CompraController extends ControladorConNavegabilidad implements Ini
 
     private String getCodigoConjunto() {
         LocalDateTime fecha = LocalDateTime.now();
-       return fecha.toString().replaceAll("[^0-9]", "").substring(0, 14);
+        return fecha.toString().replaceAll("[^0-9]", "").substring(0, 14);
     }
     
     private boolean esLimiteDigitosCorrecto(){

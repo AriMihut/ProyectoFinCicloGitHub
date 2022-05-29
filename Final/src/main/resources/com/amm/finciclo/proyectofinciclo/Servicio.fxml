@@ -43,7 +43,6 @@
                     <TableColumn fx:id="tipoServicioColumn" text="tipoServicio"/>
                     <TableColumn fx:id="nombreServicioColumn" text="nombreServicio"/>
                     <TableColumn fx:id="precioColumn" text="precio"/>
-                    <TableColumn fx:id="idVentaColumn" text="idVenta"/>
                 </columns>
             </TableView>
         </StackPane>
@@ -53,10 +52,10 @@
             <GridPane styleClass="gridPaneDatos" hgap="20" vgap="20" style="-fx-background-color: grey">
                 <Text text="Elije tipo servicio: " fill="white" styleClass="simpleLabel" 
                       style="-fx-font-weight: bold;" 
-                      GridPane.rowIndex="2" GridPane.columnIndex="1"/>
+                      GridPane.rowIndex="3" GridPane.columnIndex="3"/>
                 <HBox prefHeight="40.0" prefWidth="100.0" spacing="15" 
-                    GridPane.columnIndex="1" GridPane.rowIndex="3"
-                    GridPane.columnSpan="9">
+                    GridPane.columnIndex="2" GridPane.rowIndex="4"
+                    GridPane.columnSpan="15">
                     <fx:define>
                         <ToggleGroup fx:id="group" />
                     </fx:define>
@@ -94,14 +93,12 @@
                         </RadioButton>
                     </children>
                 </HBox> 
-                <Label styleClass="simpleLabel" text="Nombre servicio" GridPane.rowIndex="1" GridPane.columnIndex="1"/>
-                <TextField fx:id="nombreServicio" GridPane.rowIndex="1" GridPane.columnIndex="2"/>
-                <Label styleClass="simpleLabel" text="Precio" GridPane.rowIndex="1" GridPane.columnIndex="3"/>
-                <TextField fx:id="precio" GridPane.rowIndex="1" GridPane.columnIndex="4"/>
-                <Label styleClass="simpleLabel" text="IdVenta" GridPane.rowIndex="2" GridPane.columnIndex="3"/>
-                <TextField fx:id="idVenta" GridPane.rowIndex="2" GridPane.columnIndex="4"/>
+                <Label styleClass="simpleLabel" text="Nombre servicio" GridPane.rowIndex="1" GridPane.columnIndex="3"/>
+                <TextField fx:id="nombreServicio" GridPane.rowIndex="1" GridPane.columnIndex="4"/>
+                <Label styleClass="simpleLabel" text="Precio" GridPane.rowIndex="2" GridPane.columnIndex="3"/>
+                <TextField fx:id="precio" GridPane.rowIndex="2" GridPane.columnIndex="4"/>
                 <ToolBar styleClass="buttons" HBox.hgrow= "ALWAYS" GridPane.rowIndex="5" 
-                         GridPane.columnIndex="3" 
+                         GridPane.columnIndex="4" 
                          GridPane.columnSpan="9" >
                     <Button styleClass="boton-accion" onAction="#anadir" GridPane.rowIndex="1" 
                             GridPane.columnIndex="0">
