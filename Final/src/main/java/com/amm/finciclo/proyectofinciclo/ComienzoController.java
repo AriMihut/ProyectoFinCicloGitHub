@@ -16,10 +16,9 @@ public class ComienzoController extends ControladorConNavegabilidad implements I
     
     @FXML private Button botonCliente;
     @FXML private Button botonEmpleado;
-    @FXML private Button botonProveedor;
     @FXML private Button botonAdministrador;
-    DAOCliente cliente;
-    DAOPersonal empleado;
+    private DAOCliente cliente;
+    private DAOPersonal empleado;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {

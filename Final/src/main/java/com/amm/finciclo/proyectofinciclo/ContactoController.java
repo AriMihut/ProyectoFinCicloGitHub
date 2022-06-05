@@ -24,8 +24,7 @@ public class ContactoController extends ControladorConNavegabilidad implements I
     @FXML private HBox infoParaEmpleado;
     @FXML private Label nombreCliente;
     
-    
-    DAOMensaje mensajeDao;
+    private DAOMensaje mensajeDao;
     
     private String idDestinatarioParaEmpleado = "";
     private String idMensajeAresponder = "";
@@ -72,7 +71,9 @@ public class ContactoController extends ControladorConNavegabilidad implements I
      @FXML
     public void verMensajes() throws IOException{
         this.layout.cargarPantalla("mensaje", MensajeController.class.getResource("Mensaje.fxml"));
-        ((MensajeController) this.layout.getCotroller("mensaje")).mostrar();
+        MensajeController mensajeControlador = (MensajeController) this.layout.getCotroller("mensaje");
+        mensajeControlador.mostrar();
+        mensajeControlador.hacerFooterVisible();
         this.layout.mostrarComoPantallaActual("mensaje");
         
     }

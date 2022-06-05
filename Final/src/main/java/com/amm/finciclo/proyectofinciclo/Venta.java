@@ -1,46 +1,48 @@
 package com.amm.finciclo.proyectofinciclo;
 
-import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashSet;
+
 
 public class Venta {
     
     private String codigoConjunto;
     private int idUsuario;
     private String nombreUsuario;
-    private ArrayList<String> nombreServicios;
+    private HashSet<String> nombreServicios;
     private Date fechaVenta;
     private double valorTotalVenta;
-    private int idServicio;
+   // private String nombreServicio;
 
     public Venta() {
     }
 
-    public Venta(String codigoConjunto, Date fechaVenta, double valorTotalVenta, int idUsuario, String nombreUsuario) {
+    public Venta(String codigoConjunto, Date fechaVenta, double valorTotalVenta, int idUsuario, String nombreUsuario, String nombreServicio) {
         this.codigoConjunto = codigoConjunto;
         this.idUsuario = idUsuario;
-         this.nombreUsuario = nombreUsuario;
-        this.nombreServicios = new ArrayList<>();
+        this.nombreUsuario = nombreUsuario;
+        this.nombreServicios = new HashSet<>();
         this.fechaVenta = fechaVenta;
         this.valorTotalVenta = valorTotalVenta;
+        this.nombreServicios.add(nombreServicio);
        
     }
     
-    public Venta(int idUsuario, String codigoConjunto, int idServicio, double valorTotalVenta) {
+   /* public Venta(int idUsuario, String codigoConjunto, int idServicio, double valorTotalVenta) {
         this.idUsuario = idUsuario;
         this.codigoConjunto = codigoConjunto;
         this.idServicio = idServicio;
         this.valorTotalVenta = valorTotalVenta;
        
-    }
+    }*/
 
-    public int getIdServicio() {
+   /* public int getIdServicio() {
         return idServicio;
     }
 
     public void setIdServicio(int idServicio) {
         this.idServicio = idServicio;
-    }
+    }*/
 
     public String getCodigoConjunto() {
         return codigoConjunto;
@@ -66,11 +68,11 @@ public class Venta {
         this.nombreUsuario = nombreUsuario;
     }
 
-    public ArrayList<String> getNombreServicios() {
+    public HashSet<String> getNombreServicios() {
         return nombreServicios;
     }
 
-    public void setNombreServicios(ArrayList<String> nombreServicio) {
+    public void setNombreServicios(HashSet<String> nombreServicio) {
         this.nombreServicios = nombreServicio;
     }
 

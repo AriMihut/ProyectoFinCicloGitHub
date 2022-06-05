@@ -9,12 +9,13 @@ import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
+import javafx.scene.control.PasswordField;
 
 public class RegistroController extends ControladorConNavegabilidad implements Initializable {
 
 @FXML private TextField usuario;
-@FXML private TextField contrasena;
-@FXML private TextField repetirContrasena;
+@FXML private PasswordField contrasena;
+@FXML private PasswordField repetirContrasena;
 @FXML private Label etiquetaAviso;
 
 private DAOUsuario usuarioDao;

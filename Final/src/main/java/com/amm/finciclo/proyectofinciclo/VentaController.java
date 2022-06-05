@@ -4,6 +4,7 @@ import dao.DAOVenta;
 import java.net.URL;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 import java.util.ResourceBundle;
 import java.util.stream.Collectors;
@@ -31,7 +32,7 @@ public class VentaController extends ControladorConNavegabilidad implements Init
     @FXML private TableColumn<Venta, DatePicker> fechaVentaColumn;
     @FXML private TableColumn<Venta, Double> valorTotalVentaColumn;
     @FXML private TableColumn<Venta, String> nombreUsuarioColumn;
-    @FXML private TableColumn<Venta, ArrayList<String>> nombreServiciosColumn;
+    @FXML private TableColumn<Venta, HashSet<String>> nombreServiciosColumn;
    
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -59,10 +60,10 @@ public class VentaController extends ControladorConNavegabilidad implements Init
         fechaVentaColumn.setCellValueFactory(new PropertyValueFactory<Venta, DatePicker>("fechaVenta"));
         valorTotalVentaColumn.setCellValueFactory(new PropertyValueFactory<Venta, Double>("valorTotalVenta"));
         nombreUsuarioColumn.setCellValueFactory(new PropertyValueFactory<Venta, String>("nombreUsuario"));
-        nombreServiciosColumn.setCellValueFactory(new PropertyValueFactory<Venta, ArrayList<String>>("nombreServicios"));
-        nombreServiciosColumn.setCellFactory(tc -> new TableCell<Venta, ArrayList<String>>() {
+        nombreServiciosColumn.setCellValueFactory(new PropertyValueFactory<Venta, HashSet<String>>("nombreServicios"));
+        nombreServiciosColumn.setCellFactory(tc -> new TableCell<Venta, HashSet<String>>() {
           @Override
-            protected void updateItem(ArrayList<String> nombresServicios, boolean empty) {
+            protected void updateItem(HashSet<String> nombresServicios, boolean empty) {
             super.updateItem(nombresServicios, empty);
             if(!empty && nombresServicios != null) {
                 setText(nombresServicios.size() + " servicios");

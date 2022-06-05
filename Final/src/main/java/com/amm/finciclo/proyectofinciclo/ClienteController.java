@@ -18,7 +18,7 @@ import javafx.scene.layout.VBox;
 
 public class ClienteController extends ControladorConNavegabilidad implements Initializable {
     
-    @FXML TextField filtroDni, filtroNombre, filtroApellido, filtroTelefono, filtroEmail;
+    @FXML private TextField filtroDni, filtroNombre, filtroApellido, filtroTelefono, filtroEmail;
     @FXML private ComboBox<String> comboboxSexo;
     @FXML private Button btnEditar;
     
@@ -33,7 +33,7 @@ public class ClienteController extends ControladorConNavegabilidad implements In
     private DAOUsuario daoUsuario;
     
     private int id;
-    Usuario usuario = null;
+    private Usuario usuario = null;
     
     private Cliente clientesAModificar;
     private ObservableList<Cliente> clientes = FXCollections.observableArrayList();

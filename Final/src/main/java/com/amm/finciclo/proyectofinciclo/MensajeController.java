@@ -88,6 +88,11 @@ public class MensajeController extends ControladorConNavegabilidad implements In
         configurarBotonesAcciones();
         configurarCeldas();
         cargarMensajes();
+        
+    }
+    
+    public void hacerFooterVisible() {
+        footerMensaje.setVisible(true);
     }
     
     private void cargarMensajes() {

@@ -89,6 +89,7 @@ public class ServicioController extends ControladorConNavegabilidad implements I
     @FXML
     public void prepararModificar(){
         Servicio servicio = tablaServicios.getSelectionModel().getSelectedItem();
+        System.out.println("tipoServ = " + servicio.getTipoServicio());
         servicio.getTipoServicio();
         switch(servicio.getTipoServicio().toString()) {
             case "CEREMONIA" :
@@ -97,7 +98,7 @@ public class ServicioController extends ControladorConNavegabilidad implements I
             case "GASTRONOMIA" :
                 GASTRONOMIA.setSelected(true);
                 break;
-            case "MÚSICA" :
+            case "MUSICA" :
                 MUSICA.setSelected(true);
                 break;
             case "FOTOGRAFIA" :

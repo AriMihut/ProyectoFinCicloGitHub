@@ -21,7 +21,7 @@
         <TextField fx:id="usuario" promptText="Introduce nombre de usuario"  styleClass="dark-textfield" 
                    focusTraversable="false" prefWidth="${pantallaLogin.width*0.5}" 
                    maxWidth="${pantallaLogin.width*0.5}"/>
-        <TextField fx:id="contrasena" promptText="Introduce contraseña" styleClass="light-textfield" 
+        <PasswordField fx:id="contrasena" promptText="Introduce contraseña" styleClass="light-textfield" 
                    focusTraversable="false" prefWidth="${pantallaLogin.width*0.5}" 
                    maxWidth="${pantallaLogin.width*0.5}"/>
         <Label fx:id="etiquetaAviso" styleClass="etiqueta-aviso" text=""/>

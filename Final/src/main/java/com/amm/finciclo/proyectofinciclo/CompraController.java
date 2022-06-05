@@ -3,6 +3,7 @@ package com.amm.finciclo.proyectofinciclo;
 import dao.DAOServicio;
 import dao.DAOVenta;
 import java.net.URL;
+import java.sql.Date;
 import java.sql.SQLException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -40,7 +41,7 @@ public class CompraController extends ControladorConNavegabilidad implements Ini
     private @FXML Label labelCantidad, nombreError, apellidoError, validezTelefonoError, validezEmail, validezNTarjetaError, 
             cvvTarjetaError, validezTarjetaError;
     private @FXML Label etiquetaAviso;
-    private @FXML ListView servicioListView;
+    private @FXML ListView<Servicio> servicioListView;
     private @FXML VBox pantallaElegirServicios;
     private @FXML HBox formularioFinalizarCompra;
     
@@ -134,10 +135,13 @@ public class CompraController extends ControladorConNavegabilidad implements Ini
                    
             
             servicioListView.getItems().forEach(servicio -> {
-                ventaDao.anadir(new Venta(this.layout.getUsuario().getId(), 
-                    getCodigoConjunto(),
-                    ((Servicio) servicio).getId(),
-                    ((Servicio) servicio).getPrecio()));
+                ventaDao.anadir(new Venta(getCodigoConjunto(), 
+                    null,
+                    Double.parseDouble(labelCantidad.getText()),
+                    this.layout.getUsuario().getId(),
+                    this.layout.getUsuario().getNombreUsuario(),
+                    ((Servicio) servicio).getNombreServicio()
+                ));
             });
             clear();
             mostrarAviso("Compra realizada con éxito. Muchas gracias!");

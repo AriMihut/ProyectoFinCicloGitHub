@@ -21,9 +21,9 @@
         <Label text="FORMULARIO DE REGISTRO" styleClass="label_registro"/>
         <TextField fx:id="usuario" promptText="Usuario" focusTraversable="false" 
                    prefWidth="${pantallaRegistro.width*0.5}" maxWidth="${pantallaRegistro.width*0.5}"/>
-        <TextField fx:id="contrasena" promptText="Contraseña" focusTraversable="false" 
+        <PasswordField fx:id="contrasena" promptText="Contraseña" focusTraversable="false" 
                    prefWidth="${pantallaRegistro.width*0.5}" maxWidth="${pantallaRegistro.width*0.5}"/>
-        <TextField fx:id="repetirContrasena" promptText="Repetir contraseña" 
+        <PasswordField fx:id="repetirContrasena" promptText="Repetir contraseña" 
                    focusTraversable="false" prefWidth="${pantallaRegistro.width*0.5}" maxWidth="${pantallaRegistro.width*0.5}"/>
         <Label fx:id="etiquetaAviso" text="" styleClass="etiqueta-aviso" visible="false"/>
         <HBox styleClass="contedor-botones">
