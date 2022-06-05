@@ -45,6 +45,7 @@ int id;
         if(compobacionesUsuario()){
             guardarUsuario(usuario.getText(), contrasena.getText());
             navegarSegunTipoUsuario();
+            limpiar();
         }       
     }
     
@@ -88,6 +89,7 @@ int id;
     
     @FXML
     public void volverAtras()  throws IOException {
+        limpiar();
         this.layout.cargarPantalla("autentificacion", ClienteController.class.getResource("AutentificacionCPE.fxml"));
         this.layout.mostrarComoPantallaActual("autentificacion");
     }
@@ -115,6 +117,12 @@ int id;
                 break;
         }
       
+    }
+    
+    private void limpiar() {
+        usuario.clear();
+        contrasena.clear();
+        repetirContrasena.clear();
     }
 
 }

@@ -3,5 +3,30 @@
     -fx-font-weight: bold;
     -fx-min-height: 31px;
     -fx-text-fill: white;
-   /* -fx-pref-width: 150px;*/
+}
+
+.textField-error {
+    -fx-background-color: white;
+    -fx-border-color: red;
+    -fx-border-width: 2px;
+    -fx-text-fill: red;
+    
+}
+
+.label-error {
+    -fx-background-color: white;
+    -fx-border-color: red;
+    -fx-border-width: 2px;
+    -fx-text-fill: red;
+    
+}
+
+.label-error .text {
+    -fx-text-fill: red;
+    -fx-fill: red;
+    
+}
+
+.etiqueta-aviso{
+    -fx-text-fill: red;
 }

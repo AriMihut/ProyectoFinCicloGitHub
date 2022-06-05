@@ -123,16 +123,17 @@ public class ServicioController extends ControladorConNavegabilidad implements I
         mostrar();
     }
     
-    @FXML
-    public void atras(){
+    /*@FXML
+    public void volver(){
         if(this.layout.getUsuario().getTipoUsuario().equals(TipoUsuario.ADMIN)){
             this.layout.cargarPantalla("pagHome", PantallaHomeController.class.getResource("PantallaHome.fxml"));
             this.layout.mostrarComoPantallaActual("pagHome");
         } else if(this.layout.getUsuario().getTipoUsuario().equals(TipoUsuario.EMPLEADO)) {
+            System.out.println("tipoUsuario = > " + this.layout.getUsuario().getTipoUsuario());
             this.layout.cargarPantalla("empleado", EmpleadoController.class.getResource("Empleado.fxml"));
             this.layout.mostrarComoPantallaActual("empleado");
         }
-    }
+    }*/
 
     public void mostrar() {
         

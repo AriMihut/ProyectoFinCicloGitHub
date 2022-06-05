@@ -45,12 +45,6 @@ public class VentaController extends ControladorConNavegabilidad implements Init
             System.out.println("Error en el initialize venta " + ex.getMessage());
         }
     }
-    
-    @FXML
-    public void atras(){
-        this.layout.cargarPantalla("pagHome", PantallaHomeController.class.getResource("PantallaHome.fxml"));
-        this.layout.mostrarComoPantallaActual("pagHome");
-    }
 
     public void mostrar() {
         tablaVentas.getItems().clear();

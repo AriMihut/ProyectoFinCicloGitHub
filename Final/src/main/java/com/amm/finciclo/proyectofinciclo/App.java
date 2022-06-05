@@ -11,12 +11,13 @@ public class App extends Application {
     public void start(Stage stage) throws IOException {
     
         LayoutPane layoutPane = new LayoutPane();
+        layoutPane.getStylesheets().add("general.css");
         layoutPane.cargarPantalla("comienzo", ComienzoController.class.getResource("Comienzo.fxml"));
         layoutPane.cargarPantalla("autentificacion", AutentificacionCPEController.class.getResource("AutentificacionCPE.fxml"));
         layoutPane.cargarPantalla("registro", RegistroController.class.getResource("Registro.fxml"));
         
         layoutPane.mostrarComoPantallaActual("comienzo");
-     
+        
         Scene escena = new Scene(layoutPane, 700, 700);
         stage.setScene(escena);
         stage.show();

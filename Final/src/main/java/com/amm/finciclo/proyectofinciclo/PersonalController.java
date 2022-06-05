@@ -119,11 +119,6 @@ public class PersonalController extends ControladorConNavegabilidad implements I
         personalDao.eliminar(personal);
         mostrar();
     }
-    
-    public void atras() throws IOException{
-        this.layout.cargarPantalla("pagHome", PantallaHomeController.class.getResource("PantallaHome.fxml"));
-        this.layout.mostrarComoPantallaActual("pagHome");
-    }
 
     private void mostrar() {
         

@@ -25,12 +25,10 @@ public class AutentificacionCPEController extends ControladorConNavegabilidad im
     public void initialize(URL url, ResourceBundle rb) {
         
        try {
-      
-        usuarioDao = new DAOUsuario();
-        
-        } catch (SQLException ex) {
+            usuarioDao = new DAOUsuario();
+       } catch (SQLException ex) {
             System.out.println("Error AutentificacionCPEController: " + ex.getMessage());
-        } 
+       } 
     }    
 
     @FXML
@@ -42,10 +40,10 @@ public class AutentificacionCPEController extends ControladorConNavegabilidad im
                 this.layout.setUsuario(usuarios.get(0));
                 cargarPantallaSegunTipoUsuario(usuarios.get(0).getTipoUsuario());
                 navegarSegunTipoUsuario();
-            } 
-            else {
+                limpiar();                
+            } else {
                  mostrarAviso("El usuario o la contraseña están erróneos");
-             }
+            }
         }
         else{
             mostrarAviso("Todos los campos deben estar cubiertos!");
@@ -60,9 +58,6 @@ public class AutentificacionCPEController extends ControladorConNavegabilidad im
                 break;
             case EMPLEADO:
                 this.layout.mostrarComoPantallaActual("empleado");
-                break;
-            case PROVEEDOR:
-                this.layout.mostrarComoPantallaActual("proveedor");
                 break;
             case ADMIN:
                 this.layout.mostrarComoPantallaActual("pagHome");
@@ -138,5 +133,10 @@ public class AutentificacionCPEController extends ControladorConNavegabilidad im
                 break;  
       }
     }
+   
+   private void limpiar() {
+       usuario.clear();
+       contrasena.clear();
+   }
     
 }

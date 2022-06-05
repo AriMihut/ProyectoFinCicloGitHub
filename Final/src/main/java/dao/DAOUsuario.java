@@ -85,7 +85,7 @@ public class DAOUsuario {
             }          
         }
     
-    public List<Usuario> buscarTodas(){
+    public List<Usuario> buscarTodos(){
         
         List<Usuario> usuarios = new ArrayList<>();
         try{

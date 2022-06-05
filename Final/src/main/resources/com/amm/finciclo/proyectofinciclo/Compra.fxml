@@ -12,21 +12,41 @@
 <?import javafx.geometry.Insets?>
 
 <VBox fx:id="pantallaCompra" xmlns:fx="http://javafx.com/fxml/1" HBox.hgrow="ALWAYS"
-        fx:controller="com.amm.finciclo.proyectofinciclo.CompraController">
+        fx:controller="com.amm.finciclo.proyectofinciclo.CompraController" spacing="20">
     <stylesheets>
         <URL value="@/com/amm/finciclo/proyectofinciclo/css/compra.css"/>
     </stylesheets>
-    <VBox HBox.hgrow="ALWAYS" prefWidth="${pantallaCompra.width}" styleClass="contenedor-titulo" minHeight="60">
-         <Label text="Sueños cumplidos - Mi cesta" styleClass="titulo" style="-fx-background-color: darkgrey" 
+    <VBox HBox.hgrow="ALWAYS" prefWidth="${pantallaCompra.width}" styleClass="contenedor-titulo" minHeight="50">
+         <Label text="Sueños cumplidos - Mi cesta" styleClass="titulo" style="-fx-background-color: #6DBD96" 
                 HBox.hgrow="ALWAYS" prefWidth="${pantallaCompra.width}"/>
     </VBox>    
-    <VBox fx:id="pantallaElegirServicios" style="-fx-background-color: #6DBD96" prefHeight="${pantallaCompra.height*1.2}">
-        <HBox>
-            <Label fx:id="serviciosLabel" styleClass="simpleLabel" text="Servicios"/>
-            <ComboBox fx:id="comboServicios" promptText="Seleccione un servicio"/> 
+    <VBox fx:id="pantallaElegirServicios" style="-fx-background-color: darkgrey" 
+          prefHeight="${pantallaCompra.height*1.5}" prefWidth="${pantallaCompra.width*1.5}">
+        <padding>
+            <Insets top="15" bottom="15" left="15" right="15"/>
+        </padding> 
+        <HBox style="-fx-alignment: center;">
+            <ImageView fitHeight="150.0" fitWidth="800.0" pickOnBounds="true" preserveRatio="true">
+                <image>
+                    <Image url="@../../../../iconos/sueños3.png"/>
+                </image>  
+            </ImageView>  
         </HBox>
-        <VBox>
-            <ListView fx:id="servicioListView"/>
+        <HBox>
+            <HBox fx:id="hBoxServicios" style="-fx-background-color: #6DBD96;" VBox.vgrow="ALWAYS" 
+                  prefWidth="${pantallaElegirServicios.width*0.5}" prefHeight="${pantallaElegirServicios.height*0.6}" 
+                  maxHeight="${pantallaElegirServicios.height*0.8}" alignment="CENTER" spacing="10">
+                <Label fx:id="serviciosLabel" styleClass="simpleLabel" text="Servicios"/>
+                <ComboBox fx:id="comboServicios" promptText="Seleccione un servicio"/> 
+            </HBox> 
+            <HBox VBox.vgrow="ALWAYS" prefWidth="${pantallaElegirServicios.width*0.5}" 
+                  prefHeight="${pantallaElegirServicios.height*0.8}" maxHeight="${pantallaElegirServicios.height*0.8}" alignment="CENTER">
+                <ListView fx:id="servicioListView"/>
+            </HBox>
+        </HBox>
+        
+        
+        <VBox style="-fx-alignment: center; -fx-background-color: grey">
             <Label styleClass="simpleLabel" text="Total a pagar" style="-fx-font-weight: bold;"/>
             <Label fx:id="labelCantidad" styleClass="simpleLabel" text="0.00" />
         </VBox>
@@ -42,16 +62,9 @@
             </VBox>
         </ToolBar>
     </VBox>
-    <HBox fx:id="formularioFinalizarCompra" visible="false" style="-fx-background-color: #6DBD96">
-        <!--<HBox>
-        <ImageView fitWidth="700.0" pickOnBounds="true" preserveRatio="true">
-            <image>
-                <Image url="@../../../../iconos/sueños3.png"/>
-            </image>  
-        </ImageView>
-        </HBox>-->
+    <HBox fx:id="formularioFinalizarCompra" visible="false" style="-fx-background-color: yellow">
             <VBox fx:id="pantallaInfoCompra" styleClass="pantallaInfoCompra" VBox.vgrow="ALWAYS" HBox.hgrow="ALWAYS" 
-                alignment="CENTER" prefHeight="${pantallaCompra.height*0.9}">
+                alignment="CENTER" prefHeight="${pantallaCompra.height*0.9}" style="-fx-background-color: #6DBD96">
                 <Label styleClass="simpleLabelTitulo" alignment="CENTER" text="Datos requeridos para realizar el pago: "/>
                 <HBox fx:id="infoCompra" VBox.vgrow="ALWAYS" prefWidth="${pantallaCompra.width*0.6}" 
                       alignment="CENTER" style="-fx-padding-top: 30px">                
@@ -86,13 +99,13 @@
                         </VBox>
                     <VBox fx:id="c" alignment="CENTER_RIGHT" prefWidth="${pantallaInfoCompra.width*0.3}" HBox.hgrow="ALWAYS">
                         <VBox alignment="CENTER_LEFT" prefWidth="${c.width*07}" spacing="21">
-                            <Label fx:id="nombreError" styleClass="simpleLabel" text="Nombre incorrecto!" style="-fx-font-weight: bold;" visible="false"/>
-                            <Label fx:id="apellidoError" styleClass="simpleLabel" text="Apellido incorrecto!" style="-fx-font-weight: bold;" visible="false"/>
-                            <Label fx:id="validezTelefonoError" styleClass="simpleLabel" text="Teléfono incorrecto!" style="-fx-font-weight: bold;" visible="false"/>
-                            <Label fx:id="validezEmail" styleClass="simpleLabel" text="Email incorrecto!" style="-fx-font-weight: bold;" visible="false"/>
-                            <Label fx:id="validezNTarjetaError" styleClass="simpleLabel" text="Número de tarjeta incorrecto!" style="-fx-font-weight: bold;" visible="false"/>
-                            <Label fx:id="cvvTarjetaError" styleClass="simpleLabel" text="CVV incorrecto!" style="-fx-font-weight: bold;" visible="false"/>
-                            <Label fx:id="validezTarjetaError" styleClass="simpleLabel" text="Validez incorrecta!" style="-fx-font-weight: bold;" visible="false"/>
+                            <Label fx:id="nombreError" styleClass="etiqueta-aviso" text="Nombre incorrecto!" visible="false"/>
+                            <Label fx:id="apellidoError" styleClass="etiqueta-aviso" text="Apellido incorrecto!" visible="false"/>
+                            <Label fx:id="validezTelefonoError" styleClass="etiqueta-aviso" text="Teléfono incorrecto!" visible="false"/>
+                            <Label fx:id="validezEmail" styleClass="etiqueta-aviso" text="Email incorrecto!" visible="false"/>
+                            <Label fx:id="validezNTarjetaError" styleClass="etiqueta-aviso" text="Número de tarjeta incorrecto!" visible="false"/>
+                            <Label fx:id="cvvTarjetaError" styleClass="etiqueta-aviso" text="CVV incorrecto!" visible="false"/>
+                            <Label fx:id="validezTarjetaError" styleClass="etiqueta-aviso" text="Validez incorrecta!" visible="false"/>
                         </VBox>
                             <padding> 
                                 <Insets right="20" top="56"/>
@@ -108,20 +121,9 @@
         <VBox fx:id="ventaInfoCliente" styleClass= "pantallaInfoCliente" visible="false">
             <Label fx:id="textoVentaRealizada" text="" prefHeight="250"/>
         </VBox> 
-            <VBox style="-fx-background-color: #6DBD96" minHeight= "50" > 
-                    <HBox>     
-                        <Button styleClass="botonAtrás" onAction="#atras" focusTraversable="false" >
-                        <graphic>
-                            <ImageView>
-                                <Image url="@../../../../iconos/puerta.png"/>
-                            </ImageView>
-                        </graphic>
-                    </Button>   
-                    </HBox>
-            </VBox> 
             <padding> 
-                                <Insets top="56"/>
-                            </padding>        
+                <Insets top="56"/>
+            </padding>        
         </VBox>  
     </HBox>
 </VBox>

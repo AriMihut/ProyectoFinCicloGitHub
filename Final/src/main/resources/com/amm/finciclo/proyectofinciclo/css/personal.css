@@ -1,5 +1,5 @@
 .contenedor-titulo{
-    -fx-spacing: 20px;
+    -fx-spacing: 10px;
     -fx-alignment: top-center;
     -fx-background-color: #6DBD96;
     -fx-font-weight: bold;
@@ -30,7 +30,7 @@
 .buttons{
     -fx-background-color: white;
     -fx-padding: 4;
-    -fx-max-width: 156px;
+    -fx-max-width: 190px;
 }
 
 .buttons:hover{

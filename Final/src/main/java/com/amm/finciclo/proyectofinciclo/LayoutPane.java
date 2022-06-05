@@ -35,7 +35,11 @@ public class LayoutPane extends BorderPane {
                 controladorConNavegabilidad.setLayout(this);
                 controladores.put(nombrePantalla, controladorConNavegabilidad);
                 pantallasApp.put(nombrePantalla, pantalla);
-            } 
+            } else if(nombrePantalla.equals("autentificacion") &&
+                    pantallasApp.keySet().stream().anyMatch(pantalla -> pantalla.equals(nombrePantalla))){
+                    reiniciar();
+               
+            }
         } catch (IOException ex) {
             Logger.getLogger(LayoutPane.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -78,5 +82,15 @@ public class LayoutPane extends BorderPane {
         this.mensaje = mensaje;
     }
     
+    private void reiniciar() {
+        controladores.entrySet().removeIf(controlador -> 
+            !controlador.getKey().equals("autentificacion") && !controlador.getKey().equals("comienzo")
+            && !controlador.getKey().equals("registro"));
+        pantallasApp.entrySet().removeIf(pantalla -> 
+            !pantalla.getKey().equals("autentificacion") && !pantalla.getKey().equals("comienzo")
+            && !pantalla.getKey().equals("registro"));
+        
+        this.usuario = null;
+    }
     
 }

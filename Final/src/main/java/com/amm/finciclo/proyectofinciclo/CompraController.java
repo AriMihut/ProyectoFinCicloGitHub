@@ -14,6 +14,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
@@ -27,6 +28,8 @@ import javafx.scene.layout.VBox;
 import javafx.util.Callback;
 
 public class CompraController extends ControladorConNavegabilidad implements Initializable{
+    
+    private final String ESTILO_ERROR = "campo-error";
     
     private @FXML TextField filtroNombre, filtroApellidos, filtroTelefono, filtroEmail, 
             filtroNumeroTarjeta, filtroCVVTarjeta;
@@ -129,7 +132,7 @@ public class CompraController extends ControladorConNavegabilidad implements Ini
         
         if(todosCamposCubiertos() && sonEtiquetasErrorInvisibles()){            
                    
-            mostrarAviso("Compra realizada con éxito. Muchas gracias!");
+            
             servicioListView.getItems().forEach(servicio -> {
                 ventaDao.anadir(new Venta(this.layout.getUsuario().getId(), 
                     getCodigoConjunto(),
@@ -137,31 +140,13 @@ public class CompraController extends ControladorConNavegabilidad implements Ini
                     ((Servicio) servicio).getPrecio()));
             });
             clear();
-            
-           
+            mostrarAviso("Compra realizada con éxito. Muchas gracias!");
         } else {
-           cambiarEstilosError(filtroNombre);
-           cambiarEstilosError(filtroApellidos);
-           cambiarEstilosError(filtroTelefono);
-           cambiarEstilosError(filtroEmail);
-           cambiarEstilosError(filtroNumeroTarjeta);
-           cambiarEstilosError(filtroCVVTarjeta);
-           
             mostrarAviso("Todos los campos deben estar correctamente cubiertos");
             System.out.println("El pago no se ha podido finalizar. Por favor, inténtelo de nuevo. "
                     + "Si vuelve a tener el mismo error, contacte con su banco. Muchas gracias!");
-            nombreError.setVisible(!esNombreCorrecto());
-            apellidoError.setVisible(!esApellidoCorrecto());
-            validezTelefonoError.setVisible(!esTelefonoCorrecto());
-            validezEmail.setVisible(!esEmailCorrecto());
-            validezNTarjetaError.setVisible(!esLimiteDigitosCorrecto());
-            cvvTarjetaError.setVisible(!esCVVCorrecto());
+            sonEtiquetasErrorInvisibles();
         }
-    }
-    
-    private void cambiarEstilosError(TextField campo) {
-        campo.getStyleClass().add("textField-error");
-        System.out.println(campo.getStyleClass());
     }
    
     @FXML
@@ -216,7 +201,7 @@ public class CompraController extends ControladorConNavegabilidad implements Ini
     private boolean todosCamposCubiertos() {
         return !filtroNombre.getText().isEmpty() && !filtroApellidos.getText().isEmpty() && !filtroTelefono.getText().isEmpty() 
                 && !filtroEmail.getText().isEmpty() && !filtroNumeroTarjeta.getText().isEmpty() && !filtroCVVTarjeta.getText().isEmpty()
-                && !filtroValidezTarjeta.getAccessibleText().isEmpty();
+                && filtroValidezTarjeta.getValue() != null;
     }
     
     public void clear(){
@@ -288,15 +273,31 @@ public class CompraController extends ControladorConNavegabilidad implements Ini
     }
 
     private boolean sonEtiquetasErrorInvisibles() {
+        
         nombreError.setVisible(!esNombreCorrecto());
+        aplicarEstilosDeError(filtroNombre, !esNombreCorrecto());
         apellidoError.setVisible(!esApellidoCorrecto());
+        aplicarEstilosDeError(filtroApellidos, !esApellidoCorrecto());
         validezTelefonoError.setVisible(!esTelefonoCorrecto());
+        aplicarEstilosDeError(filtroTelefono, !esTelefonoCorrecto());
         validezEmail.setVisible(!esEmailCorrecto());
+        aplicarEstilosDeError(filtroEmail, !esEmailCorrecto());
         validezNTarjetaError.setVisible(!esLimiteDigitosCorrecto());
+        aplicarEstilosDeError(filtroNumeroTarjeta, !esLimiteDigitosCorrecto());
         cvvTarjetaError.setVisible(!esCVVCorrecto());
+        aplicarEstilosDeError(filtroCVVTarjeta, !esCVVCorrecto());
         
         return !nombreError.isVisible() && !apellidoError.isVisible() && !validezTelefonoError.isVisible() 
                 && !validezEmail.isVisible() && !validezNTarjetaError.isVisible() && !cvvTarjetaError.isVisible();
+    }
+    
+    private void aplicarEstilosDeError(Node nodo, boolean condicion) {
+       
+        if(condicion) {      
+            nodo.getStyleClass().add(ESTILO_ERROR);
+        } else {
+            nodo.getStyleClass().removeIf(s -> s.equals(ESTILO_ERROR));
+        }
     }
     
 }

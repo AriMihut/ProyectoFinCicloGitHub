@@ -73,7 +73,6 @@ public class DAOPersonal {
                     "', fechaAlta='" + new Timestamp(personal.getFechaAlta().getTime()) +
                     "', fechaBaja='" + new Timestamp(personal.getFechaBaja().getTime()) +
                     "', sueldo=" + personal.getSueldo() +
-                    ", idServicio" + personal.getIdServicio() +
                     " WHERE id=" + personal.getId();
             System.out.println("SQL modificar " + sql);
             statement.executeUpdate(sql);

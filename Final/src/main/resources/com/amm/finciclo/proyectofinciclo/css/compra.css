@@ -21,6 +21,7 @@
 
 #pantallaElegirServicios{
     -fx-spacing: 20px;
+    -fx-margin-top: 20px;
 }
 
 #comboServicios{
@@ -34,7 +35,7 @@
 .combo-box .list-cell:empty {
     -fx-background-color: darkgrey;
     -fx-text-fill: white;
-    -fx-border-color: black;
+    -fx-border-color: grey;
 }
 
 .combo-box .list-cell:hover {
@@ -46,7 +47,7 @@
 .combo-box .arrow-button {
     -fx-background-color: darkgrey;
     -fx-text-fill: white;
-    -fx-border-color: black;
+    -fx-border-color: grey;
 }
 
 #servicioListView{
@@ -80,7 +81,7 @@
 }
 
 .boton-accion{
-    -fx-background-color: black;
+    -fx-background-color: grey;
     -fx-border-color: white;
     -fx-border-width: 3px;
     -fx-background-radius: 30%;
@@ -93,12 +94,6 @@
 .buttons:hover{
     -fx-background-color: -fx-shadow-highlight-color, -fx-outer-border, -fx-inner-border;
     -fx-color: -fx-hover-base;
-}
-
-.contenedor-general TextField.textField-error {
-    -fx-background-color: white;
-    -fx-border-color: red;
-    -fx-text-fill: red;
 }
 
 .etiqueta-aviso {
@@ -119,4 +114,23 @@
 .pantallaInfoCompra{
     -fx-padding-top: 20px;
     -fx-padding-bottom: 30px;
+}
+
+.etiqueta-aviso{
+    -fx-text-fill: red;
+}
+
+.campo-error {
+    -fx-background-color: white;
+    -fx-border-color: red;
+    -fx-border-width: 2px;
+    -fx-text-fill: red;
+}
+
+#hBoxServicios{
+    -fx-margin-left: 20px;
+}
+
+#pantallaCompra{
+    -fx-margin-left: 20px;
 }

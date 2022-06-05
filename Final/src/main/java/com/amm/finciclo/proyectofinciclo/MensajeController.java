@@ -21,6 +21,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.VBox;
 
 public class MensajeController extends ControladorConNavegabilidad implements Initializable{
     
@@ -42,6 +43,7 @@ public class MensajeController extends ControladorConNavegabilidad implements In
     
     @FXML private Button btnResponder;
     @FXML private Button btnContacto;
+    @FXML private VBox footerMensaje;
     
     
     private ObservableList<Mensaje> mensajes = FXCollections.observableArrayList();
@@ -51,12 +53,6 @@ public class MensajeController extends ControladorConNavegabilidad implements In
     public void initialize(URL url, ResourceBundle rb) {
         try {
             mensajeDao = new DAOMensaje();
-            /*pantallaMensaje.addEventHandler(MouseEvent.MOUSE_CLICKED, (MouseEvent me) -> {
-               if(me.equals(MouseButton.PRIMARY)){
-               contenedorMensaje.setVisible(false);
-               }
-            });*/
-          
             controlarTamanoColumnas();
         } catch (SQLException ex) {
             System.out.println("Error en el initialize de MensajeController " + ex.getMessage());
@@ -77,11 +73,12 @@ public class MensajeController extends ControladorConNavegabilidad implements In
     public void atras(){
         System.out.println("tipoUsuario = " + this.layout.getUsuario().getTipoUsuario());
         if(this.layout.getUsuario().getTipoUsuario().equals(TipoUsuario.CLIENTE)){
-            this.layout.cargarPantalla("cliente", ClienteController.class.getResource("Cliente.fxml"));
-            this.layout.mostrarComoPantallaActual("cliente");
+           this.layout.cargarPantalla("cliente", ClienteController.class.getResource("Cliente.fxml"));
+           ((ClienteController) this.layout.getCotroller("cliente")).mostrarDatosCliente();
+           this.layout.mostrarComoPantallaActual("cliente");
         } else if(this.layout.getUsuario().getTipoUsuario().equals(TipoUsuario.EMPLEADO)) {
             this.layout.cargarPantalla("empleado", EmpleadoController.class.getResource("Empleado.fxml"));
-            ((EmpleadoController) this.layout.getCotroller("empleado")).atras();
+            ((EmpleadoController) this.layout.getCotroller("empleado")).volver();
             this.layout.mostrarComoPantallaActual("empleado");
         }
                 
@@ -94,16 +91,31 @@ public class MensajeController extends ControladorConNavegabilidad implements In
     }
     
     private void cargarMensajes() {
-        tablaMensajes.getItems().clear();
-        ObservableList<Mensaje> mensajes = FXCollections.observableArrayList();
-        List<Mensaje> mensajesParaMostrar = new ArrayList<>();
-        if(this.layout.getUsuario().getTipoUsuario().equals(TipoUsuario.CLIENTE)){
-           mensajesParaMostrar = mensajeDao.buscarTodos(Optional.of(this.layout.getUsuario().getId()));
-        } else {
-           mensajesParaMostrar = mensajeDao.buscarTodos(Optional.empty());
-        }
-        mensajes.addAll(mensajesParaMostrar);
-        tablaMensajes.setItems(mensajes);
+         if(this.layout.getUsuario().getTipoUsuario().equals(TipoUsuario.EMPLEADO)){
+            tablaMensajes.getItems().clear();
+            ObservableList<Mensaje> mensajes = FXCollections.observableArrayList();
+            List<Mensaje> mensajesParaMostrar = new ArrayList<>();
+            if(this.layout.getUsuario().getTipoUsuario().equals(TipoUsuario.CLIENTE)){
+               mensajesParaMostrar = mensajeDao.buscarTodos(Optional.of(this.layout.getUsuario().getId()));
+            } else {
+               mensajesParaMostrar = mensajeDao.buscarTodos(Optional.empty());
+            }
+            mensajes.addAll(mensajesParaMostrar);
+            tablaMensajes.setItems(mensajes);
+            footerMensaje.setVisible(false);
+        }else{
+             tablaMensajes.getItems().clear();
+            ObservableList<Mensaje> mensajes = FXCollections.observableArrayList();
+            List<Mensaje> mensajesParaMostrar = new ArrayList<>();
+            if(this.layout.getUsuario().getTipoUsuario().equals(TipoUsuario.CLIENTE)){
+               mensajesParaMostrar = mensajeDao.buscarTodos(Optional.of(this.layout.getUsuario().getId()));
+            } else {
+               mensajesParaMostrar = mensajeDao.buscarTodos(Optional.empty());
+            }
+            mensajes.addAll(mensajesParaMostrar);
+            tablaMensajes.setItems(mensajes);
+         }
+        
     }
 
     private void configurarCeldas() {

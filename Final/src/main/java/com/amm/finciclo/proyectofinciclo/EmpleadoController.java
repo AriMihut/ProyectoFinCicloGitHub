@@ -12,12 +12,15 @@ import javafx.scene.layout.VBox;
 public class EmpleadoController extends ControladorConNavegabilidad implements Initializable{
 
     @FXML HBox panelPrincipal;
-    @FXML VBox panelEmpleado, panelTitulo;
+    @FXML VBox panelEmpleado, panelTitulo, footer;
     @FXML Button volverAtrasEnEmpleado;
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
          panelEmpleado.managedProperty().bind(panelEmpleado.visibleProperty());
+         footer.managedProperty().bind(footer.visibleProperty());
+         panelTitulo.managedProperty().bind(panelTitulo.visibleProperty());
+         panelPrincipal.managedProperty().bind(panelPrincipal.visibleProperty());
     }
     
     @FXML
@@ -25,6 +28,7 @@ public class EmpleadoController extends ControladorConNavegabilidad implements I
         panelEmpleado.setVisible(false);
         panelPrincipal.setVisible(true);
         panelTitulo.setVisible(false);
+        footer.setVisible(true);
         this.layout.cargarPantalla("mensaje", MensajeController.class.getResource("Mensaje.fxml"));
        ((MensajeController) this.layout.getCotroller("mensaje")).mostrar();
         Node nodoPantallaMensaje = this.layout.getPantalla("mensaje");
@@ -37,6 +41,7 @@ public class EmpleadoController extends ControladorConNavegabilidad implements I
         panelEmpleado.setVisible(false);
         panelPrincipal.setVisible(true);
         panelTitulo.setVisible(false);
+        footer.setVisible(true);
         this.layout.cargarPantalla("servicio", ServicioController.class.getResource("Servicio.fxml"));
        ((ServicioController) this.layout.getCotroller("servicio")).mostrar();
         Node nodoPantallaServicio = this.layout.getPantalla("servicio");
@@ -46,17 +51,25 @@ public class EmpleadoController extends ControladorConNavegabilidad implements I
     
     @FXML 
     public void volverAtrasEnEmpleado(){
-        this.layout.cargarPantalla("empleado", EmpleadoController.class.getResource("Empleado.fxml"));
-        this.layout.mostrarComoPantallaActual("empleado");
-        panelPrincipal.setVisible(false);
-        panelEmpleado.setVisible(true);
-        panelTitulo.setVisible(true);
+        if(panelEmpleado.isVisible()) {
+            this.layout.mostrarComoPantallaActual("autentificacion");
+            
+        } else {
+            
+            panelPrincipal.setVisible(false);
+            panelEmpleado.setVisible(true);
+            panelTitulo.setVisible(true);
+            footer.setVisible(false);
+        }
+        
     }
     
     @FXML
-    public void atras(){
-        this.layout.cargarPantalla("autentificacion", AutentificacionCPEController.class.getResource("AutentificacionCPE.fxml"));
-        this.layout.mostrarComoPantallaActual("autentificacion");
+    public void volver(){
+        panelPrincipal.setVisible(false);
+        panelEmpleado.setVisible(true);
+        panelTitulo.setVisible(true);
+        footer.setVisible(false);
     }
     
 }

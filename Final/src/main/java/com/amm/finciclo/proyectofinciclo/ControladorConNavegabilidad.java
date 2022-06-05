@@ -7,4 +7,5 @@ public abstract class ControladorConNavegabilidad {
     public void setLayout(LayoutPane layout){
         this.layout = layout;
     }   
+
 }

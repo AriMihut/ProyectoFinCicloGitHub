@@ -32,12 +32,12 @@
     <HBox fx:id="panelPrincipal" visible="false"/>
     <VBox fx:id="footer" styleClass="footer" alignment="CENTER" HBox.hgrow="ALWAYS" prefHeight="${paginaPrincipal.height*0.05}" 
         maxHeight="${paginaPrincipal.height*0.1}" visible="false" style="-fx-background-color: darkgrey">
-      <Button onAction="#atras" focusTraversable="false">
+      <Button onAction="#volver" focusTraversable="false">
           <graphic>
               <ImageView>
                   <Image url="@../../../../iconos/puerta.png"/>
               </ImageView>
           </graphic>
-      </Button>  
-  </VBox>
+      </Button>
+    </VBox>    
 </VBox>

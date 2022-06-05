@@ -19,12 +19,12 @@
 <?import javafx.scene.image.Image?>
 
 <VBox fx:id="pantallaVentas" xmlns:fx="http://javafx.com/fxml/1" HBox.hgrow="ALWAYS"
-        fx:controller="com.amm.finciclo.proyectofinciclo.VentaController">
+        fx:controller="com.amm.finciclo.proyectofinciclo.VentaController" style="-fx-background-color: darkgrey">
     <stylesheets>
         <URL value="@/com/amm/finciclo/proyectofinciclo/css/venta.css"/>
     </stylesheets>
     <padding>
-        <Insets top="5" right="5" bottom="5" left="5"/>
+        <Insets top="10" right="10" bottom="20" left="10"/>
     </padding> 
     <VBox HBox.hgrow="ALWAYS" prefWidth="${pantallaVentas.width}" styleClass="titulo" >
         <Label text="Sueños cumplidos - Venta" styleClass="titulo" HBox.hgrow="ALWAYS"  
@@ -42,13 +42,9 @@
                 </columns>
             </TableView>
         </StackPane>
-            <Button styleClass="botonAtrás" onAction="#atras" focusTraversable="false" 
-                    GridPane.rowIndex="7" GridPane.columnIndex="5" GridPane.columnSpan="9">
-                <graphic>
-                    <ImageView>
-                        <Image url="@../../../../iconos/puerta.png"/>
-                    </ImageView>
-                </graphic>
-            </Button> 
+            
+             <padding>
+                <Insets top="40" right="20" bottom="40" left="20"/>
+            </padding> 
     </VBox> 
 </VBox>

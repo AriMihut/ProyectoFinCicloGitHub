@@ -9,50 +9,45 @@
 }
 
 #pantallaBotones{
-    -fx-spacing: 50px;
+    -fx-spacing: 30px;
     -fx-alignment: center;
     -fx-padding-left: 20px;
 }
 
 .simpleLabel{
-    -fx-padding: 20px;
-    -fx-padding-top: 20px;
+    -fx-padding: 15px;
+    -fx-padding-top: 15px;
+    -fx-font-weight: bold;
 }
 
 .contenedor-titulo{
     -fx-spacing: 10px;
     -fx-alignment: top-center;
-    -fx-background-color: #6DBD96;
+    -fx-background-color: darkgrey;
     -fx-font-weight: bold;
     -fx-font-size: 30px;
     -fx-alignment: center;
     -fx-text-aling: center;
 }
 
-.pantallaPrincipal{
-   
-   -fx-spacing: 20px;
-   -fx-margin-left: 20px;
-}
-
 .boton-accion{
     -fx-text-decoration: none;
     -fx-font-family: helvetica;
-    -fx-font-weight: 300;
-    -fx-font-size: 25px;
+    -fx-font-weight: 250;
+    -fx-font-size: 20px;
     -fx-font-style: italic;
     -fx-color: #666666;
     -fx-background-color: #6DBD96;
     -fx-border-radius: 30px;
-    -fx-border-width: 3px;
-    -fx-padding-top: 10px;
+    -fx-border-width: 2px;
+    
 }
 
 .boton-accion:hover{
     -fx-color: #666666;
     -fx-background-color: #666666;
     -fx-text-decoration: none;
-    -fx-padding: 20px;
+    -fx-padding: 10px;
 }
 
 .botonAtrás{

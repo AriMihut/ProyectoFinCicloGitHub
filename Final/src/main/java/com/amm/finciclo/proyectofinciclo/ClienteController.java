@@ -12,6 +12,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.control.ToolBar;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 
@@ -24,8 +25,9 @@ public class ClienteController extends ControladorConNavegabilidad implements In
     @FXML private Label dniCliente, nombreCliente, apellidoCliente, labelSexo, telefono, email;
     @FXML private Label dniClienteTexto, nombreClienteTexto, apellidoClienteTexto, labelSexoTexto, telefonoTexto, emailTexto;
     
-    @FXML VBox formularioModificacion;
-    @FXML HBox infoCliente;
+    @FXML private VBox formularioModificacion, panelContenido, vBoxTitulo;
+    @FXML private HBox infoCliente, datosCliente;
+    @FXML private ToolBar buttons;
     //@FXML private ComboBox<Servicio> servicios;
     
     private DAOUsuario daoUsuario;
@@ -42,12 +44,20 @@ public class ClienteController extends ControladorConNavegabilidad implements In
             setDatosUsuario();
             infoCliente.managedProperty().bind(infoCliente.visibleProperty());
             formularioModificacion.managedProperty().bind(formularioModificacion.visibleProperty());
-     
+            datosCliente.managedProperty().bind(datosCliente.visibleProperty());
+            panelContenido.managedProperty().bind(panelContenido.visibleProperty());
+            
+            
+            btnEditar.disableProperty().bind(formularioModificacion.visibleProperty());
+            
+            configuraCabecero();
             configurarComboBox();
             daoUsuario = new DAOUsuario();
             
             comboboxSexo.setCellFactory(listView -> new ImagenListCell());
             comboboxSexo.setButtonCell(new ImagenListCell());
+            
+            
             
         } catch (SQLException ex) {
             System.out.println("Error initialize DaoUsuario " + ex.getMessage());
@@ -62,7 +72,8 @@ public class ClienteController extends ControladorConNavegabilidad implements In
     @FXML
     public void comprar(){
         this.layout.cargarPantalla("compra", CompraController.class.getResource("Compra.fxml"));
-        this.layout.mostrarComoPantallaActual("compra");
+        anadirContenido("compra");
+        mostrarContenido();
     }
     
     @FXML
@@ -108,13 +119,25 @@ public class ClienteController extends ControladorConNavegabilidad implements In
         prepararEdicionPerfil();
         infoCliente.setVisible(false);
         formularioModificacion.setVisible(true);
-        btnEditar.setDisable(true);
+        /*this.layout.cargarPantalla("cliente", ClienteController.class.getResource("Cliente.fxml"));
+        anadirContenido("cliente");
+        mostrarContenido();*/
     }
   
     @FXML
     public void contactar(){
         this.layout.cargarPantalla("contacto", ContactoController.class.getResource("Contacto.fxml"));
-        this.layout.mostrarComoPantallaActual("contacto");
+        anadirContenido("contacto");
+        mostrarContenido();
+        
+    }
+    
+    private void configuraCabecero() {
+        vBoxTitulo.managedProperty().bind(vBoxTitulo.visibleProperty());
+        vBoxTitulo.visibleProperty().bind(panelContenido.visibleProperty().not());
+        buttons.managedProperty().bind(buttons.visibleProperty());
+        buttons.visibleProperty().bind(panelContenido.visibleProperty().not());
+                
     }
     
     public void setInfoUsuario() {
@@ -151,18 +174,37 @@ public class ClienteController extends ControladorConNavegabilidad implements In
 
     @FXML
     private void volverAInfoCliente() {
-        //aquí no vuelve a infoCliente, sino a autentificación
        infoCliente.setVisible(true);
        formularioModificacion.setVisible(false);
-       btnEditar.setDisable(false);
     }
     
     @FXML
     private void volver() {
-        this.layout.cargarPantalla("autentificacion", AutentificacionCPEController.class.getResource("AutentificacionCPE.fxml"));
-        this.layout.mostrarComoPantallaActual("autentificacion");
-       
+        if(datosCliente.isVisible() && infoCliente.isVisible()) {
+            this.layout.cargarPantalla("autentificacion", AutentificacionCPEController.class.getResource("AutentificacionCPE.fxml"));
+            this.layout.mostrarComoPantallaActual("autentificacion");  
+        } else {
+            mostrarDatosCliente();
+        }
     }
+    
+    public void mostrarDatosCliente() {
+        formularioModificacion.setVisible(false);
+        panelContenido.setVisible(false);
+        datosCliente.setVisible(true);
+        infoCliente.setVisible(true);
+    }
+    
+    private void mostrarContenido() {
+      panelContenido.setVisible(true);
+      datosCliente.setVisible(false);
+    }
+    
+    private void anadirContenido(String nombrePantalla) {
+        panelContenido.getChildren().clear();
+        panelContenido.getChildren().add(this.layout.getPantalla(nombrePantalla));
+    }
+    
     
 
 }

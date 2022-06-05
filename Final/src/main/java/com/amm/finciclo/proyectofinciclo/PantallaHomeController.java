@@ -10,12 +10,13 @@ import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
-import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
 
 public class PantallaHomeController extends ControladorConNavegabilidad implements Initializable {
     
     private @FXML Button atras, verPersonal, verClientes, verServicios, verVentas; 
-    private @FXML HBox hboxBtnAtras;
+    
+    private @FXML VBox footer, panelContenido, infoBotones;
     private DAOCliente daoCliente;
     private DAOPersonal daoEmpleado;
     private DAOUsuario daoUsuario;
@@ -25,6 +26,8 @@ public class PantallaHomeController extends ControladorConNavegabilidad implemen
         try {
             daoUsuario = new DAOUsuario();
             daoCliente = new DAOCliente();
+            panelContenido.managedProperty().bind(panelContenido.visibleProperty());
+            infoBotones.managedProperty().bind(infoBotones.visibleProperty());
         } catch (SQLException ex) {
             System.out.println("Error en el initialize de PantallaHomeController " + ex.getMessage());
         }
@@ -33,7 +36,9 @@ public class PantallaHomeController extends ControladorConNavegabilidad implemen
     @FXML
     public void verPersonal() throws IOException{
         this.layout.cargarPantalla("personal", PersonalController.class.getResource("Personal.fxml"));
-        this.layout.mostrarComoPantallaActual("personal");
+        añadirContenido("personal");
+        mostrarPanelContenido();
+        //this.layout.mostrarComoPantallaActual("personal");
     }
     
     @FXML
@@ -45,19 +50,44 @@ public class PantallaHomeController extends ControladorConNavegabilidad implemen
     @FXML
     public void verServicios() throws IOException{
         this.layout.cargarPantalla("servicio", ServicioController.class.getResource("Servicio.fxml"));
-        this.layout.mostrarComoPantallaActual("servicio");
+        añadirContenido("servicio");
+        mostrarPanelContenido();
+    //this.layout.mostrarComoPantallaActual("servicio");
     }
    
     @FXML
     public void verVentas() throws IOException{
         this.layout.cargarPantalla("venta", VentaController.class.getResource("Venta.fxml"));
-        this.layout.mostrarComoPantallaActual("venta");
+        añadirContenido("venta");
+        mostrarPanelContenido();
+        //this.layout.mostrarComoPantallaActual("venta");
     }
     
     @FXML
     public void atras() throws IOException{
-        this.layout.cargarPantalla("autentificacion", AutentificacionCPEController.class.getResource("AutentificacionCPE.fxml"));
-        this.layout.mostrarComoPantallaActual("autentificacion");
+        if(panelContenido.isVisible()) {
+            mostrarPantallaHome();
+        } else {
+            this.layout.cargarPantalla("autentificacion", AutentificacionCPEController.class.getResource("AutentificacionCPE.fxml"));
+            this.layout.mostrarComoPantallaActual("autentificacion");
+        }
     }
+    
+    private void mostrarPanelContenido() {
+        infoBotones.setVisible(false);
+        panelContenido.setVisible(true);
+    }
+    
+    private void mostrarPantallaHome() {
+        panelContenido.setVisible(false);
+        infoBotones.setVisible(true);
+    }
+    
+    private void añadirContenido(String nombrePantalla) {
+        
+        panelContenido.getChildren().clear();
+        panelContenido.getChildren().add(this.layout.getPantalla(nombrePantalla));
+    }
+    
     
 }

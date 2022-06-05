@@ -16,17 +16,18 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.image.Image?>
 
-<BorderPane id="borderPane" prefHeight="700.0" prefWidth="700.0" styleClass="mainFxmlClass" 
-            xmlns:fx="http://javafx.com/fxml/1" HBox.hgrow="ALWAYS" 
-            fx:controller="com.amm.finciclo.proyectofinciclo.ServicioController">
+<BorderPane fx:id="borderPane" prefWidth="700.0" styleClass="mainFxmlClass" 
+            xmlns:fx="http://javafx.com/fxml/1" HBox.hgrow="ALWAYS" VBox.vgrow="ALWAYS" 
+            fx:controller="com.amm.finciclo.proyectofinciclo.ServicioController" 
+            style="-fx-background-color: #6DBD96;">
     <stylesheets>
         <URL value="@/com/amm/finciclo/proyectofinciclo/css/servicio.css"/>
     </stylesheets>
     <padding>
-        <Insets top="5" right="5" bottom="5" left="5"/>
+        <Insets top="20" right="5" bottom="10" left="5"/>
     </padding> 
     <top>
-        <HBox styleClass="titulo" style="-fx-background-color: #6DBD96" minHeight="60">
+        <HBox styleClass="titulo" style="-fx-background-color: #6DBD96" minHeight="50">
             <Text styleClass="textoTitulo" text="Sueños cumplidos - Servicios ofrecidos" 
                   fill="white" style="-fx-font-weight: bold;">
                 <font>
@@ -48,14 +49,14 @@
         </StackPane>
     </center>
     <bottom>
-        <StackPane style="-fx-background-color: #eee;" minWidth="120">
-            <GridPane styleClass="gridPaneDatos" hgap="20" vgap="20" style="-fx-background-color: grey">
+        <StackPane style="-fx-background-color: #eee;" minWidth="100">
+            <GridPane styleClass="gridPaneDatos" hgap="10" vgap="10" style="-fx-background-color: grey">
                 <Text text="Elije tipo servicio: " fill="white" styleClass="simpleLabel" 
                       style="-fx-font-weight: bold;" 
-                      GridPane.rowIndex="3" GridPane.columnIndex="3"/>
-                <HBox prefHeight="40.0" prefWidth="100.0" spacing="15" 
-                    GridPane.columnIndex="2" GridPane.rowIndex="4"
-                    GridPane.columnSpan="15">
+                      GridPane.rowIndex="3" GridPane.columnIndex="7"/>
+                <HBox fx:id="hBoxButtons" prefHeight="50.0" spacing="10" 
+                    GridPane.columnIndex="6" GridPane.rowIndex="4"
+                    GridPane.columnSpan="12">
                     <fx:define>
                         <ToggleGroup fx:id="group" />
                     </fx:define>
@@ -93,13 +94,12 @@
                         </RadioButton>
                     </children>
                 </HBox> 
-                <Label styleClass="simpleLabel" text="Nombre servicio" GridPane.rowIndex="1" GridPane.columnIndex="3"/>
-                <TextField fx:id="nombreServicio" GridPane.rowIndex="1" GridPane.columnIndex="4"/>
-                <Label styleClass="simpleLabel" text="Precio" GridPane.rowIndex="2" GridPane.columnIndex="3"/>
-                <TextField fx:id="precio" GridPane.rowIndex="2" GridPane.columnIndex="4"/>
+                <Label styleClass="simpleLabel" text="Nombre servicio" GridPane.rowIndex="1" GridPane.columnIndex="6"/>
+                <TextField fx:id="nombreServicio" GridPane.rowIndex="1" GridPane.columnIndex="7"/>
+                <Label styleClass="simpleLabel" text="Precio" GridPane.rowIndex="2" GridPane.columnIndex="6"/>
+                <TextField fx:id="precio" GridPane.rowIndex="2" GridPane.columnIndex="7"/>
                 <ToolBar styleClass="buttons" HBox.hgrow= "ALWAYS" GridPane.rowIndex="5" 
-                         GridPane.columnIndex="4" 
-                         GridPane.columnSpan="9" >
+                         GridPane.columnIndex="6">
                     <Button styleClass="boton-accion" onAction="#anadir" GridPane.rowIndex="1" 
                             GridPane.columnIndex="0">
                         <graphic>
@@ -123,14 +123,6 @@
                         </graphic>
                     </Button>
                 </ToolBar>
-                <Button styleClass="botonAtrás" onAction="#atras" focusTraversable="false" 
-                    GridPane.rowIndex="5" GridPane.columnIndex="0">
-                    <graphic>
-                        <ImageView>
-                            <Image url="@../../../../iconos/puerta.png"/>
-                        </ImageView>
-                    </graphic>
-                </Button> 
             </GridPane> 
         </StackPane> 
     </bottom> 

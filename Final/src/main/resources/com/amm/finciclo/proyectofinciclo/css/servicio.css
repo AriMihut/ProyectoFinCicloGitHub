@@ -21,9 +21,8 @@
 }
 
 .buttons{
-    -fx-background-color: #6DBD96;
-    -fx-padding: 4;
-    -fx-max-width: 156px;
+    -fx-background-color: grey;
+    -fx-max-width: 210px;
 }
 
 .buttons:hover{
@@ -62,12 +61,18 @@
    -fx-border-width: 1px;
    -fx-table-cell-border-color: darkgrey;
    -fx-alignment: center;
-   -fx-padding: 0px;
+   -fx-padding: 10px;
 }
 
 .gridPaneDatos{
-    -fx-margin-top: 20px;
-   
+    -fx-margin-top: 10px;
+}
+
+#hBoxButtons{
+   -fx-font-size: 13px;
+   -fx-color: #6DBD96;
+   -fx-text-align: left;
+   -fx-font-weight: bold;
 }
 
 

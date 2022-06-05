@@ -23,7 +23,8 @@
     <stylesheets>
         <URL value="@/com/amm/finciclo/proyectofinciclo/css/cliente.css"/>
     </stylesheets>
-    <VBox HBox.hgrow="ALWAYS" prefWidth="${paginaPrincipal.width}" styleClass="contenedor-titulo"  prefHeight="${paginaPrincipal.height*0.05}">
+    <VBox fx:id="vBoxTitulo" HBox.hgrow="ALWAYS" prefWidth="${paginaPrincipal.width}" styleClass="contenedor-titulo"  
+          prefHeight="${paginaPrincipal.height*0.05}">
         <Label text="Sueños cumplidos - Soy Cliente" styleClass="titulo" HBox.hgrow="ALWAYS"  
                prefWidth="${paginaPrincipal.width}"/>
     </VBox>
@@ -38,8 +39,8 @@
             <Button fx:id="btnEditar" styleClass="boton-accionEditar" onAction="#editarPerfil" text="EDITAR PERFIL"/>
         </VBox>
     </ToolBar>
-    <HBox fx:id="hBoxFormulario">
-        <ImageView prefHeight="${hBoxFormulario.height}" fitWidth="310.0" pickOnBounds="true" preserveRatio="true">
+    <HBox fx:id="datosCliente">
+        <ImageView prefHeight="${datosCliente.height}" fitWidth="310.0" pickOnBounds="true" preserveRatio="true">
             <image>
                 <Image url="@../../../../iconos/suenosCumplidos.png"/>
             </image>  
@@ -118,20 +119,21 @@
                     </HBox>   
                 </VBox> 
             </HBox> 
-            <VBox fx:id="footer" styleClass="footer" alignment="CENTER" HBox.hgrow="ALWAYS" prefHeight="${paginaPrincipal.height*0.05}" 
-                  maxHeight="${paginaPrincipal.height*0.1}" style="-fx-background-color: darkgrey">
-                <Button onAction="#volver" focusTraversable="false">
-                    <graphic>
-                        <ImageView>
-                            <Image url="@../../../../iconos/puerta.png"/>
-                        </ImageView>
-                    </graphic>
-                </Button>  
-            </VBox>
-                <padding>
-                    <Insets top="50" bottom="0"/>
-                </padding>
+            <padding>
+                <Insets top="50" bottom="0"/>
+            </padding>
         </VBox>
-    </HBox>         
+    </HBox>   
+    <VBox fx:id="panelContenido" visible="false"/>    
+    <VBox fx:id="footer" styleClass="footer" alignment="CENTER" HBox.hgrow="ALWAYS" prefHeight="${paginaPrincipal.height*0.05}" 
+        maxHeight="${paginaPrincipal.height*0.1}" style="-fx-background-color: #6DBD96">
+        <Button onAction="#volver" focusTraversable="false">
+            <graphic>
+                <ImageView>
+                    <Image url="@../../../../iconos/puerta.png"/>
+                </ImageView>
+            </graphic>
+        </Button>  
+    </VBox>    
 </VBox>
 
