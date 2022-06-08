@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.net.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.text.Text?>
+
+<VBox fx:id="pantallaLogin" xmlns:fx="http://javafx.com/fxml/1" HBox.hgrow="ALWAYS"
+        fx:controller="com.amm.finciclo.proyectofinciclo.ClientesController">
+    <stylesheets>
+        <URL value="@/com/amm/finciclo/proyectofinciclo/css/clientes.css"/>
+    </stylesheets>
+    <VBox HBox.hgrow="ALWAYS" prefWidth="${pantallaLogin.width}" styleClass="contenedor-titulo" >
+        <Label text="Sueños cumplidos - Lista Clientes" styleClass="etiqueta-principal" HBox.hgrow="ALWAYS"  
+                prefWidth="${pantallaLogin.width}" alignment="CENTER"/>
+    </VBox>
+    <VBox styleClass= "pantallaInfoClientes">
+        <StackPane styleClass="tabla_clientes" HBox.hgrow="ALWAYS">
+            <TableView fx:id="tablaClientes">
+                <columns>
+                    <TableColumn fx:id="dniColumn" text="Dni"/>
+                    <TableColumn fx:id="nombreColumn" text="Nombre Cliente"/>
+                    <TableColumn fx:id="sexoColumn" text="Sexo"/>
+                    <TableColumn fx:id="telefonoColumn" text="Teléfono"/>
+                    <TableColumn fx:id="emailColumn" text="Email"/>
+                </columns>
+            </TableView>
+        </StackPane>
+             <padding>
+                <Insets top="40" right="20" bottom="40" left="20"/>
+            </padding> 
+    </VBox>
+</VBox>
+
+

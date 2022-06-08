@@ -91,11 +91,6 @@
     -fx-color: -fx-hover-base;
 }
 
-.etiqueta-aviso {
-    -fx-text-fill: red;
-    -fx-margin-top: 20px;
-}
-
 .simpleLabelTitulo{
     -fx-padding-top: 20px;
     -fx-padding-bottom: 30px;

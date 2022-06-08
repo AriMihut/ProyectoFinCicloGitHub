@@ -31,6 +31,8 @@ public class CompraController extends ControladorConNavegabilidad implements Ini
     
     private final String ESTILO_ERROR = "campo-error";
     private final String ETIQUETA_AVISO_ERROR = "etiqueta-aviso-error";
+    static final private String PATTERN_EMAIL = "^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@"
+        + "[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$";
     
     private @FXML TextField filtroNombre, filtroApellidos, filtroTelefono, filtroEmail, 
             filtroNumeroTarjeta, filtroCVVTarjeta;
@@ -250,6 +252,18 @@ public class CompraController extends ControladorConNavegabilidad implements Ini
         comboServicios.setValue(null);
         servicioListView.getItems().clear();
         labelCantidad.setText(null);
+        ocultarEtiquetasError();
+        
+        
+    }
+    
+    private void ocultarEtiquetasError() {
+        validezNTarjetaError.setVisible(false);
+        cvvTarjetaError.setVisible(false);
+        etiquetaAviso.setVisible(false);
+        aplicarEstilosDeError(filtroNumeroTarjeta, false);
+        aplicarEstilosDeError(filtroCVVTarjeta, false);
+        
     }
 
     private void mostrarAviso(String text, boolean esError) {
@@ -290,7 +304,7 @@ public class CompraController extends ControladorConNavegabilidad implements Ini
     } 
     
     private boolean esTelefonoCorrecto() {
-        return this.filtroTelefono.getText().matches("(\\+34|0034|34)?[ -]*(6|7)[ -]*([0-9][ -]*){8}");
+        return this.filtroTelefono.getText().matches("^\\d{9}$");
     }
     
     private boolean esEmailCorrecto() {
@@ -298,10 +312,7 @@ public class CompraController extends ControladorConNavegabilidad implements Ini
         Matcher matcher = pattern.matcher(this.filtroEmail.getText());
         return matcher.matches();
     }
-
-    static final private String PATTERN_EMAIL = "^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@"
-        + "[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$";
-
+    
     private boolean esCVVCorrecto() {
         return this.filtroCVVTarjeta.getText().matches("\\d{3}");
     }

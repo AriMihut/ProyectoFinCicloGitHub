@@ -34,6 +34,7 @@ public class DAOPersonal {
                           "sueldo DOUBLE NULL, " +
                           "idServicio INTEGER, " +  
                           "FOREIGN KEY (idServicio) REFERENCES servicio (id) )" ;
+                    System.out.println("SQL personal " + sql);
                     sentencia.executeUpdate(sql);
         }
     }
@@ -52,7 +53,8 @@ public class DAOPersonal {
                     "', '" + new Timestamp(personal.getFechaBaja().getTime())+ 
                     "', " + personal.getSueldo() +
                     ", " + personal.getIdServicio()+ ")";
-
+            System.out.println("Insertar en personal " + sql
+            );
             statement.executeUpdate(sql);  
             
         } catch (SQLException ex) {

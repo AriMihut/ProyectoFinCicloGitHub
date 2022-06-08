@@ -39,6 +39,7 @@ public class DAOMensaje {
                         "texto VARCHAR (255), " +
                         "FOREIGN KEY (idAutor) REFERENCES usuario(id)," +
                         "FOREIGN KEY (idDestinatario) REFERENCES usuario(id))";
+                System.out.println("SQL mensaje " + sql);
                 sentencia.executeUpdate(sql);
         }
    }
@@ -59,6 +60,7 @@ public class DAOMensaje {
                     + mensaje.getEsLeido()+ ", " 
                     + mensaje.getIdDestinatario() + ", '"
                     + mensaje.getTexto() + "');";
+            System.out.println("SQL === " + sql);
             statement.executeUpdate(sql);  
           } catch (SQLException ex) {
                 System.out.println("Error al introducir información en la tabla mensaje " + ex.getMessage());

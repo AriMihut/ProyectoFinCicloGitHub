@@ -37,6 +37,15 @@ public class Usuario {
         this.telefono = telefono;
         this.email = email;
     }
+    
+    public Usuario(int id, String dni, String nombre, String sexo, Long telefono, String email) {
+        this.id = id;
+        this.dni = dni;
+        this.nombre = nombre;
+        this.sexo = sexo;
+        this.telefono = telefono;
+        this.email = email;
+    }
 
     public int getId() {
         return id;

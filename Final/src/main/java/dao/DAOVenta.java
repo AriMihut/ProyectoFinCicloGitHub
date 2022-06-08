@@ -94,7 +94,7 @@ public class DAOVenta {
                     + "from venta v "
                     + "inner join usuario u " 
                     + "on v.idUsuario = u.id"; 
-            System.out.println("SQL sdfghjkhfgjlk=== " + sql);
+            System.out.println("SQL venta buscarTodas === " + sql);
             ResultSet resultset = statement.executeQuery(sql);
         
             while(resultset.next()){
@@ -144,15 +144,6 @@ public class DAOVenta {
           System.out.println("No posible mostrar los datos de la tabla venta " + ex.getMessage());
         }
         return ventasAgrupadas; 
-    }
-
-    private void añadirVenta(Venta venta, ArrayList<Venta> ventas) {
-      ventas.add(venta);
-    }
-
-    private void añadirServicioAventa(Venta venta, String nombreServicio, double valorTotalVenta) {
-       venta.getNombreServicios().add(nombreServicio);
-       venta.setValorTotalVenta(venta.getValorTotalVenta() +  valorTotalVenta);
     }
     
 }

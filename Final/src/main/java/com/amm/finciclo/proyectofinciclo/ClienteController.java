@@ -3,7 +3,6 @@ package com.amm.finciclo.proyectofinciclo;
 import dao.DAOUsuario;
 import java.net.URL;
 import java.sql.SQLException;
-import java.util.List;
 import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -12,11 +11,9 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
-import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.ToolBar;
-import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 
@@ -34,12 +31,6 @@ public class ClienteController extends ControladorConNavegabilidad implements In
     private ObservableList<Usuario> clientes = FXCollections.observableArrayList();
     @FXML private HBox infoCliente, datosCliente;
     @FXML private ToolBar buttons;
-   
-    @FXML private TableColumn<Cliente, String> dniColumn;
-    @FXML private TableColumn<Cliente, String> nombreColumn;
-    @FXML private TableColumn<Cliente, String> sexoColumn;
-    @FXML private TableColumn<Cliente, Long> telefonoColumn;
-    @FXML private TableColumn<Cliente, String> emailColumn;
   
     private DAOUsuario daoUsuario;
     
@@ -56,14 +47,11 @@ public class ClienteController extends ControladorConNavegabilidad implements In
             formularioModificacion.managedProperty().bind(formularioModificacion.visibleProperty());
             datosCliente.managedProperty().bind(datosCliente.visibleProperty());
             panelContenido.managedProperty().bind(panelContenido.visibleProperty());
-            //mostrar();
             
             btnEditar.disableProperty().bind(formularioModificacion.visibleProperty());
             
             configuraCabecero();
             configurarComboBox();
-            controlarTamanoColumnas();
-            configuracionTabla();
             daoUsuario = new DAOUsuario();
             
             comboboxSexo.setCellFactory(listView -> new ImagenListCell());
@@ -193,37 +181,6 @@ public class ClienteController extends ControladorConNavegabilidad implements In
             mostrarDatosCliente();
         }
     }
-    
-    public void mostrar(){
-        
-        if(this.layout.getUsuario().getTipoUsuario().equals(TipoUsuario.CLIENTE)){
-            tablaClientes.getItems().clear();
-            List<Usuario> clientesAMostrar = daoUsuario.buscarClientes();
-            clientes.addAll(clientesAMostrar);
-            tablaClientes.setItems(clientes);
-            pantallaInfoClientes.setVisible(true);
-        }
-    }
-    
-    private void configuracionTabla() {
-        dniColumn.setCellValueFactory(new PropertyValueFactory<Cliente, String>("dni"));
-        nombreColumn.setCellValueFactory(new PropertyValueFactory<Cliente, String>("nombre"));
-        sexoColumn.setCellValueFactory(new PropertyValueFactory<Cliente, String>("sexo"));
-        telefonoColumn.setCellValueFactory(new PropertyValueFactory<Cliente, Long>("telefono"));
-        emailColumn.setCellValueFactory(new PropertyValueFactory<Cliente, String>("email"));
-    }
-
-    private void controlarTamanoColumnas() {
-       tablaClientes.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
-        ObservableList<TableColumn<Usuario, ?>> columnas = tablaClientes.getColumns();
-        
-        columnas.get(0).setMaxWidth(1f * Integer.MAX_VALUE * 20); 
-        columnas.get(1).setMaxWidth(1f * Integer.MAX_VALUE * 20); 
-        columnas.get(2).setMaxWidth(1f * Integer.MAX_VALUE * 20); 
-        columnas.get(3).setMaxWidth(1f * Integer.MAX_VALUE * 20); 
-        columnas.get(4).setMaxWidth(1f * Integer.MAX_VALUE * 20); 
-    }
-    
     
     public void mostrarDatosCliente() {
         formularioModificacion.setVisible(false);

@@ -25,7 +25,7 @@ public class DAOUsuario {
      private void crearTablaSiNoExiste() throws SQLException {
         
         try(
-                 Connection conexion = DriverManager.getConnection(URL_CONEXION, USUARIO_BDD, PASSWORD_BDD)){
+                Connection conexion = DriverManager.getConnection(URL_CONEXION, USUARIO_BDD, PASSWORD_BDD)){
                 Statement sentencia = conexion.createStatement();
                 String sql = "CREATE TABLE IF NOT EXISTS usuario" +
                           "(id INTEGER auto_increment NOT NULL PRIMARY KEY, " +
@@ -120,11 +120,15 @@ public class DAOUsuario {
         try{
             Connection conexionDataBase = DriverManager.getConnection(URL_CONEXION, USUARIO_BDD, PASSWORD_BDD);
             Statement  statement = conexionDataBase.createStatement();
-            String sql = "SELECT * FROM usuario ORDER BY id";
+            String sql = "SELECT u.id, u.dni, u.nombre, u.sexo, u.telefono, u.email FROM usuario u "
+                    + "where tipoUsuario = 'CLIENTE' "
+                    + "ORDER BY id";
+            System.out.println("hjjkk" + sql);
             ResultSet resultset = statement.executeQuery(sql);
             
         while(resultset.next()){
              Usuario usuario = new Usuario();
+             usuario.setId(resultset.getInt("id"));
              usuario.setDni(resultset.getString("dni"));
              usuario.setNombre(resultset.getString("nombre"));
              usuario.setSexo(resultset.getString("sexo"));
@@ -132,7 +136,7 @@ public class DAOUsuario {
              usuario.setEmail(resultset.getString("email"));
              clientes.add(usuario);
             }
-          
+        
         }catch (SQLException ex) {
             System.out.println("No posible mostrar los datos de la tabla clientes " + ex.getMessage());
        }

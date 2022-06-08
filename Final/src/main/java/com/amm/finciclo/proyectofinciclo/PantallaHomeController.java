@@ -42,8 +42,8 @@ public class PantallaHomeController extends ControladorConNavegabilidad implemen
     
     @FXML
     public void verClientes() throws IOException{
-        this.layout.cargarPantalla("cliente", ClienteController.class.getResource("Cliente.fxml"));
-        añadirContenido("cliente");
+        this.layout.cargarPantalla("clientes", ClientesController.class.getResource("Clientes.fxml"));
+        añadirContenido("clientes");
         mostrarPanelContenido();
     }
     

@@ -142,6 +142,10 @@ int id;
         usuario.clear();
         contrasena.clear();
         repetirContrasena.clear();
+        cambiarEstilosError(usuario, false);
+        cambiarEstilosError(contrasena, false);
+        cambiarEstilosError(repetirContrasena, false);
+        etiquetaAviso.setVisible(false);
     }
 
 }

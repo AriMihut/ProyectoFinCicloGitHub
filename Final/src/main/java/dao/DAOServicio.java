@@ -29,6 +29,7 @@ public class DAOServicio {
                         "tipoServicio ENUM('CEREMONIA', 'GASTRONOMIA', 'MUSICA', 'FOTOGRAFIA', 'VIDEO', 'TRANSPORTE'), " +
                         "nombreServicio VARCHAR(50), " +
                         "precio DOUBLE)";   
+                System.out.println("SQL mensaje " + sql);
                 sentencia.executeUpdate(sql);
     }
    }
@@ -44,6 +45,7 @@ public class DAOServicio {
                     + "VALUES ('" + servicio.getTipoServicio()+ "', '" 
                     + servicio.getNombreServicio()+"', "
                     + servicio.getPrecio()+ ");";  
+            System.out.println("sql insertar servicio " + sql);
             statement.executeUpdate(sql);  
             
           } catch (SQLException ex) {

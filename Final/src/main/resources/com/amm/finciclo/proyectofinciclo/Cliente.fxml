@@ -124,22 +124,6 @@
             </padding>
         </VBox>
     </HBox>   
-    <VBox styleClass= "pantallaInfoClientes" visible="false">
-        <StackPane styleClass="tabla_clientes" HBox.hgrow="ALWAYS">
-            <TableView fx:id="tablaClientes">
-                <columns>
-                    <TableColumn fx:id="dniColumn" text="Dni"/>
-                    <TableColumn fx:id="nombreColumn" text="Nombre Cliente"/>
-                    <TableColumn fx:id="sexoColumn" text="Sexo"/>
-                    <TableColumn fx:id="telefonoColumn" text="Teléfono"/>
-                    <TableColumn fx:id="emailColumn" text="Email"/>
-                </columns>
-            </TableView>
-        </StackPane>
-             <padding>
-                <Insets top="40" right="20" bottom="40" left="20"/>
-            </padding> 
-    </VBox> 
     <VBox fx:id="panelContenido" visible="false"/>    
     <VBox fx:id="footer" styleClass="footer" alignment="CENTER" HBox.hgrow="ALWAYS" prefHeight="${paginaPrincipal.height*0.05}" 
         maxHeight="${paginaPrincipal.height*0.1}" style="-fx-background-color: #6DBD96">
