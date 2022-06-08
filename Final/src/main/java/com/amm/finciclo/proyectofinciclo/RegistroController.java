@@ -63,9 +63,7 @@ int id;
                 return false;
             }
         }
-        
        return todosCamposCubiertos() && comprobarContraseñasCoincidentes()? true :false;
-           
     }
     
     private void comprobarTextFieldsVaciosError(){
@@ -80,7 +78,6 @@ int id;
         if(repetirContrasena.getText().isEmpty()){
             cambiarEstilosError(repetirContrasena);
         }
-        
     }
     
     private void mostrarAviso(String text) {
@@ -109,9 +106,6 @@ int id;
             case EMPLEADO:
                 this.layout.cargarPantalla("empleado", EmpleadoController.class.getResource("Empleado.fxml"));
                 this.layout.mostrarComoPantallaActual("empleado");
-                break;
-            case PROVEEDOR:
-                this.layout.mostrarComoPantallaActual("proveedor");
                 break;
             default:
                 System.out.println("Opción no válida!");

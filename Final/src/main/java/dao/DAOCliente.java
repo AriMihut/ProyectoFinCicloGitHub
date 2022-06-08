@@ -15,27 +15,9 @@ public class DAOCliente {
     public static final String PASSWORD_BDD = "";
     
     public DAOCliente() throws SQLException{
-       crearTablaSiNoExiste();
+       
     }
 
-    private void crearTablaSiNoExiste() throws SQLException {
-        
-        try(
-                Connection conexion = DriverManager.getConnection(URL_CONEXION, USUARIO_BDD, PASSWORD_BDD)){
-                Statement sentencia = conexion.createStatement();
-                String sql = "CREATE TABLE IF NOT EXISTS cliente" +
-                          "(id INTEGER auto_increment NOT NULL PRIMARY KEY, " +
-                          "dni VARCHAR(50), " +
-                          "nombre VARCHAR(50), " +
-                          "sexo VARCHAR(15), " +
-                          "telefono LONG, " +
-                          "email VARCHAR(50), " +
-                          "idServicio INTEGER, " +
-                          "FOREIGN KEY (idServicio) REFERENCES servicio (id) )";
-                sentencia.executeUpdate(sql);
-        }
-   }
-    
     public void modificar(Cliente cliente) {
         
          try(

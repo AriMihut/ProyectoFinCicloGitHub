@@ -3,7 +3,6 @@ package com.amm.finciclo.proyectofinciclo;
 import dao.DAOServicio;
 import dao.DAOVenta;
 import java.net.URL;
-import java.sql.Date;
 import java.sql.SQLException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;

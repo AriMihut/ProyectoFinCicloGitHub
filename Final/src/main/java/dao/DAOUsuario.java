@@ -25,18 +25,18 @@ public class DAOUsuario {
      private void crearTablaSiNoExiste() throws SQLException {
         
         try(
-                Connection conexion = DriverManager.getConnection(URL_CONEXION, USUARIO_BDD, PASSWORD_BDD)){
+                 Connection conexion = DriverManager.getConnection(URL_CONEXION, USUARIO_BDD, PASSWORD_BDD)){
                 Statement sentencia = conexion.createStatement();
                 String sql = "CREATE TABLE IF NOT EXISTS usuario" +
                           "(id INTEGER auto_increment NOT NULL PRIMARY KEY, " +
                             "nombreUsuario VARCHAR(50) NULL, " +
                             "contrasena VARCHAR(50) NULL, " +
-                            "tipoUsuario VARCHAR(50) NULL, " +
+                            "tipoUsuario ENUM('CLIENTE', 'EMPLEADO', 'ADMIN'), " +
                             "dni VARCHAR(50) NULL, " +
                             "nombre VARCHAR(50) NULL, " +
                             "apellido VARCHAR(50) NULL, " +
                             "sexo VARCHAR(15) NULL, " +
-                            "telefono LONG, NULL" +
+                            "telefono LONG NULL, " +
                             "email VARCHAR(50) NULL)";
                 sentencia.executeUpdate(sql);
         }
@@ -59,6 +59,7 @@ public class DAOUsuario {
                     "', '" + usuario.getSexo() +
                     "', " + usuario.getTelefono() + 
                     ", '" + usuario.getEmail() + "');";
+            System.out.println("sql " + sql);
             statement.executeUpdate(sql);         
           } catch (SQLException ex) {
                 System.out.println("Error al introducir información en la tabla usuario " + ex.getMessage());

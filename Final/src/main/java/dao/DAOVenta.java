@@ -34,10 +34,13 @@ public class DAOVenta {
                         "codigoConjunto VARCHAR (50), " +
                         "fechaVenta TIMESTAMP, " +
                         "valorTotalVenta DOUBLE, " +
+                        "nombreUsuario VARCHAR(50), " +
+                        "nombreServicio VARCHAR(50), " +
                         "idUsuario INTEGER, " +
                         "idServicio INTEGER, " +
                         "FOREIGN KEY (idUsuario) REFERENCES usuario(id), " +
                         "FOREIGN KEY (idServicio) REFERENCES servicio(id))";
+                System.out.println("SQL crear venta === " + sql);
                 sentencia.executeUpdate(sql);
         }
    }
