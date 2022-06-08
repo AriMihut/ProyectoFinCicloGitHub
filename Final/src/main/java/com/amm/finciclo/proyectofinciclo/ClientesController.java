@@ -12,20 +12,18 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.layout.VBox;
 
 public class ClientesController extends ControladorConNavegabilidad implements Initializable {
     
     @FXML private TableView<Usuario> tablaClientes;
-    @FXML private VBox pantallaInfoClientes;
     private ObservableList<Usuario> clientes = FXCollections.observableArrayList();
     private DAOUsuario daoUsuario;
    
-    @FXML private TableColumn<Cliente, String> dniColumn;
-    @FXML private TableColumn<Cliente, String> nombreColumn;
-    @FXML private TableColumn<Cliente, String> sexoColumn;
-    @FXML private TableColumn<Cliente, Long> telefonoColumn;
-    @FXML private TableColumn<Cliente, String> emailColumn;
+    @FXML private TableColumn<Usuario, String> dniColumn;
+    @FXML private TableColumn<Usuario, String> nombreColumn;
+    @FXML private TableColumn<Usuario, String> sexoColumn;
+    @FXML private TableColumn<Usuario, Long> telefonoColumn;
+    @FXML private TableColumn<Usuario, String> emailColumn;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -49,11 +47,11 @@ public class ClientesController extends ControladorConNavegabilidad implements I
     }
     
     private void configuracionTabla() {
-        dniColumn.setCellValueFactory(new PropertyValueFactory<Cliente, String>("dni"));
-        nombreColumn.setCellValueFactory(new PropertyValueFactory<Cliente, String>("nombre"));
-        sexoColumn.setCellValueFactory(new PropertyValueFactory<Cliente, String>("sexo"));
-        telefonoColumn.setCellValueFactory(new PropertyValueFactory<Cliente, Long>("telefono"));
-        emailColumn.setCellValueFactory(new PropertyValueFactory<Cliente, String>("email"));
+        dniColumn.setCellValueFactory(new PropertyValueFactory<Usuario, String>("dni"));
+        nombreColumn.setCellValueFactory(new PropertyValueFactory<Usuario, String>("nombre"));
+        sexoColumn.setCellValueFactory(new PropertyValueFactory<Usuario, String>("sexo"));
+        telefonoColumn.setCellValueFactory(new PropertyValueFactory<Usuario, Long>("telefono"));
+        emailColumn.setCellValueFactory(new PropertyValueFactory<Usuario, String>("email"));
     }
 
     private void controlarTamanoColumnas() {
