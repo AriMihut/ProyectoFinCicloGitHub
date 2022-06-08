@@ -38,13 +38,13 @@ public class PantallaHomeController extends ControladorConNavegabilidad implemen
         this.layout.cargarPantalla("personal", PersonalController.class.getResource("Personal.fxml"));
         añadirContenido("personal");
         mostrarPanelContenido();
-        //this.layout.mostrarComoPantallaActual("personal");
     }
     
     @FXML
     public void verClientes() throws IOException{
-        //aqui debo listar los clientes que hay
-        //coger la info desde donde se registran los clientes
+        this.layout.cargarPantalla("cliente", ClienteController.class.getResource("Cliente.fxml"));
+        añadirContenido("cliente");
+        mostrarPanelContenido();
     }
     
     @FXML
@@ -52,7 +52,6 @@ public class PantallaHomeController extends ControladorConNavegabilidad implemen
         this.layout.cargarPantalla("servicio", ServicioController.class.getResource("Servicio.fxml"));
         añadirContenido("servicio");
         mostrarPanelContenido();
-    //this.layout.mostrarComoPantallaActual("servicio");
     }
    
     @FXML
@@ -60,7 +59,6 @@ public class PantallaHomeController extends ControladorConNavegabilidad implemen
         this.layout.cargarPantalla("venta", VentaController.class.getResource("Venta.fxml"));
         añadirContenido("venta");
         mostrarPanelContenido();
-        //this.layout.mostrarComoPantallaActual("venta");
     }
     
     @FXML

@@ -1,6 +1,5 @@
 package com.amm.finciclo.proyectofinciclo;
 
-import dao.DAOCliente;
 import dao.DAOUsuario;
 import java.net.URL;
 import java.sql.SQLException;
@@ -13,9 +12,11 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
+import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.ToolBar;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 
@@ -23,25 +24,29 @@ public class ClienteController extends ControladorConNavegabilidad implements In
     
     @FXML private TextField filtroDni, filtroNombre, filtroApellido, filtroTelefono, filtroEmail;
     @FXML private ComboBox<String> comboboxSexo;
-    @FXML private TableView<Cliente> tablaClientes;
+    @FXML private TableView<Usuario> tablaClientes;
     @FXML private Button btnEditar;
-    private DAOCliente clienteDao;
     
     @FXML private Label dniCliente, nombreCliente, apellidoCliente, labelSexo, telefono, email;
     @FXML private Label dniClienteTexto, nombreClienteTexto, apellidoClienteTexto, labelSexoTexto, telefonoTexto, emailTexto;
     
-    @FXML private VBox formularioModificacion, panelContenido, vBoxTitulo;
-    private ObservableList<Cliente> clientes = FXCollections.observableArrayList();
+    @FXML private VBox formularioModificacion, panelContenido, vBoxTitulo, pantallaInfoClientes;
+    private ObservableList<Usuario> clientes = FXCollections.observableArrayList();
     @FXML private HBox infoCliente, datosCliente;
     @FXML private ToolBar buttons;
-    //@FXML private ComboBox<Servicio> servicios;
-    
+   
+    @FXML private TableColumn<Cliente, String> dniColumn;
+    @FXML private TableColumn<Cliente, String> nombreColumn;
+    @FXML private TableColumn<Cliente, String> sexoColumn;
+    @FXML private TableColumn<Cliente, Long> telefonoColumn;
+    @FXML private TableColumn<Cliente, String> emailColumn;
+  
     private DAOUsuario daoUsuario;
     
     private int id;
     private Usuario usuario = null;
     
-    private Cliente clientesAModificar;
+    private Usuario clientesAModificar;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -51,19 +56,18 @@ public class ClienteController extends ControladorConNavegabilidad implements In
             formularioModificacion.managedProperty().bind(formularioModificacion.visibleProperty());
             datosCliente.managedProperty().bind(datosCliente.visibleProperty());
             panelContenido.managedProperty().bind(panelContenido.visibleProperty());
-            
+            //mostrar();
             
             btnEditar.disableProperty().bind(formularioModificacion.visibleProperty());
             
             configuraCabecero();
             configurarComboBox();
+            controlarTamanoColumnas();
+            configuracionTabla();
             daoUsuario = new DAOUsuario();
             
             comboboxSexo.setCellFactory(listView -> new ImagenListCell());
-            comboboxSexo.setButtonCell(new ImagenListCell());
-            
-            
-            
+            comboboxSexo.setButtonCell(new ImagenListCell());  
         } catch (SQLException ex) {
             System.out.println("Error initialize DaoUsuario " + ex.getMessage());
         }
@@ -124,9 +128,6 @@ public class ClienteController extends ControladorConNavegabilidad implements In
         prepararEdicionPerfil();
         infoCliente.setVisible(false);
         formularioModificacion.setVisible(true);
-        /*this.layout.cargarPantalla("cliente", ClienteController.class.getResource("Cliente.fxml"));
-        anadirContenido("cliente");
-        mostrarContenido();*/
     }
   
     @FXML
@@ -194,12 +195,35 @@ public class ClienteController extends ControladorConNavegabilidad implements In
     }
     
     public void mostrar(){
-        tablaClientes.getItems().clear();
-     
-        List<Cliente> clientesAMostrar = clienteDao.buscarTodos();
-        clientes.addAll(clientesAMostrar);
-        tablaClientes.setItems(clientes);
+        
+        if(this.layout.getUsuario().getTipoUsuario().equals(TipoUsuario.CLIENTE)){
+            tablaClientes.getItems().clear();
+            List<Usuario> clientesAMostrar = daoUsuario.buscarClientes();
+            clientes.addAll(clientesAMostrar);
+            tablaClientes.setItems(clientes);
+            pantallaInfoClientes.setVisible(true);
+        }
     }
+    
+    private void configuracionTabla() {
+        dniColumn.setCellValueFactory(new PropertyValueFactory<Cliente, String>("dni"));
+        nombreColumn.setCellValueFactory(new PropertyValueFactory<Cliente, String>("nombre"));
+        sexoColumn.setCellValueFactory(new PropertyValueFactory<Cliente, String>("sexo"));
+        telefonoColumn.setCellValueFactory(new PropertyValueFactory<Cliente, Long>("telefono"));
+        emailColumn.setCellValueFactory(new PropertyValueFactory<Cliente, String>("email"));
+    }
+
+    private void controlarTamanoColumnas() {
+       tablaClientes.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
+        ObservableList<TableColumn<Usuario, ?>> columnas = tablaClientes.getColumns();
+        
+        columnas.get(0).setMaxWidth(1f * Integer.MAX_VALUE * 20); 
+        columnas.get(1).setMaxWidth(1f * Integer.MAX_VALUE * 20); 
+        columnas.get(2).setMaxWidth(1f * Integer.MAX_VALUE * 20); 
+        columnas.get(3).setMaxWidth(1f * Integer.MAX_VALUE * 20); 
+        columnas.get(4).setMaxWidth(1f * Integer.MAX_VALUE * 20); 
+    }
+    
     
     public void mostrarDatosCliente() {
         formularioModificacion.setVisible(false);

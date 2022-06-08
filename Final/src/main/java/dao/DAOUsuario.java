@@ -99,7 +99,6 @@ public class DAOUsuario {
              Usuario usuario = new Usuario();
              usuario.setNombreUsuario(resultset.getString("nombreUsuario"));
              usuario.setContrasena(resultset.getString("contrasena"));
-             //usuario.setTipoUsuario(Usuario.TipoUsuario.valueOf(resultset.getString("tipoUsuario")));
              usuario.setDni(resultset.getString("dni"));
              usuario.setNombre(resultset.getString("nombre"));
              usuario.setApellido(resultset.getString("apellido"));
@@ -113,6 +112,32 @@ public class DAOUsuario {
             System.out.println("No posible mostrar los datos de la tabla usuario" + ex.getMessage());
        }
         return usuarios;
+    }
+    
+    public List<Usuario> buscarClientes(){
+        
+        List<Usuario> clientes = new ArrayList<>();
+        try{
+            Connection conexionDataBase = DriverManager.getConnection(URL_CONEXION, USUARIO_BDD, PASSWORD_BDD);
+            Statement  statement = conexionDataBase.createStatement();
+            String sql = "SELECT * FROM usuario ORDER BY id";
+            ResultSet resultset = statement.executeQuery(sql);
+            
+        while(resultset.next()){
+             Usuario usuario = new Usuario();
+             usuario.setDni(resultset.getString("dni"));
+             usuario.setNombre(resultset.getString("nombre"));
+             usuario.setSexo(resultset.getString("sexo"));
+             usuario.setTelefono(resultset.getLong("telefono"));
+             usuario.setEmail(resultset.getString("email"));
+             clientes.add(usuario);
+            }
+          
+        }catch (SQLException ex) {
+            System.out.println("No posible mostrar los datos de la tabla clientes " + ex.getMessage());
+       }
+        return clientes;
+        
     }
     
     @FXML

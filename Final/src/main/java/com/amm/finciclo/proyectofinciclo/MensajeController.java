@@ -71,7 +71,6 @@ public class MensajeController extends ControladorConNavegabilidad implements In
     
     @FXML
     public void atras(){
-        System.out.println("tipoUsuario = " + this.layout.getUsuario().getTipoUsuario());
         if(this.layout.getUsuario().getTipoUsuario().equals(TipoUsuario.CLIENTE)){
            this.layout.cargarPantalla("cliente", ClienteController.class.getResource("Cliente.fxml"));
            ((ClienteController) this.layout.getCotroller("cliente")).mostrarDatosCliente();
