@@ -118,14 +118,8 @@ public class AutentificacionCPEController extends ControladorConNavegabilidad im
     }
     
     private void comprobarTextFieldsVaciosError(){
-    //    if(usuario.getText().isEmpty()){
             cambiarEstilosError(usuario, usuario.getText().isEmpty());
-     //   }
-        
-      //  if(contrasena.getText().isEmpty()){
             cambiarEstilosError(contrasena, contrasena.getText().isEmpty());
-     //   }
-        
     }
 
     private boolean comprobacionesUsuario() {

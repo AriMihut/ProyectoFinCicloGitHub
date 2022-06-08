@@ -24,7 +24,7 @@ int id;
 
 @Override
     public void initialize(URL url, ResourceBundle rb) {
-        
+        configurarTextFields();
     }
     
     private boolean comprobarContraseñasCoincidentes(){
@@ -36,9 +36,12 @@ int id;
                 !repetirContrasena.getText().isEmpty();
     }
     
-    private void cambiarEstilosError(TextField campo) {
-        campo.getStyleClass().add("textField-error");
-        System.out.println(campo.getStyleClass());
+     private void cambiarEstilosError(TextField campo, boolean esError) {
+        if(esError){
+            campo.getStyleClass().add("textField-error");
+        } else {
+            campo.getStyleClass().remove("textField-error");
+        }
     }
     
     @FXML
@@ -57,8 +60,8 @@ int id;
             return false;
         } else {
             if(!comprobarContraseñasCoincidentes()) {
-                cambiarEstilosError(contrasena);
-                cambiarEstilosError(repetirContrasena);
+                cambiarEstilosError(contrasena, true);
+                cambiarEstilosError(repetirContrasena, true);
                 mostrarAviso("Las contraseñas no coinciden");
                 return false;
             }
@@ -67,17 +70,38 @@ int id;
     }
     
     private void comprobarTextFieldsVaciosError(){
-        if(usuario.getText().isEmpty()){
-            cambiarEstilosError(usuario);
-        }
+        cambiarEstilosError(usuario, usuario.getText().isEmpty());
+        cambiarEstilosError(contrasena, contrasena.getText().isEmpty());
+        cambiarEstilosError(repetirContrasena, repetirContrasena.getText().isEmpty());
+    }
+    
+    private void configurarTextFields(){
+        usuario.textProperty().addListener((obs, oldV, newV) -> {
+            
+            if(oldV != newV && !newV.isEmpty()){
+                usuario.getStyleClass().remove("textField-error");
+                etiquetaAviso.setVisible(false);
+                
+            }
+        });
         
-        if(contrasena.getText().isEmpty()){
-            cambiarEstilosError(contrasena);
-        }
+        contrasena.textProperty().addListener((obs, oldV, newV) -> {
+            
+            if(oldV != newV && !newV.isEmpty()){
+                contrasena.getStyleClass().remove("textField-error");
+                etiquetaAviso.setVisible(false);
+                
+            }
+        });
         
-        if(repetirContrasena.getText().isEmpty()){
-            cambiarEstilosError(repetirContrasena);
-        }
+        repetirContrasena.textProperty().addListener((obs, oldV, newV) -> {
+            
+            if(oldV != newV && !newV.isEmpty()){
+                repetirContrasena.getStyleClass().remove("textField-error");
+                etiquetaAviso.setVisible(false);
+                
+            }
+        });
     }
     
     private void mostrarAviso(String text) {

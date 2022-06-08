@@ -8,6 +8,12 @@
     -fx-text-fill: red;
 }
 
+.contenedor-general .textField-error {
+    -fx-background-color: white;
+    -fx-border-color: red;
+    -fx-text-fill: red;
+}
+
 #pantallaRegistro {
     -fx-background-color: #6DBD96;
     -fx-text-fill: white;
