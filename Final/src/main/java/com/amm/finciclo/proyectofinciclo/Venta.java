@@ -12,12 +12,12 @@ public class Venta {
     private HashSet<String> nombreServicios;
     private Date fechaVenta;
     private double valorTotalVenta;
-   // private String nombreServicio;
+    private int idServicio;
 
     public Venta() {
     }
 
-    public Venta(String codigoConjunto, Date fechaVenta, double valorTotalVenta, int idUsuario, String nombreUsuario, String nombreServicio) {
+    public Venta(String codigoConjunto, Date fechaVenta, double valorTotalVenta, int idUsuario, String nombreUsuario, String nombreServicio, int idServicio) {
         this.codigoConjunto = codigoConjunto;
         this.idUsuario = idUsuario;
         this.nombreUsuario = nombreUsuario;
@@ -25,24 +25,17 @@ public class Venta {
         this.fechaVenta = fechaVenta;
         this.valorTotalVenta = valorTotalVenta;
         this.nombreServicios.add(nombreServicio);
+        this.idServicio = idServicio;
        
     }
-    
-   /* public Venta(int idUsuario, String codigoConjunto, int idServicio, double valorTotalVenta) {
-        this.idUsuario = idUsuario;
-        this.codigoConjunto = codigoConjunto;
-        this.idServicio = idServicio;
-        this.valorTotalVenta = valorTotalVenta;
-       
-    }*/
 
-   /* public int getIdServicio() {
+    public int getIdServicio() {
         return idServicio;
     }
 
     public void setIdServicio(int idServicio) {
         this.idServicio = idServicio;
-    }*/
+    }
 
     public String getCodigoConjunto() {
         return codigoConjunto;

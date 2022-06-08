@@ -31,6 +31,7 @@ import javafx.util.Callback;
 public class CompraController extends ControladorConNavegabilidad implements Initializable{
     
     private final String ESTILO_ERROR = "campo-error";
+    private final String ETIQUETA_AVISO_ERROR = "etiqueta-aviso-error";
     
     private @FXML TextField filtroNombre, filtroApellidos, filtroTelefono, filtroEmail, 
             filtroNumeroTarjeta, filtroCVVTarjeta;
@@ -58,6 +59,7 @@ public class CompraController extends ControladorConNavegabilidad implements Ini
             configurarComboServicios(servicioDao.buscarTodos());
             
             configurarBotones();
+            comfigurarCampos();
             
             configurarServiciosListView();
             
@@ -69,6 +71,7 @@ public class CompraController extends ControladorConNavegabilidad implements Ini
             System.out.println("Error en el initialize de CompraController " + ex.getMessage());
         }
     }
+    
     
     private void configurarComboServicios(ArrayList<Servicio> listaServicios){
        
@@ -132,21 +135,21 @@ public class CompraController extends ControladorConNavegabilidad implements Ini
     public void pagar(){
         
         if(todosCamposCubiertos() && sonEtiquetasErrorInvisibles()){            
-                   
-            
             servicioListView.getItems().forEach(servicio -> {
                 ventaDao.anadir(new Venta(getCodigoConjunto(), 
                     null,
                     Double.parseDouble(labelCantidad.getText()),
                     this.layout.getUsuario().getId(),
                     this.layout.getUsuario().getNombreUsuario(),
-                    ((Servicio) servicio).getNombreServicio()
+                    ((Servicio) servicio).getNombreServicio(),
+                    ((Servicio) servicio).getId()
                 ));
             });
             clear();
-            mostrarAviso("Compra realizada con éxito. Muchas gracias!");
+            mostrarAviso("Compra realizada con éxito. Muchas gracias!", false);
         } else {
-            mostrarAviso("Todos los campos deben estar correctamente cubiertos");
+            
+            mostrarAviso("Todos los campos deben estar correctamente cubiertos", true);
             System.out.println("El pago no se ha podido finalizar. Por favor, inténtelo de nuevo. "
                     + "Si vuelve a tener el mismo error, contacte con su banco. Muchas gracias!");
             sonEtiquetasErrorInvisibles();
@@ -175,7 +178,40 @@ public class CompraController extends ControladorConNavegabilidad implements Ini
         btnAnadir.disableProperty().bind(comboServicios.getSelectionModel().selectedItemProperty().isNull());
         btnDescartar.disableProperty().bind(servicioListView.getSelectionModel().selectedItemProperty().isNull());  
     }
-
+    
+    private void comfigurarCampos() {
+        filtroNombre.textProperty().addListener((obs, oldV, newV) -> {
+            aplicarEstilosDeError(filtroNombre, oldV != newV && newV.isEmpty());
+            nombreError.setVisible(false);
+            etiquetaAviso.setVisible(false);
+            
+        });
+        filtroApellidos.textProperty().addListener((obs, oldV, newV) -> {
+            aplicarEstilosDeError(filtroApellidos, oldV != newV && newV.isEmpty());
+            apellidoError.setVisible(false);
+            etiquetaAviso.setVisible(false);
+        });
+         filtroTelefono.textProperty().addListener((obs, oldV, newV) -> {
+            aplicarEstilosDeError(filtroTelefono, oldV != newV && newV.isEmpty());
+            validezTelefonoError.setVisible(false);
+            etiquetaAviso.setVisible(false);
+        });
+        filtroEmail.textProperty().addListener((obs, oldV, newV) -> {
+            aplicarEstilosDeError(filtroEmail, oldV != newV && newV.isEmpty());
+            validezEmail.setVisible(false);
+            etiquetaAviso.setVisible(false);
+        });
+        filtroCVVTarjeta.textProperty().addListener((obs, oldV, newV) -> {
+            aplicarEstilosDeError(filtroCVVTarjeta, oldV != newV && newV.isEmpty());
+            cvvTarjetaError.setVisible(false);
+            etiquetaAviso.setVisible(false);
+        });
+        filtroNumeroTarjeta.textProperty().addListener((obs, oldV, newV) -> {
+            aplicarEstilosDeError(filtroNumeroTarjeta, oldV != newV && newV.isEmpty());
+            validezNTarjetaError.setVisible(false);
+            etiquetaAviso.setVisible(false);
+        });
+    }
     private void configurarServiciosListView() {
        servicioListView.setCellFactory(new Callback<ListView<Servicio>,ListCell<Servicio>>(){
                 @Override
@@ -217,7 +253,13 @@ public class CompraController extends ControladorConNavegabilidad implements Ini
         labelCantidad.setText(null);
     }
 
-    private void mostrarAviso(String text) {
+    private void mostrarAviso(String text, boolean esError) {
+        
+       if(esError) {
+           etiquetaAviso.getStyleClass().add(ETIQUETA_AVISO_ERROR);
+       } else {
+           etiquetaAviso.getStyleClass().remove(ETIQUETA_AVISO_ERROR);
+       }
        etiquetaAviso.setText(text);
        etiquetaAviso.setVisible(true);
     }
@@ -266,14 +308,13 @@ public class CompraController extends ControladorConNavegabilidad implements Ini
     }
     
     public static boolean validarFecha(String fecha) {
-    SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
-     try {
-          format.parse(fecha);
-          return true;
-    }
-     catch(ParseException e){
-          return false;
-    }
+        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+        try {
+              format.parse(fecha);
+              return true;
+        } catch(ParseException e){
+              return false;
+        }
     }
 
     private boolean sonEtiquetasErrorInvisibles() {

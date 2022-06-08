@@ -3,8 +3,10 @@ package dao;
 import com.amm.finciclo.proyectofinciclo.Cliente;
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 
 public class DAOCliente {
     
@@ -50,7 +52,30 @@ public class DAOCliente {
           } catch (SQLException ex) {
                 System.out.println("Error al modificar la tabla cliente " + ex.getMessage());
             }      
-            
         }
+    
+    public ArrayList<Cliente> buscarTodos(){
+        
+        ArrayList<Cliente> clientes = new ArrayList<>();
+        try{
+            Connection conexionDataBase = DriverManager.getConnection(URL_CONEXION, USUARIO_BDD, PASSWORD_BDD);
+            Statement  statement = conexionDataBase.createStatement();
+            String sql = "SELECT * FROM servicio ORDER BY id";
+            ResultSet resultset = statement.executeQuery(sql);
+            
+        while(resultset.next()){
+            Cliente cliente = new Cliente();
+            cliente.setId(resultset.getInt("id"));
+            /*servicio.setTipoServicio(Servicio.TipoServicio.valueOf(resultset.getString("tipoServicio")));
+            servicio.setNombreServicio(resultset.getString("nombreServicio"));
+            servicio.setPrecio(resultset.getDouble("precio"));
+            servicios.add(servicio);*/
+            }
+          
+        }catch (SQLException ex) {
+          System.out.println("No posible mostrar los datos de la tabla cliente " + ex.getMessage());
+       }
+        return clientes;
+    }
     
 }

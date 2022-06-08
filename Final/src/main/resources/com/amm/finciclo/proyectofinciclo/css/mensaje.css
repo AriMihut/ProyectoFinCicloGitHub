@@ -17,17 +17,13 @@
     -fx-font-weight: bold;
 }
 
-.btnContacto{
-    -fx-alignment: center;
-}
-
 .leftVBox{
     -fx-padding: 10px;
     -fx-alignment: center;
 }
 
 #btnContacto{
-    -fx-background-color: darkgrey;
+    -fx-background-color: #6DBD96;
     -fx-text-fill: white;
     -fx-font-weight: bold;
     -fx-font-size: 15px;

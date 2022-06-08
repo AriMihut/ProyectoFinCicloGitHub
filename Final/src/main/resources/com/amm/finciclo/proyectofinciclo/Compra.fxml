@@ -32,20 +32,13 @@
                 </image>  
             </ImageView>  
         </HBox>
-        <HBox>
-            <HBox fx:id="hBoxServicios" style="-fx-background-color: #6DBD96;" VBox.vgrow="ALWAYS" 
+        <HBox fx:id="hBoxServicios" style="-fx-background-color: #6DBD96;" VBox.vgrow="ALWAYS" 
                   prefWidth="${pantallaElegirServicios.width*0.5}" prefHeight="${pantallaElegirServicios.height*0.6}" 
-                  maxHeight="${pantallaElegirServicios.height*0.8}" alignment="CENTER" spacing="10">
+                  maxHeight="${pantallaElegirServicios.height*0.8}" alignment="TOP_CENTER" spacing="10">
                 <Label fx:id="serviciosLabel" styleClass="simpleLabel" text="Servicios"/>
                 <ComboBox fx:id="comboServicios" promptText="Seleccione un servicio"/> 
-            </HBox> 
-            <HBox VBox.vgrow="ALWAYS" prefWidth="${pantallaElegirServicios.width*0.5}" 
-                  prefHeight="${pantallaElegirServicios.height*0.8}" maxHeight="${pantallaElegirServicios.height*0.8}" alignment="CENTER">
                 <ListView fx:id="servicioListView"/>
-            </HBox>
         </HBox>
-        
-        
         <VBox style="-fx-alignment: center; -fx-background-color: grey">
             <Label styleClass="simpleLabel" text="Total a pagar" style="-fx-font-weight: bold;"/>
             <Label fx:id="labelCantidad" styleClass="simpleLabel" text="0.00" />
@@ -89,7 +82,7 @@
                                 <TextField fx:id="filtroApellidos" promptText="Introduce tu apellido"/>
                                 <TextField fx:id="filtroTelefono" promptText="Introduce tu teléfono"/>
                                 <TextField fx:id="filtroEmail" promptText="Introduce tu email"/>
-                                <TextField fx:id="filtroNumeroTarjeta" promptText="Introduce los 16 dígitos del nº de tu tarjeta"/>
+                                <TextField fx:id="filtroNumeroTarjeta" promptText="Introduce 16 dígitos"/>
                                 <TextField fx:id="filtroCVVTarjeta" promptText="CVV tarjeta"/>
                                 <DatePicker fx:id="filtroValidezTarjeta"/>
                             </VBox> 
@@ -99,13 +92,13 @@
                         </VBox>
                     <VBox fx:id="c" alignment="CENTER_RIGHT" prefWidth="${pantallaInfoCompra.width*0.3}" HBox.hgrow="ALWAYS">
                         <VBox alignment="CENTER_LEFT" prefWidth="${c.width*07}" spacing="21">
-                            <Label fx:id="nombreError" styleClass="etiqueta-aviso" text="Nombre incorrecto!" visible="false"/>
-                            <Label fx:id="apellidoError" styleClass="etiqueta-aviso" text="Apellido incorrecto!" visible="false"/>
-                            <Label fx:id="validezTelefonoError" styleClass="etiqueta-aviso" text="Teléfono incorrecto!" visible="false"/>
-                            <Label fx:id="validezEmail" styleClass="etiqueta-aviso" text="Email incorrecto!" visible="false"/>
-                            <Label fx:id="validezNTarjetaError" styleClass="etiqueta-aviso" text="Número de tarjeta incorrecto!" visible="false"/>
-                            <Label fx:id="cvvTarjetaError" styleClass="etiqueta-aviso" text="CVV incorrecto!" visible="false"/>
-                            <Label fx:id="validezTarjetaError" styleClass="etiqueta-aviso" text="Validez incorrecta!" visible="false"/>
+                            <Label fx:id="nombreError" styleClass="etiqueta-aviso-error" text="Nombre incorrecto!" visible="false"/>
+                            <Label fx:id="apellidoError" styleClass="etiqueta-aviso-error" text="Apellido incorrecto!" visible="false"/>
+                            <Label fx:id="validezTelefonoError" styleClass="etiqueta-aviso-error" text="Teléfono incorrecto!" visible="false"/>
+                            <Label fx:id="validezEmail" styleClass="etiqueta-aviso-error" text="Email incorrecto!" visible="false"/>
+                            <Label fx:id="validezNTarjetaError" styleClass="etiqueta-aviso-error" text="Número de tarjeta incorrecto!" visible="false"/>
+                            <Label fx:id="cvvTarjetaError" styleClass="etiqueta-aviso-error" text="CVV incorrecto!" visible="false"/>
+                            <Label fx:id="validezTarjetaError" styleClass="etiqueta-aviso-error" text="Validez incorrecta!" visible="false"/>
                         </VBox>
                             <padding> 
                                 <Insets right="20" top="56"/>
@@ -117,13 +110,13 @@
                         <Button styleClass="boton-accion" onAction="#pagar" text="PAGAR" style="-fx-font-weight: bold;"/>
                         <Button styleClass="boton-accion" onAction="#volverAPantallaElegirServicios" text="VOLVER A LA CESTA" style="-fx-font-weight: bold;"/>
                     </HBox> 
-                    <Label fx:id="etiquetaAviso" styleClass="etiqueta-aviso" text="" style="-fx-text-fill:white;"/>  
-        <VBox fx:id="ventaInfoCliente" styleClass= "pantallaInfoCliente" visible="false">
-            <Label fx:id="textoVentaRealizada" text="" prefHeight="250"/>
-        </VBox> 
-            <padding> 
-                <Insets top="56"/>
-            </padding>        
+                    <Label fx:id="etiquetaAviso" styleClass="etiqueta-aviso" text=""/>  
+                <VBox fx:id="ventaInfoCliente" styleClass= "pantallaInfoCliente" visible="false">
+                    <Label fx:id="textoVentaRealizada" text="" prefHeight="250"/>
+                </VBox> 
+                <padding> 
+                    <Insets top="56"/>
+                </padding>        
         </VBox>  
     </HBox>
 </VBox>

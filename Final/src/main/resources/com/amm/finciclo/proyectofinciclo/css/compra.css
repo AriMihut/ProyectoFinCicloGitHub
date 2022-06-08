@@ -25,7 +25,8 @@
 }
 
 #comboServicios{
-    -fx-font-size: 15px;
+    -fx-alignment: top-center;
+    -fx-font-size: 12px;
     -fx-fill: white;
     -fx-font-weight: bold;
 }
@@ -74,12 +75,6 @@
     -fx-text-aling: center;
 }
 
-#comboServicios{
-    -fx-text-fill: white;
-    -fx-font-weight: bold;
-    -fx-font-size: 12px;
-}
-
 .boton-accion{
     -fx-background-color: grey;
     -fx-border-color: white;
@@ -116,7 +111,11 @@
     -fx-padding-bottom: 30px;
 }
 
-.etiqueta-aviso{
+.etiqueta-aviso {
+    -fx-text-fill: white;
+}
+
+.etiqueta-aviso-error{
     -fx-text-fill: red;
 }
 

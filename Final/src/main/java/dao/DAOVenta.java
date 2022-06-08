@@ -54,13 +54,15 @@ public class DAOVenta {
             Connection conexionDataBase =
             DriverManager.getConnection(URL_CONEXION, USUARIO_BDD, PASSWORD_BDD)){
             Statement statement = conexionDataBase.createStatement();
-            String sql = "INSERT INTO venta(codigoConjunto, fechaVenta, valorTotalVenta, idUsuario, nombreUsuario, nombreServicio) " 
+            String sql = "INSERT INTO venta(codigoConjunto, fechaVenta, valorTotalVenta, "
+                    + "idUsuario, nombreUsuario, nombreServicio, idServicio) " 
                     + "VALUES ('" + venta.getCodigoConjunto()+ "', '" 
                     + new Timestamp(System.currentTimeMillis()) + "', "
                     + venta.getValorTotalVenta()+", "
                     + venta.getIdUsuario()+", '"
                     + venta.getNombreUsuario() + "', '"
-                    + venta.getNombreServicios().stream().findFirst().get() + "')";            
+                    + venta.getNombreServicios().stream().findFirst().get() +  "', " 
+                    + venta.getIdServicio() +  ")";            
             statement.executeUpdate(sql);
             
             } catch (SQLException ex) {
@@ -76,16 +78,16 @@ public class DAOVenta {
         try{
             String codigoConjunto = "";
             java.sql.Date fechaVenta = null ;
-            int idUsuario = 0;
+            String idUsuario = "";
             String nombreUsuario = "";
             String nombreServicio = "";
             double valorTotalVenta = 0;
-            
+            String idServicio = "";
             
             Connection conexionDataBase = DriverManager.getConnection(URL_CONEXION, USUARIO_BDD, PASSWORD_BDD);
             Statement  statement = conexionDataBase.createStatement();
             String sql = "select v.codigoConjunto, v.fechaVenta, v.valorTotalVenta,"
-                    + " v.idUsuario, u.nombreUsuario, v.nombreServicio "
+                    + " v.idUsuario, u.nombreUsuario, v.nombreServicio, v.idServicio "
                     + "from venta v "
                     + "inner join usuario u " 
                     + "on v.idUsuario = u.id"; 
@@ -97,42 +99,18 @@ public class DAOVenta {
                 codigoConjunto = resultset.getString("codigoConjunto");
                 fechaVenta = resultset.getDate("fechaVenta");
                 valorTotalVenta = resultset.getDouble("valorTotalVenta");
-                idUsuario = resultset.getInt("idUsuario");
+                idUsuario = resultset.getString("idUsuario");
                 nombreUsuario = resultset.getString("nombreUsuario");
                 nombreServicio = resultset.getString("nombreServicio");
+                idServicio = resultset.getString("idServicio");
                 
                 Venta nuevaVenta = new Venta(codigoConjunto, 
                     fechaVenta, valorTotalVenta,
-                    idUsuario, nombreUsuario, nombreServicio);
+                    Integer.parseInt(idUsuario), nombreUsuario, nombreServicio, Integer.parseInt(idServicio));
                 ventas.add(nuevaVenta);
                 
             } 
-                
-                
-                
-                
-            /*if(ventas.isEmpty()) {
-            // añadirServicioAventa(nuevaVenta, nombreServicio, valorTotalVenta);
-            añadirVenta(nuevaVenta, ventas);
-            }   */
-            /*if(venta ) {
-            System.out.println("Venta NO esta vacia");*/
-            /*  for(Venta venta : ventas) {
-            if(venta.getCodigoConjunto().equals(codigoConjunto) && !venta.getNombreServicios().contains(nombreServicio)) {
-            System.out.println("esta venta ya xiste, asi que añadimos un nuevo servicio ");
-            //System.out.println("venta existente =" + venta);
-            añadirServicioAventa(venta, nombreServicio, valorTotalVenta);
-            } else if(!venta.getCodigoConjunto().equals(codigoConjunto)) {
-            System.out.println("esta venta no xiste, asi que creamos nueva venta");
-            Venta nuevaVenta = new Venta(codigoConjunto,
-            fechaVenta, valorTotalVenta,
-            idUsuario, nombreUsuario, nombreServicio);
-            añadirVenta(nuevaVenta, ventas);
-            }
-            }*/
-            //}
-            
-            
+      
             Set<String> codigosConjunto = ventas.stream().map(v -> v.getCodigoConjunto()).collect(Collectors.toSet());
             System.out.println("codigo = " + codigosConjunto.toString());
             for(String cc : codigosConjunto) {
@@ -146,34 +124,23 @@ public class DAOVenta {
                         ventasAgrupoadasPorCodigo.get(0).getValorTotalVenta(),
                         ventasAgrupoadasPorCodigo.get(0).getIdUsuario(),
                         ventasAgrupoadasPorCodigo.get(0).getNombreUsuario(),
-                        ventasAgrupoadasPorCodigo.get(0).getNombreServicios().stream().findFirst().get());
+                        ventasAgrupoadasPorCodigo.get(0).getNombreServicios().stream().findFirst().get(),
+                        ventasAgrupoadasPorCodigo.get(0).getIdServicio()
+                );
 
-                
-                
-                
-                
-                
                 for(Venta v : ventasAgrupoadasPorCodigo) {
                     if(ventas.indexOf(v) != 0) {
                         ventaAgrupada.getNombreServicios()
                             .add(v.getNombreServicios().stream().findFirst().get());
                     }
-                }
-                
+                } 
                 ventasAgrupadas.add(ventaAgrupada);
-               
-                
-            }
            
-            
-            
+            }   
         }catch (Exception ex) {
           System.out.println("No posible mostrar los datos de la tabla venta " + ex.getMessage());
         }
-        
-        
-        return ventasAgrupadas;
-        
+        return ventasAgrupadas; 
     }
 
     private void añadirVenta(Venta venta, ArrayList<Venta> ventas) {

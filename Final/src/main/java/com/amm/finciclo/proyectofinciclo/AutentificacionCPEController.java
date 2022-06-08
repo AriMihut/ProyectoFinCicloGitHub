@@ -27,6 +27,7 @@ public class AutentificacionCPEController extends ControladorConNavegabilidad im
         
        try {
             usuarioDao = new DAOUsuario();
+            configurarTextFields();
        } catch (SQLException ex) {
             System.out.println("Error AutentificacionCPEController: " + ex.getMessage());
        } 
@@ -50,6 +51,27 @@ public class AutentificacionCPEController extends ControladorConNavegabilidad im
             mostrarAviso("Todos los campos deben estar cubiertos!");
          }
     }
+    
+    private void configurarTextFields(){
+        usuario.textProperty().addListener((obs, oldV, newV) -> {
+            
+            if(oldV != newV && !newV.isEmpty()){
+                usuario.getStyleClass().remove("textField-error");
+                etiquetaAviso.setVisible(false);
+                
+            }
+        });
+        
+        contrasena.textProperty().addListener((obs, oldV, newV) -> {
+            
+            if(oldV != newV && !newV.isEmpty()){
+                contrasena.getStyleClass().remove("textField-error");
+                etiquetaAviso.setVisible(false);
+                
+            }
+        });
+    }
+   
     
     private void navegarSegunTipoUsuario() throws IOException{
         
@@ -77,7 +99,9 @@ public class AutentificacionCPEController extends ControladorConNavegabilidad im
     
     @FXML
     public void volver() throws IOException{
+       limpiar();
        this.layout.mostrarComoPantallaActual("comienzo");
+       
     }
 
     public void configurarSegunUsuario() {
@@ -85,19 +109,22 @@ public class AutentificacionCPEController extends ControladorConNavegabilidad im
         
     }
     
-    private void cambiarEstilosError(TextField campo) {
-        campo.getStyleClass().add("textField-error");
-        System.out.println(campo.getStyleClass());
+    private void cambiarEstilosError(TextField campo, boolean esError) {
+        if(esError){
+            campo.getStyleClass().add("textField-error");
+        } else {
+            campo.getStyleClass().remove("textField-error");
+        }
     }
     
     private void comprobarTextFieldsVaciosError(){
-        if(usuario.getText().isEmpty()){
-            cambiarEstilosError(usuario);
-        }
+    //    if(usuario.getText().isEmpty()){
+            cambiarEstilosError(usuario, usuario.getText().isEmpty());
+     //   }
         
-        if(contrasena.getText().isEmpty()){
-            cambiarEstilosError(contrasena);
-        }
+      //  if(contrasena.getText().isEmpty()){
+            cambiarEstilosError(contrasena, contrasena.getText().isEmpty());
+     //   }
         
     }
 
@@ -138,6 +165,9 @@ public class AutentificacionCPEController extends ControladorConNavegabilidad im
    private void limpiar() {
        usuario.clear();
        contrasena.clear();
+       cambiarEstilosError(usuario, false);
+       cambiarEstilosError(contrasena, false);
+       etiquetaAviso.setVisible(false);
    }
     
 }

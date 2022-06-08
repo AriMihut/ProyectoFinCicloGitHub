@@ -1,8 +1,10 @@
 package com.amm.finciclo.proyectofinciclo;
 
+import dao.DAOCliente;
 import dao.DAOUsuario;
 import java.net.URL;
 import java.sql.SQLException;
+import java.util.List;
 import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -11,6 +13,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
+import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.ToolBar;
 import javafx.scene.layout.HBox;
@@ -20,12 +23,15 @@ public class ClienteController extends ControladorConNavegabilidad implements In
     
     @FXML private TextField filtroDni, filtroNombre, filtroApellido, filtroTelefono, filtroEmail;
     @FXML private ComboBox<String> comboboxSexo;
+    @FXML private TableView<Cliente> tablaClientes;
     @FXML private Button btnEditar;
+    private DAOCliente clienteDao;
     
     @FXML private Label dniCliente, nombreCliente, apellidoCliente, labelSexo, telefono, email;
     @FXML private Label dniClienteTexto, nombreClienteTexto, apellidoClienteTexto, labelSexoTexto, telefonoTexto, emailTexto;
     
     @FXML private VBox formularioModificacion, panelContenido, vBoxTitulo;
+    private ObservableList<Cliente> clientes = FXCollections.observableArrayList();
     @FXML private HBox infoCliente, datosCliente;
     @FXML private ToolBar buttons;
     //@FXML private ComboBox<Servicio> servicios;
@@ -36,7 +42,6 @@ public class ClienteController extends ControladorConNavegabilidad implements In
     private Usuario usuario = null;
     
     private Cliente clientesAModificar;
-    private ObservableList<Cliente> clientes = FXCollections.observableArrayList();
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -186,6 +191,14 @@ public class ClienteController extends ControladorConNavegabilidad implements In
         } else {
             mostrarDatosCliente();
         }
+    }
+    
+    public void mostrar(){
+        tablaClientes.getItems().clear();
+     
+        List<Cliente> clientesAMostrar = clienteDao.buscarTodos();
+        clientes.addAll(clientesAMostrar);
+        tablaClientes.setItems(clientes);
     }
     
     public void mostrarDatosCliente() {

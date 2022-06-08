@@ -23,7 +23,7 @@
         <URL value="@/com/amm/finciclo/proyectofinciclo/css/mensaje.css"/>
     </stylesheets> 
     <top>
-        <HBox styleClass="titulo" minHeight="50" style="-fx-background-color: darkgrey">
+        <HBox styleClass="titulo" minHeight="50" style="-fx-background-color: #6DBD96">
             <Text styleClass="textoTitulo" text="Sueños cumplidos - Mensajes" fill="white">
                 <font>
                     <Font name="Cambria" size="30"/>
@@ -32,7 +32,7 @@
         </HBox> 
     </top>
     <center>
-        <VBox fx:id="mensajes" styleClass="vBoxMensajes" spacing="15" 
+        <VBox fx:id="mensajes" styleClass="vBoxMensajes" spacing="15" style="-fx-background-color: darkgrey"
               VBox.vgrow="ALWAYS" HBox.hgrow="ALWAYS" prefHeight="${pantallaMensaje.height*1.5}">
             <HBox style="-fx-alignment: center">
                 <ImageView fitHeight="150.0" fitWidth="700.0" pickOnBounds="true" preserveRatio="true">
@@ -58,7 +58,7 @@
                 <Label styleClass="simpleLabel" text="Tu mensaje: "/>
                 <Label fx:id="textoMensaje" styleClass="simpleLabel" prefHeight="250"/>
             </HBox>
-            <HBox style="-fx-margin-top: 20px">
+            <HBox style="-fx-margin-top: 20px;">
                 <Button fx:id="btnContacto" text="Contactar" onAction="#contactar" focusTraversable="false" style="-fx-alignment: center;"/>  
                 <Button fx:id="btnResponder" text="Responder" onAction="#responder" focusTraversable="false" style="-fx-alignment: center;" visible="false"/> 
             </HBox> 
